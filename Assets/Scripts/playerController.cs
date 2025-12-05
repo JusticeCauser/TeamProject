@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem.DualShock;
 
-public class playerController : MonoBehaviour
+public class playerController : MonoBehaviour, IDamage
 {
     [Header("----- Component -----")]
     [SerializeField] CharacterController controller;
@@ -37,7 +37,10 @@ public class playerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        movement();
+        if(!gameManager.instance.isPaused)
+        {
+            movement();
+        }
         sprint();
     }
 
@@ -102,6 +105,17 @@ public class playerController : MonoBehaviour
             {
                 dmg.takeDamage(shootDamage);
             }
+        }
+    }
+
+    public void takeDamage(int amount)
+    {
+        HP -= amount;
+
+        if(HP <= 0)
+        {
+            // You Died!
+            gameManager.instance.youLose();
         }
     }
 }
