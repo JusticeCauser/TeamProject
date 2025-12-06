@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem.DualShock;
 
-public class playerController : MonoBehaviour, IDamage
+public class playerController : MonoBehaviour, IDamage, IHeal
 {
     [Header("----- Component -----")]
     [SerializeField] CharacterController controller;
@@ -25,6 +25,7 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] float shootRate;
 
     int jumpCount;
+    int speedOrig;
     // making HPOrig public for cheatManager.cs
     public int HPOrig;
 
@@ -38,6 +39,7 @@ public class playerController : MonoBehaviour, IDamage
     void Start()
     {
         HPOrig = HP;
+        speedOrig = speed;
         updatePlayerUI();
     }
 
@@ -98,6 +100,20 @@ public class playerController : MonoBehaviour, IDamage
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("FrostTrap"))
+        {
+            damage trapSlow = other.GetComponent<damage>();
+            speed = Mathf.RoundToInt(speedOrig * trapSlow.slowedSpeed);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        speed = speedOrig;
+    }
+
     void shoot()
     {
         shootTimer = 0;
@@ -115,11 +131,20 @@ public class playerController : MonoBehaviour, IDamage
         }
     }
 
+    public void healPlayer(int healAmount)
+    {
+        HP += healAmount;
+        updatePlayerUI();
+        StartCoroutine(flashGreen());
+    }
     public void takeDamage(int amount)
     {
-        HP -= amount;
-        updatePlayerUI();
-        StartCoroutine(flashRed());
+        if (amount > 0)
+        {
+            HP -= amount;
+            StartCoroutine(flashRed());
+            updatePlayerUI();
+        }
 
         if(HP <= 0)
         {
@@ -140,7 +165,21 @@ public class playerController : MonoBehaviour, IDamage
         yield return new WaitForSeconds(0.1f);
         gameManager.instance.playerDamageScreen.SetActive(false);
     }
+    IEnumerator flashGreen() //flash green for heal
+    {
+        gameManager.instance.playerHealScreen.SetActive(true);
+        yield return new WaitForSeconds(0.2f); //active flash time
+        gameManager.instance.playerHealScreen.SetActive(false);
+    }
 
+    public void heal(int healAmount)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    
+//<<<<<<< HEAD
+//=======
     // poison routines
     public void poison(int damage, float rate, float duration)
     {
@@ -165,5 +204,6 @@ public class playerController : MonoBehaviour, IDamage
             yield return wait;
         }
         poisoned = null;
-    }
+//>>>>>>> 1bb9c2b6da50e57523c371620cff226582621ee7
+}
 }

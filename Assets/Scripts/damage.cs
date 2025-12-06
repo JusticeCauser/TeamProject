@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 
 public class damage : MonoBehaviour
 {
-    enum damageType {moving, stationary, DOT, homing, poison}
+    enum damageType {moving, stationary, DOT, homing, poison, frost}
     [SerializeField] damageType type;
     [SerializeField] Rigidbody rb;
 
@@ -14,9 +14,10 @@ public class damage : MonoBehaviour
     [SerializeField] float duration;
     [SerializeField] int speed;
     [SerializeField] int destroyTime;
+    [Range(1, 0.1f)] [SerializeField] float playerSlowedSpeed;
 
     bool isDamaging;
-    float lastTick;
+    public float slowedSpeed;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -29,6 +30,10 @@ public class damage : MonoBehaviour
             {
                 rb.linearVelocity = transform.forward * speed;
             }
+        }
+        if(type == damageType.frost)
+        {
+            slowedSpeed = playerSlowedSpeed;
         }
     }
 
@@ -56,6 +61,10 @@ public class damage : MonoBehaviour
         if(type == damageType.homing || type == damageType.moving)
         {
             Destroy(gameObject);
+        }
+        if (type == damageType.frost)
+        {
+            dmg.takeDamage(damageAmount);
         }
 
     }
