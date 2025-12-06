@@ -20,6 +20,7 @@ public class enemyAI_Guard : MonoBehaviour, IDamage
     float shootTimer;
     float angleToPlayer;
 
+    private Coroutine poisoned;
 
     //Range in which guard can see player to shoot
     bool playerInSightRange;
@@ -56,7 +57,7 @@ public class enemyAI_Guard : MonoBehaviour, IDamage
 
                 if (agent.remainingDistance <= agent.stoppingDistance)
                 {
-                    faceTarget();
+                    facePlayer();
                 }
 
                 if (shootTimer >= shootRate)
@@ -85,7 +86,7 @@ public class enemyAI_Guard : MonoBehaviour, IDamage
             playerInSightRange = false;
         }
     }
-    void faceTarget()
+    void facePlayer()
     {
         Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, transform.position.y, playerDir.z));
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
@@ -116,9 +117,40 @@ public class enemyAI_Guard : MonoBehaviour, IDamage
         yield return new WaitForSeconds(0.1f);
         model.material.color = colorOrig;
     }
-
-    public void Alert()
+    public void onAlert(Vector3 alertPosition)
     {
+        Debug.Log("Gaurd got Alert");
+        Vector3 playerDir = alertPosition - transform.position;
+        playerDir.y = 0;
 
+        if(playerDir.sqrMagnitude > 0.01f)
+        {
+            Quaternion rot = Quaternion.LookRotation(-playerDir);
+            transform.rotation = rot;
+        }
+    }
+    public void poison(int damage, float rate, float duration)
+    {
+        if (poisoned != null)
+        {
+            StopCoroutine(poisoned); // cuts off current poison, effective duration reset
+        }
+        poisoned = StartCoroutine(PoisonRoutine(damage, rate, duration));
+    }
+
+    private IEnumerator PoisonRoutine(int damage, float rate, float duration)
+    {
+        float timer = 0f;
+        WaitForSeconds wait = new WaitForSeconds(rate);
+
+        while (timer < duration)
+        {
+            takeDamage(damage);
+            timer += rate;
+            yield return wait;
+        }
+        poisoned = null;
     }
 }
+
+

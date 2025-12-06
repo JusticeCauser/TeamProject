@@ -10,19 +10,20 @@ public class enemyAI_Dog : MonoBehaviour, IDamage
     [SerializeField] int HP;
     [SerializeField] int faceTargetSpeed;
     [SerializeField] int FOV;
-    [SerializeField] GameObject bitePos;
-    [SerializeField] 
+    [SerializeField] float alertRadius;
+    [SerializeField] float barkCooldown;
 
     Color colorOrig;
 
-    float biteTimer;
     float angleToPlayer;
 
+    private Coroutine poisoned;
 
     //Range in which dog can see player to shoot
     bool playerInSightRange;
     //Range in which dog can smell player
     bool playerInScentRange;
+    float barkTimer;
 
     Vector3 playerDir;
     void Start()
@@ -32,8 +33,16 @@ public class enemyAI_Dog : MonoBehaviour, IDamage
 
     void Update()
     {
-        biteTimer += Time.deltaTime;
-
+        if(playerInScentRange)
+        {
+            barkTimer -= Time.deltaTime;
+            if(barkTimer <= 0)
+            {
+                bark();
+                barkTimer = barkCooldown;
+                playerInScentRange = false;
+            }
+        }
         if (playerInSightRange && canSeePlayer())
         {
 
@@ -54,7 +63,7 @@ public class enemyAI_Dog : MonoBehaviour, IDamage
 
                 if (agent.remainingDistance <= agent.stoppingDistance)
                 {
-                    faceTarget();
+                    facePlayer();
                 }
 
                 return true;
@@ -67,7 +76,8 @@ public class enemyAI_Dog : MonoBehaviour, IDamage
     {
         if (other.CompareTag("Player"))
         {
-            playerInSightRange = true;
+            playerInScentRange = true;
+            barkTimer = 0;
         }
     }
 
@@ -75,20 +85,16 @@ public class enemyAI_Dog : MonoBehaviour, IDamage
     {
         if (other.CompareTag("Player"))
         {
-            playerInSightRange = false;
+            playerInScentRange = false;
         }
     }
-    void faceTarget()
+    void facePlayer()
     {
         Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, transform.position.y, playerDir.z));
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
     }
 
-    void bite()
-    {
-        biteTimer = 0;
-        
-    }
+
     public void takeDamage(int amount)
     {
         HP -= amount;
@@ -109,5 +115,43 @@ public class enemyAI_Dog : MonoBehaviour, IDamage
         model.material.color = Color.red;
         yield return new WaitForSeconds(0.1f);
         model.material.color = colorOrig;
+    }
+
+    void bark()
+    {
+        Debug.Log("Bark!");
+        Vector3 pDir = gameManager.instance.player.transform.position;
+        Vector3 dir = pDir - transform.position;
+        dir.y = 0;
+
+        if(dir.sqrMagnitude > 0.0f)
+        {
+            transform.rotation = Quaternion.LookRotation(dir);
+        }
+
+        gameManager.instance.alertSys.raiseAlert(transform.position, alertRadius);
+    }
+
+    public void poison(int damage, float rate, float duration)
+    {
+        if (poisoned != null)
+        {
+            StopCoroutine(poisoned); // cuts off current poison, effective duration reset
+        }
+        poisoned = StartCoroutine(PoisonRoutine(damage, rate, duration));
+    }
+
+    private IEnumerator PoisonRoutine(int damage, float rate, float duration)
+    {
+        float timer = 0f;
+        WaitForSeconds wait = new WaitForSeconds(rate);
+
+        while (timer < duration)
+        {
+            takeDamage(damage);
+            timer += rate;
+            yield return wait;
+        }
+        poisoned = null;
     }
 }
