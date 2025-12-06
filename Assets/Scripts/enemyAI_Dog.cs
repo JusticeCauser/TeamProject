@@ -19,8 +19,6 @@ public class enemyAI_Dog : MonoBehaviour, IDamage
 
     private Coroutine poisoned;
 
-    //Range in which dog can see player to shoot
-    bool playerInSightRange;
     //Range in which dog can smell player
     bool playerInScentRange;
     float barkTimer;
@@ -40,37 +38,21 @@ public class enemyAI_Dog : MonoBehaviour, IDamage
             {
                 bark();
                 barkTimer = barkCooldown;
-                playerInScentRange = false;
             }
         }
-        if (playerInSightRange && canSeePlayer())
+        if(canScentPlayer())
         {
-
+            agent.SetDestination(gameManager.instance.player.transform.position);
+            if(agent.remainingDistance <= agent.stoppingDistance)
+            {
+                facePlayer();
+            }
         }
     }
 
-    bool canSeePlayer()
+    bool canScentPlayer()
     {
-        playerDir = gameManager.instance.player.transform.position - transform.position;
-        angleToPlayer = Vector3.Angle(playerDir, transform.forward);
-
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, playerDir, out hit))
-        {
-            if (angleToPlayer <= FOV && hit.collider.CompareTag("Player"))
-            {
-                agent.SetDestination(gameManager.instance.player.transform.position);
-
-                if (agent.remainingDistance <= agent.stoppingDistance)
-                {
-                    facePlayer();
-                }
-
-                return true;
-            }
-        }
-
-        return false;
+        return playerInScentRange;
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -119,7 +101,6 @@ public class enemyAI_Dog : MonoBehaviour, IDamage
 
     void bark()
     {
-        Debug.Log("Bark!");
         Vector3 pDir = gameManager.instance.player.transform.position;
         Vector3 dir = pDir - transform.position;
         dir.y = 0;
