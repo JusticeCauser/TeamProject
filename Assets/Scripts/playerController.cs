@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem.DualShock;
 
-public class playerController : MonoBehaviour, IDamage
+public class playerController : MonoBehaviour, IDamage, IHeal
 {
     [Header("----- Component -----")]
     [SerializeField] CharacterController controller;
@@ -110,6 +110,12 @@ public class playerController : MonoBehaviour, IDamage
         }
     }
 
+    public void healPlayer(int healAmount)
+    {
+        HP += healAmount;
+        updatePlayerUI();
+        StartCoroutine(flashGreen());
+    }
     public void takeDamage(int amount)
     {
         HP -= amount;
@@ -133,5 +139,17 @@ public class playerController : MonoBehaviour, IDamage
         gameManager.instance.playerDamageScreen.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         gameManager.instance.playerDamageScreen.SetActive(false);
+    }
+
+    IEnumerator flashGreen() //flash green for heal
+    {
+        gameManager.instance.playerHealScreen.SetActive(true);
+        yield return new WaitForSeconds(0.2f); //active flash time
+        gameManager.instance.playerHealScreen.SetActive(false);
+    }
+
+    public void heal(int healAmount)
+    {
+        throw new System.NotImplementedException();
     }
 }
