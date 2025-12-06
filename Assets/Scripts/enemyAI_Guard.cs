@@ -120,7 +120,7 @@ public class enemyAI_Guard : MonoBehaviour, IDamage
     public void onAlert(Vector3 alertPosition)
     {
         Debug.Log("Gaurd got Alert");
-        Vector3 playerDir = alertPosition - transform.position;
+        Vector3 playerDir = alertPosition + transform.position;
         playerDir.y = 0;
 
         if(playerDir.sqrMagnitude > 0.01f)
