@@ -98,7 +98,7 @@ public class playerController : MonoBehaviour, IDamage, IHeal
         }
         else if(Input.GetButtonUp("Sprint"))
         {
-            speed /= sprintMod;
+            speed = speedOrig;
         }
     }
 
