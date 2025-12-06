@@ -131,8 +131,7 @@ public class enemyAI_Guard_Handler : MonoBehaviour, IDamage
 
     public void onDogHit(Vector3 alertPosition)
     {
-        
-        agent.SetDestination(gameManager.instance.player.transform.position);
+        agent.SetDestination(alertPosition);
     }
     public void poison(int damage, float rate, float duration)
     {

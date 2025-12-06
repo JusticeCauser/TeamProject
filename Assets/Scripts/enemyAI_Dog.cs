@@ -71,7 +71,7 @@ public class enemyAI_Dog : MonoBehaviour, IDamage
     }
     void facePlayer()
     {
-        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, transform.position.y, playerDir.z));
+        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, 0, playerDir.z));
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
     }
 
@@ -83,7 +83,7 @@ public class enemyAI_Dog : MonoBehaviour, IDamage
 
         if(doghandler != null)
         {
-            doghandler.onAlert(transform.position);
+            doghandler.onDogHit(transform.position);
         }
 
         if (HP <= 0)
