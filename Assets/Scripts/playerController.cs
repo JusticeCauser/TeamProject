@@ -23,6 +23,7 @@ public class playerController : MonoBehaviour, IDamage
 
     int jumpCount;
     int HPOrig;
+    int speedOrig;
 
     float shootTimer;
     private Coroutine poisoned;
@@ -34,6 +35,7 @@ public class playerController : MonoBehaviour, IDamage
     void Start()
     {
         HPOrig = HP;
+        speedOrig = speed;
         updatePlayerUI();
     }
 
@@ -94,6 +96,20 @@ public class playerController : MonoBehaviour, IDamage
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("FrostTrap"))
+        {
+            damage trapSlow = other.GetComponent<damage>();
+            speed = Mathf.RoundToInt(speedOrig * trapSlow.slowedSpeed);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        speed = speedOrig;
+    }
+
     void shoot()
     {
         shootTimer = 0;
@@ -113,9 +129,12 @@ public class playerController : MonoBehaviour, IDamage
 
     public void takeDamage(int amount)
     {
-        HP -= amount;
-        updatePlayerUI();
-        StartCoroutine(flashRed());
+        if (amount > 0)
+        {
+            HP -= amount;
+            StartCoroutine(flashRed());
+            updatePlayerUI();
+        }
 
         if(HP <= 0)
         {
