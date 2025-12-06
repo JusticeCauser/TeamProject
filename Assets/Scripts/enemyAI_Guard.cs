@@ -23,6 +23,14 @@ public class enemyAI_Guard : MonoBehaviour, IDamage
 
     private Coroutine poisoned;
 
+    //States for the Guards to switch through as we need them
+    public enum guardState
+    {
+        Idle,
+        Patrol,
+        Alerted,
+        Chase
+    }
     //Range in which guard can see player to shoot
     bool playerInSightRange;
 

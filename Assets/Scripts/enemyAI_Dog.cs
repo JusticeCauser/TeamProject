@@ -21,6 +21,14 @@ public class enemyAI_Dog : MonoBehaviour, IDamage
     bool playerInScentRange;
     float barkTimer;
 
+    public enum dogState
+    {
+        Idle,
+        Patrol,
+        Alerted,
+        Chase
+    }
+
     Vector3 playerDir;
     void Start()
     {
@@ -74,7 +82,10 @@ public class enemyAI_Dog : MonoBehaviour, IDamage
         Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, 0, playerDir.z));
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
     }
-
+        public void onGuardHit(Vector3 alertPosition)
+    {
+        agent.SetDestination(alertPosition);
+    }
 
     public void takeDamage(int amount)
     {
