@@ -37,10 +37,15 @@ public class heal : MonoBehaviour
 
         IHeal health = other.GetComponent<IHeal>(); //does it have IHeal
 
-        if(health != null && cHealth < maxHealth && _heal == HealType.HOT) //if not null and is Heal over time
+        if(health != null && _heal == HealType.HOT) //if not null and is Heal over time
         {
            //health.heal(healAmount);
-            healPlayer(healAmount); //heal for that amount
+           if(cHealth < maxHealth)
+            {
+                healPlayer(healAmount); //heal for that amount
+                Destroy(gameObject);
+            }
+            //healPlayer(healAmount); //heal for that amount
             Destroy(gameObject);
             
             
