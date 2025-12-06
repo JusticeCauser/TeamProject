@@ -177,7 +177,9 @@ public class playerController : MonoBehaviour, IDamage, IHeal
 
     public void heal(int healAmount)
     {
-        throw new System.NotImplementedException();
+        HP += healAmount;
+        updatePlayerUI();
+        StartCoroutine(flashGreen());
     }
 
     
