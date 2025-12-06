@@ -102,7 +102,7 @@ public class enemyAI_Turrets : MonoBehaviour, IDamage
     void fire()
     {
         fireTimer = 0;
-        Instantiate(bullet, firePos.position, transform.rotation);
+        Instantiate(bullet, firePos.position, head.transform.rotation);
     }
     public void takeDamage(int amount)
     {
