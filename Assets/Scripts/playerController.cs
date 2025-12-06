@@ -134,12 +134,6 @@ public class playerController : MonoBehaviour, IDamage, IHeal
         }
     }
 
-    public void healPlayer(int healAmount)
-    {
-        HP += healAmount;
-        updatePlayerUI();
-        StartCoroutine(flashGreen());
-    }
     public void takeDamage(int amount)
     {
         if (amount > 0)
@@ -177,9 +171,13 @@ public class playerController : MonoBehaviour, IDamage, IHeal
 
     public void heal(int healAmount)
     {
-        HP += healAmount;
-        updatePlayerUI();
-        StartCoroutine(flashGreen());
+        if(HP < HPOrig)
+        {
+            HP += healAmount;
+            updatePlayerUI();
+            StartCoroutine(flashGreen());
+        }
+        
     }
 
     
