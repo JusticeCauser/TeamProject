@@ -12110,8 +12110,8 @@ MonoBehaviour:
   jumpMax: 2
   gravity: 35
   shootDamage: 1
-  shootDist: 0
-  shootRate: 0
+  shootDist: 150
+  shootRate: 0.5
   playerBullet: {fileID: 7754668077929706730, guid: e9ac31fdd937851409d15864ad32bb03, type: 3}
   playerShootPos: {fileID: 964018807}
   HPOrig: 10
