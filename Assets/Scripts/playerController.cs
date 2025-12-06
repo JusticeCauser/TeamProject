@@ -134,4 +134,5 @@ public class playerController : MonoBehaviour, IDamage
         yield return new WaitForSeconds(0.1f);
         gameManager.instance.playerDamageScreen.SetActive(false);
     }
+
 }
