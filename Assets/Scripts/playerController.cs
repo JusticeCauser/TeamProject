@@ -25,6 +25,7 @@ public class playerController : MonoBehaviour, IDamage, IHeal
     [SerializeField] float shootRate;
 
     int jumpCount;
+    int speedOrig;
     // making HPOrig public for cheatManager.cs
     public int HPOrig;
 
@@ -38,6 +39,7 @@ public class playerController : MonoBehaviour, IDamage, IHeal
     void Start()
     {
         HPOrig = HP;
+        speedOrig = speed;
         updatePlayerUI();
     }
 
@@ -98,6 +100,20 @@ public class playerController : MonoBehaviour, IDamage, IHeal
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("FrostTrap"))
+        {
+            damage trapSlow = other.GetComponent<damage>();
+            speed = Mathf.RoundToInt(speedOrig * trapSlow.slowedSpeed);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        speed = speedOrig;
+    }
+
     void shoot()
     {
         shootTimer = 0;
@@ -123,9 +139,12 @@ public class playerController : MonoBehaviour, IDamage, IHeal
     }
     public void takeDamage(int amount)
     {
-        HP -= amount;
-        updatePlayerUI();
-        StartCoroutine(flashRed());
+        if (amount > 0)
+        {
+            HP -= amount;
+            StartCoroutine(flashRed());
+            updatePlayerUI();
+        }
 
         if(HP <= 0)
         {
