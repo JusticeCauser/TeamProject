@@ -6,8 +6,6 @@ public class alertSystem : MonoBehaviour
 
     public void raiseAlert(Vector3 position, float radius)
     {
-        Debug.Log("ALERT SYSTEM TRIGGED AT " + position);
-
         Collider[] hits = Physics.OverlapSphere(position, radius, enemyMask);
         
         for(int i = 0; i < hits.Length; i++)
@@ -15,8 +13,12 @@ public class alertSystem : MonoBehaviour
             enemyAI_Guard guard = hits[i].GetComponent<enemyAI_Guard>();
             if(guard != null)
             {
-                Debug.Log("Alerting Guard: " + guard.name);
                 guard.onAlert(position);
+            }
+            enemyAI_Guard_Handler handler = hits[i].GetComponent<enemyAI_Guard_Handler>();
+            if (handler != null)
+            {
+                handler.onAlert(position);
             }
         }
     }
