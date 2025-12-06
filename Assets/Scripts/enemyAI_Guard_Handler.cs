@@ -29,6 +29,7 @@ public class enemyAI_Guard_Handler : MonoBehaviour, IDamage
     void Start()
     {
         colorOrig = model.material.color;
+        gameManager.instance.UpdateGameGoal(1);
     }
 
     void Update()
@@ -101,6 +102,7 @@ public class enemyAI_Guard_Handler : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
+            gameManager.instance.UpdateGameGoal(-1);
             Destroy(gameObject);
         }
         else
@@ -129,14 +131,7 @@ public class enemyAI_Guard_Handler : MonoBehaviour, IDamage
 
     public void onDogHit(Vector3 alertPosition)
     {
-        Vector3 playerDir = alertPosition + transform.position;
-        playerDir.y = 0;
-
-        if(playerDir.sqrMagnitude > 0.01f)
-        {
-            Quaternion rot = Quaternion.LookRotation(playerDir);
-            transform.rotation = rot;
-        }
+        
         agent.SetDestination(gameManager.instance.player.transform.position);
     }
     public void poison(int damage, float rate, float duration)

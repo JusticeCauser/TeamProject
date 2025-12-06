@@ -25,6 +25,7 @@ public class enemyAI_Dog : MonoBehaviour, IDamage
     void Start()
     {
         colorOrig = model.material.color;
+        gameManager.instance.UpdateGameGoal(1);
     }
 
     void Update()
@@ -87,6 +88,7 @@ public class enemyAI_Dog : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
+            gameManager.instance.UpdateGameGoal(-1);
             Destroy(gameObject);
         }
         else
