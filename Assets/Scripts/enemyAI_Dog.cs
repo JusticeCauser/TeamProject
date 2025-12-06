@@ -7,6 +7,7 @@ public class enemyAI_Dog : MonoBehaviour, IDamage
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
 
+    [SerializeField] enemyAI_Guard_Handler doghandler;
     [SerializeField] int HP;
     [SerializeField] int faceTargetSpeed;
     [SerializeField] int FOV;
@@ -14,9 +15,6 @@ public class enemyAI_Dog : MonoBehaviour, IDamage
     [SerializeField] float barkCooldown;
 
     Color colorOrig;
-
-    float angleToPlayer;
-
     private Coroutine poisoned;
 
     //Range in which dog can smell player
@@ -81,6 +79,11 @@ public class enemyAI_Dog : MonoBehaviour, IDamage
     {
         HP -= amount;
         agent.SetDestination(gameManager.instance.player.transform.position);
+
+        if(doghandler != null)
+        {
+            doghandler.onAlert(transform.position);
+        }
 
         if (HP <= 0)
         {
