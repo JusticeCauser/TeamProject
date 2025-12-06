@@ -1,0 +1,170 @@
+using UnityEngine;
+using System.Collections;
+using UnityEngine.AI;
+
+public class enemyAI_Guard : MonoBehaviour, IDamage
+{
+    [SerializeField] Renderer model;
+    [SerializeField] NavMeshAgent agent;
+
+    [SerializeField] int HP;
+    [SerializeField] int faceTargetSpeed;
+    [SerializeField] int FOV;
+    [SerializeField] int turnSpeed;
+    [SerializeField] GameObject bullet;
+    [SerializeField] float shootRate;
+    [SerializeField] Transform shootPos;
+    [SerializeField] float alertTimer;
+    [SerializeField] float alertRepeatTime;
+    Color colorOrig;
+
+    float shootTimer;
+    float angleToPlayer;
+
+    private Coroutine poisoned;
+
+    //Range in which guard can see player to shoot
+    bool playerInSightRange;
+
+    Vector3 playerDir;
+    Vector3 lastAlertPosition;
+    void Start()
+    {
+        colorOrig = model.material.color;
+        gameManager.instance.UpdateGameGoal(1);
+    }
+
+    void Update()
+    {
+        shootTimer += Time.deltaTime;
+        if (alertTimer >= 0)
+        {
+            alertTimer -= Time.deltaTime;
+            Vector3 dir = lastAlertPosition - transform.position;
+            dir.y = 0;
+
+            if(dir.sqrMagnitude >0.0f)
+            {
+                Quaternion targetRot = Quaternion.LookRotation(dir);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, turnSpeed * Time.deltaTime);
+            }
+        }
+        if (playerInSightRange && canSeePlayer())
+        {
+
+        }
+    }
+
+    bool canSeePlayer()
+    {
+        playerDir = gameManager.instance.player.transform.position - transform.position;
+        angleToPlayer = Vector3.Angle(playerDir, transform.forward);
+
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, playerDir, out hit))
+        {
+            if (angleToPlayer <= FOV && hit.collider.CompareTag("Player"))
+            {
+                agent.SetDestination(gameManager.instance.player.transform.position);
+
+                if (agent.remainingDistance <= agent.stoppingDistance)
+                {
+                    facePlayer();
+                }
+
+                if (shootTimer >= shootRate)
+                {
+                    shoot();
+                }
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+        private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInSightRange = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInSightRange = false;
+        }
+    }
+    void facePlayer()
+    {
+        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, transform.position.y, playerDir.z));
+        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
+    }
+    void shoot()
+    {
+        shootTimer = 0;
+        Instantiate(bullet, shootPos.position, transform.rotation);
+    }
+    public void takeDamage(int amount)
+    {
+        HP -= amount;
+        agent.SetDestination(gameManager.instance.player.transform.position);
+
+        if (HP <= 0)
+        {
+            gameManager.instance.UpdateGameGoal(-1);
+            Destroy(gameObject);
+        }
+        else
+        {
+            StartCoroutine(flashRed());
+        }
+    }
+
+    IEnumerator flashRed()
+    {
+        model.material.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        model.material.color = colorOrig;
+    }
+    public void onAlert(Vector3 alertPosition)
+    {
+        Vector3 playerDir = alertPosition + transform.position;
+        playerDir.y = 0;
+
+        if(playerDir.sqrMagnitude > 0.01f)
+        {
+            Quaternion rot = Quaternion.LookRotation(-playerDir);
+            transform.rotation = rot;
+        }
+        lastAlertPosition = alertPosition;
+        alertTimer = alertRepeatTime;
+    }
+    public void poison(int damage, float rate, float duration)
+    {
+        if (poisoned != null)
+        {
+            StopCoroutine(poisoned); // cuts off current poison, effective duration reset
+        }
+        poisoned = StartCoroutine(PoisonRoutine(damage, rate, duration));
+    }
+
+    private IEnumerator PoisonRoutine(int damage, float rate, float duration)
+    {
+        float timer = 0f;
+        WaitForSeconds wait = new WaitForSeconds(rate);
+
+        while (timer < duration)
+        {
+            takeDamage(damage);
+            timer += rate;
+            yield return wait;
+        }
+        poisoned = null;
+    }
+}
+
+
