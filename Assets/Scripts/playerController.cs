@@ -123,7 +123,7 @@ public class playerController : MonoBehaviour, IDamage, IHeal
     void shoot()
     {
         shootTimer = 0;
-        Instantiate(playerBullet, playerShootPos.position, transform.rotation);
+        Instantiate(playerBullet, playerShootPos.position, mainCam.transform.rotation);
 
         RaycastHit hit;
         if (Physics.Raycast(mainCam.transform.position, mainCam.transform.forward, out hit, shootDist, ~ignoreLayer))
