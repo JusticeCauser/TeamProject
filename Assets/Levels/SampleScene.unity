@@ -9452,6 +9452,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 2504032249077632972, guid: 89d0ed69243669544a51684c3d5723a2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3621224846115921411, guid: 89d0ed69243669544a51684c3d5723a2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4119601765498242997, guid: 89d0ed69243669544a51684c3d5723a2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4167428967107724891, guid: 89d0ed69243669544a51684c3d5723a2, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -9532,6 +9544,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4615306043532444684, guid: 89d0ed69243669544a51684c3d5723a2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 5377244580892608288, guid: 89d0ed69243669544a51684c3d5723a2, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 60
@@ -9549,6 +9565,22 @@ PrefabInstance:
       value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 5488769285783584073, guid: 89d0ed69243669544a51684c3d5723a2, type: 3}
+      propertyPath: m_Color.r
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6431855849964842401, guid: 89d0ed69243669544a51684c3d5723a2, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6431855849964842401, guid: 89d0ed69243669544a51684c3d5723a2, type: 3}
+      propertyPath: m_Color.b
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6431855849964842401, guid: 89d0ed69243669544a51684c3d5723a2, type: 3}
+      propertyPath: m_Color.g
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6431855849964842401, guid: 89d0ed69243669544a51684c3d5723a2, type: 3}
       propertyPath: m_Color.r
       value: 0.6
       objectReference: {fileID: 0}
@@ -9575,6 +9607,18 @@ PrefabInstance:
     - target: {fileID: 7906431342310425373, guid: 89d0ed69243669544a51684c3d5723a2, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8021556137707372513, guid: 89d0ed69243669544a51684c3d5723a2, type: 3}
+      propertyPath: m_text
+      value: YOU LOSE!
+      objectReference: {fileID: 0}
+    - target: {fileID: 8021556137707372513, guid: 89d0ed69243669544a51684c3d5723a2, type: 3}
+      propertyPath: m_fontSize
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 8021556137707372513, guid: 89d0ed69243669544a51684c3d5723a2, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 35
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
