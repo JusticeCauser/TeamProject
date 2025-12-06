@@ -9,7 +9,10 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] LayerMask ignoreLayer;
 
     [Header("----- Stats -----")]
-    [Range(1, 10)] [SerializeField] int HP;
+    // Levi edit
+    // changing HP to public for access in cheatManager.cs
+    [Range(1, 10)] public int HP;
+    //[Range(1, 10)] [SerializeField] int HP;
     [Range(1, 5)] [SerializeField] int speed;
     [Range(2, 5)] [SerializeField] int sprintMod;
     [Range(5, 20)] [SerializeField] int jumpSpeed;
@@ -22,8 +25,9 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] float shootRate;
 
     int jumpCount;
-    int HPOrig;
     int speedOrig;
+    // making HPOrig public for cheatManager.cs
+    public int HPOrig;
 
     float shootTimer;
     private Coroutine poisoned;
