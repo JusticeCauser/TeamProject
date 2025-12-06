@@ -54,7 +54,7 @@ public class heal : MonoBehaviour
 
      
     }
-    private void OnTriggerStay(Collider other) //heal area
+    private void OnTriggerStay(Collider other) //while in heal area
     {
         
         IHeal health = other.GetComponent<IHeal>();
@@ -64,7 +64,16 @@ public class heal : MonoBehaviour
             StartCoroutine(healOther(health)); 
         }
     }
+    private void OnTriggerExit(Collider other) //leaving heal area
+    {
+        IHeal health = other.GetComponent<IHeal>();
 
+        if(health != null)
+        {
+            healing = false;
+            StopCoroutine(healOther(health));
+        }
+    }
     public void healPlayer(int healAmount)
     {
         healAmount = Mathf.Abs(healAmount); //get value 
