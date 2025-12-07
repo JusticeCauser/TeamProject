@@ -148,16 +148,14 @@ public class enemyAI_Guard : MonoBehaviour, IDamage
     }
     public void onAlert(Vector3 alertPosition)
     {
-        Vector3 playerDir = alertPosition + transform.position;
+        Vector3 playerDir = alertPosition - transform.position;
         playerDir.y = 0;
 
-        if(playerDir.sqrMagnitude > 0.01f)
+        if (playerDir.sqrMagnitude > 0.01f)
         {
-            Quaternion rot = Quaternion.LookRotation(-playerDir);
+            Quaternion rot = Quaternion.LookRotation(playerDir);
             transform.rotation = rot;
         }
-        lastAlertPosition = alertPosition;
-        alertTimer = alertRepeatTime;
     }
     public void poison(int damage, float rate, float duration)
     {

@@ -15,11 +15,13 @@ public class enemyAI_Dog : MonoBehaviour, IDamage
     [SerializeField] float barkCooldown;
 
     Color colorOrig;
+
     private Coroutine poisoned;
 
     //Range in which dog can smell player
     bool playerInScentRange;
     float barkTimer;
+    public Transform forwardAnchor;
 
     public enum dogState
     {
@@ -133,7 +135,7 @@ public class enemyAI_Dog : MonoBehaviour, IDamage
             transform.rotation = Quaternion.LookRotation(dir);
         }
 
-        gameManager.instance.alertSys.raiseAlert(transform.position, alertRadius);
+        gameManager.instance.alertSys.raiseAlert(forwardAnchor.position, alertRadius);
     }
 
     public void poison(int damage, float rate, float duration)
