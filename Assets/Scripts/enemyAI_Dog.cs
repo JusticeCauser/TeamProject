@@ -23,6 +23,7 @@ public class enemyAI_Dog : MonoBehaviour, IDamage
     float barkTimer;
     public Transform forwardAnchor;
 
+    //States of dog for use in transitioning the dog behavior
     public enum dogState
     {
         Idle,
@@ -30,6 +31,8 @@ public class enemyAI_Dog : MonoBehaviour, IDamage
         Alerted,
         Chase
     }
+
+    public dogState state = dogState.Idle;
 
     Vector3 playerDir;
     Transform playerTransform;
@@ -53,10 +56,10 @@ public class enemyAI_Dog : MonoBehaviour, IDamage
                 barkTimer = barkCooldown;
             }
         }
-        if(canScentPlayer() && playerTransform != null)
+        if (canScentPlayer() && playerTransform != null && state == dogState.Chase)
         {
             agent.SetDestination(playerTransform.position);
-            if(agent.remainingDistance <= agent.stoppingDistance)
+            if (agent.remainingDistance <= agent.stoppingDistance)
             {
                 facePlayer();
             }
@@ -73,6 +76,8 @@ public class enemyAI_Dog : MonoBehaviour, IDamage
         {
             playerInScentRange = true;
             barkTimer = 0;
+
+            state = dogState.Alerted;
         }
     }
 
