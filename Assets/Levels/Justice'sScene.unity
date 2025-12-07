@@ -6015,17 +6015,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 157252670015058183, guid: 7bd612d578f3e0841b6e15b0fc2b07e8, type: 3}
-      propertyPath: m_Radius
-      value: 30
-      objectReference: {fileID: 0}
     - target: {fileID: 5811351100485377980, guid: 7bd612d578f3e0841b6e15b0fc2b07e8, type: 3}
       propertyPath: m_Name
       value: RapidFireCannon_Homing (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5811351100485377980, guid: 7bd612d578f3e0841b6e15b0fc2b07e8, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7036126678153132305, guid: 7bd612d578f3e0841b6e15b0fc2b07e8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10520,17 +10512,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 157252670015058183, guid: 7bd612d578f3e0841b6e15b0fc2b07e8, type: 3}
-      propertyPath: m_Radius
-      value: 30
-      objectReference: {fileID: 0}
     - target: {fileID: 5811351100485377980, guid: 7bd612d578f3e0841b6e15b0fc2b07e8, type: 3}
       propertyPath: m_Name
       value: RapidFireCannon_Homing (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5811351100485377980, guid: 7bd612d578f3e0841b6e15b0fc2b07e8, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7036126678153132305, guid: 7bd612d578f3e0841b6e15b0fc2b07e8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -19445,7 +19429,7 @@ GameObject:
   - component: {fileID: 2049892300}
   - component: {fileID: 2049892299}
   - component: {fileID: 2049892298}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Cube (27)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
