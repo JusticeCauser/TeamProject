@@ -36,6 +36,14 @@ public class playerController : MonoBehaviour, IDamage, IHeal
 
     Vector3 moveDir;
     Vector3 playerVel;
+    Vector3 externalVelocity;
+
+    [Header("----- Grapple Settings -----")]
+    [SerializeField] float groundedVelocityDecay = 15f;
+    [SerializeField] float airVelocityDecay = 0.5f;
+
+    GrapplingHook grappleHook;
+    bool grappleJumpedThisFrame;
 
     Camera mainCam;
 
@@ -44,6 +52,7 @@ public class playerController : MonoBehaviour, IDamage, IHeal
         HPOrig = HP;
         speedOrig = speed;
         mainCam = Camera.main;
+        grappleHook = GetComponent<GrapplingHook>();
         updatePlayerUI();
     }
 
@@ -70,28 +79,69 @@ public class playerController : MonoBehaviour, IDamage, IHeal
             shoot();
         }
 
+        // only block movement when actively being pulled by grapple (not during line extend)
+        bool isGrappling = grappleHook != null && grappleHook.IsGrappling();
+
+        // debug - remove after testing
+        // if (grappleHook != null) Debug.Log($"isGrappling: {isGrappling}, lineExtending: {grappleHook.IsLineExtending()}");
+
         if(controller.isGrounded)
         {
             jumpCount = 0;
-            playerVel = Vector3.zero;
+            playerVel.y = 0;
+
+            if (externalVelocity.magnitude > 0.1f)
+            {
+                externalVelocity = Vector3.MoveTowards(externalVelocity, Vector3.zero, groundedVelocityDecay * Time.deltaTime);
+            }
+            else
+            {
+                externalVelocity = Vector3.zero;
+            }
+        }
+        else if (!isGrappling)
+        {
+            float decay = 1f - (airVelocityDecay * Time.deltaTime);
+            externalVelocity *= Mathf.Max(decay, 0.9f);
         }
 
-        moveDir = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
-        controller.Move(moveDir * speed * Time.deltaTime);
+        if (!isGrappling)
+        {
+            moveDir = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
+            controller.Move(moveDir * speed * Time.deltaTime);
 
-        jump();
-        controller.Move(playerVel * Time.deltaTime);
+            jump();
 
-        playerVel.y -= gravity * Time.deltaTime;
+            if (externalVelocity.magnitude > 0.1f)
+            {
+                controller.Move(externalVelocity * Time.deltaTime);
+            }
+
+            controller.Move(playerVel * Time.deltaTime);
+            playerVel.y -= gravity * Time.deltaTime;
+        }
+        else
+        {
+            playerVel.y -= gravity * 0.3f * Time.deltaTime;
+        }
     }
 
     void jump()
     {
+        // skip if grapple jump already happened this frame
+        if (grappleJumpedThisFrame)
+            return;
+
         if(Input.GetButtonDown("Jump") && jumpCount < jumpMax)
         {
             playerVel.y = jumpSpeed;
             jumpCount++;
         }
+    }
+
+    void LateUpdate()
+    {
+        grappleJumpedThisFrame = false;
     }
 
     void sprint()
@@ -180,7 +230,32 @@ public class playerController : MonoBehaviour, IDamage, IHeal
             updatePlayerUI();
             StartCoroutine(flashGreen());
         }
-        
+    }
+
+    public void SetExternalVelocity(Vector3 velocity)
+    {
+        externalVelocity = velocity;
+    }
+
+    public Vector3 GetVelocity()
+    {
+        return externalVelocity + playerVel;
+    }
+
+    public void GrappleJump(Vector3 grappleVelocity)
+    {
+        // transfer full horizontal velocity from grapple
+        externalVelocity = new Vector3(grappleVelocity.x, 0, grappleVelocity.z);
+
+        // combine upward grapple momentum with jump - keep most of it
+        float upwardMomentum = Mathf.Max(grappleVelocity.y, 0);
+        playerVel.y = jumpSpeed + upwardMomentum;
+
+        // reset jump count - grapple jump gives fresh jumps (allows double jump after)
+        jumpCount = 1;
+
+        // prevent normal jump from also triggering this frame
+        grappleJumpedThisFrame = true;
     }
 
     
