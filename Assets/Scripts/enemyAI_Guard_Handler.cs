@@ -143,12 +143,12 @@ public class enemyAI_Guard_Handler : MonoBehaviour, IDamage
     }
     public void onAlert(Vector3 alertPosition)
     {
-        Vector3 playerDir = alertPosition + transform.position;
+        Vector3 playerDir = alertPosition - transform.position;
         playerDir.y = 0;
 
         if (playerDir.sqrMagnitude > 0.01f)
         {
-            Quaternion rot = Quaternion.LookRotation(-playerDir);
+            Quaternion rot = Quaternion.LookRotation(playerDir);
             transform.rotation = rot;
         }
     }
