@@ -187,6 +187,7 @@ GameObject:
   - component: {fileID: 798818694246833282}
   - component: {fileID: 7207170826525197004}
   - component: {fileID: 5975179707992272538}
+  - component: {fileID: 7007502587474825607}
   m_Layer: 3
   m_Name: Player with gun
   m_TagString: Player
@@ -342,6 +343,34 @@ MonoBehaviour:
   playerBullet: {fileID: 7754668077929706730, guid: e9ac31fdd937851409d15864ad32bb03, type: 3}
   playerShootPos: {fileID: 5274542662088418657}
   HPOrig: 10
+  groundedVelocityDecay: 15
+  airVelocityDecay: 0.5
+--- !u!114 &7007502587474825607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3834399077637058629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 297dc17773e8401499cf8da0971d7e39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GrapplingHook
+  maxGrappleDistance: 50
+  grappleSpeed: 15
+  pullAcceleration: 25
+  airControlStrength: 8
+  swingResponsiveness: 12
+  momentumRetention: 0.85
+  minDistanceToDetach: 2
+  grappleableLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  lineRenderer: {fileID: 0}
+  grappleOrigin: {fileID: 5274542662088418657}
+  lineExtendSpeed: 100
+  lineWidth: 0.04
 --- !u!1001 &4447009243189602397
 PrefabInstance:
   m_ObjectHideFlags: 0
