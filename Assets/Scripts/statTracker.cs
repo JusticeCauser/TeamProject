@@ -31,6 +31,7 @@ public class statTracker : MonoBehaviour
         {
             lastPos = gameManager.instance.player.transform.position;
         }
+
     }
 
     void Update()
