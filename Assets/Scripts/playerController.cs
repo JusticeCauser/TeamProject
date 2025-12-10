@@ -38,7 +38,10 @@ public class playerController : MonoBehaviour, IDamage, IHeal
     public bool isGodMode = false;
 
     float shootTimer;
+
+    // status effects
     private Coroutine poisoned;
+    private bool tazed;
 
     Vector3 moveDir;
     Vector3 playerVel;
@@ -183,7 +186,7 @@ public class playerController : MonoBehaviour, IDamage, IHeal
         if (grappleJumpedThisFrame)
             return;
 
-        if(Input.GetButtonDown("Jump") && jumpCount < jumpMax)
+        if(Input.GetButtonDown("Jump") && jumpCount < jumpMax && !tazed)
         {
             playerVel.y = jumpSpeed;
             jumpCount++;
@@ -197,11 +200,11 @@ public class playerController : MonoBehaviour, IDamage, IHeal
 
     void sprint()
     {
-        if(Input.GetButtonDown("Sprint"))
+        if(Input.GetButtonDown("Sprint") && !tazed)
         {
             speed *= sprintMod;
         }
-        else if(Input.GetButtonUp("Sprint"))
+        else if(Input.GetButtonUp("Sprint") && !tazed)
         {
             speed = speedOrig;
         }
@@ -224,7 +227,7 @@ public class playerController : MonoBehaviour, IDamage, IHeal
     void shoot()
     {
         shootTimer = 0;
-
+        
         // Levi addition, statTracking
         if(statTracker.instance != null)
         {
@@ -326,8 +329,6 @@ public class playerController : MonoBehaviour, IDamage, IHeal
     }
 
     
-//<<<<<<< HEAD
-//=======
     // poison routines
     public void poison(int damage, float rate, float duration)
     {
@@ -352,6 +353,20 @@ public class playerController : MonoBehaviour, IDamage, IHeal
             yield return wait;
         }
         poisoned = null;
-//>>>>>>> 1bb9c2b6da50e57523c371620cff226582621ee7
-}
+    }
+
+    public void taze(int damage, float duration)
+    {
+        float timer = 0f;
+        
+        while (timer < duration)
+        {
+            timer += Time.deltaTime;
+            tazed = true;
+            speed = 0;
+        }
+        tazed = false;
+        speed = speedOrig;
+    }
+
 }

@@ -69,7 +69,7 @@ public class damage : MonoBehaviour
 
         if(type == damageType.shock)
         {
-
+            dmg.taze(damageAmount, duration);
         }
     }
 
