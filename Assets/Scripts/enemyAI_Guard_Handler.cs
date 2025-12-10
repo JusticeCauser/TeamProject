@@ -31,7 +31,9 @@ public class enemyAI_Guard_Handler : MonoBehaviour, IDamage
         Chase
     }
 
+    // status effects
     private Coroutine poisoned;
+    private bool tazed;
 
     //Range in which guard can see player to shoot
     bool playerInSightRange;
@@ -110,8 +112,11 @@ public class enemyAI_Guard_Handler : MonoBehaviour, IDamage
     }
     void shoot()
     {
-        shootTimer = 0;
-        Instantiate(bullet, shootPos.position, transform.rotation);
+        if (!tazed)
+        {
+            shootTimer = 0;
+            Instantiate(bullet, shootPos.position, transform.rotation);
+        }
     }
     public void takeDamage(int amount)
     {
@@ -185,5 +190,30 @@ public class enemyAI_Guard_Handler : MonoBehaviour, IDamage
             yield return wait;
         }
         poisoned = null;
+    }
+
+    // Tazed effect
+    public void taze(int damage, float duration)
+    {
+        takeDamage(damage);
+        if (!tazed)
+        {
+            StartCoroutine(StunRoutine(duration));
+        }
+    }
+
+    private IEnumerator StunRoutine(float duration)
+    {
+        tazed = true;
+        if (agent != null)
+        {
+            agent.isStopped = true;
+        }
+        yield return new WaitForSeconds(duration);
+        tazed = false;
+        if (agent != null)
+        {
+            agent.isStopped = false;
+        }
     }
 }

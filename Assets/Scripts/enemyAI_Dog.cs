@@ -16,7 +16,9 @@ public class enemyAI_Dog : MonoBehaviour, IDamage
 
     Color colorOrig;
 
+    // status effects
     private Coroutine poisoned;
+    private bool tazed;
 
     //Range in which dog can smell player
     bool playerInScentRange;
@@ -166,5 +168,30 @@ public class enemyAI_Dog : MonoBehaviour, IDamage
             yield return wait;
         }
         poisoned = null;
+    }
+
+    // tazed effect
+    public void taze(int damage, float duration)
+    {
+        takeDamage(damage);
+        if (!tazed)
+        {
+            StartCoroutine(StunRoutine(duration));
+        }
+    }
+
+    private IEnumerator StunRoutine(float duration)
+    {
+        tazed = true;
+        if (agent != null)
+        {
+            agent.isStopped = true;
+        }
+        yield return new WaitForSeconds(duration);
+        tazed = false;
+        if (agent != null)
+        {
+            agent.isStopped = false;
+        }
     }
 }
