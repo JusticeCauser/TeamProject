@@ -16,7 +16,7 @@ public class enemyAI_Dog : MonoBehaviour, IDamage
 
     Color colorOrig;
 
-    private Coroutine poisoned;
+   
 
     //Range in which dog can smell player
     bool playerInScentRange;
@@ -33,6 +33,10 @@ public class enemyAI_Dog : MonoBehaviour, IDamage
     }
 
     public dogState state = dogState.Idle;
+
+
+
+    private Coroutine poisoned;
 
     Vector3 playerDir;
     Transform playerTransform;

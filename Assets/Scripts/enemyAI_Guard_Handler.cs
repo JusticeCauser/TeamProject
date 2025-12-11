@@ -33,6 +33,10 @@ public class enemyAI_Guard_Handler : MonoBehaviour, IDamage
 
     public guardHandlerState state = guardHandlerState.Idle;
 
+    
+    
+    
+    
     private Coroutine poisoned;
 
     //Range in which guard can see player to shoot

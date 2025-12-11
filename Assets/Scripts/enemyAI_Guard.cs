@@ -20,7 +20,7 @@ public class enemyAI_Guard : MonoBehaviour, IDamage
     float shootTimer;
     float angleToPlayer;
 
-    private Coroutine poisoned;
+    
 
     //States for the Guards to switch through as we need them
     public enum guardState
@@ -32,6 +32,11 @@ public class enemyAI_Guard : MonoBehaviour, IDamage
     }
 
     public guardState state = guardState.Idle;
+
+
+
+
+    private Coroutine poisoned;
     //Range in which guard can see player to shoot
     bool playerInSightRange;
 
