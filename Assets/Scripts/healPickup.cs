@@ -1,8 +1,10 @@
 using UnityEngine;
+using System.Collections;
 
 public class healPickup : MonoBehaviour
 {
     [SerializeField] int healAmount;
+    //[SerializeField] float healSpeed; //for implementing hot
 
     private void OnTriggerEnter(Collider other)
     {
