@@ -1,8 +1,10 @@
+//using NUnit.Framework; //causes CS0104 conflict with UnityEngine.RangeAttribute
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.DualShock;
 
-public class playerController : MonoBehaviour, IDamage, IHeal
+public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
 {
     [Header("----- Component -----")]
     [SerializeField] CharacterController controller;
@@ -20,6 +22,8 @@ public class playerController : MonoBehaviour, IDamage, IHeal
     [Range(15, 50)] [SerializeField] int gravity;
 
     [Header("----- Guns -----")]
+    [SerializeField] List<gunStats> gunList = new List<gunStats>();
+    [SerializeField] GameObject gunModel;
     [SerializeField] int shootDamage;
     [SerializeField] int shootDist;
     [SerializeField] float shootRate;
@@ -33,6 +37,7 @@ public class playerController : MonoBehaviour, IDamage, IHeal
     int speedOrig;
     // making HPOrig public for cheatManager.cs
     public int HPOrig;
+    int gunListPos;
 
     // GODMODE
     public bool isGodMode = false;
@@ -367,6 +372,40 @@ public class playerController : MonoBehaviour, IDamage, IHeal
         }
         tazed = false;
         speed = speedOrig;
+    }
+
+    public void getGunStats(gunStats gun)
+    {
+
+        gunList.Add(gun);
+        gunListPos = gunList.Count - 1;
+
+        changeGun();
+
+    }
+
+    void changeGun()
+    {
+        shootDamage = gunList[gunListPos].shootDamage;
+        shootDist = gunList[gunListPos].shootDist;
+        shootRate = gunList[gunListPos].shootRate;
+
+        gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[gunListPos].gunModel.GetComponent<MeshFilter>().sharedMesh; //xfer mesh filter on pickup
+        gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[gunListPos].gunModel.GetComponent<MeshRenderer>().sharedMaterial; //xfer mesh renderer (shader, material, etc) on pinkup
+    }
+
+    void selectGun()
+    {
+        if (Input.GetAxis("Mouse ScrollWheel") > 0 && gunListPos < gunList.Count - 1) //if bigger than zero and within list
+        {
+            gunListPos++; //increment
+            changeGun(); //changegun
+        }
+        if (Input.GetAxis("Mouse ScrollWheel") < 0 && gunListPos > 0) //if smaller than zero and within list
+        {
+            gunListPos--; //decrement
+            changeGun(); //changegun
+        }
     }
 
 }
