@@ -12564,6 +12564,18 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7036126678153132305, guid: 7bd612d578f3e0841b6e15b0fc2b07e8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036126678153132305, guid: 7bd612d578f3e0841b6e15b0fc2b07e8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036126678153132305, guid: 7bd612d578f3e0841b6e15b0fc2b07e8, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036126678153132305, guid: 7bd612d578f3e0841b6e15b0fc2b07e8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 92.01102
       objectReference: {fileID: 0}
@@ -14629,6 +14641,18 @@ PrefabInstance:
       value: RapidFireCannon_Homing (3)
       objectReference: {fileID: 0}
     - target: {fileID: 7036126678153132305, guid: 7bd612d578f3e0841b6e15b0fc2b07e8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036126678153132305, guid: 7bd612d578f3e0841b6e15b0fc2b07e8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036126678153132305, guid: 7bd612d578f3e0841b6e15b0fc2b07e8, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036126678153132305, guid: 7bd612d578f3e0841b6e15b0fc2b07e8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12.026619
       objectReference: {fileID: 0}
@@ -16496,6 +16520,18 @@ PrefabInstance:
     - target: {fileID: 5811351100485377980, guid: 7bd612d578f3e0841b6e15b0fc2b07e8, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036126678153132305, guid: 7bd612d578f3e0841b6e15b0fc2b07e8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036126678153132305, guid: 7bd612d578f3e0841b6e15b0fc2b07e8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036126678153132305, guid: 7bd612d578f3e0841b6e15b0fc2b07e8, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7036126678153132305, guid: 7bd612d578f3e0841b6e15b0fc2b07e8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -24681,6 +24717,18 @@ PrefabInstance:
     - target: {fileID: 5811351100485377980, guid: 7bd612d578f3e0841b6e15b0fc2b07e8, type: 3}
       propertyPath: m_Name
       value: RapidFireCannon_Homing (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036126678153132305, guid: 7bd612d578f3e0841b6e15b0fc2b07e8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036126678153132305, guid: 7bd612d578f3e0841b6e15b0fc2b07e8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036126678153132305, guid: 7bd612d578f3e0841b6e15b0fc2b07e8, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7036126678153132305, guid: 7bd612d578f3e0841b6e15b0fc2b07e8, type: 3}
       propertyPath: m_LocalPosition.x
