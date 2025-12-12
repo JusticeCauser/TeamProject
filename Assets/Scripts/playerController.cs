@@ -301,7 +301,7 @@ public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
     {
         if(HP < HPOrig)
         {
-            HP += healAmount;
+            HP += Mathf.Min(HP +healAmount, HPOrig);
             updatePlayerUI();
             StartCoroutine(flashGreen());
         }
