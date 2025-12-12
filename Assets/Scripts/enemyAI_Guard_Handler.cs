@@ -22,10 +22,6 @@ public class enemyAI_Guard_Handler : MonoBehaviour, IDamage
     float shootTimer;
     float angleToPlayer;
 
-    float visionCheckTimer;
-    const float visionCheckInterval = 0.1f;
-    bool lastVisionResult;
-
     //States for the Guards to switch through as we need them
     public enum guardHandlerState
     {
@@ -59,12 +55,10 @@ public class enemyAI_Guard_Handler : MonoBehaviour, IDamage
     void Update()
     {
         shootTimer += Time.deltaTime;
-        visionCheckTimer += Time.deltaTime;
 
-        if (playerInSightRange && visionCheckTimer >= visionCheckInterval)
+        if (playerInSightRange && canSeePlayer())
         {
-            visionCheckTimer = 0f;
-            lastVisionResult = canSeePlayer();
+
         }
     }
 
