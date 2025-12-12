@@ -42,6 +42,9 @@ public class wallRun : MonoBehaviour
     float wallRunTimer;
     float currentTilt;
 
+    float wallDetectTimer;
+    const float wallDetectInterval = 0.033f;
+
     Vector3 wallNormal;
     Vector3 wallRunVelocity;
     float wallRunVerticalVelocity;
@@ -65,6 +68,7 @@ public class wallRun : MonoBehaviour
         {
             if (isWallRunning)
                 ExitWallRun(ref playerVel);
+            wallDetectTimer = 0f;
             return;
         }
 
@@ -81,7 +85,12 @@ public class wallRun : MonoBehaviour
         }
         else
         {
-            TryStartWallRun(currentVelocity, ref moveDir, ref playerVel);
+            wallDetectTimer += Time.deltaTime;
+            if (wallDetectTimer >= wallDetectInterval)
+            {
+                wallDetectTimer = 0f;
+                TryStartWallRun(currentVelocity, ref moveDir, ref playerVel);
+            }
         }
     }
 

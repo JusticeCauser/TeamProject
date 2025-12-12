@@ -23,6 +23,10 @@ public class enemyAI_Turrets : MonoBehaviour, IDamage
     float angleToPlayer;
     bool isAggro;
 
+    float visionCheckTimer;
+    const float visionCheckInterval = 0.1f;
+    bool lastVisionResult;
+
     // status effects
     private Coroutine poisoned;
     private bool tazed;
@@ -43,16 +47,18 @@ public class enemyAI_Turrets : MonoBehaviour, IDamage
     void Update()
     {
         fireTimer += Time.deltaTime;
+        visionCheckTimer += Time.deltaTime;
 
-        if (isAggro == true)
+        bool shouldCheckVision = visionCheckTimer >= visionCheckInterval;
+        if (shouldCheckVision)
         {
-            facePlayer();
-            canSeePlayer();
+            visionCheckTimer = 0f;
+            if (isAggro || playerInRange)
+                lastVisionResult = canSeePlayer();
         }
-        if (playerInRange && canSeePlayer())
-        {
+
+        if (isAggro || (playerInRange && lastVisionResult))
             facePlayer();
-        }
     }
 
     bool canSeePlayer()

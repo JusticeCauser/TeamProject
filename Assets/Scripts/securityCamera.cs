@@ -28,6 +28,9 @@ public class securityCamera : MonoBehaviour
     float patrolTimer;
     Transform playerTransform;
 
+    float detectionCheckTimer;
+    const float detectionCheckInterval = 0.1f;
+
     void Start()
     {
         startRotation = transform.rotation;
@@ -41,8 +44,15 @@ public class securityCamera : MonoBehaviour
         if (playerTransform == null)
             playerTransform = gameManager.instance.player.transform;
 
+        detectionCheckTimer += Time.deltaTime;
+        bool shouldCheck = detectionCheckTimer >= detectionCheckInterval;
+
         bool wasDetected = isPlayerDetected;
-        isPlayerDetected = CheckForPlayer();
+        if (shouldCheck)
+        {
+            detectionCheckTimer = 0f;
+            isPlayerDetected = CheckForPlayer();
+        }
 
         if (isPlayerDetected)
         {
