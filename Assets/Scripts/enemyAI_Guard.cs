@@ -20,10 +20,6 @@ public class enemyAI_Guard : MonoBehaviour, IDamage
     float shootTimer;
     float angleToPlayer;
 
-    float visionCheckTimer;
-    const float visionCheckInterval = 0.1f;
-    bool lastVisionResult;
-
     //status effects
     private Coroutine poisoned;
     private bool tazed;
@@ -59,12 +55,9 @@ public class enemyAI_Guard : MonoBehaviour, IDamage
     void Update()
     {
         shootTimer += Time.deltaTime;
-        visionCheckTimer += Time.deltaTime;
-
-        if (playerInSightRange && visionCheckTimer >= visionCheckInterval)
+        if (playerInSightRange && canSeePlayer())
         {
-            visionCheckTimer = 0f;
-            lastVisionResult = canSeePlayer();
+
         }
     }
 

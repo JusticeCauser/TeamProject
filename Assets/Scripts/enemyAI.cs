@@ -25,10 +25,6 @@ public class enemyAI : MonoBehaviour, IDamage
     float angleToPlayer;
     float stoppingDistOrig;
 
-    float visionCheckTimer;
-    const float visionCheckInterval = 0.1f;
-    bool lastVisionResult;
-
     // status effects
     private Coroutine poisoned;
     private bool tazed;
@@ -56,16 +52,15 @@ public class enemyAI : MonoBehaviour, IDamage
     void Update()
     {
         shootTimer += Time.deltaTime;
-        visionCheckTimer += Time.deltaTime;
 
-        if (playerInRange && visionCheckTimer >= visionCheckInterval)
+        if(playerInRange && canSeePlayer())
         {
-            visionCheckTimer = 0f;
-            lastVisionResult = canSeePlayer();
-        }
-
-        if (!playerInRange)
             checkRoam();
+        }
+        else if(!playerInRange)
+        {
+            checkRoam();
+        }
     }
 
     void checkRoam()
