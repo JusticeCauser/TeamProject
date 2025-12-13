@@ -46,8 +46,6 @@ public class enemyAI_Guard_Handler : MonoBehaviour, IDamage
 
     //Range in which guard can see player to shoot
     bool playerInSightRange;
-    //Returning to StartPos
-    bool isReturningToStrPos;
 
     Vector3 playerDir;
     Vector3 alertTargetPos;
@@ -59,7 +57,7 @@ public class enemyAI_Guard_Handler : MonoBehaviour, IDamage
     void Start()
     {
         colorOrig = model.material.color;
-        //gameManager.instance.UpdateGameGoal(1);
+        gameManager.instance.UpdateGameGoal(1);
         startingPos = transform.position;
         stoppingDistOrig = agent.stoppingDistance;
         if (gameManager.instance.player != null)
