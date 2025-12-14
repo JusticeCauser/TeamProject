@@ -53,6 +53,20 @@ public class enemyAI_Dog : MonoBehaviour, IDamage
     void Start()
     {
         colorOrig = model.material.color;
+        // difficulty mults
+        if(difficultyManager.instance != null)
+        {
+            HP = Mathf.RoundToInt(HP * difficultyManager.instance.GetHealthMultiplier());
+            alertRadius *= difficultyManager.instance.GetDogDetectionMultiplier();
+
+            // scale trigger collider for scent detection
+            SphereCollider triggerCollider = GetComponent<SphereCollider>();
+            if(triggerCollider != null &&triggerCollider.isTrigger)
+            {
+                triggerCollider.radius *= difficultyManager.instance.GetDogDetectionMultiplier();
+            }
+        }
+
         //gameManager.instance.UpdateGameGoal(1);
         startingPos = (doghandler != null) ? doghandler.transform.position : transform.position;
         stoppingDistOrig = agent.stoppingDistance;
