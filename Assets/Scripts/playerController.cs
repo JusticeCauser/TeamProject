@@ -1,8 +1,10 @@
+//using NUnit.Framework; //causes CS0104 conflict with UnityEngine.RangeAttribute
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.DualShock;
 
-public class playerController : MonoBehaviour, IDamage, IHeal
+public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
 {
     [Header("----- Component -----")]
     [SerializeField] CharacterController controller;
@@ -20,6 +22,8 @@ public class playerController : MonoBehaviour, IDamage, IHeal
     [Range(15, 50)] [SerializeField] int gravity;
 
     [Header("----- Guns -----")]
+    [SerializeField] List<gunStats> gunList = new List<gunStats>();
+    [SerializeField] GameObject gunModel;
     [SerializeField] int shootDamage;
     [SerializeField] int shootDist;
     [SerializeField] float shootRate;
@@ -33,12 +37,16 @@ public class playerController : MonoBehaviour, IDamage, IHeal
     int speedOrig;
     // making HPOrig public for cheatManager.cs
     public int HPOrig;
+    int gunListPos;
 
     // GODMODE
     public bool isGodMode = false;
 
     float shootTimer;
+
+    // status effects
     private Coroutine poisoned;
+    private bool tazed;
 
     Vector3 moveDir;
     Vector3 playerVel;
@@ -121,10 +129,14 @@ public class playerController : MonoBehaviour, IDamage, IHeal
         if (!isGrappling)
         {
             moveDir = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
+
+            // calculate actual velocity for wall run (moveDir * speed + external + playerVel)
+            Vector3 currentVelocity = (moveDir * speed) + externalVelocity + playerVel;
+
             // wall run start
             if (wallRun != null)
             {
-                wallRun.ProcessWallRun(ref moveDir, ref playerVel, controller.isGrounded);
+                wallRun.ProcessWallRun(ref moveDir, ref playerVel, controller.isGrounded, currentVelocity);
             }
             bool isWallRunningNow = wallRun != null && wallRun.IsWallRunning;
             if (!isWallRunningNow && wasWallRunning)
@@ -179,7 +191,7 @@ public class playerController : MonoBehaviour, IDamage, IHeal
         if (grappleJumpedThisFrame)
             return;
 
-        if(Input.GetButtonDown("Jump") && jumpCount < jumpMax)
+        if(Input.GetButtonDown("Jump") && jumpCount < jumpMax && !tazed)
         {
             playerVel.y = jumpSpeed;
             jumpCount++;
@@ -193,11 +205,11 @@ public class playerController : MonoBehaviour, IDamage, IHeal
 
     void sprint()
     {
-        if(Input.GetButtonDown("Sprint"))
+        if(Input.GetButtonDown("Sprint") && !tazed)
         {
             speed *= sprintMod;
         }
-        else if(Input.GetButtonUp("Sprint"))
+        else if(Input.GetButtonUp("Sprint") && !tazed)
         {
             speed = speedOrig;
         }
@@ -220,7 +232,7 @@ public class playerController : MonoBehaviour, IDamage, IHeal
     void shoot()
     {
         shootTimer = 0;
-
+        
         // Levi addition, statTracking
         if(statTracker.instance != null)
         {
@@ -289,7 +301,7 @@ public class playerController : MonoBehaviour, IDamage, IHeal
     {
         if(HP < HPOrig)
         {
-            HP += healAmount;
+            HP = Mathf.Min(HP +healAmount, HPOrig);
             updatePlayerUI();
             StartCoroutine(flashGreen());
         }
@@ -322,8 +334,6 @@ public class playerController : MonoBehaviour, IDamage, IHeal
     }
 
     
-//<<<<<<< HEAD
-//=======
     // poison routines
     public void poison(int damage, float rate, float duration)
     {
@@ -348,6 +358,101 @@ public class playerController : MonoBehaviour, IDamage, IHeal
             yield return wait;
         }
         poisoned = null;
-//>>>>>>> 1bb9c2b6da50e57523c371620cff226582621ee7
-}
+    }
+
+    public void taze(int damage, float duration)
+    {
+        StartCoroutine(TazeRoutine(duration));
+    }
+
+    private IEnumerator TazeRoutine(float duration)
+    {
+        tazed = true;
+
+        yield return new WaitForSeconds(duration);
+
+        float timer = 0f;
+
+        while (timer < duration)
+        {
+            timer += Time.deltaTime;
+            tazed = true;
+            speed = 0;
+        }
+        tazed = false;
+        speed = speedOrig;
+    }
+
+    public void getGunStats(gunStats gun)
+    {
+
+        gunList.Add(gun);
+        gunListPos = gunList.Count - 1;
+
+        changeGun();
+
+    }
+
+    void changeGun()
+    {
+        shootDamage = gunList[gunListPos].shootDamage;
+        shootDist = gunList[gunListPos].shootDist;
+        shootRate = gunList[gunListPos].shootRate;
+
+        gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[gunListPos].gunModel.GetComponent<MeshFilter>().sharedMesh; //xfer mesh filter on pickup
+        gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[gunListPos].gunModel.GetComponent<MeshRenderer>().sharedMaterial; //xfer mesh renderer (shader, material, etc) on pinkup
+    }
+
+    void selectGun()
+    {
+        if (Input.GetAxis("Mouse ScrollWheel") > 0 && gunListPos < gunList.Count - 1) //if bigger than zero and within list
+        {
+            gunListPos++; //increment
+            changeGun(); //changegun
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && gunListPos > 0) //if smaller than zero and within list
+        {
+            gunListPos--; //decrement
+            changeGun(); //changegun
+        }
+    }
+
+    // UpgradeShop stuff - JC
+    public void applyUpgrade(upgradeData upgrade)
+    {
+        switch (upgrade.type)
+        {
+            // Player upgrades
+            case upgradeType.playerMaxHP:
+                HPOrig += Mathf.RoundToInt(upgrade.amount);
+                HP = HPOrig;
+                updatePlayerUI();
+                break;
+            case upgradeType.playerMoveSpeed:
+                speedOrig += Mathf.RoundToInt(upgrade.amount);
+                if (speedOrig < 1)
+                    speedOrig = 1;
+                speed = speedOrig;
+                break;
+            case upgradeType.playerJumpMax:
+                jumpMax += Mathf.RoundToInt(upgrade.amount);
+                if (jumpMax < 1)
+                    jumpMax = 1;
+                break;
+            // Gun upgrades
+            case upgradeType.gunDamage:
+                shootDamage = Mathf.RoundToInt(shootDamage * (1f + upgrade.amount));
+                break;
+            case upgradeType.gunFireRate:
+                shootRate *= (1f - upgrade.amount);
+                if (shootRate < 0.05f)
+                    shootRate = 0.05f;
+                break;
+            case upgradeType.gunRange:
+                shootDist += Mathf.RoundToInt(upgrade.amount);
+                if (shootDist < 1)
+                    shootDist = 1;
+                break;
+        }
+    }
 }

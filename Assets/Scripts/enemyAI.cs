@@ -10,27 +10,38 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] int HP;
     [SerializeField] int faceTargetSpeed;
     [SerializeField] int FOV;
+    [SerializeField] int roamDist;
+    [SerializeField] int roamPauseTime;
 
     [SerializeField] GameObject bullet;
     [SerializeField] float shootRate;
     [SerializeField] Transform shootPos;
 
+    [SerializeField] GameObject dropItem;
     Color colorOrig;
 
     float shootTimer;
+    float roamTimer;
     float angleToPlayer;
+    float stoppingDistOrig;
 
+    // status effects
     private Coroutine poisoned;
+    private bool tazed;
 
     bool playerInRange;
 
     Vector3 playerDir;
+    Vector3 startingPos;
+
     Transform playerTransform;
 
     void Start()
     {
         colorOrig = model.material.color;
         gameManager.instance.UpdateGameGoal(1);
+        startingPos = transform.position;
+        stoppingDistOrig = agent.stoppingDistance;
 
         if (gameManager.instance.player != null)
             playerTransform = gameManager.instance.player.transform;
@@ -44,10 +55,33 @@ public class enemyAI : MonoBehaviour, IDamage
 
         if(playerInRange && canSeePlayer())
         {
-            
+            checkRoam();
+        }
+        else if(!playerInRange)
+        {
+            checkRoam();
         }
     }
 
+    void checkRoam()
+    {
+        if(agent.remainingDistance < 0.01f && roamTimer >= roamPauseTime)
+        {
+            roam();
+        }
+    }
+    void roam()
+    {
+        roamTimer = 0;
+        agent.stoppingDistance = 0;
+
+        Vector3 ranPos = Random.insideUnitSphere * roamDist;
+        ranPos += startingPos;
+
+        NavMeshHit hit;
+        NavMesh.SamplePosition(ranPos, out hit, roamDist, 1); 
+        agent.SetDestination(hit.position);
+    }
     bool canSeePlayer()
     {
         if (playerTransform == null) return false;
@@ -72,11 +106,11 @@ public class enemyAI : MonoBehaviour, IDamage
                 {
                     shoot();
                 }
-
+                agent.stoppingDistance = stoppingDistOrig;
                 return true;
             }
         }
-
+        agent.stoppingDistance = stoppingDistOrig;
         return false;
     }
 
@@ -104,8 +138,11 @@ public class enemyAI : MonoBehaviour, IDamage
 
     void shoot()
     {
-        shootTimer = 0;
-        Instantiate(bullet, shootPos.position, transform.rotation);
+        if (!tazed)
+        {
+            shootTimer = 0;
+            Instantiate(bullet, shootPos.position, transform.rotation);
+        }
     }
 
     public void takeDamage(int amount)
@@ -159,4 +196,30 @@ public class enemyAI : MonoBehaviour, IDamage
         }
         poisoned = null;
     }
+
+    // Tazed effect
+    public void taze(int damage, float duration)
+    {
+        takeDamage(damage);
+        if (!tazed)
+        {
+            StartCoroutine(StunRoutine(duration));
+        }
+    }
+
+    private IEnumerator StunRoutine(float duration)
+    {
+        tazed = true;
+        if (agent != null)
+        {
+            agent.isStopped = true;
+        }
+        yield return new WaitForSeconds(duration);
+        tazed = false;
+        if(agent != null)
+        {
+            agent.isStopped = false;
+        }
+    }
+
 }

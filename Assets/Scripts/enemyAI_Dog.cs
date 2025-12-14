@@ -1,6 +1,7 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 using UnityEngine.AI;
+using static enemyAI_Guard_Handler;
 
 public class enemyAI_Dog : MonoBehaviour, IDamage
 {
@@ -16,13 +17,18 @@ public class enemyAI_Dog : MonoBehaviour, IDamage
 
     Color colorOrig;
 
-    private Coroutine poisoned;
+   
 
     //Range in which dog can smell player
     bool playerInScentRange;
+    bool playerInSightRange;
+
+    float angleToPlayer;
     float barkTimer;
+    float stoppingDistOrig;
     public Transform forwardAnchor;
 
+    //States of dog for use in transitioning the dog behavior
     public enum dogState
     {
         Idle,
@@ -31,41 +37,106 @@ public class enemyAI_Dog : MonoBehaviour, IDamage
         Chase
     }
 
+    public dogState state = dogState.Idle;
+
     Vector3 playerDir;
+    Vector3 startingPos;
+    Vector3 roamCenter;
+
     Transform playerTransform;
+
+    // status effects
+    private Coroutine poisoned;
+    private bool tazed;
+
 
     void Start()
     {
         colorOrig = model.material.color;
-        gameManager.instance.UpdateGameGoal(1);
+        //gameManager.instance.UpdateGameGoal(1);
+        startingPos = (doghandler != null) ? doghandler.transform.position : transform.position;
+        stoppingDistOrig = agent.stoppingDistance;
         if (gameManager.instance.player != null)
             playerTransform = gameManager.instance.player.transform;
     }
 
     void Update()
     {
-        if(playerInScentRange)
+        switch (state)
         {
-            barkTimer -= Time.deltaTime;
-            if(barkTimer <= 0)
-            {
-                bark();
-                barkTimer = barkCooldown;
-            }
+            case dogState.Idle:
+                IdleBehavior();
+                break;
+
+            case dogState.Alerted:
+                AlertedBehavior();
+                break;
+
+            case dogState.Chase:
+                ChaseBehavior();
+                break;
         }
-        if(canScentPlayer() && playerTransform != null)
-        {
-            agent.SetDestination(playerTransform.position);
-            if(agent.remainingDistance <= agent.stoppingDistance)
-            {
-                facePlayer();
-            }
-        }
+        //if (playerInScentRange)
+        //{
+        //    barkTimer -= Time.deltaTime;
+        //    if(barkTimer <= 0)
+        //    {
+        //        bark();
+        //        barkTimer = barkCooldown;
+        //    }
+        //}
     }
 
+    void IdleBehavior()
+    {
+        if (playerInScentRange)
+        {
+            state = dogState.Alerted;
+            barkTimer = 0;
+            return;
+        }
+
+        if(canSeePlayer())
+        {
+            state = dogState.Chase;
+            return;
+        }
+    }
+    void ChaseBehavior()
+    {
+        if(canSeePlayer())
+        {
+            return;
+        }
+        state = playerInScentRange ? dogState.Alerted : dogState.Idle;
+    }
     bool canScentPlayer()
     {
         return playerInScentRange;
+    }
+    bool canSeePlayer()
+    {
+        if (playerTransform == null) return false;
+
+        Vector3 playerPos = playerTransform.position;
+        playerDir = playerPos - transform.position;
+        angleToPlayer = Vector3.Angle(playerDir, transform.forward);
+
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, playerDir, out hit))
+        {
+            if (angleToPlayer <= FOV && hit.collider.CompareTag("Player"))
+            {
+                agent.SetDestination(playerPos);
+                if (agent.remainingDistance <= agent.stoppingDistance)
+                {
+                    facePlayer();
+                }
+
+                return true;
+            }
+        }
+        return false;
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -73,6 +144,8 @@ public class enemyAI_Dog : MonoBehaviour, IDamage
         {
             playerInScentRange = true;
             barkTimer = 0;
+
+            state = dogState.Alerted;
         }
     }
 
@@ -106,7 +179,7 @@ public class enemyAI_Dog : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
-            gameManager.instance.UpdateGameGoal(-1);
+            //gameManager.instance.UpdateGameGoal(-1);
 
             // incrementing enemies defeated in stats
             if (statTracker.instance != null)
@@ -142,9 +215,31 @@ public class enemyAI_Dog : MonoBehaviour, IDamage
             transform.rotation = Quaternion.LookRotation(dir);
         }
 
-        gameManager.instance.alertSys.raiseAlert(forwardAnchor.position, alertRadius);
+        gameManager.instance.alertSys.raiseAlert(forwardAnchor.position, forwardAnchor.forward, alertRadius);
     }
 
+    void AlertedBehavior()
+    {
+        if(canSeePlayer())
+        {
+            state = dogState.Chase;
+            return;
+        }
+
+        if (playerInScentRange)
+        {
+            barkTimer -= Time.deltaTime;
+            if (barkTimer <= 0)
+            {
+                bark();
+                barkTimer = barkCooldown;
+            }
+        }
+        else
+        {
+            state = dogState.Idle;
+        }
+    }
     public void poison(int damage, float rate, float duration)
     {
         if (poisoned != null)
@@ -166,5 +261,30 @@ public class enemyAI_Dog : MonoBehaviour, IDamage
             yield return wait;
         }
         poisoned = null;
+    }
+
+    // tazed effect
+    public void taze(int damage, float duration)
+    {
+        takeDamage(damage);
+        if (!tazed)
+        {
+            StartCoroutine(StunRoutine(duration));
+        }
+    }
+
+    private IEnumerator StunRoutine(float duration)
+    {
+        tazed = true;
+        if (agent != null)
+        {
+            agent.isStopped = true;
+        }
+        yield return new WaitForSeconds(duration);
+        tazed = false;
+        if (agent != null)
+        {
+            agent.isStopped = false;
+        }
     }
 }
