@@ -540,7 +540,7 @@ GameObject:
   - component: {fileID: 1994215378396903162}
   m_Layer: 7
   m_Name: Standard Guard
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -577,14 +577,20 @@ MonoBehaviour:
   model: {fileID: 8860083370658974430}
   agent: {fileID: 377564419974462083}
   HP: 5
+  maxHP: 0
   faceTargetSpeed: 6
   FOV: 90
-  turnSpeed: 0
+  roamDist: 0
+  roamPauseTime: 0
+  alertDur: 0
+  type: 0
+  dog: {fileID: 0}
+  dog2: {fileID: 0}
   bullet: {fileID: 2080661851593689554, guid: 4f8f83e6684eaee49b70a76b25ff6ca8, type: 3}
   shootRate: 0.5
   shootPos: {fileID: 3748193153848469026}
-  alertTimer: 1
-  alertRepeatTime: 2
+  dropItem: {fileID: 0}
+  state: 0
 --- !u!195 &377564419974462083
 NavMeshAgent:
   m_ObjectHideFlags: 0
