@@ -50,6 +50,13 @@ public class enemyAI_Turrets : MonoBehaviour, IDamage
     {
         colorOrig = model.material.color;
         colorOrigHead = modelHead.material.color;
+
+        // levi addition - difficulty HP modifier
+        if(difficultyManager.instance != null)
+        {
+            HP = Mathf.RoundToInt(HP * difficultyManager.instance.GetHealthMultiplier());
+        }
+
         gameManager.instance.UpdateGameGoal(1);
         if (gameManager.instance.player != null)
             playerTransform = gameManager.instance.player.transform;
@@ -132,9 +139,20 @@ public class enemyAI_Turrets : MonoBehaviour, IDamage
         if (!tazed)
         {
             fireTimer = 0;
-            Instantiate(bullet, firePos.position, head.transform.rotation);
+
+            // Levi addition damage multiplier
+            GameObject bulletObj = Instantiate(bullet, firePos.position, head.transform.rotation);
+
+            // apply dmg mult
+            damage bulletDmg = bulletObj.GetComponent<damage>();
+
+            if (bulletDmg != null && difficultyManager.instance != null)
+            {
+                bulletDmg.ApplyDifficultyMultiplier(difficultyManager.instance.GetDamageMultiplier());
+            }
         }
     }
+
     public void takeDamage(int amount)
     {
         HP -= amount;

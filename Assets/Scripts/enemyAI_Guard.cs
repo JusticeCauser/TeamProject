@@ -75,6 +75,13 @@ public class enemyAI_Guard : MonoBehaviour, IDamage
     void Start()
     {
         colorOrig = model.material.color;
+
+        // Levi addition
+        if(difficultyManager.instance != null)
+        {
+            HP = Mathf.RoundToInt(HP * difficultyManager.instance.GetHealthMultiplier());
+        }
+
         gameManager.instance.UpdateGameGoal(1);
         startingPos = transform.position;
         stoppingDistOrig = agent.stoppingDistance;
@@ -206,7 +213,17 @@ public class enemyAI_Guard : MonoBehaviour, IDamage
         if (!tazed)
         {
             shootTimer = 0;
-            Instantiate(bullet, shootPos.position, transform.rotation);
+
+            // Levi addition damage multiplier
+            GameObject bulletObj = Instantiate(bullet, shootPos.position, transform.rotation);
+
+            // appply dmg mult
+            damage bulletDmg = bulletObj.GetComponent<damage>();
+            
+            if(bulletDmg != null && difficultyManager.instance != null)
+            {
+                bulletDmg.ApplyDifficultyMultiplier(difficultyManager.instance.GetDamageMultiplier());
+            }
         }
     }
     public void takeDamage(int amount)
