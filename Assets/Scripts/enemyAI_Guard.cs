@@ -10,17 +10,27 @@ public class enemyAI_Guard : MonoBehaviour, IDamage
     [SerializeField] int HP;
     [SerializeField] int faceTargetSpeed;
     [SerializeField] int FOV;
+    [SerializeField] int roamDist;
+    [SerializeField] int roamPauseTime;
+    [SerializeField] float alertDur;
+
     //[SerializeField] int turnSpeed;
     [SerializeField] GameObject bullet;
     [SerializeField] float shootRate;
     [SerializeField] Transform shootPos;
+    [SerializeField] GameObject dropItem;
 
     Color colorOrig;
 
     float shootTimer;
+    float roamTimer;
     float angleToPlayer;
+    float stoppingDistOrig;
+    float alertedTimer;
 
+    //status effects
     private Coroutine poisoned;
+    private bool tazed;
 
     //States for the Guards to switch through as we need them
     public enum guardState
@@ -30,17 +40,35 @@ public class enemyAI_Guard : MonoBehaviour, IDamage
         Alerted,
         Chase
     }
+
+    public guardState state = guardState.Idle;
+
+    public enum guardType
+    {
+        Standard,
+        Handler,
+        Elite,
+        EliteHandler
+    }
+
     //Range in which guard can see player to shoot
     bool playerInSightRange;
 
     Vector3 playerDir;
+    Vector3 alertTargetPos;
+    Vector3 alertLookDir;
     Vector3 lastAlertPosition;
+    Vector3 startingPos;
+
     Transform playerTransform;
 
     void Start()
     {
         colorOrig = model.material.color;
         gameManager.instance.UpdateGameGoal(1);
+        startingPos = transform.position;
+        stoppingDistOrig = agent.stoppingDistance;
+
         if (gameManager.instance.player != null)
             playerTransform = gameManager.instance.player.transform;
     }
@@ -48,12 +76,70 @@ public class enemyAI_Guard : MonoBehaviour, IDamage
     void Update()
     {
         shootTimer += Time.deltaTime;
+
+        switch(state)
+        {
+            case guardState.Idle:
+                IdleBehavior();
+                break;
+
+            case guardState.Alerted:
+                AlertedBehavior();
+                break;
+
+            case guardState.Chase:
+                ChaseBehavior();
+                break;
+        }
+     
+    }
+
+    void IdleBehavior()
+    {
+        if (agent.remainingDistance < 0.01f)
+            roamTimer += Time.deltaTime;
+
         if (playerInSightRange && canSeePlayer())
         {
-
+            checkRoam();
+        }
+        else if (!playerInSightRange)
+        {
+            checkRoam();
+        }
+        else
+        {
+            state = guardState.Chase;
         }
     }
 
+    void checkRoam()
+    {
+        if (agent.remainingDistance < 0.01f && roamTimer >= roamPauseTime)
+        {
+            roam();
+        }
+    }
+    void roam()
+    {
+        roamTimer = 0;
+        agent.stoppingDistance = 0;
+
+        Vector3 ranPos = Random.insideUnitSphere * roamDist;
+        ranPos += startingPos;
+
+        NavMeshHit hit;
+        NavMesh.SamplePosition(ranPos, out hit, roamDist, 1);
+        agent.SetDestination(hit.position);
+    }
+
+    void ChaseBehavior()
+    {
+        if(!canSeePlayer())
+        {
+            state = guardState.Alerted;
+        }
+    }
     bool canSeePlayer()
     {
         if (playerTransform == null) return false;
@@ -107,8 +193,11 @@ public class enemyAI_Guard : MonoBehaviour, IDamage
     }
     void shoot()
     {
-        shootTimer = 0;
-        Instantiate(bullet, shootPos.position, transform.rotation);
+        if (!tazed)
+        {
+            shootTimer = 0;
+            Instantiate(bullet, shootPos.position, transform.rotation);
+        }
     }
     public void takeDamage(int amount)
     {
@@ -140,9 +229,11 @@ public class enemyAI_Guard : MonoBehaviour, IDamage
         yield return new WaitForSeconds(0.1f);
         model.material.color = colorOrig;
     }
-    public void onAlert(Vector3 alertPosition)
+    public void onBarkAlert(Vector3 alertPosition, Vector3 alertForward)
     {
-        Vector3 playerDir = alertPosition - transform.position;
+        alertTargetPos = alertPosition;
+
+        Vector3 playerDir = alertForward;
         playerDir.y = 0;
 
         if (playerDir.sqrMagnitude > 0.01f)
@@ -150,6 +241,31 @@ public class enemyAI_Guard : MonoBehaviour, IDamage
             Quaternion rot = Quaternion.LookRotation(playerDir);
             transform.rotation = rot;
         }
+        //moves guard toward anchor
+        agent.stoppingDistance = 0;
+        agent.SetDestination(alertTargetPos);
+        //sets state to alerted
+        state = guardState.Alerted;
+        alertedTimer = 0;
+    }
+
+    void AlertedBehavior()
+    {
+        if(canSeePlayer())
+        {
+            state = guardState.Chase;
+            return;
+        }
+        if(agent.remainingDistance <= 0.1f)
+        {
+            alertedTimer += Time.deltaTime;
+
+            if(alertedTimer >= alertDur)
+            {
+                state = guardState.Idle;
+            }
+        }
+        
     }
     public void poison(int damage, float rate, float duration)
     {
@@ -172,6 +288,31 @@ public class enemyAI_Guard : MonoBehaviour, IDamage
             yield return wait;
         }
         poisoned = null;
+    }
+
+    // tazed effect
+    public void taze(int damage, float duration)
+    {
+        takeDamage(damage);
+        if (!tazed)
+        {
+            StartCoroutine(StunRoutine(duration));
+        }
+    }
+
+    private IEnumerator StunRoutine(float duration)
+    {
+        tazed = true;
+        if (agent != null)
+        {
+            agent.isStopped = true;
+        }
+        yield return new WaitForSeconds(duration);
+        tazed = false;
+        if (agent != null)
+        {
+            agent.isStopped = false;
+        }
     }
 }
 
