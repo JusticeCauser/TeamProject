@@ -222,7 +222,7 @@ public class enemyAI_Guard : MonoBehaviour, IDamage
             
             if(bulletDmg != null && difficultyManager.instance != null)
             {
-                bulletDmg.ApplyDifficultyMultiplier(difficultyManager.instance.GetDamagerMultiplier());
+                bulletDmg.ApplyDifficultyMultiplier(difficultyManager.instance.GetDamageMultiplier());
             }
         }
     }

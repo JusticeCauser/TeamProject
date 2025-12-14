@@ -11,29 +11,7 @@ public class difficultyUI : MonoBehaviour
         UpdateDifficultyDisplay();
     }
 
-    // left arrow button
-    public void DecreaseDifficulty()
-    {
-        if (difficultyManager.instance == null) return;
-
-        switch(difficultyManager.instance.currentDifficulty)
-        {
-            case difficultyManager.Difficulty.Easy:
-                difficultyManager.instance.SetDifficulty(difficultyManager.Difficulty.Hard);
-                break;
-            case difficultyManager.Difficulty.Normal:
-                difficultyManager.instance.SetDifficulty(difficultyManager.Difficulty.Easy);
-                break;
-            case difficultyManager.Difficulty.Hard:
-                difficultyManager.instance.SetDifficulty(difficultyManager.Difficulty.Normal);
-                break;
-        }
-
-        UpdateDifficultyDisplay();
-    }
-
-    // right arrow button 
-    public void IncreaseDifficulty()
+    public void CycleDifficulty()
     {
         if (difficultyManager.instance == null) return;
 
