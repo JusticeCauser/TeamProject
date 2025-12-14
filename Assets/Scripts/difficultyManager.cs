@@ -26,7 +26,7 @@ public class difficultyManager : MonoBehaviour
     }
 
     // dmg mult for enemies
-    public float GetDamagerMultiplier()
+    public float GetDamageMultiplier()
     {
         switch(currentDifficulty)
         {
@@ -54,7 +54,6 @@ public class difficultyManager : MonoBehaviour
         if(instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
