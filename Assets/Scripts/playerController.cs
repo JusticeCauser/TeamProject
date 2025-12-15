@@ -126,7 +126,10 @@ public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
         if(controller.isGrounded)
         {
             jumpCount = 0;
-            playerVel.y = 0;
+            if (playerVel.y <= 0)
+            {
+                playerVel.y = 0;
+            }
 
             if (externalVelocity.magnitude > 0.1f)
             {
@@ -244,7 +247,7 @@ public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
             launchPad padScript = other.GetComponent<launchPad>();
             if (padScript != null)
             {
-                playerVel.y += padScript.force;
+                playerVel.y = padScript.force;
             }
         }
     }
