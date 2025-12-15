@@ -62,7 +62,7 @@ public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
     Camera mainCam;
 
     // launch pad control member - Aaron k
-    public Vector3 launchVelocity;
+    //public Vector3 launchVelocity;
 
     void Start()
     {
@@ -71,6 +71,7 @@ public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
         mainCam = Camera.main;
         grappleHook = GetComponent<GrapplingHook>();
         wallRun = GetComponent<wallRun>();
+        //launchVelocity = Vector3.zero;
         if(wallRun != null)
         {
             wallRun.controller = controller;
@@ -89,18 +90,18 @@ public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
         }
         sprint();
 
-        // launch pad mechanic - Aaron K
-        if(launchVelocity != Vector3.zero || !controller.isGrounded)
-        {
-            launchVelocity.y += gravity * Time.deltaTime;
-        }
-
+        // launch pad mechanic - NONFUNCTIONAL - Aaron K
+        // ==================================================
+        //if (controller.isGrounded && launchVelocity.y < 0)
+        //{
+        //    launchVelocity.y = -2f;
+        //}
+        //if (launchVelocity != Vector3.zero || !controller.isGrounded)
+        //{
+        //    launchVelocity.y += gravity * Time.deltaTime;
+        //}
+        //launchVelocity.y -= gravity * Time.deltaTime;
         //controller.Move(launchVelocity * Time.deltaTime);
-
-        if (controller.isGrounded && launchVelocity.y < 0)
-        {
-            launchVelocity = Vector3.zero;
-        }
     }
 
     void movement()
@@ -238,6 +239,14 @@ public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
             damage trapSlow = other.GetComponent<damage>();
             speed = Mathf.RoundToInt(speedOrig * trapSlow.slowedSpeed);
         }
+        if(other.CompareTag("Launch Pad"))
+        {
+            launchPad padScript = other.GetComponent<launchPad>();
+            if (padScript != null)
+            {
+                playerVel.y += padScript.force;
+            }
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -352,12 +361,13 @@ public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
         grappleJumpedThisFrame = true;
     }
 
-    // Launch Pad functionality - per no rigidbody - Aaron K
-    public void Launch(Vector3 direction, float force)
-    {
-        launchVelocity = direction * force;
-    }
-        
+    // Launch Pad functionality NONFUNCTIONAL - per no rigidbody - Aaron K
+    //public void Launch(Vector3 launchDirection, float launchForce)
+    //{
+    //    // Set the velocity directly to launch the player
+    //    launchVelocity = launchDirection * launchForce;
+    //}
+
     // poison routines- Aaron K
     public void poison(int damage, float rate, float duration)
     {
