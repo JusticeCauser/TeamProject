@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using static enemyAI_Guard;
 using static enemyAI_Guard_Handler;
 
 public class enemyAI_Dog : MonoBehaviour, IDamage, IHeal
@@ -15,6 +16,9 @@ public class enemyAI_Dog : MonoBehaviour, IDamage, IHeal
     [SerializeField] int FOV;
     [SerializeField] float alertRadius;
     [SerializeField] float barkCooldown;
+    [SerializeField] int roamDist;
+    [SerializeField] int roamPauseTime;
+    [SerializeField] float alertDur;
 
     Color colorOrig;
 
@@ -24,6 +28,7 @@ public class enemyAI_Dog : MonoBehaviour, IDamage, IHeal
     bool playerInScentRange;
     bool playerInSightRange;
 
+    float roamTimer;
     float angleToPlayer;
     float barkTimer;
     float stoppingDistOrig;
@@ -92,19 +97,14 @@ public class enemyAI_Dog : MonoBehaviour, IDamage, IHeal
                 ChaseBehavior();
                 break;
         }
-        //if (playerInScentRange)
-        //{
-        //    barkTimer -= Time.deltaTime;
-        //    if(barkTimer <= 0)
-        //    {
-        //        bark();
-        //        barkTimer = barkCooldown;
-        //    }
-        //}
     }
-
     void IdleBehavior()
     {
+        if (agent.remainingDistance < 0.01f)
+            roamTimer += Time.deltaTime;
+        
+        checkRoam();
+
         if (playerInScentRange)
         {
             state = dogState.Alerted;
@@ -112,11 +112,30 @@ public class enemyAI_Dog : MonoBehaviour, IDamage, IHeal
             return;
         }
 
-        if(canSeePlayer())
+        if (canSeePlayer())
         {
             state = dogState.Chase;
             return;
         }
+    }
+    void checkRoam()
+    {
+        if (agent.remainingDistance < 0.01f && roamTimer >= roamPauseTime)
+        {
+            roam();
+        }
+    }
+    void roam()
+    {
+        roamTimer = 0;
+        agent.stoppingDistance = 0;
+
+        Vector3 ranPos = Random.insideUnitSphere * roamDist;
+        ranPos += startingPos;
+
+        NavMeshHit hit;
+        NavMesh.SamplePosition(ranPos, out hit, roamDist, 1);
+        agent.SetDestination(hit.position);
     }
     void ChaseBehavior()
     {

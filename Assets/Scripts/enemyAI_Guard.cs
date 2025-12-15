@@ -276,20 +276,23 @@ public class enemyAI_Guard : MonoBehaviour, IDamage, IHeal
 
     public void onBarkAlert(Vector3 alertPosition, Vector3 alertForward)
     {
-        if (difficultyManager.instance.currentDifficulty == difficultyManager.Difficulty.Easy)
-        {
-            if(type != guardType.Handler)
-            {
-                return;
-            }
-        }
-        if(difficultyManager.instance.currentDifficulty == difficultyManager.Difficulty.Normal)
-        {
-            if(type == guardType.EliteHandler && type == guardType.EliteGuard)
-            {
-                return;
-            }
-        }
+        //if (difficultyManager.instance != null)
+        //{
+        //    if (difficultyManager.instance.currentDifficulty == difficultyManager.Difficulty.Easy)
+        //    {
+        //        if (type != guardType.Handler)
+        //        {
+        //            return;
+        //        }
+        //    }
+        //    if (difficultyManager.instance.currentDifficulty == difficultyManager.Difficulty.Normal)
+        //    {
+        //        if (type == guardType.EliteHandler && type == guardType.EliteGuard)
+        //        {
+        //            return;
+        //        }
+        //    }
+        //}
         alertTargetPos = alertPosition;
 
         Vector3 playerDir = alertForward;
