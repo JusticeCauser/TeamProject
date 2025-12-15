@@ -1,19 +1,22 @@
-using JetBrains.Annotations;
 using UnityEngine;
 
 public class launchPad : MonoBehaviour
 {
 
-    [SerializeField] float force;
+    [SerializeField] public float force;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        playerController player = other.GetComponent<playerController>();
+    
 
-        if (player != null)
-        {
-            player.Launch(transform.forward, force);
-        }
-    }
+    // BELOW NONFUNCTIONAL
+    // ========================================
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    playerController player = other.GetComponent<playerController>();
+    //    if (player != null)
+    //    {
+    //        Vector3 launchDirection = transform.up;
+    //        player.Launch(launchDirection, force);
+    //    }
+    //}
 
 }
