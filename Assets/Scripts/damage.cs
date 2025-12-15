@@ -9,7 +9,7 @@ public class damage : MonoBehaviour
     [SerializeField] damageType type;
     [SerializeField] Rigidbody rb;
 
-    [SerializeField] int damageAmount;
+    [SerializeField] public int damageAmount; // Levi change here, publicizing damageAmount
     [SerializeField] float damageRate;
     [SerializeField] float duration;
     [SerializeField] int speed;
@@ -118,4 +118,12 @@ public class damage : MonoBehaviour
         yield return new WaitForSeconds(damageRate);
         isDamaging = false;
     }
+
+    // Levi addition
+    public void ApplyDifficultyMultiplier(float multiplier)
+    {
+        damageAmount = Mathf.RoundToInt(damageAmount * multiplier);
+    }
 }
+
+//

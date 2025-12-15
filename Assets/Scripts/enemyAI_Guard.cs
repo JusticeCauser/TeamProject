@@ -3,12 +3,13 @@ using UnityEngine;
 using UnityEngine.AI;
 using static enemyAI_Guard_Handler;
 
-public class enemyAI_Guard : MonoBehaviour, IDamage
+public class enemyAI_Guard : MonoBehaviour, IDamage, IHeal
 {
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
 
     [SerializeField] int HP;
+    [SerializeField] int maxHP;
     [SerializeField] int faceTargetSpeed;
     [SerializeField] int FOV;
     [SerializeField] int roamDist;
@@ -74,7 +75,15 @@ public class enemyAI_Guard : MonoBehaviour, IDamage
 
     void Start()
     {
+        maxHP = HP;
         colorOrig = model.material.color;
+
+        // Levi addition
+        if(difficultyManager.instance != null)
+        {
+            HP = Mathf.RoundToInt(HP * difficultyManager.instance.GetHealthMultiplier());
+        }
+
         gameManager.instance.UpdateGameGoal(1);
         startingPos = transform.position;
         stoppingDistOrig = agent.stoppingDistance;
@@ -206,7 +215,17 @@ public class enemyAI_Guard : MonoBehaviour, IDamage
         if (!tazed)
         {
             shootTimer = 0;
-            Instantiate(bullet, shootPos.position, transform.rotation);
+
+            // Levi addition damage multiplier
+            GameObject bulletObj = Instantiate(bullet, shootPos.position, transform.rotation);
+
+            // appply dmg mult
+            damage bulletDmg = bulletObj.GetComponent<damage>();
+            
+            if(bulletDmg != null && difficultyManager.instance != null)
+            {
+                bulletDmg.ApplyDifficultyMultiplier(difficultyManager.instance.GetDamageMultiplier());
+            }
         }
     }
     public void takeDamage(int amount)
@@ -343,6 +362,30 @@ public class enemyAI_Guard : MonoBehaviour, IDamage
         {
             agent.isStopped = false;
         }
+    }
+
+    public void heal(int healAmount)
+    {
+        if (healAmount <= 0)
+            return;
+        if (HP <= 0)
+            return;
+
+        int origHP = HP;
+
+        HP = Mathf.Min(HP + healAmount, maxHP);
+
+        if (HP > origHP)
+        {
+            StartCoroutine(flashGreen());
+        }
+    }
+
+    IEnumerator flashGreen()
+    {
+        model.material.color = new Color(0.4f, 1f, 0.4f);
+        yield return new WaitForSeconds(0.1f);
+        model.material.color = colorOrig;
     }
 }
 
