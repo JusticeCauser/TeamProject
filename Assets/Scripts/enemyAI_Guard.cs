@@ -59,6 +59,7 @@ public class enemyAI_Guard : MonoBehaviour, IDamage
 
     //Is guard Handler or Guard?
     bool isHandler => type == guardType.Handler || type == guardType.EliteHandler;
+    //Is guard elite or not??
     bool isElite => type == guardType.EliteGuard || type == guardType.EliteHandler;
 
     //Range in which guard can see player to shoot
@@ -270,9 +271,23 @@ public class enemyAI_Guard : MonoBehaviour, IDamage
         yield return new WaitForSeconds(0.1f);
         model.material.color = colorOrig;
     }
+
     public void onBarkAlert(Vector3 alertPosition, Vector3 alertForward)
     {
-        //if(isHandler || isElite && )
+        if (difficultyManager.instance.currentDifficulty == difficultyManager.Difficulty.Easy)
+        {
+            if(type != guardType.Handler)
+            {
+                return;
+            }
+        }
+        if(difficultyManager.instance.currentDifficulty == difficultyManager.Difficulty.Normal)
+        {
+            if(type == guardType.EliteHandler && type == guardType.EliteGuard)
+            {
+                return;
+            }
+        }
         alertTargetPos = alertPosition;
 
         Vector3 playerDir = alertForward;
