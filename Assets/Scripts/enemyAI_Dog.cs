@@ -27,8 +27,8 @@ public class enemyAI_Dog : MonoBehaviour, IDamage, IHeal
     [SerializeField] float animTranSpeed;
 
     Color colorOrig;
-
-   
+    MaterialPropertyBlock propBlock;
+    static readonly int colorId = Shader.PropertyToID("_BaseColor");
 
     //Range in which dog can smell player
     bool playerInScentRange;
@@ -65,22 +65,24 @@ public class enemyAI_Dog : MonoBehaviour, IDamage, IHeal
     void Start()
     {
         maxHP = HP;
-        colorOrig = model.material.color;
-        // difficulty mults
+        propBlock = new MaterialPropertyBlock();
+        model.GetPropertyBlock(propBlock);
+        colorOrig = propBlock.GetColor(colorId);
+        if (colorOrig == Color.clear)
+            colorOrig = model.sharedMaterial.color;
+
         if(difficultyManager.instance != null)
         {
             HP = Mathf.RoundToInt(HP * difficultyManager.instance.GetHealthMultiplier());
             alertRadius *= difficultyManager.instance.GetDogDetectionMultiplier();
 
-            // scale trigger collider for scent detection
             SphereCollider triggerCollider = GetComponent<SphereCollider>();
-            if(triggerCollider != null &&triggerCollider.isTrigger)
+            if(triggerCollider != null && triggerCollider.isTrigger)
             {
                 triggerCollider.radius *= difficultyManager.instance.GetDogDetectionMultiplier();
             }
         }
 
-        //gameManager.instance.UpdateGameGoal(1);
         startingPos = (doghandler != null) ? doghandler.transform.position : transform.position;
         stoppingDistOrig = agent.stoppingDistance;
         if (gameManager.instance.player != null)
@@ -267,9 +269,11 @@ public class enemyAI_Dog : MonoBehaviour, IDamage, IHeal
 
     IEnumerator flashRed()
     {
-        model.material.color = Color.red;
+        propBlock.SetColor(colorId, Color.red);
+        model.SetPropertyBlock(propBlock);
         yield return new WaitForSeconds(0.1f);
-        model.material.color = colorOrig;
+        propBlock.SetColor(colorId, colorOrig);
+        model.SetPropertyBlock(propBlock);
     }
 
     void bark()
@@ -378,8 +382,10 @@ public class enemyAI_Dog : MonoBehaviour, IDamage, IHeal
 
     IEnumerator flashGreen()
     {
-        model.material.color = new Color(0.4f, 1f, 0.4f);
+        propBlock.SetColor(colorId, new Color(0.4f, 1f, 0.4f));
+        model.SetPropertyBlock(propBlock);
         yield return new WaitForSeconds(0.1f);
-        model.material.color = colorOrig;
+        propBlock.SetColor(colorId, colorOrig);
+        model.SetPropertyBlock(propBlock);
     }
 }
