@@ -41,7 +41,7 @@ public class enemyAI : MonoBehaviour, IDamage, IHeal
     {
         maxHP = HP;
         colorOrig = model.material.color;
-        gameManager.instance.UpdateGameGoal(1);
+        //gameManager.instance.UpdateGameGoal(1);
         startingPos = transform.position;
         stoppingDistOrig = agent.stoppingDistance;
 
@@ -155,7 +155,7 @@ public class enemyAI : MonoBehaviour, IDamage, IHeal
 
         if (HP <= 0)
         {
-            gameManager.instance.UpdateGameGoal(-1);
+            //gameManager.instance.UpdateGameGoal(-1);
            if(statTracker.instance != null)
             {
                 statTracker.instance.IncrementEnemiesDefeated();

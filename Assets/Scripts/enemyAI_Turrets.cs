@@ -66,7 +66,7 @@ public class enemyAI_Turrets : MonoBehaviour, IDamage
             HP = Mathf.RoundToInt(HP * difficultyManager.instance.GetHealthMultiplier());
         }
 
-        gameManager.instance.UpdateGameGoal(1);
+        //gameManager.instance.UpdateGameGoal(1);
         if (gameManager.instance.player != null)
             playerTransform = gameManager.instance.player.transform;
     }
@@ -187,7 +187,7 @@ public class enemyAI_Turrets : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
-            gameManager.instance.UpdateGameGoal(-1);
+            //gameManager.instance.UpdateGameGoal(-1);
 
             // incrementing enemies defeated in stats
             if (statTracker.instance != null)

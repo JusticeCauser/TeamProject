@@ -91,7 +91,7 @@ public class enemyAI_Guard : MonoBehaviour, IDamage, IHeal
             HP = Mathf.RoundToInt(HP * difficultyManager.instance.GetHealthMultiplier());
         }
 
-        gameManager.instance.UpdateGameGoal(1);
+        //gameManager.instance.UpdateGameGoal(1);
         startingPos = transform.position;
         stoppingDistOrig = agent.stoppingDistance;
 
@@ -289,7 +289,7 @@ public class enemyAI_Guard : MonoBehaviour, IDamage, IHeal
 
         if (HP <= 0)
         {
-            gameManager.instance.UpdateGameGoal(-1);
+            //gameManager.instance.UpdateGameGoal(-1);
 
             // incrementing enemies defeated in stats
             if(statTracker.instance != null)
