@@ -161,10 +161,14 @@ public class enemyAI : MonoBehaviour, IDamage, IHeal
         if (HP <= 0)
         {
             //gameManager.instance.UpdateGameGoal(-1);
-           if(statTracker.instance != null)
+            if(statTracker.instance != null)
             {
                 statTracker.instance.IncrementEnemiesDefeated();
             }
+            if(dropItem != null)
+            {
+                dropItem.transform.position = new Vector3(transform.position.x, 2, transform.position.z);
+            }  
             Destroy(gameObject);
         }
         else

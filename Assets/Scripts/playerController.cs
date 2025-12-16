@@ -64,7 +64,7 @@ public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
 
     Camera mainCam;
 
-    
+    List<keyFunction> keyList = new List<keyFunction>();
 
     // launch pad control member - Aaron k
     //public Vector3 launchVelocity;
@@ -509,5 +509,23 @@ public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
                     shootDist = 1;
                 break;
         }
+    }
+
+    public void addKey(keyFunction key)
+    {
+        keyList.Add(key);
+    }
+
+    public bool useKey(keyFunction key)
+    {
+        if(keyList.Count > 0)
+        {
+            if (keyList.Contains(key))
+            {
+                keyList.Remove(key);
+                return true;
+            }
+        }
+        return false;
     }
 }
