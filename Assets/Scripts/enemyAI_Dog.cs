@@ -249,7 +249,7 @@ public class enemyAI_Dog : MonoBehaviour, IDamage, IHeal
 
         if (HP <= 0)
         {
-            gameManager.instance.UpdateGameGoal(-1);
+            //gameManager.instance.UpdateGameGoal(-1);
 
             // incrementing enemies defeated in stats
             if (statTracker.instance != null)
