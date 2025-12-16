@@ -61,6 +61,13 @@ public class damage : MonoBehaviour
         if(dmg != null && type != damageType.DOT)
         {
             dmg.takeDamage(damageAmount);
+
+            // stat tracking for accuracy
+            if(other.CompareTag("Enemy") && gameObject.name.Contains("playerBullet") && statTracker.instance != null)
+            {
+                statTracker.instance.IncrementShotsHit();
+            }
+
             if (type == damageType.shock)
             {
                 dmg.taze(/*damageAmount,*/ duration);
