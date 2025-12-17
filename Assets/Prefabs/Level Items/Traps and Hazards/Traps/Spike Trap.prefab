@@ -5279,7 +5279,7 @@ MonoBehaviour:
   duration: 0
   speed: 0
   destroyTime: 0
-  playerSlowedSpeed: 0
+  playerSlowedSpeed: 0.1
   slowedSpeed: 0
 --- !u!1 &6933033197125504056
 GameObject:
