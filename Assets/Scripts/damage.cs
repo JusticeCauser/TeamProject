@@ -63,10 +63,10 @@ public class damage : MonoBehaviour
             dmg.takeDamage(damageAmount);
 
             // stat tracking for accuracy
-            if(other.CompareTag("Enemy") && gameObject.name.Contains("playerBullet") && statTracker.instance != null)
-            {
-                statTracker.instance.IncrementShotsHit();
-            }
+            //if(other.CompareTag("Enemy") && gameObject.name.Contains("playerBullet") && statTracker.instance != null)
+            //{
+            //    statTracker.instance.IncrementShotsHit();
+            //}
 
             if (type == damageType.shock)
             {

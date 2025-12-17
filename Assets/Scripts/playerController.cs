@@ -302,11 +302,11 @@ public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
             {
                 dmg.takeDamage(shootDamage);
 
-                //// stat tracking
-                //if (statTracker.instance != null)
-                //{
-                //    statTracker.instance.IncrementShotsHit();
-                //}
+                // stat tracking
+                if (statTracker.instance != null)
+                {
+                    statTracker.instance.IncrementShotsHit();
+                }
             }
         }
     }
