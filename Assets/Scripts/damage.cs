@@ -17,6 +17,7 @@ public class damage : MonoBehaviour
     [Range(1, 0.1f)] [SerializeField] float playerSlowedSpeed;
 
     bool isDamaging;
+    bool hasDealtDamage;
     float laserTimer;
     public float slowedSpeed;
 
@@ -56,21 +57,20 @@ public class damage : MonoBehaviour
         if (other.isTrigger)
             return;
 
+        // prevent multiple damage from same projectile hitting multiple colliders
+        if (hasDealtDamage && (type == damageType.moving || type == damageType.homing))
+            return;
+
         IDamage dmg = other.GetComponent<IDamage>();
 
-        if(dmg != null && type != damageType.DOT)
+        if(dmg != null && type != damageType.DOT && type != damageType.frost)
         {
             dmg.takeDamage(damageAmount);
-
-            // stat tracking for accuracy
-            //if(other.CompareTag("Enemy") && gameObject.name.Contains("playerBullet") && statTracker.instance != null)
-            //{
-            //    statTracker.instance.IncrementShotsHit();
-            //}
+            hasDealtDamage = true;
 
             if (type == damageType.shock)
             {
-                dmg.taze(/*damageAmount,*/ duration);
+                dmg.taze(duration);
             }
         }
 
@@ -78,12 +78,11 @@ public class damage : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        if (type == damageType.frost)
+
+        if (type == damageType.frost && dmg != null)
         {
             dmg.takeDamage(damageAmount);
         }
-
-        
     }
 
     private void OnTriggerStay(Collider other) // DOT and Poison
