@@ -30,6 +30,18 @@ public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
     [SerializeField] GameObject playerBullet;
     [SerializeField] Transform playerShootPos;
 
+    [Header("----- Audio -----")]
+    [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip[] audSteps;
+    [Range(0,1)] [SerializeField] float audStepsVol;
+    [SerializeField] AudioClip[] audJump;
+    [Range(0, 1)][SerializeField] float audJumpVol;
+    [SerializeField] AudioClip[] audHurt;
+    [Range(0, 1)][SerializeField] float audHurtVol;
+
+    bool isPlayingSteps;
+    bool isSprinting;
+
     MeshFilter gunMeshFilter;
     MeshRenderer gunMeshRenderer;
 
@@ -136,6 +148,11 @@ public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
 
         if(controller.isGrounded)
         {
+            if(moveDir.normalized.magnitude > 0.3f && !isPlayingSteps)
+            {
+                StartCoroutine(playStep());
+            }
+
             jumpCount = 0;
             if (playerVel.y <= 0)
             {
@@ -227,6 +244,7 @@ public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
 
         if(Input.GetButtonDown("Jump") && jumpCount < jumpMax && !tazed)
         {
+            aud.PlayOneShot(audJump[Random.Range(0, audJump.Length)], audJumpVol);
             playerVel.y = jumpSpeed;
             jumpCount++;
         }
@@ -242,11 +260,25 @@ public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
         if(Input.GetButtonDown("Sprint") && !tazed)
         {
             speed *= sprintMod;
+            isSprinting = true;
         }
         else if(Input.GetButtonUp("Sprint") && !tazed)
         {
             speed = speedOrig;
+            isSprinting = false;
         }
+    }
+
+    IEnumerator playStep()
+    {
+        isPlayingSteps = true;
+        aud.PlayOneShot(audSteps[Random.Range(0, audSteps.Length)], audStepsVol);
+        if (isSprinting)
+            yield return new WaitForSeconds(0.3f);
+        else
+            yield return new WaitForSeconds(0.5f);
+
+        isPlayingSteps = false;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -281,6 +313,7 @@ public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
         shootTimer = 0;
 
         gunList[gunListPos].ammoCur--;
+        aud.PlayOneShot(gunList[gunListPos].shootSound[Random.Range(0, gunList[gunListPos].shootSound.Length)], gunList[gunListPos].shootSoundVol);
         
         // Levi addition, statTracking
         if(statTracker.instance != null)
@@ -327,6 +360,7 @@ public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
         if (amount > 0)
         {
             HP -= amount;
+            aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
             StartCoroutine(flashRed());
             updatePlayerUI();
         }
