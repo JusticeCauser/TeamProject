@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 3881037392701951345}
   - component: {fileID: 8180648538125483010}
   - component: {fileID: 8644207857513760565}
-  - component: {fileID: -5815491935055668134}
+  - component: {fileID: 8365720975219553257}
   m_Layer: 0
-  m_Name: Hit Effect - Yellow
+  m_Name: Hit Effect - Red
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4838,7 +4838,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!82 &-5815491935055668134
+--- !u!82 &8365720975219553257
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

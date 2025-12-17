@@ -15,6 +15,7 @@ public class damage : MonoBehaviour
     [SerializeField] int speed;
     [SerializeField] int destroyTime;
     [Range(1, 0.1f)] [SerializeField] float playerSlowedSpeed;
+    [SerializeField] ParticleSystem hitEffect;
 
     bool isDamaging;
     bool hasDealtDamage;
@@ -76,6 +77,11 @@ public class damage : MonoBehaviour
 
         if(type == damageType.homing || type == damageType.moving)
         {
+            if(hitEffect != null)
+            {
+                Instantiate(hitEffect, transform.position, Quaternion.identity);
+            }
+
             Destroy(gameObject);
         }
 
