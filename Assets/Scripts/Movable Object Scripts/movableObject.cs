@@ -11,8 +11,7 @@ public class movableObject : MonoBehaviour
     [SerializeField] float movementTime;
     [SerializeField] bool isReversible;
     [SerializeField] float delayAmount;
-    //[SerializeField] bool isPlatform;
-    //[SerializeField] bool isDoor;
+    [SerializeField] keyFunction key;
 
     GameObject recallButton1;
     GameObject recallButton2;
@@ -26,42 +25,6 @@ public class movableObject : MonoBehaviour
 
     float delayTimer;
     float speed;
-
-    private void OnValidate()
-    {     
-        //if(isPlatform && recallButton1 == null || recallButton2 == null)
-        //{
-        //    if (recallButton1 == null)
-        //    {
-        //        GameObject newButton = new GameObject("Platform Recall Button");
-        //        if (newButton.CompareTag("PlatformRecallButton"))
-        //        {
-        //            newButton.transform.parent = this.transform;
-        //            newButton.transform.position = Vector3.zero;
-        //            newButton.name = "Recall Button 1";
-        //            newButton.AddComponent<customTriggerObject>();
-        //            Component trigger = newButton.GetComponent<customTriggerObject>();
-        //            if (trigger != null)
-        //            {
-        //                newButton.GetComponent<customTriggerObject>().SetConnectedObject(transform.parent.gameObject);
-        //            }
-        //        }
-        //    }
-        //    if(recallButton2 == null)
-        //    {
-
-        //    }
-        //}
-
-        //if(secondPosition == null)
-        //{
-        //    GameObject newChild = new GameObject();
-        //    newChild.transform.parent = this.transform;
-        //    newChild.transform.localPosition = Vector3.zero;
-        //    newChild.name = "Opposite Position";
-        //    secondPosition = newChild.transform;
-        //}
-    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -168,5 +131,10 @@ public class movableObject : MonoBehaviour
     public bool GetAtOppositeEnd()
     {
         return atOppositeEnd;
+    }
+
+    public keyFunction GetKey()
+    {
+        return key;
     }
 }
