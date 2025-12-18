@@ -29,9 +29,17 @@ public class gameManager : MonoBehaviour
     public alertSystem alertSys;
     public GameObject player;
     public playerController playerScript;
-    public Image playerHPBar;
+    public Image playerHPFrontBar;
+    public Image playerHPBackBar;
     public GameObject playerDamageScreen;
     public GameObject playerHealScreen; //add
+
+    // Aaron K add
+    [Header("----Status Effect Icons----")]
+    public Image poisonIcon;
+    public Image poisonRing;
+    public Image stunIcon;
+    public Image stunRing;
 
     public bool isPaused;
 

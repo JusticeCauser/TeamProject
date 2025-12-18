@@ -58,7 +58,7 @@ public class damage : MonoBehaviour
 
         IDamage dmg = other.GetComponent<IDamage>();
 
-        if(dmg != null && type != damageType.DOT)
+        if(dmg != null && type != damageType.DOT && type != damageType.poison)
         {
             dmg.takeDamage(damageAmount);
             if (type == damageType.shock)
