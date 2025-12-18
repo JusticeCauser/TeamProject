@@ -38,11 +38,17 @@ public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
     [Range(0, 1)][SerializeField] float audJumpVol;
     [SerializeField] AudioClip[] audHurt;
     [Range(0, 1)][SerializeField] float audHurtVol;
+    [SerializeField] AudioClip[] audReload;
+    [Range(0, 1)][SerializeField] float audReloadVol;
+    [SerializeField] AudioClip[] audEmptyMag;
+    [Range(0, 1)][SerializeField] float audEmptyMagVol;
 
     GunRecoil gunRecoil;
 
     bool isPlayingSteps;
     bool isSprinting;
+    bool isPlayingClick;
+    bool isReloading;
 
     MeshFilter gunMeshFilter;
     MeshRenderer gunMeshRenderer;
@@ -138,13 +144,17 @@ public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
         Debug.DrawRay(mainCam.transform.position, mainCam.transform.forward * shootDist, Color.yellow);
 #endif
 
-        if(Input.GetButton("Fire1") && gunList.Count > 0 && gunList[gunListPos].ammoCur > 0 && shootTimer >= shootRate)
+        if(Input.GetButton("Fire1") && gunList.Count > 0 && gunList[gunListPos].ammoCur > 0 && shootTimer >= shootRate && !isReloading)
         {
             shoot();
         }
+        else if(Input.GetButton("Fire1") && gunList.Count > 0 && gunList[gunListPos].ammoCur == 0 && !isPlayingClick)
+        {
+            StartCoroutine(playClick());
+        }
 
-        // only block movement when actively being pulled by grapple (not during line extend)
-        bool isGrappling = grappleHook != null && grappleHook.IsGrappling();
+            // only block movement when actively being pulled by grapple (not during line extend)
+            bool isGrappling = grappleHook != null && grappleHook.IsGrappling();
 
         // debug - remove after testing
         // if (grappleHook != null) Debug.Log($"isGrappling: {isGrappling}, lineExtending: {grappleHook.IsLineExtending()}");
@@ -236,7 +246,11 @@ public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
         } // Wall run end
 
         selectGun();
-        reload();
+
+        if(Input.GetButtonDown("Reload") && gunList.Count > 0 && !isReloading)
+        {
+            StartCoroutine(reload());
+        }
     }
 
     void jump()
@@ -352,12 +366,21 @@ public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
         }
     }
 
-    void reload()
+    IEnumerator playClick()
     {
-        if(Input.GetButtonDown("Reload") && gunList.Count > 0)
-        {
-            gunList[gunListPos].ammoCur = gunList[gunListPos].ammoMax;
-        }
+        isPlayingClick = true;
+        aud.PlayOneShot(audEmptyMag[Random.Range(0, audEmptyMag.Length)], audEmptyMagVol);
+        yield return new WaitForSeconds(0.75f);
+        isPlayingClick = false;
+    }
+
+    IEnumerator reload()
+    {
+        isReloading = true;
+        aud.PlayOneShot(audReload[Random.Range(0, audReload.Length)], audReloadVol);
+        gunList[gunListPos].ammoCur = gunList[gunListPos].ammoMax;
+        yield return new WaitForSeconds(0.75f);
+        isReloading = false;
     }
 
     public void takeDamage(int amount)
