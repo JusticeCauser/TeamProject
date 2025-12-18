@@ -508,6 +508,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6ade2fa02842d6542b942320cc20af26, type: 3}
   - {fileID: 8300000, guid: a758527a6b0aec640a9c7c99bec72c66, type: 3}
   audHurtVol: 0.5
+  audReload:
+  - {fileID: 8300000, guid: b0b0bcc25adeffd44ad96995b3aa7ae5, type: 3}
+  audReloadVol: 0.5
+  audEmptyMag:
+  - {fileID: 8300000, guid: 525dfb4e80b88c148ad7980e9a1e1831, type: 3}
+  audEmptyMagVol: 0.5
   HPOrig: 10
   isGodMode: 0
   groundedVelocityDecay: 15
@@ -747,6 +753,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 410502912674601472}
+  - component: {fileID: 3808097136671550569}
   - component: {fileID: 3841178872612158180}
   - component: {fileID: 6547493794119103531}
   m_Layer: 14
@@ -771,6 +778,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7642987605847085021}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3808097136671550569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7694361337131636864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaef7a33c05867f4ebfd427f6bfa4882, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GunRecoil
+  kickbackAmount: 0.08
+  kickUpAmount: 0.02
+  rotationKick: 8
+  sideKickRange: 2
+  positionRecoverySpeed: 15
+  rotationRecoverySpeed: 20
+  recoilSnappiness: 25
 --- !u!33 &3841178872612158180
 MeshFilter:
   m_ObjectHideFlags: 0
