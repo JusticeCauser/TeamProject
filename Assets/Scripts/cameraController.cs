@@ -55,9 +55,14 @@ public class cameraController : MonoBehaviour
         transform.parent.Rotate(Vector3.up * mouseX);
     }
 
-    // Levi addition, toggle tilt method
     public void SetMovementTilt(bool enabled)
     {
         moveTiltAmount = enabled ? 2f : 0;
+    }
+
+    public void AdjustPitch(float delta)
+    {
+        camRotX += delta;
+        camRotX = Mathf.Clamp(camRotX, lockVertMin, lockVertMax);
     }
 }

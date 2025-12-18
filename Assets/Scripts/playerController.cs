@@ -343,7 +343,7 @@ public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
         //Instantiate(playerBullet, playerShootPos.position, mainCam.transform.rotation);
 
         RaycastHit hit;
-        if (Physics.Raycast(mainCam.transform.position, mainCam.transform.forward, out hit, shootDist, ~ignoreLayer))
+        if (PortalRaycast.Raycast(mainCam.transform.position, mainCam.transform.forward, out hit, shootDist, ~ignoreLayer))
         {
             Debug.Log(hit.collider.name);
 
@@ -354,7 +354,6 @@ public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
             {
                 dmg.takeDamage(shootDamage);
 
-                // stat tracking
                 if (statTracker.instance != null)
                 {
                     statTracker.instance.IncrementShotsHit();
@@ -462,7 +461,13 @@ public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
 
     public Vector3 GetVelocity()
     {
-        return externalVelocity + playerVel;
+        return (moveDir * speed) + externalVelocity + playerVel;
+    }
+
+    public void SetVelocity(Vector3 velocity)
+    {
+        externalVelocity = new Vector3(velocity.x, 0, velocity.z);
+        playerVel = new Vector3(0, velocity.y, 0);
     }
 
     public void GrappleJump(Vector3 grappleVelocity)

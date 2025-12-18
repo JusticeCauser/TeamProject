@@ -306,4 +306,9 @@ public class GrapplingHook : MonoBehaviour
     {
         return grapplePoint;
     }
+
+    public void CancelGrapple()
+    {
+        StopGrapple(false, true);
+    }
 }
