@@ -768,7 +768,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4f25eb7da928f24fba7f406dac60ac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::enemyAI_Healer
-  maxHP: 30
+  model: {fileID: 4910628961522881891}
+  agent: {fileID: 1914998757735214098}
+  maxHP: 10
   healRadius: 15
   healAmount: 5
   healInterval: 1
