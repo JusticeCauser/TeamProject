@@ -297,6 +297,8 @@ public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
         {
             damage trapSlow = other.GetComponent<damage>();
             speed = Mathf.RoundToInt(speedOrig * trapSlow.slowedSpeed);
+            gameManager.instance.frostIcon.gameObject.SetActive(true);
+            gameManager.instance.frostRing.gameObject.SetActive(true);
         }
         if (other.CompareTag("Launch Pad"))
         {
@@ -315,6 +317,8 @@ public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
         if (other.CompareTag("FrostTrap"))
         {
             speed = speedOrig;
+            gameManager.instance.frostIcon.gameObject.SetActive(false);
+            gameManager.instance.frostRing.gameObject.SetActive(false);
         }
     }
 
