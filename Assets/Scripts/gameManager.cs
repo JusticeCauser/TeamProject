@@ -40,6 +40,8 @@ public class gameManager : MonoBehaviour
     public Image poisonRing;
     public Image stunIcon;
     public Image stunRing;
+    public Image frostIcon;
+    public Image frostRing;
 
     public bool isPaused;
 
