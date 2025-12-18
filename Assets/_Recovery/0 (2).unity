@@ -9962,6 +9962,30 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 86753616750973805, guid: 5cf60d655d7d1b845b27f7d09a894138, type: 3}
   m_PrefabInstance: {fileID: 1585651014}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &430319560 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7694361337131636864, guid: 5457dee13040708478acb0855636c248, type: 3}
+  m_PrefabInstance: {fileID: 7304652771008893539}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &430319564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 430319560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaef7a33c05867f4ebfd427f6bfa4882, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GunRecoil
+  kickbackAmount: 0.08
+  kickUpAmount: 0.02
+  rotationKick: 8
+  sideKickRange: 2
+  positionRecoverySpeed: 15
+  rotationRecoverySpeed: 20
+  recoilSnappiness: 25
 --- !u!1 &431906168
 GameObject:
   m_ObjectHideFlags: 0
@@ -46244,6 +46268,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 9031834614981594016, guid: 89d0ed69243669544a51684c3d5723a2, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -46318,6 +46346,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player with gun
       objectReference: {fileID: 0}
+    - target: {fileID: 5975179707992272538, guid: 5457dee13040708478acb0855636c248, type: 3}
+      propertyPath: audReloadVol
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975179707992272538, guid: 5457dee13040708478acb0855636c248, type: 3}
+      propertyPath: audEmptyMagVol
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975179707992272538, guid: 5457dee13040708478acb0855636c248, type: 3}
+      propertyPath: audReload.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975179707992272538, guid: 5457dee13040708478acb0855636c248, type: 3}
+      propertyPath: audEmptyMag.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975179707992272538, guid: 5457dee13040708478acb0855636c248, type: 3}
+      propertyPath: 'audReload.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: b0b0bcc25adeffd44ad96995b3aa7ae5, type: 3}
+    - target: {fileID: 5975179707992272538, guid: 5457dee13040708478acb0855636c248, type: 3}
+      propertyPath: 'audEmptyMag.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 525dfb4e80b88c148ad7980e9a1e1831, type: 3}
     - target: {fileID: 6508605988028803658, guid: 5457dee13040708478acb0855636c248, type: 3}
       propertyPath: m_LocalPosition.x
       value: 244.5
@@ -46361,7 +46413,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7694361337131636864, guid: 5457dee13040708478acb0855636c248, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 430319564}
   m_SourcePrefab: {fileID: 100100000, guid: 5457dee13040708478acb0855636c248, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
