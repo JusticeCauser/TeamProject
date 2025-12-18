@@ -271,6 +271,19 @@ public class wallRun : MonoBehaviour
         wallRunVerticalVelocity = 0f;
     }
 
+    public void ForceExitWallRun()
+    {
+        if (!isWallRunning)
+            return;
+
+        isWallRunning = false;
+        wallRunTimer = 0f;
+        wallNormal = Vector3.zero;
+        wallSide = 0;
+        wallRunVelocity = Vector3.zero;
+        wallRunVerticalVelocity = 0f;
+    }
+
     bool CanWallRun()
     {
         return !Physics.Raycast(transform.position, Vector3.down, minWallRunHeight);
