@@ -23,6 +23,7 @@ public class gameManager : MonoBehaviour
     public GameObject menuStats;
     public GameObject menuCustomization;
     public GameObject menuCheats;
+    
     // end Levi additions
 
     //[SerializeField] GameObject menuActive; // moving these to dialog framework as public instead of Serialized Fields for access in other script
