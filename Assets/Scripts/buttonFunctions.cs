@@ -66,4 +66,5 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.menuPause.SetActive(true);
         gameManager.instance.menuActive = gameManager.instance.menuPause;
     }
+
 }
