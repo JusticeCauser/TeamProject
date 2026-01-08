@@ -6,10 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Levels/SampleScene.unity
+    path: Assets/Levels/TestScenes PPD2/SampleScene/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Levels/Level1.unity
+    path: Assets/Levels/TestScenes PPD2/Level1/Level1.unity
     guid: 83721a7f44619214ea2022a5b9f3c991
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
