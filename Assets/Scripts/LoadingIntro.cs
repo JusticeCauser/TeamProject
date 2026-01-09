@@ -10,6 +10,7 @@ public class LoadingIntro : MonoBehaviour
     [SerializeField] TMP_Text levelText;
     [SerializeField] Image loadBar;
     [SerializeField] TMP_Text continueText;
+    [SerializeField] AudioSource intro;
 
     [SerializeField] float loadingBarFilled = 3;
 
