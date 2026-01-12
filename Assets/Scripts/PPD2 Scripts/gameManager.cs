@@ -21,8 +21,8 @@ public class gameManager : MonoBehaviour
     public GameObject menuLose;
     public GameObject menuSettings;
     public GameObject menuStats;
-    public GameObject menuCustomization;
-    public GameObject menuCheats;
+    //public GameObject menuCustomization;
+   // public GameObject menuCheats;
     
     // end Levi additions
 
@@ -38,16 +38,16 @@ public class gameManager : MonoBehaviour
     public Image playerHPFrontBar;
     public Image playerHPBackBar;
     public GameObject playerDamageScreen;
-    public GameObject playerHealScreen; //add
+  //  public GameObject playerHealScreen; //add
 
     // Aaron K add
-    [Header("----Status Effect Icons----")]
-    public Image poisonIcon;
-    public Image poisonRing;
+    //[Header("----Status Effect Icons----")]
+   // public Image poisonIcon;
+    //public Image poisonRing;
     public Image stunIcon;
     public Image stunRing;
-    public Image frostIcon;
-    public Image frostRing;
+   // public Image frostIcon;
+   // public Image frostRing;
 
     public bool isPaused;
 
