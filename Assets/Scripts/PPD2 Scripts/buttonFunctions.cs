@@ -44,20 +44,20 @@ public class buttonFunctions : MonoBehaviour
             statTracker.instance.UpdateStatsDisplay();
         }
     }
+    
+    //public void openCustomization()
+    //{
+    //    gameManager.instance.menuPause.SetActive(false);
+    //    gameManager.instance.menuCustomization.SetActive(true);
+    //    gameManager.instance.menuActive = gameManager.instance.menuCustomization;
+    //}
 
-    public void openCustomization()
-    {
-        gameManager.instance.menuPause.SetActive(false);
-        gameManager.instance.menuCustomization.SetActive(true);
-        gameManager.instance.menuActive = gameManager.instance.menuCustomization;
-    }
-
-    public void openCheats()
-    {
-        gameManager.instance.menuPause.SetActive(false);
-        gameManager.instance.menuCheats.SetActive(true);
-        gameManager.instance.menuActive = gameManager.instance.menuCheats;
-    }
+    //public void openCheats()
+    //{
+    //    gameManager.instance.menuPause.SetActive(false);
+    //    gameManager.instance.menuCheats.SetActive(true);
+    //    gameManager.instance.menuActive = gameManager.instance.menuCheats;
+    //}
 
     // back button, returns to pause menu from any dialog
     public void backToPause()

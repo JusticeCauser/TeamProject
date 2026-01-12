@@ -13,7 +13,7 @@ public class pickupGuns : MonoBehaviour
         if (pik != null)
         {
             gun.ammoCur = gun.ammoMax; //set ammo to max on pickup
-            pik.getGunStats(gun);
+            //pik.getGunStats(gun);
             Destroy(gameObject);
         }
     }

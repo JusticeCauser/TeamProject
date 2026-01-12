@@ -13,25 +13,25 @@ public class welcomeMat : MonoBehaviour
         key = connectedObject.GetKey();
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            if (gameManager.instance.playerScript.useKey(key))
-            {
-                switch (key.GetKeyType())
-                {
-                    case keyType.moveKey:
-                        connectedObject.SetIsMoving(true);
-                        break;
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.CompareTag("Player"))
+    //    {
+    //        if (gameManager.instance.playerScript.useKey(key))
+    //        {
+    //            switch (key.GetKeyType())
+    //            {
+    //                case keyType.moveKey:
+    //                    connectedObject.SetIsMoving(true);
+    //                    break;
 
-                    case keyType.revealKey:
-                        connectedObject.gameObject.SetActive(true);
-                        break;
-                }
+    //                case keyType.revealKey:
+    //                    connectedObject.gameObject.SetActive(true);
+    //                    break;
+    //            }
 
-                gameObject.SetActive(false);
-            }
-        }
-    }
+    //            gameObject.SetActive(false);
+    //        }
+    //    }
+    //}
 }
