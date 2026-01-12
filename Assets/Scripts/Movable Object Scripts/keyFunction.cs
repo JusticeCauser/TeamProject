@@ -29,7 +29,7 @@ public class keyFunction : MonoBehaviour
 
         if(other.CompareTag("Player") && pickup != null)
         {
-            pickup.addKey(this);
+           // pickup.addKey(this);
             Destroy(gameObject);
             rotate = false;
         }
