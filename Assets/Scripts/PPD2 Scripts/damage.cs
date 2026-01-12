@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 
 public class damage : MonoBehaviour
 {
-    enum damageType {moving, stationary, DOT, homing, poison, frost, shock, laser}
+    enum damageType {moving, stationary, DOT, homing, frost, shock, laser}
     [SerializeField] damageType type;
     [SerializeField] Rigidbody rb;
 
@@ -104,10 +104,10 @@ public class damage : MonoBehaviour
             {
                 StartCoroutine(damageOther(dmg));
             }
-            if(type == damageType.poison && !isDamaging)
-            {
-                StartCoroutine(poisonOther(dmg));
-            }    
+            //if(type == damageType.poison && !isDamaging)
+            //{
+            //    StartCoroutine(poisonOther(dmg));
+            //}    
             if(type == damageType.laser && !isDamaging && laserTimer >= damageRate)
             {
                 laserTimer = 0;
@@ -126,7 +126,7 @@ public class damage : MonoBehaviour
     IEnumerator poisonOther(IDamage d)
     {
         isDamaging = true;
-        d.poison(damageAmount, damageRate, duration);
+       // d.poison(damageAmount, damageRate, duration);
         yield return new WaitForSeconds(damageRate);
         isDamaging = false;
     }

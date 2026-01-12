@@ -220,9 +220,9 @@ public class playerControllerBackup : MonoBehaviour, IDamage, IHeal
     }
     IEnumerator flashGreen() //flash green for heal
     {
-        gameManager.instance.playerHealScreen.SetActive(true);
+        //gameManager.instance.playerHealScreen.SetActive(true);
         yield return new WaitForSeconds(0.1f); //active flash time
-        gameManager.instance.playerHealScreen.SetActive(false);
+        //gameManager.instance.playerHealScreen.SetActive(false);
     }
 
     public void heal(int healAmount)
