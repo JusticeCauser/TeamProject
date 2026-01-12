@@ -3,14 +3,20 @@ using UnityEngine.SceneManagement;
 
 public class introButtons : MonoBehaviour
 {
-    [SerializeField] string lobby = "Lobby";
 
+    [SerializeField] string lobby = "Lobby";
     
     [SerializeField] GameObject introSettings;
 
+    private void Start()
+    {
+        if(introSettings != null)
+            introSettings.SetActive(false);
+    }
     public void Play()
     {
         SceneManager.LoadScene(lobby);
+
     }
     public void openSettings()
     {
