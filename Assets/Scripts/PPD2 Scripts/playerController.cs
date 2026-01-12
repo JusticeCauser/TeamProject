@@ -89,7 +89,7 @@ public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
 
     Camera mainCam;
 
-    List<keyFunction> keyList = new List<keyFunction>();
+    //List<keyFunction> keyList = new List<keyFunction>();
 
     // launch pad control member - Aaron k
     //public Vector3 launchVelocity;
@@ -102,19 +102,19 @@ public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
         grappleHook = GetComponent<GrapplingHook>();
         wallRun = GetComponent<wallRun>();
 
-        if (gunModel != null)
-        {
-            gunMeshFilter = gunModel.GetComponent<MeshFilter>();
-            gunMeshRenderer = gunModel.GetComponent<MeshRenderer>();
-            gunRecoil = gunModel.GetComponent<GunRecoil>();
-        }
+        //if (gunModel != null)
+        //{
+        //    gunMeshFilter = gunModel.GetComponent<MeshFilter>();
+        //    gunMeshRenderer = gunModel.GetComponent<MeshRenderer>();
+        //    gunRecoil = gunModel.GetComponent<GunRecoil>();
+        //}
 
-        if (wallRun != null)
-        {
-            wallRun.controller = controller;
-            wallRun.orientation = transform;
-            wallRun.cam = Camera.main.transform;
-        }
+        //if (wallRun != null)
+        //{
+        //    wallRun.controller = controller;
+        //    wallRun.orientation = transform;
+        //    wallRun.cam = Camera.main.transform;
+        //}
         updatePlayerUI();
     }
 
@@ -131,20 +131,20 @@ public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
 
     void movement()
     {
-        shootTimer += Time.deltaTime;
+        //shootTimer += Time.deltaTime;
 
 #if UNITY_EDITOR
         Debug.DrawRay(mainCam.transform.position, mainCam.transform.forward * shootDist, Color.yellow);
 #endif
 
-        if(Input.GetButton("Fire1") && gunList.Count > 0 && gunList[gunListPos].ammoCur > 0 && shootTimer >= shootRate && !isReloading)
-        {
-            shoot();
-        }
-        else if(Input.GetButton("Fire1") && gunList.Count > 0 && gunList[gunListPos].ammoCur == 0 && !isPlayingClick)
-        {
-            StartCoroutine(playClick());
-        }
+        //if(Input.GetButton("Fire1") && gunList.Count > 0 && gunList[gunListPos].ammoCur > 0 && shootTimer >= shootRate && !isReloading)
+        //{
+        //    shoot();
+        //}
+        //else if(Input.GetButton("Fire1") && gunList.Count > 0 && gunList[gunListPos].ammoCur == 0 && !isPlayingClick)
+        //{
+        //    StartCoroutine(playClick());
+        //}
 
             // only block movement when actively being pulled by grapple (not during line extend)
             bool isGrappling = grappleHook != null && grappleHook.IsGrappling();
@@ -188,44 +188,44 @@ public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
             Vector3 currentVelocity = (moveDir * speed) + externalVelocity + playerVel;
 
             // wall run start
-            if (wallRun != null)
-            {
-                wallRun.ProcessWallRun(ref moveDir, ref playerVel, controller.isGrounded, currentVelocity);
-            }
-            bool isWallRunningNow = wallRun != null && wallRun.IsWallRunning;
-            if (!isWallRunningNow && wasWallRunning)
-            {
-                externalVelocity = Vector3.zero;
-                playerVel.x = 0f;
-                playerVel.z = 0f;
-            }
-            wasWallRunning = isWallRunningNow;
-            // wall run end
+            //if (wallRun != null)
+            //{
+            //    wallRun.ProcessWallRun(ref moveDir, ref playerVel, controller.isGrounded, currentVelocity);
+            //}
+            //bool isWallRunningNow = wallRun != null && wallRun.IsWallRunning;
+            //if (!isWallRunningNow && wasWallRunning)
+            //{
+            //    externalVelocity = Vector3.zero;
+            //    playerVel.x = 0f;
+            //    playerVel.z = 0f;
+            //}
+            //wasWallRunning = isWallRunningNow;
+            //// wall run end
 
-            controller.Move(moveDir * speed * Time.deltaTime);
+            //controller.Move(moveDir * speed * Time.deltaTime);
 
-            // Wall run start
-            if (wallRun == null || !wallRun.IsWallRunning)
-            {
-                jump();
+            //// Wall run start
+            //if (wallRun == null || !wallRun.IsWallRunning)
+            //{
+            //    jump();
 
-                if (externalVelocity.magnitude > 0.1f)
-                {
-                    controller.Move(externalVelocity * Time.deltaTime);
-                }
+            //    if (externalVelocity.magnitude > 0.1f)
+            //    {
+            //        controller.Move(externalVelocity * Time.deltaTime);
+            //    }
 
-                controller.Move(playerVel * Time.deltaTime);
-                playerVel.y -= gravity * Time.deltaTime;
-            }
-            else
-            {
-                if (externalVelocity.magnitude > 0.1f)
-                {
-                    controller.Move(externalVelocity * Time.deltaTime);
-                }
+            //    controller.Move(playerVel * Time.deltaTime);
+            //    playerVel.y -= gravity * Time.deltaTime;
+            //}
+            //else
+            //{
+            //    if (externalVelocity.magnitude > 0.1f)
+            //    {
+            //        controller.Move(externalVelocity * Time.deltaTime);
+            //    }
 
-                controller.Move(playerVel * Time.deltaTime);
-            } // Wall run end
+            //    controller.Move(playerVel * Time.deltaTime);
+            //} // Wall run end
         }
         else
         {
@@ -238,12 +238,12 @@ public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
             wallRun.UpdateCameraTilt();
         } // Wall run end
 
-        selectGun();
+        //selectGun();
 
-        if(Input.GetButtonDown("Reload") && gunList.Count > 0 && !isReloading)
-        {
-            StartCoroutine(reload());
-        }
+        //if(Input.GetButtonDown("Reload") && gunList.Count > 0 && !isReloading)
+        //{
+        //    StartCoroutine(reload());
+        //}
     }
 
     void jump()
@@ -291,93 +291,93 @@ public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
         isPlayingSteps = false;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("FrostTrap"))
-        {
-            damage trapSlow = other.GetComponent<damage>();
-            speed = Mathf.RoundToInt(speedOrig * trapSlow.slowedSpeed);
-            gameManager.instance.frostIcon.gameObject.SetActive(true);
-            gameManager.instance.frostRing.gameObject.SetActive(true);
-        }
-        if (other.CompareTag("Launch Pad"))
-        {
-            launchPad padScript = other.GetComponent<launchPad>();
-            if (padScript != null)
-            {
-                Vector3 launchVel = padScript.GetLaunchVelocity();
-                externalVelocity = new Vector3(launchVel.x, 0f, launchVel.z);
-                playerVel.y = launchVel.y;
-            }
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.CompareTag("FrostTrap"))
+    //    {
+    //        damage trapSlow = other.GetComponent<damage>();
+    //        speed = Mathf.RoundToInt(speedOrig * trapSlow.slowedSpeed);
+    //        gameManager.instance.frostIcon.gameObject.SetActive(true);
+    //        gameManager.instance.frostRing.gameObject.SetActive(true);
+    //    }
+    //    if (other.CompareTag("Launch Pad"))
+    //    {
+    //        launchPad padScript = other.GetComponent<launchPad>();
+    //        if (padScript != null)
+    //        {
+    //            Vector3 launchVel = padScript.GetLaunchVelocity();
+    //            externalVelocity = new Vector3(launchVel.x, 0f, launchVel.z);
+    //            playerVel.y = launchVel.y;
+    //        }
+    //    }
+    //}
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("FrostTrap"))
-        {
-            speed = speedOrig;
-            gameManager.instance.frostIcon.gameObject.SetActive(false);
-            gameManager.instance.frostRing.gameObject.SetActive(false);
-        }
-    }
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (other.CompareTag("FrostTrap"))
+    //    {
+    //        speed = speedOrig;
+    //        gameManager.instance.frostIcon.gameObject.SetActive(false);
+    //        gameManager.instance.frostRing.gameObject.SetActive(false);
+    //    }
+    //}
 
-    void shoot()
-    {
-        shootTimer = 0;
+    //void shoot()
+    //{
+    //    shootTimer = 0;
 
-        gunList[gunListPos].ammoCur--;
-        aud.PlayOneShot(gunList[gunListPos].shootSound[Random.Range(0, gunList[gunListPos].shootSound.Length)], gunList[gunListPos].shootSoundVol);
+    //    gunList[gunListPos].ammoCur--;
+    //    aud.PlayOneShot(gunList[gunListPos].shootSound[Random.Range(0, gunList[gunListPos].shootSound.Length)], gunList[gunListPos].shootSoundVol);
 
-        if (gunRecoil != null)
-        {
-            gunRecoil.TriggerRecoil();
-        }
+    //    if (gunRecoil != null)
+    //    {
+    //        gunRecoil.TriggerRecoil();
+    //    }
 
-        // Levi addition, statTracking
-        if (statTracker.instance != null)
-        {
-            statTracker.instance.IncrementShotsFired();
-        }
+    //    // Levi addition, statTracking
+    //    if (statTracker.instance != null)
+    //    {
+    //        statTracker.instance.IncrementShotsFired();
+    //    }
 
-        //Instantiate(playerBullet, playerShootPos.position, mainCam.transform.rotation);
+    //    //Instantiate(playerBullet, playerShootPos.position, mainCam.transform.rotation);
 
-        RaycastHit hit;
-        if (PortalRaycast.Raycast(mainCam.transform.position, mainCam.transform.forward, out hit, shootDist, ~ignoreLayer))
-        {
-            Debug.Log(hit.collider.name);
+    //    RaycastHit hit;
+    //    if (PortalRaycast.Raycast(mainCam.transform.position, mainCam.transform.forward, out hit, shootDist, ~ignoreLayer))
+    //    {
+    //        Debug.Log(hit.collider.name);
 
-            Instantiate(gunList[gunListPos].hitEffect, hit.point, Quaternion.identity);
+    //        Instantiate(gunList[gunListPos].hitEffect, hit.point, Quaternion.identity);
 
-            IDamage dmg = hit.collider.GetComponent<IDamage>();
-            if (dmg != null)
-            {
-                dmg.takeDamage(shootDamage);
+    //        IDamage dmg = hit.collider.GetComponent<IDamage>();
+    //        if (dmg != null)
+    //        {
+    //            dmg.takeDamage(shootDamage);
 
-                if (statTracker.instance != null)
-                {
-                    statTracker.instance.IncrementShotsHit();
-                }
-            }
-        }
-    }
+    //            if (statTracker.instance != null)
+    //            {
+    //                statTracker.instance.IncrementShotsHit();
+    //            }
+    //        }
+    //    }
+    //}
 
-    IEnumerator playClick()
-    {
-        isPlayingClick = true;
-        aud.PlayOneShot(audEmptyMag[Random.Range(0, audEmptyMag.Length)], audEmptyMagVol);
-        yield return new WaitForSeconds(0.75f);
-        isPlayingClick = false;
-    }
+    //IEnumerator playClick()
+    //{
+    //    isPlayingClick = true;
+    //    aud.PlayOneShot(audEmptyMag[Random.Range(0, audEmptyMag.Length)], audEmptyMagVol);
+    //    yield return new WaitForSeconds(0.75f);
+    //    isPlayingClick = false;
+    //}
 
-    IEnumerator reload()
-    {
-        isReloading = true;
-        aud.PlayOneShot(audReload[Random.Range(0, audReload.Length)], audReloadVol);
-        gunList[gunListPos].ammoCur = gunList[gunListPos].ammoMax;
-        yield return new WaitForSeconds(0.75f);
-        isReloading = false;
-    }
+    //IEnumerator reload()
+    //{
+    //    isReloading = true;
+    //    aud.PlayOneShot(audReload[Random.Range(0, audReload.Length)], audReloadVol);
+    //    gunList[gunListPos].ammoCur = gunList[gunListPos].ammoMax;
+    //    yield return new WaitForSeconds(0.75f);
+    //    isReloading = false;
+    //}
 
     public void takeDamage(int amount)
     {
@@ -488,56 +488,56 @@ public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
 
 
     // poison routines- Aaron K
-    public void poison(int damage, float rate, float duration)
-    { // poison deals a minimum of 2 ticks (at a duration of 0, start tick and end tick)
-        if (poisoned == null)
-        { // Initial damage tick if not already poisoned
-            takeDamage(damage);
-        }
-        if (poisoned != null && duration > remainingPoison)
-        { // non-stacking poison, && check to prevent short duration overriding long check
-            StopCoroutine(poisoned); // cuts off current poison, effective duration reset
-        }
-        poisoned = StartCoroutine(PoisonRoutine(damage, rate, duration));
-    }
+    //public void poison(int damage, float rate, float duration)
+    //{ // poison deals a minimum of 2 ticks (at a duration of 0, start tick and end tick)
+    //    if (poisoned == null)
+    //    { // Initial damage tick if not already poisoned
+    //        takeDamage(damage);
+    //    }
+    //    if (poisoned != null && duration > remainingPoison)
+    //    { // non-stacking poison, && check to prevent short duration overriding long check
+    //        StopCoroutine(poisoned); // cuts off current poison, effective duration reset
+    //    }
+    //    poisoned = StartCoroutine(PoisonRoutine(damage, rate, duration));
+    //}
 
-    private IEnumerator PoisonRoutine(int damage, float rate, float duration)
-    { // Aaron K - reworked Poison Routine, includes status icon
+    //private IEnumerator PoisonRoutine(int damage, float rate, float duration)
+    //{ // Aaron K - reworked Poison Routine, includes status icon
 
-        remainingPoison = duration; // duration check member variable
-        float totalTimer = 0f; // length of duration
-        float damageTimer = 0f; // length of a tick
+    //    remainingPoison = duration; // duration check member variable
+    //    float totalTimer = 0f; // length of duration
+    //    float damageTimer = 0f; // length of a tick
 
-        float durationFix = duration; // Poison lasts a minimum of 1 second
-        if (duration < 1)
-        {
-            durationFix = 1;
-            remainingPoison = 1;
-        }
+    //    float durationFix = duration; // Poison lasts a minimum of 1 second
+    //    if (duration < 1)
+    //    {
+    //        durationFix = 1;
+    //        remainingPoison = 1;
+    //    }
 
-        gameManager.instance.poisonIcon.gameObject.SetActive(true);
-        gameManager.instance.poisonRing.gameObject.SetActive(true);
+    //    gameManager.instance.poisonIcon.gameObject.SetActive(true);
+    //    gameManager.instance.poisonRing.gameObject.SetActive(true);
 
-        while(totalTimer < durationFix)
-        {
-            totalTimer += Time.deltaTime;
-            damageTimer += Time.deltaTime;
-            remainingPoison -= Time.deltaTime;
+    //    while(totalTimer < durationFix)
+    //    {
+    //        totalTimer += Time.deltaTime;
+    //        damageTimer += Time.deltaTime;
+    //        remainingPoison -= Time.deltaTime;
 
-            gameManager.instance.poisonRing.fillAmount = 1f - (totalTimer / durationFix);
+    //        gameManager.instance.poisonRing.fillAmount = 1f - (totalTimer / durationFix);
 
-            if (damageTimer >= rate)
-            {
-                takeDamage(damage);
-                damageTimer = 0f;
-            }
-            yield return null;
-        }
-        gameManager.instance.poisonIcon.gameObject.SetActive(false);
-        gameManager.instance.poisonRing.gameObject.SetActive(false);
-        poisoned = null;
-        remainingPoison = 0f; // stops continual counting
-    }
+    //        if (damageTimer >= rate)
+    //        {
+    //            takeDamage(damage);
+    //            damageTimer = 0f;
+    //        }
+    //        yield return null;
+    //    }
+    //    gameManager.instance.poisonIcon.gameObject.SetActive(false);
+    //    gameManager.instance.poisonRing.gameObject.SetActive(false);
+    //    poisoned = null;
+    //    remainingPoison = 0f; // stops continual counting
+    //}
 
 
 
@@ -575,15 +575,15 @@ public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
         remainingTaze = 0; // stop continual counting
     }
 
-    public void getGunStats(gunStats gun)
-    {
+    //public void getGunStats(gunStats gun)
+    //{
 
-        gunList.Add(gun);
-        gunListPos = gunList.Count - 1;
+    //    gunList.Add(gun);
+    //    gunListPos = gunList.Count - 1;
 
-        changeGun();
+    //    changeGun();
 
-    }
+    //}
 
     void changeGun()
     {
@@ -602,19 +602,19 @@ public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
         //}
     }
 
-    void selectGun()
-    {
-        if (Input.GetAxis("Mouse ScrollWheel") > 0 && gunListPos < gunList.Count - 1) //if bigger than zero and within list
-        {
-            gunListPos++; //increment
-            changeGun(); //changegun
-        }
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && gunListPos > 0) //if smaller than zero and within list
-        {
-            gunListPos--; //decrement
-            changeGun(); //changegun
-        }
-    }
+    //void selectGun()
+    //{
+    //    if (Input.GetAxis("Mouse ScrollWheel") > 0 && gunListPos < gunList.Count - 1) //if bigger than zero and within list
+    //    {
+    //        gunListPos++; //increment
+    //        changeGun(); //changegun
+    //    }
+    //    else if (Input.GetAxis("Mouse ScrollWheel") < 0 && gunListPos > 0) //if smaller than zero and within list
+    //    {
+    //        gunListPos--; //decrement
+    //        changeGun(); //changegun
+    //    }
+    //}
 
     // UpgradeShop stuff - JC
     public void applyUpgrade(upgradeData upgrade)
@@ -639,37 +639,37 @@ public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
                     jumpMax = 1;
                 break;
             // Gun upgrades
-            case upgradeType.gunDamage:
-                shootDamage = Mathf.RoundToInt(shootDamage * (1f + upgrade.amount));
-                break;
-            case upgradeType.gunFireRate:
-                shootRate *= (1f - upgrade.amount);
-                if (shootRate < 0.05f)
-                    shootRate = 0.05f;
-                break;
-            case upgradeType.gunRange:
-                shootDist += Mathf.RoundToInt(upgrade.amount);
-                if (shootDist < 1)
-                    shootDist = 1;
-                break;
+            //case upgradeType.gunDamage:
+            //    shootDamage = Mathf.RoundToInt(shootDamage * (1f + upgrade.amount));
+            //    break;
+            //case upgradeType.gunFireRate:
+            //    shootRate *= (1f - upgrade.amount);
+            //    if (shootRate < 0.05f)
+            //        shootRate = 0.05f;
+            //    break;
+            //case upgradeType.gunRange:
+            //    shootDist += Mathf.RoundToInt(upgrade.amount);
+            //    if (shootDist < 1)
+            //        shootDist = 1;
+            //    break;
         }
     }
 
-    public void addKey(keyFunction key)
-    {
-        keyList.Add(key);
-    }
+    //public void addKey(keyFunction key)
+    //{
+    //    keyList.Add(key);
+    //}
 
-    public bool useKey(keyFunction key)
-    {
-        if(keyList.Count > 0)
-        {
-            if (keyList.Contains(key))
-            {
-                keyList.Remove(key);
-                return true;
-            }
-        }
-        return false;
-    }
+    //public bool useKey(keyFunction key)
+    //{
+    //    if(keyList.Count > 0)
+    //    {
+    //        if (keyList.Contains(key))
+    //        {
+    //            keyList.Remove(key);
+    //            return true;
+    //        }
+    //    }
+    //    return false;
+    //}
 }
