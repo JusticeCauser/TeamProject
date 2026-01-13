@@ -1,4 +1,5 @@
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -42,6 +43,8 @@ public class SettingsManager : MonoBehaviour
         if(ambientSlide != null) ambientSlide.SetValueWithoutNotify(ambientVolume);
         if(sfxSlide != null) sfxSlide.SetValueWithoutNotify(sfxVolume);
 
+        
+
        
     }
 
@@ -51,6 +54,7 @@ public class SettingsManager : MonoBehaviour
 
         PlayerPrefs.SetFloat("Master Volume", volume); //set to what player chose
         PlayerPrefs.Save();
+        audioManager.instance.setVolume();
        
     }
 
@@ -60,7 +64,10 @@ public class SettingsManager : MonoBehaviour
 
         PlayerPrefs.SetFloat("Ambient Volume", volume); //set to what player chose
         PlayerPrefs.Save();
-       
+
+        
+        audioManager.instance.setVolume();
+
     }
 
     public void setSFXVolume(float volume)
@@ -69,7 +76,8 @@ public class SettingsManager : MonoBehaviour
 
         PlayerPrefs.SetFloat("SFX Volume", volume); //set to what player chose
         PlayerPrefs.Save();
-        
+        audioManager.instance.setVolume();
+
     }
 
    
