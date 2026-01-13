@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!29 &1
@@ -124,11 +123,3 @@ NavMeshSettings:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots: []
-=======
-version https://git-lfs.github.com/spec/v1
-oid sha256:2fc6ded1208dbebf0e6a28329bd988079beaa4664bd45d40074509c09142a980
-size 24986
-<<<<<<< HEAD
-=======
->>>>>>> 029a09813abd113bf86cd141772be4759089ed13
->>>>>>> f5239e552af3fb9d9b9e4deb0321043882b23000
