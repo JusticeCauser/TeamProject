@@ -44,6 +44,9 @@ public class audioManager : MonoBehaviour
             ambientAudio.volume = SettingsManager.instance.masterVolume * SettingsManager.instance.ambientVolume;
         }
 
+        if( sfxAudio != null)
+            sfxAudio.volume = SettingsManager.instance.masterVolume * SettingsManager.instance.sfxVolume;
+
     }
    
 
