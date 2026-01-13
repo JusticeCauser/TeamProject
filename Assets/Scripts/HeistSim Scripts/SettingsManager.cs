@@ -1,4 +1,5 @@
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,12 +12,13 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] Slider masterSlide;
     [SerializeField] Slider ambientSlide;
     [SerializeField] Slider sfxSlide;
+
     public float masterVolume = 1f;
     public float ambientVolume = 1f;
     public float sfxVolume = 1f;
 
 
-    private void Start()
+    private void Awake()
     {
         if(instance == null)
         {
@@ -31,7 +33,21 @@ public class SettingsManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            return;
         }
+    }
+
+    private void Start()
+    {
+        if(masterSlide != null) masterSlide.SetValueWithoutNotify(masterVolume);
+        if(ambientSlide != null) ambientSlide.SetValueWithoutNotify(ambientVolume);
+        if(sfxSlide != null) sfxSlide.SetValueWithoutNotify(sfxVolume);
+
+        
+        masterSlide.onValueChanged.AddListener(setMasterVolume);
+        ambientSlide.onValueChanged.AddListener(setAmbientVolume);
+        sfxSlide.onValueChanged.AddListener(setSFXVolume);
+       
     }
 
     public void setMasterVolume(float volume)
@@ -39,7 +55,9 @@ public class SettingsManager : MonoBehaviour
         masterVolume = volume;
 
         PlayerPrefs.SetFloat("Master Volume", volume); //set to what player chose
-        PlayerPrefs.Save(); 
+        PlayerPrefs.Save();
+        audioManager.instance.setVolume();
+       
     }
 
     public void setAmbientVolume(float volume)
@@ -48,6 +66,10 @@ public class SettingsManager : MonoBehaviour
 
         PlayerPrefs.SetFloat("Ambient Volume", volume); //set to what player chose
         PlayerPrefs.Save();
+
+        
+        audioManager.instance.setVolume();
+
     }
 
     public void setSFXVolume(float volume)
@@ -56,5 +78,9 @@ public class SettingsManager : MonoBehaviour
 
         PlayerPrefs.SetFloat("SFX Volume", volume); //set to what player chose
         PlayerPrefs.Save();
+        audioManager.instance.setVolume();
+
     }
+
+   
 }
