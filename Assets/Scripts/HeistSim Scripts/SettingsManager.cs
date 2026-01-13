@@ -32,17 +32,17 @@ public class SettingsManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            return;
         }
     }
 
     private void Start()
     {
-        if(masterSlide != null) 
-            masterSlide.SetValueWithoutNotify(masterVolume);
-        if(ambientSlide != null)
-            ambientSlide.SetValueWithoutNotify(ambientVolume);
+        if(masterSlide != null) masterSlide.SetValueWithoutNotify(masterVolume);
+        if(ambientSlide != null) ambientSlide.SetValueWithoutNotify(ambientVolume);
+        if(sfxSlide != null) sfxSlide.SetValueWithoutNotify(sfxVolume);
 
-        audioManager.instance?.setVolume();
+       
     }
 
     public void setMasterVolume(float volume)
@@ -50,7 +50,8 @@ public class SettingsManager : MonoBehaviour
         masterVolume = volume;
 
         PlayerPrefs.SetFloat("Master Volume", volume); //set to what player chose
-        PlayerPrefs.Save(); 
+        PlayerPrefs.Save();
+       
     }
 
     public void setAmbientVolume(float volume)
@@ -59,9 +60,7 @@ public class SettingsManager : MonoBehaviour
 
         PlayerPrefs.SetFloat("Ambient Volume", volume); //set to what player chose
         PlayerPrefs.Save();
-
-        if (audioManager.instance != null)
-            audioManager.instance.setVolume();
+       
     }
 
     public void setSFXVolume(float volume)
@@ -70,5 +69,8 @@ public class SettingsManager : MonoBehaviour
 
         PlayerPrefs.SetFloat("SFX Volume", volume); //set to what player chose
         PlayerPrefs.Save();
+        
     }
+
+   
 }
