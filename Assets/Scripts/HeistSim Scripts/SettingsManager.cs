@@ -44,7 +44,9 @@ public class SettingsManager : MonoBehaviour
         if(sfxSlide != null) sfxSlide.SetValueWithoutNotify(sfxVolume);
 
         
-
+        masterSlide.onValueChanged.AddListener(setMasterVolume);
+        ambientSlide.onValueChanged.AddListener(setAmbientVolume);
+        sfxSlide.onValueChanged.AddListener(setSFXVolume);
        
     }
 
