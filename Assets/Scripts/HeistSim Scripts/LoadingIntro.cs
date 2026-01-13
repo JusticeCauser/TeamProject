@@ -51,12 +51,6 @@ public class LoadingIntro : MonoBehaviour
         continueText.gameObject.SetActive(true);
     }
 
-    //void playGame()
-    //{
-    //    gameObject.SetActive(false);
-    //    Debug.Log("continue");
-   // }
-
     void loadMap()
     {
         SceneManager.LoadScene(loadScene);
