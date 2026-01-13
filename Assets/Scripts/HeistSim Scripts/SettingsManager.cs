@@ -11,12 +11,13 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] Slider masterSlide;
     [SerializeField] Slider ambientSlide;
     [SerializeField] Slider sfxSlide;
+
     public float masterVolume = 1f;
     public float ambientVolume = 1f;
     public float sfxVolume = 1f;
 
 
-    private void Start()
+    private void Awake()
     {
         if(instance == null)
         {
@@ -34,6 +35,16 @@ public class SettingsManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        if(masterSlide != null) 
+            masterSlide.SetValueWithoutNotify(masterVolume);
+        if(ambientSlide != null)
+            ambientSlide.SetValueWithoutNotify(ambientVolume);
+
+        audioManager.instance?.setVolume();
+    }
+
     public void setMasterVolume(float volume)
     {
         masterVolume = volume;
@@ -48,6 +59,9 @@ public class SettingsManager : MonoBehaviour
 
         PlayerPrefs.SetFloat("Ambient Volume", volume); //set to what player chose
         PlayerPrefs.Save();
+
+        if (audioManager.instance != null)
+            audioManager.instance.setVolume();
     }
 
     public void setSFXVolume(float volume)
