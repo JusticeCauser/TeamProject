@@ -58,7 +58,7 @@ public class enemyAI_Dog : MonoBehaviour, IDamage, IHeal
     Transform playerTransform;
 
     // status effects
-    private Coroutine poisoned;
+    //private Coroutine poisoned;
     private bool tazed;
 
 
@@ -315,28 +315,28 @@ public class enemyAI_Dog : MonoBehaviour, IDamage, IHeal
             state = dogState.Idle;
         }
     }
-    public void poison(int damage, float rate, float duration)
-    {
-        if (poisoned != null)
-        {
-            StopCoroutine(poisoned); // cuts off current poison, effective duration reset
-        }
-        poisoned = StartCoroutine(PoisonRoutine(damage, rate, duration));
-    }
+    //public void poison(int damage, float rate, float duration)
+    //{
+    //    if (poisoned != null)
+    //    {
+    //        StopCoroutine(poisoned); // cuts off current poison, effective duration reset
+    //    }
+    //    poisoned = StartCoroutine(PoisonRoutine(damage, rate, duration));
+    //}
 
-    private IEnumerator PoisonRoutine(int damage, float rate, float duration)
-    {
-        float timer = 0f;
-        WaitForSeconds wait = new WaitForSeconds(rate);
+    //private IEnumerator PoisonRoutine(int damage, float rate, float duration)
+    //{
+    //    float timer = 0f;
+    //    WaitForSeconds wait = new WaitForSeconds(rate);
 
-        while (timer < duration)
-        {
-            takeDamage(damage);
-            timer += rate;
-            yield return wait;
-        }
-        poisoned = null;
-    }
+    //    while (timer < duration)
+    //    {
+    //        takeDamage(damage);
+    //        timer += rate;
+    //        yield return wait;
+    //    }
+    //    poisoned = null;
+    //}
 
     // Tazed effect
     public void taze(/*int damage,*/ float duration)
