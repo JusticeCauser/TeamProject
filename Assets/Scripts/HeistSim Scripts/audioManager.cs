@@ -5,9 +5,16 @@ public class audioManager : MonoBehaviour
 {
     public static audioManager instance;
 
+    public enum ambientType { none, asylum, mansion}
+    ambientType curr = ambientType.none;
+
     [Header("-----Audio Sources-----")]
     [SerializeField] AudioSource ambientAudio;
     [SerializeField] AudioSource sfxAudio;
+
+    [Header("------Audio Clips-----")]
+    [SerializeField] AudioClip asylumClip;
+    [SerializeField] AudioClip mansionClip;
 
     [Header("---Audio Settings---")]
     public float masterVolume = 1f;
@@ -20,7 +27,7 @@ public class audioManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject);  
 
 
             masterVolume = PlayerPrefs.GetFloat("Master Volume", 1f); //load default volume or saved
@@ -57,17 +64,49 @@ public class audioManager : MonoBehaviour
     }
     public void setVolume()
     {
-        if(SettingsManager.instance == null) return;
+        
 
         if (ambientAudio != null)
         {
-            ambientAudio.volume = SettingsManager.instance.masterVolume * SettingsManager.instance.ambientVolume;
+            ambientAudio.volume = masterVolume * ambientVolume;
         }
 
         if( sfxAudio != null)
-            sfxAudio.volume = SettingsManager.instance.masterVolume * SettingsManager.instance.sfxVolume;
+            sfxAudio.volume = masterVolume * sfxVolume;
 
     }
    
+    public void ambientAudioType(ambientType type) //changes the audio pertaining to the scene
+    {
+        if(type == curr)
+            return;
+
+        curr = type;
+        
+        if(type == ambientType.none)
+        {
+            ambientAudio.Stop();
+            return;
+        }
+        switch (type)
+        {
+            case ambientType.asylum:
+                ambientAudio.clip = asylumClip;
+                break;
+
+            case ambientType.mansion:
+                ambientAudio.clip = mansionClip;
+                break;
+
+            case ambientType.none:
+                ambientAudio.Stop();
+                return;
+
+        }
+
+        ambientAudio.loop = true; 
+        ambientAudio.Play();
+        setVolume(); 
+    }
 
 }
