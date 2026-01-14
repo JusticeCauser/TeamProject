@@ -1,1 +1,0 @@
-To run pack at HD or URP visit HD and URP Support Packs folder and import support pack, follow readme.
