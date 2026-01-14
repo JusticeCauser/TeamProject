@@ -1,39 +1,9 @@
 fileFormatVersion: 2
-guid: ef449cf49e8a9274c938fef120b8569d
+guid: c7266cc578e6ff647aaa6141a85e4c33
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material
-    second: {fileID: 2100000, guid: 3794112fcaa4f6b4c945e489f3549d8c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.001
-    second: {fileID: 2100000, guid: b757afa4ac6e61040baedeaf1163b122, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.002
-    second: {fileID: 2100000, guid: d710076ba11a2f741a8b4c11f1dd8e35, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: RGB_0d3f171de3de4737b712d2ff93b08ab7_SecurityGuard_Gear_D
-    second: {fileID: 2800000, guid: 00dd352dd32dd514f939d9311c502ba4, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: RGB_9192397b71444a7bb139dbd7dc7ac83f_SecurityGuard_Body_D
-    second: {fileID: 2800000, guid: 320363e4171502545814d66da1b10c86, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: RGB_942ffe12241e42f3b848c48eff35c05b_SecurityGuard_Head_3_D
-    second: {fileID: 2800000, guid: b4785d6db884b1245839d8a020c0dcec, type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -52,7 +22,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 3
+    animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -124,11 +94,11 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 1
+    hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 3
+  animationType: 2
   humanoidOversampling: 1
   avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
