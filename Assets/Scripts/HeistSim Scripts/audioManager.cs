@@ -7,7 +7,7 @@ public class audioManager : MonoBehaviour
 {
     public static audioManager instance;
 
-    public enum ambientType { none, intro, asylum, mansion}
+    public enum ambientType { none, intro, lobby, asylum, mansion}
     ambientType curr = ambientType.none;
 
     [Header("---Audio Settings---")]
@@ -21,6 +21,7 @@ public class audioManager : MonoBehaviour
 
     [Header("----Audio Clips---")]
     [SerializeField] AudioClip introClip;
+    [SerializeField] AudioClip lobbyClip;
     [SerializeField] AudioClip asylumClip;
     [SerializeField] AudioClip mansionClip;
 
@@ -34,18 +35,17 @@ public class audioManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+
             DontDestroyOnLoad(gameObject);
 
-
             SceneManager.sceneLoaded += OnLoad;
+
         }
         else
         {
             Destroy(gameObject);
             return;
         }
-
-        //SceneManager.sceneLoaded;
     }
 
     void Start()
@@ -73,6 +73,7 @@ public class audioManager : MonoBehaviour
    
     public void ambientAudioType(ambientType type) //changes the audio pertaining to the scene
     {
+        //if (ambientAudio == null) return;
         if(type == curr)
             return;
 
@@ -87,6 +88,10 @@ public class audioManager : MonoBehaviour
 
             case ambientType.intro:
                 ambientAudio.clip = introClip;
+                break;
+
+                case ambientType.lobby:
+                    ambientAudio.clip = lobbyClip;
                 break;
 
             case ambientType.asylum:
@@ -107,10 +112,15 @@ public class audioManager : MonoBehaviour
 
     private void OnLoad(Scene scene, LoadSceneMode mode)
     {
+       
         switch (scene.name)
         {
             case "IntroScene":
                 ambientAudioType(ambientType.intro);
+                break;
+
+            case "Lobby":
+                ambientAudioType(ambientType.lobby);
                 break;
 
             case "LoadingIntroAsylum":
