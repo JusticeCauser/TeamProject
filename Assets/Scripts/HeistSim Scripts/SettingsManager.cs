@@ -26,9 +26,9 @@ public class SettingsManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
 
-            masterVolume = PlayerPrefs.GetFloat("Master Volume", 1f);
-            ambientVolume = PlayerPrefs.GetFloat("Ambient Volume", 1f);
-            sfxVolume = PlayerPrefs.GetFloat("SFX Volume", 1f);
+            masterVolume = 1f;
+            ambientVolume = 1f;
+            sfxVolume = 1f;
         }
         else
         {

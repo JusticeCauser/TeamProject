@@ -7,40 +7,45 @@ public class audioManager : MonoBehaviour
 {
     public static audioManager instance;
 
-    public enum ambientType { none, asylum, mansion}
+    public enum ambientType { none, intro, lobby, asylum, mansion}
     ambientType curr = ambientType.none;
 
-    [Header("----Audio Settings-----")]
+    [Header("---Audio Settings---")]
     public float masterVolume = 1f;
     public float ambientVolume = 1f;
     public float sfxVolume = 1f;
 
-    [Header("-----Audio Sources-----")]
+    [Header("---Audio Sources---")]
     [SerializeField] AudioSource ambientAudio;
     [SerializeField] AudioSource sfxAudio;
 
-    [Header("------Audio Clips-----")]
+    [Header("----Audio Clips---")]
+    [SerializeField] AudioClip introClip;
+    [SerializeField] AudioClip lobbyClip;
     [SerializeField] AudioClip asylumClip;
     [SerializeField] AudioClip mansionClip;
 
+
+    [Header("---SFX Clips---")]
+    [SerializeField] AudioClip bark;
+    [SerializeField] AudioClip footsteps;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
+
             DontDestroyOnLoad(gameObject);
 
-
             SceneManager.sceneLoaded += OnLoad;
+
         }
         else
         {
             Destroy(gameObject);
             return;
         }
-
-        //SceneManager.sceneLoaded;
     }
 
     void Start()
@@ -51,18 +56,7 @@ public class audioManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //setVolume();
-    }
-    public void setAmbientVolume(float volume)
-    {
-        ambientVolume = volume;
-
-        PlayerPrefs.SetFloat("Ambient Volume", volume); //set to what player chose
-        PlayerPrefs.Save();
-
-
-        setVolume();
-
+        
     }
     public void setVolume()
     {
@@ -79,6 +73,7 @@ public class audioManager : MonoBehaviour
    
     public void ambientAudioType(ambientType type) //changes the audio pertaining to the scene
     {
+        //if (ambientAudio == null) return;
         if(type == curr)
             return;
 
@@ -87,8 +82,17 @@ public class audioManager : MonoBehaviour
         
         switch (type)
         {
+
             case ambientType.none:
                 return;
+
+            case ambientType.intro:
+                ambientAudio.clip = introClip;
+                break;
+
+                case ambientType.lobby:
+                    ambientAudio.clip = lobbyClip;
+                break;
 
             case ambientType.asylum:
                 ambientAudio.clip = asylumClip;
@@ -108,8 +112,17 @@ public class audioManager : MonoBehaviour
 
     private void OnLoad(Scene scene, LoadSceneMode mode)
     {
+       
         switch (scene.name)
         {
+            case "IntroScene":
+                ambientAudioType(ambientType.intro);
+                break;
+
+            case "Lobby":
+                ambientAudioType(ambientType.lobby);
+                break;
+
             case "LoadingIntroAsylum":
             case "Asylum":
                 ambientAudioType(ambientType.asylum);
