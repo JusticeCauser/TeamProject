@@ -8,26 +8,27 @@ public class SettingsManager : MonoBehaviour
 
     public static SettingsManager instance;
 
-    [Header("-----Audio Settings-----")]
+    [Header("-----Audio Sliders-----")]
     [SerializeField] Slider masterSlide;
     [SerializeField] Slider ambientSlide;
     [SerializeField] Slider sfxSlide;
+
 
     public float masterVolume = 1f;
     public float ambientVolume = 1f;
     public float sfxVolume = 1f;
 
 
-    private void Awake()
+    private void Awake() //sli ders will not 
     {
         if(instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
 
-            masterVolume = PlayerPrefs.GetFloat("Master Volume", 1f); //load default volume or saved
-            ambientVolume = PlayerPrefs.GetFloat("Ambient Volume", 1f);
-            sfxVolume = PlayerPrefs.GetFloat("SFX Volume", 1f);
+            //masterVolume = PlayerPrefs.GetFloat("Master Volume", 1f); //load default volume or saved
+            //ambientVolume = PlayerPrefs.GetFloat("Ambient Volume", 1f);
+            //sfxVolume = PlayerPrefs.GetFloat("SFX Volume", 1f);
             
         }
         else
@@ -39,11 +40,14 @@ public class SettingsManager : MonoBehaviour
 
     private void Start()
     {
-        if(masterSlide != null) masterSlide.SetValueWithoutNotify(masterVolume);
-        if(ambientSlide != null) ambientSlide.SetValueWithoutNotify(ambientVolume);
-        if(sfxSlide != null) sfxSlide.SetValueWithoutNotify(sfxVolume);
+        //if(masterSlide != null) masterSlide.SetValueWithoutNotify(masterVolume);
+        //if(ambientSlide != null) ambientSlide.SetValueWithoutNotify(ambientVolume);
+        //if(sfxSlide != null) sfxSlide.SetValueWithoutNotify(sfxVolume);
 
-        
+        masterSlide.SetValueWithoutNotify(PlayerPrefs.GetFloat("Master Volume", 1f));
+        ambientSlide.SetValueWithoutNotify(PlayerPrefs.GetFloat("Ambient Volume", 1f));
+        sfxSlide.SetValueWithoutNotify(PlayerPrefs.GetFloat("SFX Volume", 1f));
+
         masterSlide.onValueChanged.AddListener(setMasterVolume);
         ambientSlide.onValueChanged.AddListener(setAmbientVolume);
         sfxSlide.onValueChanged.AddListener(setSFXVolume);
@@ -55,7 +59,7 @@ public class SettingsManager : MonoBehaviour
         masterVolume = volume;
 
         PlayerPrefs.SetFloat("Master Volume", volume); //set to what player chose
-        PlayerPrefs.Save();
+        //PlayerPrefs.Save();
         audioManager.instance.setVolume();
        
     }
@@ -65,9 +69,8 @@ public class SettingsManager : MonoBehaviour
         ambientVolume = volume;
 
         PlayerPrefs.SetFloat("Ambient Volume", volume); //set to what player chose
-        PlayerPrefs.Save();
+        //PlayerPrefs.Save();
 
-        
         audioManager.instance.setVolume();
 
     }
@@ -77,7 +80,7 @@ public class SettingsManager : MonoBehaviour
         sfxVolume = volume;
 
         PlayerPrefs.SetFloat("SFX Volume", volume); //set to what player chose
-        PlayerPrefs.Save();
+        //PlayerPrefs.Save();
         audioManager.instance.setVolume();
 
     }
