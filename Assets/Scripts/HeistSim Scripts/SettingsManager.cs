@@ -87,7 +87,7 @@ public class SettingsManager : MonoBehaviour
         {
             settingsUI.SetActive(true);
         //    Debug.Log("settings ui opened");
-        //}
+        }
         //else
         //    Debug.LogWarning("settings ui reference missing");
     }
