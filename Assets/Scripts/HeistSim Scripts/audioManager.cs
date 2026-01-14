@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class audioManager : MonoBehaviour
 {
@@ -7,6 +9,11 @@ public class audioManager : MonoBehaviour
 
     public enum ambientType { none, asylum, mansion}
     ambientType curr = ambientType.none;
+
+    [Header("----Audio Settings-----")]
+    public float masterVolume = 1f;
+    public float ambientVolume = 1f;
+    public float sfxVolume = 1f;
 
     [Header("-----Audio Sources-----")]
     [SerializeField] AudioSource ambientAudio;
@@ -16,29 +23,24 @@ public class audioManager : MonoBehaviour
     [SerializeField] AudioClip asylumClip;
     [SerializeField] AudioClip mansionClip;
 
-    [Header("---Audio Settings---")]
-    public float masterVolume = 1f;
-    public float ambientVolume = 1f;
-    public float sfxVolume = 1f;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);  
+            DontDestroyOnLoad(gameObject);
 
 
-            masterVolume = PlayerPrefs.GetFloat("Master Volume", 1f); //load default volume or saved
-            ambientVolume = PlayerPrefs.GetFloat("Ambient Volume", 1f);
-            sfxVolume = PlayerPrefs.GetFloat("SFX Volume", 1f);
+            SceneManager.sceneLoaded += OnLoad;
         }
         else
         {
             Destroy(gameObject);
             return;
         }
+
+        //SceneManager.sceneLoaded;
     }
 
     void Start()
@@ -64,15 +66,14 @@ public class audioManager : MonoBehaviour
     }
     public void setVolume()
     {
+        if (SettingsManager.instance == null) return;
+        if (ambientAudio != null)
+        
+            ambientAudio.volume = SettingsManager.instance.masterVolume * SettingsManager.instance.ambientVolume;
         
 
-        if (ambientAudio != null)
-        {
-            ambientAudio.volume = masterVolume * ambientVolume;
-        }
-
         if( sfxAudio != null)
-            sfxAudio.volume = masterVolume * sfxVolume;
+            sfxAudio.volume = SettingsManager.instance.masterVolume * SettingsManager.instance.sfxVolume;
 
     }
    
@@ -83,13 +84,12 @@ public class audioManager : MonoBehaviour
 
         curr = type;
         
-        if(type == ambientType.none)
-        {
-            ambientAudio.Stop();
-            return;
-        }
+        
         switch (type)
         {
+            case ambientType.none:
+                return;
+
             case ambientType.asylum:
                 ambientAudio.clip = asylumClip;
                 break;
@@ -98,15 +98,34 @@ public class audioManager : MonoBehaviour
                 ambientAudio.clip = mansionClip;
                 break;
 
-            case ambientType.none:
-                ambientAudio.Stop();
-                return;
+        }
+
+        ambientAudio.loop = true;
+        setVolume();
+        ambientAudio.Play();
+         
+    }
+
+    private void OnLoad(Scene scene, LoadSceneMode mode)
+    {
+        switch (scene.name)
+        {
+            case "LoadingIntroAsylum":
+            case "Asylum":
+                ambientAudioType(ambientType.asylum);
+                break;
+
+            case "LoadingIntroMansion":
+            case "Mansion":
+                ambientAudioType(ambientType.mansion);
+                break;
+
+            default:
+                ambientAudioType(ambientType.none);
+                break;
 
         }
 
-        ambientAudio.loop = true; 
-        ambientAudio.Play();
-        setVolume(); 
     }
 
 }
