@@ -1,12 +1,17 @@
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.ProBuilder.MeshOperations;
 using UnityEngine.UI;
 
 public class SettingsManager : MonoBehaviour
 {
 
     public static SettingsManager instance;
+
+    [Header("Settings UI")]
+    [SerializeField] GameObject settingsUI;
+    [SerializeField] Button backButton;
 
     [Header("-----Audio Sliders-----")]
     [SerializeField] Slider masterSlide;
@@ -19,38 +24,78 @@ public class SettingsManager : MonoBehaviour
     public float sfxVolume = 1f;
 
 
-    private void Awake() //sli ders will not 
+    private void Awake() 
     {
+        //Debug.Log("settingsmanage awake " +gameObject.name);
+        //Debug.Log("instance: " + instance);
         if(instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
 
-            masterVolume = 1f;
-            ambientVolume = 1f;
-            sfxVolume = 1f;
+           // Debug.Log("settings manager alive");
+          
         }
         else
         {
+           // Debug.Log("settings manager dead");
             Destroy(gameObject);
             return;
         }
     }
+    //private void OnEnable()
+    //{
+    //    Debug.Log("settingsmanager enable");
+    //}
+
+    //private void OnDisable()
+    //{
+    //    Debug.Log("settingsmanager disable");
+    //}
+    //private void OnDestroy()
+    //{
+    //    Debug.Log("destroyed");
+    //}
+
+    
 
     private void Start()
     {
         if(masterSlide != null) masterSlide.SetValueWithoutNotify(masterVolume);
-        if(ambientSlide != null) ambientSlide.SetValueWithoutNotify(ambientVolume);
-        if(sfxSlide != null) sfxSlide.SetValueWithoutNotify(sfxVolume);
-
-        
-
         masterSlide.onValueChanged.AddListener(setMasterVolume);
+
+        if (ambientSlide != null) ambientSlide.SetValueWithoutNotify(ambientVolume);
         ambientSlide.onValueChanged.AddListener(setAmbientVolume);
+
+        if (sfxSlide != null) sfxSlide.SetValueWithoutNotify(sfxVolume);
         sfxSlide.onValueChanged.AddListener(setSFXVolume);
-       
+
+        if (settingsUI != null)
+            settingsUI.SetActive(false);
+        //else
+        //    Debug.LogWarning("Settings ui not assigned");
+        if (backButton != null)
+            backButton.onClick.AddListener(closeSettings);
+        //else
+        //    Debug.LogWarning("backbutton not assigned");
+        
     }
 
+    public void openSettings()
+    {
+        if (settingsUI != null)
+        {
+            settingsUI.SetActive(true);
+        //    Debug.Log("settings ui opened");
+        //}
+        //else
+        //    Debug.LogWarning("settings ui reference missing");
+    }
+    public void closeSettings()
+    {
+        if (settingsUI != null)
+            settingsUI.SetActive(false);
+    }
     public void setMasterVolume(float volume)
     {
         masterVolume = volume;
