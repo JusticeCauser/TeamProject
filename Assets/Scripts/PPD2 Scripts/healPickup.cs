@@ -12,7 +12,7 @@ public class healPickup : MonoBehaviour
 
         if(_heal != null)
         {
-            _heal.heal(healAmount);
+            //_heal.heal(healAmount);
             Destroy(gameObject);
         }
     }
