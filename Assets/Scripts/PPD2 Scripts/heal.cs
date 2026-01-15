@@ -91,7 +91,7 @@ public class heal : MonoBehaviour
     IEnumerator healOther(IHeal h)
     {
         healing = true; //heal
-        h.heal(healAmount); //heal for that amount
+        //h.heal(healAmount); //heal for that amount
         yield return new WaitForSeconds(healTime); //how fast is heal time
         healing = false; //stop
     }
