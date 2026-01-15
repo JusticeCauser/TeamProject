@@ -469,21 +469,13 @@ MonoBehaviour:
   controller: {fileID: 7207170826525197004}
   ignoreLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   HP: 10
   speed: 5
   sprintMod: 3
   jumpSpeed: 12
   jumpMax: 2
   gravity: 35
-  gunList: []
-  gunModel: {fileID: 7694361337131636864}
-  shootDamage: 0
-  shootDist: 0
-  shootRate: 0
-  playerBullet: {fileID: 7754668077929706730, guid: e9ac31fdd937851409d15864ad32bb03, type: 3}
-  playerShootPos: {fileID: 5274542662088418657}
-  aud: {fileID: 960708607036983643}
   audSteps:
   - {fileID: 8300000, guid: 027ff4c5da25a4145b9a6bed457a3df7, type: 3}
   - {fileID: 8300000, guid: e649b917dd8c1b942aaaba4ab9c4856f, type: 3}
@@ -494,26 +486,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c75abad7a02d6d742a362831b8bb1d59, type: 3}
   - {fileID: 8300000, guid: 89461174dcc2af440b709a626374e66f, type: 3}
   - {fileID: 8300000, guid: 647d9863eed5feb4ab5ed7b3b7702b2d, type: 3}
-  audStepsVol: 0.1
   audJump:
   - {fileID: 8300000, guid: 5413f2f2ee8f20b45bfbb5ab94a91019, type: 3}
   - {fileID: 8300000, guid: 8e2c3bf16de47dd48aea7a41423b569c, type: 3}
   - {fileID: 8300000, guid: c27cea2b59892d84a84a85f611d73471, type: 3}
-  audJumpVol: 0.5
-  audHurt:
-  - {fileID: 8300000, guid: 8aa774603c3e93e45961178a51bdc766, type: 3}
-  - {fileID: 8300000, guid: 0724ec2564bba7b44bc659f720f8bffc, type: 3}
-  - {fileID: 8300000, guid: ee027b7ede8ac01459ffa0b93efb013a, type: 3}
-  - {fileID: 8300000, guid: bd8498b602d35af49986e1dc1fe2c016, type: 3}
-  - {fileID: 8300000, guid: 6ade2fa02842d6542b942320cc20af26, type: 3}
-  - {fileID: 8300000, guid: a758527a6b0aec640a9c7c99bec72c66, type: 3}
-  audHurtVol: 0.5
-  audReload:
-  - {fileID: 8300000, guid: b0b0bcc25adeffd44ad96995b3aa7ae5, type: 3}
-  audReloadVol: 0.5
-  audEmptyMag:
-  - {fileID: 8300000, guid: 525dfb4e80b88c148ad7980e9a1e1831, type: 3}
-  audEmptyMagVol: 0.5
   HPOrig: 10
   isGodMode: 0
   groundedVelocityDecay: 15
@@ -561,7 +537,7 @@ MonoBehaviour:
   cam: {fileID: 7642987605847085021}
   wallRunLayer:
     serializedVersion: 2
-    m_Bits: 8192
+    m_Bits: 0
   wallCheckDistance: 1.5
   wallCheckRadius: 0.3
   wallCheckRays: 5
@@ -954,11 +930,6 @@ MonoBehaviour:
   intensity: 45
   lightColor: {r: 1, g: 1, b: 1, a: 1}
   toggleKey: 102
---- !u!4 &5274542662088418657 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8395839739556367676, guid: e7461e3cb4dfd384ea54841be167ca84, type: 3}
-  m_PrefabInstance: {fileID: 4447009243189602397}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6157442171814291185 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7549530855202475692, guid: e7461e3cb4dfd384ea54841be167ca84, type: 3}
