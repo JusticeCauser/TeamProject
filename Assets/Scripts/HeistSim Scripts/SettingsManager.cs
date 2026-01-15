@@ -33,11 +33,9 @@ public class SettingsManager : MonoBehaviour
 
     public bool isActive = false;
 
-
-
     private void Awake()
     {
-
+        
         if (instance == null)
         {
             instance = this;
@@ -87,12 +85,12 @@ public class SettingsManager : MonoBehaviour
         }
     }
 
-    private void OnEnable()
+    private void OnEnable() //fixes scene issue with settings
     {
         SceneManager.sceneLoaded += onSceneLoad;
     }
 
-    private void OnDisable()
+    private void OnDisable() //fixes scene issue with settings
     {
         SceneManager.sceneLoaded -= onSceneLoad;
     }
