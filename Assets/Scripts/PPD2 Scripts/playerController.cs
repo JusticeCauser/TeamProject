@@ -7,8 +7,9 @@ using UnityEngine.InputSystem.DualShock;
 using NUnit.Framework.Constraints;
 using UnityEngine.SceneManagement;
 
-public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
+public class playerController : MonoBehaviour, IDamage, IPickup
 {
+    public static playerController instance;
     [Header("----- Component -----")]
     [SerializeField] CharacterController controller;
     [SerializeField] LayerMask ignoreLayer;
@@ -70,9 +71,18 @@ public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        //if(instance == null)
+        //{
+            //instance = this;
+            DontDestroyOnLoad(gameObject);
+        //}
+        //else
+        //{
+        //    Destroy(gameObject);
+        //}
        
     }
+
     void Start()
     {
         HPOrig = HP;
@@ -239,36 +249,36 @@ public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
         isPlayingSteps = false;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("FrostTrap"))
-        {
-            damage trapSlow = other.GetComponent<damage>();
-            speed = Mathf.RoundToInt(speedOrig * trapSlow.slowedSpeed);
-            //gameManager.instance.frostIcon.gameObject.SetActive(true);
-            //gameManager.instance.frostRing.gameObject.SetActive(true);
-        }
-        if (other.CompareTag("Launch Pad"))
-        {
-            launchPad padScript = other.GetComponent<launchPad>();
-            if (padScript != null)
-            {
-                Vector3 launchVel = padScript.GetLaunchVelocity();
-                externalVelocity = new Vector3(launchVel.x, 0f, launchVel.z);
-                playerVel.y = launchVel.y;
-            }
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.CompareTag("FrostTrap"))
+    //    {
+    //        damage trapSlow = other.GetComponent<damage>();
+    //        speed = Mathf.RoundToInt(speedOrig * trapSlow.slowedSpeed);
+    //        //gameManager.instance.frostIcon.gameObject.SetActive(true);
+    //        //gameManager.instance.frostRing.gameObject.SetActive(true);
+    //    }
+    //    if (other.CompareTag("Launch Pad"))
+    //    {
+    //        launchPad padScript = other.GetComponent<launchPad>();
+    //        if (padScript != null)
+    //        {
+    //            Vector3 launchVel = padScript.GetLaunchVelocity();
+    //            externalVelocity = new Vector3(launchVel.x, 0f, launchVel.z);
+    //            playerVel.y = launchVel.y;
+    //        }
+    //    }
+    //}
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("FrostTrap"))
-        {
-            speed = speedOrig;
-            //gameManager.instance.frostIcon.gameObject.SetActive(false);
-           // gameManager.instance.frostRing.gameObject.SetActive(false);
-        }
-    }
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (other.CompareTag("FrostTrap"))
+    //    {
+    //        speed = speedOrig;
+    //        //gameManager.instance.frostIcon.gameObject.SetActive(false);
+    //       // gameManager.instance.frostRing.gameObject.SetActive(false);
+    //    }
+    //}
 
     
 
@@ -281,7 +291,7 @@ public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
         {
             HP -= amount;
             //aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
-            StartCoroutine(flashRed());
+            //StartCoroutine(flashRed());
             updatePlayerUI();
         }
 
@@ -324,28 +334,28 @@ public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
         backBar.fillAmount = targetFill;
     }
 
-    IEnumerator flashRed()
-    {
-        gameManager.instance.playerDamageScreen.SetActive(true);
-        yield return new WaitForSeconds(0.1f);
-        gameManager.instance.playerDamageScreen.SetActive(false);
-    }
-    IEnumerator flashGreen() //flash green for heal
-    {
-        //gameManager.instance.playerHealScreen.SetActive(true);
-        yield return new WaitForSeconds(0.1f); //active flash time
-        //gameManager.instance.playerHealScreen.SetActive(false);
-    }
+    //IEnumerator flashRed()
+    //{
+    //    gameManager.instance.playerDamageScreen.SetActive(true);
+    //    yield return new WaitForSeconds(0.1f);
+    //    gameManager.instance.playerDamageScreen.SetActive(false);
+    //}
+    //IEnumerator flashGreen() //flash green for heal
+    //{
+    //    //gameManager.instance.playerHealScreen.SetActive(true);
+    //    yield return new WaitForSeconds(0.1f); //active flash time
+    //    //gameManager.instance.playerHealScreen.SetActive(false);
+    //}
 
-    public void heal(int healAmount)
-    {
-        if (HP < HPOrig)
-        {
-            HP = Mathf.Min(HP + healAmount, HPOrig);
-            updatePlayerUI();
-            StartCoroutine(flashGreen());
-        }
-    }
+    //public void heal(int healAmount)
+    //{
+    //    if (HP < HPOrig)
+    //    {
+    //        HP = Mathf.Min(HP + healAmount, HPOrig);
+    //        updatePlayerUI();
+    //        //StartCoroutine(flashGreen());
+    //    }
+    //}
 
     public void SetExternalVelocity(Vector3 velocity)
     {
@@ -378,11 +388,6 @@ public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
         // prevent normal jump from also triggering this frame
         grappleJumpedThisFrame = true;
     }
-
-
-  
-
-
 
     // Tazed Effect - Aaron K
     public void taze(float duration)

@@ -2,16 +2,22 @@ using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.ProBuilder.MeshOperations;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SettingsManager : MonoBehaviour
 {
 
     public static SettingsManager instance;
+    
+    [SerializeField] string lobby = "lobby";
+    [SerializeField] string title = "IntroScene";
 
     [Header("Settings UI")]
     [SerializeField] GameObject settingsUI;
     [SerializeField] Button backButton;
+    [SerializeField] Button quitButton;
+    [SerializeField] Button quitGameButton;
 
     [Header("-----Audio Sliders-----")]
     [SerializeField] Slider masterSlide;
@@ -81,6 +87,24 @@ public class SettingsManager : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += onSceneLoad;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= onSceneLoad;
+    }
+    private void onSceneLoad(Scene scene, LoadSceneMode mode) // fixes issue where after quitting to lobby and loading back in, settings does not auto open
+    {
+        if (settingsUI != null)
+            settingsUI.SetActive(false);
+
+        isActive = false;
+       
+
+    }
     public void openSettings()
     {
         if (settingsUI != null)
@@ -138,5 +162,27 @@ public class SettingsManager : MonoBehaviour
 
     }
 
+    public void quitToLobby()
+    {
+        if (SceneManager.GetActiveScene().name == lobby) //if youre in lobby it just closes menu
+        {
+            closeSettings();
+            return;
+        }
+            
 
+        Time.timeScale = timeScaleOrig;
+
+        if(settingsUI != null)
+             settingsUI.SetActive(false);
+
+        isActive = false;
+        SceneManager.LoadScene(lobby);
+    }
+
+    public void quitToTitle()
+    {
+        Time.timeScale = timeScaleOrig;
+        SceneManager.LoadScene(title);
+    }
 }
