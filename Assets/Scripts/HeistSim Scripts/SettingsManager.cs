@@ -2,16 +2,22 @@ using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.ProBuilder.MeshOperations;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SettingsManager : MonoBehaviour
 {
 
     public static SettingsManager instance;
+    
+    [SerializeField] string lobby = "lobby";
+    [SerializeField] string title = "IntroScene";
 
     [Header("Settings UI")]
     [SerializeField] GameObject settingsUI;
     [SerializeField] Button backButton;
+    [SerializeField] Button quitButton;
+    [SerializeField] Button quitGameButton;
 
     [Header("-----Audio Sliders-----")]
     [SerializeField] Slider masterSlide;
@@ -23,45 +29,33 @@ public class SettingsManager : MonoBehaviour
     public float ambientVolume = 1f;
     public float sfxVolume = 1f;
 
+    float timeScaleOrig;
 
-    private void Awake() 
+    public bool isActive = false;
+
+
+
+    private void Awake()
     {
-        //Debug.Log("settingsmanage awake " +gameObject.name);
-        //Debug.Log("instance: " + instance);
-        if(instance == null)
+
+        if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
-
-           // Debug.Log("settings manager alive");
-          
         }
         else
         {
-           // Debug.Log("settings manager dead");
             Destroy(gameObject);
             return;
         }
     }
-    //private void OnEnable()
-    //{
-    //    Debug.Log("settingsmanager enable");
-    //}
-
-    //private void OnDisable()
-    //{
-    //    Debug.Log("settingsmanager disable");
-    //}
-    //private void OnDestroy()
-    //{
-    //    Debug.Log("destroyed");
-    //}
-
-    
 
     private void Start()
     {
-        if(masterSlide != null) masterSlide.SetValueWithoutNotify(masterVolume);
+
+        timeScaleOrig = Time.timeScale;
+
+        if (masterSlide != null) masterSlide.SetValueWithoutNotify(masterVolume);
         masterSlide.onValueChanged.AddListener(setMasterVolume);
 
         if (ambientSlide != null) ambientSlide.SetValueWithoutNotify(ambientVolume);
@@ -72,30 +66,71 @@ public class SettingsManager : MonoBehaviour
 
         if (settingsUI != null)
             settingsUI.SetActive(false);
-        //else
-        //    Debug.LogWarning("Settings ui not assigned");
+
         if (backButton != null)
             backButton.onClick.AddListener(closeSettings);
-        //else
-        //    Debug.LogWarning("backbutton not assigned");
-        
+
+
+    }
+    private void Update()
+    {
+        if (Input.GetButtonDown("Cancel"))
+        {
+            if (isActive)
+            {
+                closeSettings();
+            }
+            else
+            {
+                openSettings();
+            }
+        }
     }
 
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += onSceneLoad;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= onSceneLoad;
+    }
+    private void onSceneLoad(Scene scene, LoadSceneMode mode) // fixes issue where after quitting to lobby and loading back in, settings does not auto open
+    {
+        if (settingsUI != null)
+            settingsUI.SetActive(false);
+
+        isActive = false;
+       
+
+    }
     public void openSettings()
     {
         if (settingsUI != null)
         {
             settingsUI.SetActive(true);
-        //    Debug.Log("settings ui opened");
+            isActive = true;
+            Time.timeScale = 0f;
+
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
         }
-        //else
-        //    Debug.LogWarning("settings ui reference missing");
     }
+
     public void closeSettings()
     {
         if (settingsUI != null)
             settingsUI.SetActive(false);
+
+        isActive = false;
+        Time.timeScale = timeScaleOrig;
+
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
     }
+
     public void setMasterVolume(float volume)
     {
         masterVolume = volume;
@@ -103,7 +138,7 @@ public class SettingsManager : MonoBehaviour
         PlayerPrefs.SetFloat("Master Volume", volume); //set to what player chose
         PlayerPrefs.Save();
         audioManager.instance.setVolume();
-       
+
     }
 
     public void setAmbientVolume(float volume)
@@ -127,5 +162,27 @@ public class SettingsManager : MonoBehaviour
 
     }
 
-   
+    public void quitToLobby()
+    {
+        if (SceneManager.GetActiveScene().name == lobby) //if youre in lobby it just closes menu
+        {
+            closeSettings();
+            return;
+        }
+            
+
+        Time.timeScale = timeScaleOrig;
+
+        if(settingsUI != null)
+             settingsUI.SetActive(false);
+
+        isActive = false;
+        SceneManager.LoadScene(lobby);
+    }
+
+    public void quitToTitle()
+    {
+        Time.timeScale = timeScaleOrig;
+        SceneManager.LoadScene(title);
+    }
 }
