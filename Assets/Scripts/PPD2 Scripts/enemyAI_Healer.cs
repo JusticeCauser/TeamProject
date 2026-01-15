@@ -91,7 +91,7 @@ public class enemyAI_Healer : MonoBehaviour, IDamage
             IHeal healTarget = hit.GetComponentInParent<IHeal>();
             if(healTarget != null)
             {
-                healTarget.heal(healAmount);
+                //healTarget.heal(healAmount);
             }
         }
     }
