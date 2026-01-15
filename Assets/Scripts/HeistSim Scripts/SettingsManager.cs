@@ -48,9 +48,9 @@ public class SettingsManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void Start() //if statements shouldnt be needed when stable
     {
-
+       //will clean up later with function for cleaner look if need be
         timeScaleOrig = Time.timeScale;
 
         if (masterSlide != null) masterSlide.SetValueWithoutNotify(masterVolume);
