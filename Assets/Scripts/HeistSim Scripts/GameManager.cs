@@ -41,8 +41,17 @@ public class GameManager : MonoBehaviour
         }
        
     }
-    void Start()
-    {
+    void Start() //if statements shouldnt be needed when stable
+    {//could create function for this to look cleaner in start
+        if (wQuitButton != null)
+            wQuitButton.onClick.AddListener(quitToLobby);
+
+        if(lQuitButton != null)
+            lQuitButton.onClick.AddListener(quitToLobby);
+
+        if (retryButton != null)
+            retryButton.onClick.AddListener(retry);
+
         
     }
 
@@ -73,6 +82,9 @@ public class GameManager : MonoBehaviour
     }
     public void retry()
     {
-
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        
+        //string map = SceneManager.GetActiveScene().name;
+        //SceneManager.LoadScene(map);
     }
 }
