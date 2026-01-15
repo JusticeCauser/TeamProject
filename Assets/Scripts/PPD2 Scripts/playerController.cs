@@ -89,10 +89,10 @@ public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
     // Update is called once per frame
     void Update()
     {
-        if (!gameManager.instance.isPaused)
-        {
+        //if (!gameManager.instance.isPaused)
+       // {
             movement();
-        }
+       // }
         sprint();
 
     }
@@ -296,11 +296,11 @@ public class playerController : MonoBehaviour, IDamage, IHeal, IPickup
     public void updatePlayerUI()
     { // Aaron K - added chase bar for loss of life.
         float targetFill = (float)HP / HPOrig;
-        gameManager.instance.playerHPFrontBar.fillAmount = targetFill;
+        //gameManager.instance.playerHPFrontBar.fillAmount = targetFill;
 
-        if (chipCoroutine != null)
-            StopCoroutine(chipCoroutine);
-        chipCoroutine = StartCoroutine(LerpBackBar(targetFill));
+        //if (chipCoroutine != null)
+        //    StopCoroutine(chipCoroutine);
+        //chipCoroutine = StartCoroutine(LerpBackBar(targetFill));
     }
 
     // Aaron K - Status Effect Icons
