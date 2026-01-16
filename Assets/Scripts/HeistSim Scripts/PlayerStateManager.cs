@@ -15,7 +15,7 @@ public enum playerState
 public class PlayerStateManager : MonoBehaviour
 {
     public playerState currentState = playerState.Idle;
-
+    [SerializeField][Range(0,10)] float noiseLevel;
     bool isCrouching;
 
     bool isHiding;
@@ -34,6 +34,7 @@ public class PlayerStateManager : MonoBehaviour
     {
         crouching();
         moving();
+        noiseLevelChecker();
 
         switch (currentState)
         {
@@ -142,6 +143,38 @@ public class PlayerStateManager : MonoBehaviour
         {
             isMoving = false;
         }
+    }
+    
+    public float noiseLevelChecker()
+    {
+        float level = 0;
+        switch(currentState)
+        {
+            case playerState.Idle:
+                level = 0;
+                break;
+
+            case playerState.CrouchedIdle:
+                level = 0;
+                break;
+
+            case playerState.Sneaking:
+                level = 3;
+                break;
+                
+            case playerState.Sprinting:
+                level = 8;
+                break;
+
+            case playerState.Moving:
+                level = 4;
+                break;
+
+            case playerState.Hiding:
+                level = 0;
+                break;
+        }
+        return level;
     }
 }
 
