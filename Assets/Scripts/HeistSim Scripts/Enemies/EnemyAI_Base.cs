@@ -24,6 +24,7 @@ public class EnemyAI_Base : MonoBehaviour
     [SerializeField] float chaseSpeed;
     [SerializeField] float baseHearing;
 
+    float hearingSphreRadius;
     float searchTimer;
     float roamTimer;
     float angleToPlayer;
@@ -184,12 +185,21 @@ public class EnemyAI_Base : MonoBehaviour
     }
     public bool canHearPlayer()
     {
-        if(playerTransform == null) return false;
+        if (playerTransform == null) return false;
 
-        Vector3 playerPos = playerTransform.position;
-        playerDir = playerPos - transform.position;
+        float noiseLevel = playerStateManager.noiseLevelChecker();
+
+        if(noiseLevel <= 0)
+        {
+            return false;
+        }
+        if(noiseLevel >= 2)
+        {
+
+        }
+        lastHeardPosition = playerTransform.position;
+        playerDir = lastHeardPosition - transform.position;
         angleToPlayer = Vector3.Angle(playerDir, transform.forward);
-
         return true;
     }
     private void OnTriggerEnter(Collider other)
