@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     Vector3 playerVel; //separately handle gravity and jump. offers more control
 
     [SerializeField] float crouchSpeed = 2f;
-    //Crouch crouch;
+    Crouch crouch;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        //crouch = GetComponent<Crouch>();
+        crouch = GetComponent<Crouch>();
     }
     // Update is called once per frame
     void Update()
