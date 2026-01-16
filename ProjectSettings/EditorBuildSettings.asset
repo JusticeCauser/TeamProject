@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Levels/HeistSimulatorScenes/IntroScene.unity
     guid: 88e7cca3239bcbd4eb634588a7bd6b54
   - enabled: 1
-    path: Assets/Levels/HeistSimulatorScenes/Lobby.unity
+    path: Assets/Levels/HeistSimulatorScenes/theHub.unity
     guid: da7a70ba8dae6ca4f81dccd6801f8781
   - enabled: 1
     path: Assets/Levels/HeistSimulatorScenes/LoadingIntroAsylum.unity
