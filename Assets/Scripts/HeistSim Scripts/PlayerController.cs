@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     Vector3 playerVel; //separately handle gravity and jump. offers more control
 
     [SerializeField] float crouchSpeed = 2f;
-    //Crouch crouch;
+    Crouch crouch;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -66,8 +66,8 @@ public class PlayerController : MonoBehaviour
 
         moveDir = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
 
-        //if (crouch != null && crouch.IsCrouching)
-        //    actualSpeed = crouchSpeed;
+        if (crouch != null && crouch.IsCrouching)
+            actualSpeed = crouchSpeed;
 
         controller.Move(moveDir * actualSpeed * Time.deltaTime); //makes it frame rate independent. one second to be one second. any time dealing with input always time delta time
 
