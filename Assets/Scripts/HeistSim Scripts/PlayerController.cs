@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem.EnhancedTouch;
 
 public class PlayerController : MonoBehaviour
 {
@@ -28,44 +29,54 @@ public class PlayerController : MonoBehaviour
     Vector3 moveDir; //vector made for movement x,y,z. wasd. instead of multiple if statements.
     Vector3 playerVel; //separately handle gravity and jump. offers more control
 
+    [SerializeField] float crouchSpeed = 2f;
+    //Crouch crouch;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     private void Awake()
     {
         instance = this;
+        //crouch = GetComponent<Crouch>();
     }
     // Update is called once per frame
     void Update()
     {
-        if(SettingsManager.instance == null || !SettingsManager.instance.isActive)
+        if (SettingsManager.instance == null || !SettingsManager.instance.isActive)
         {
             movement();
         }
 
         sprint();
     }
-    
+
     void movement()
     {
-        if(controller.isGrounded)
+        float actualSpeed = speed; // needed for conversion
+
+        if (controller.isGrounded)
         {
             jumpCount = 0;
             playerVel = Vector3.zero;
         }
 
         moveDir = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
-        controller.Move(moveDir * speed * Time.deltaTime); //makes it frame rate independent. one second to be one second. any time dealing with input always time delta time
+
+        //if (crouch != null && crouch.IsCrouching)
+        //    actualSpeed = crouchSpeed;
+
+        controller.Move(moveDir * actualSpeed * Time.deltaTime); //makes it frame rate independent. one second to be one second. any time dealing with input always time delta time
 
 
         jump();
         controller.Move(playerVel * Time.deltaTime); //using jump
 
         playerVel.y -= gravity * Time.deltaTime; //start subtracting playerVel over time. ie pulling back down
-        
+
     }
 
     void jump()
@@ -90,18 +101,15 @@ public class PlayerController : MonoBehaviour
             isSprinting = false;
         }
     }
-    void crouch()
-    {
 
-    }
     public void takeDamage(int amount)
     {
         HP -= amount;
 
-        if(HP <= 0)
+        if (HP <= 0)
         {
-            
-        //SettingsManager.instance.gameOver(); //not yet made
+
+            //SettingsManager.instance.gameOver(); //not yet made
         }
     }
 
@@ -109,9 +117,9 @@ public class PlayerController : MonoBehaviour
     {
 
     }
-    
+
     public void applyUpgrades(upgradeData upgrade)
     {
-       //if we want to carry over player upgrades
+        //if we want to carry over player upgrades
     }
 }

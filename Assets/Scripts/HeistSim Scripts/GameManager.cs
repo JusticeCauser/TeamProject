@@ -29,11 +29,11 @@ public class GameManager : MonoBehaviour
     bool timerOn;
 
     string sceneName;
-   
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
@@ -46,26 +46,26 @@ public class GameManager : MonoBehaviour
 
         timeScaleOrig = Time.timeScale;
         player = GameObject.FindWithTag("Player");
-        
-        if(player != null) //bc player doesnt exist in introscene
+
+        if (player != null) //bc player doesnt exist in introscene
         {
             playerScript = player.GetComponent<PlayerController>();
         }
-       
+
     }
     void Start() //if statements shouldnt be needed when stable
     {//could create function for this to look cleaner in start
         if (wQuitButton != null)
             wQuitButton.onClick.AddListener(quitToLobby);
 
-        if(lQuitButton != null)
+        if (lQuitButton != null)
             lQuitButton.onClick.AddListener(quitToLobby);
 
         if (retryButton != null)
             retryButton.onClick.AddListener(retry);
 
         sceneName = SceneManager.GetActiveScene().name; //timer may fail here to the end of if statement due to start runtime
-        if(sceneName == "Asylum" || sceneName == "Mansion")
+        if (sceneName == "Asylum" || sceneName == "Mansion")
         {
             startTimer = Time.time;
             timerOn = true;
@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     public void missionComplete()
     {
@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour
             timerText.text = "Completed in: " + string.Format("{0:00}:{1:00}", min, sec);
         }
 
-        if(menuWin != null)
+        if (menuWin != null)
         {
             menuWin.SetActive(true);
             Time.timeScale = 0f;
@@ -102,7 +102,7 @@ public class GameManager : MonoBehaviour
     }
     public void missionFail()
     {
-        if(menuLose != null)
+        if (menuLose != null)
         {
             menuLose.SetActive(true);
             Time.timeScale = 0f;
@@ -110,12 +110,12 @@ public class GameManager : MonoBehaviour
     }
     public void quitToLobby()
     {
-        SceneManager.LoadScene("Lobby");
+        SceneManager.LoadScene("theHub");
     }
     public void retry()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        
+
         //string map = SceneManager.GetActiveScene().name;
         //SceneManager.LoadScene(map);
     }
