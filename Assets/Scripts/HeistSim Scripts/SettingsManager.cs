@@ -33,11 +33,9 @@ public class SettingsManager : MonoBehaviour
 
     public bool isActive = false;
 
-
-
     private void Awake()
     {
-
+        
         if (instance == null)
         {
             instance = this;
@@ -50,9 +48,9 @@ public class SettingsManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void Start() //if statements shouldnt be needed when stable
     {
-
+       //will clean up later with function for cleaner look if need be
         timeScaleOrig = Time.timeScale;
 
         if (masterSlide != null) masterSlide.SetValueWithoutNotify(masterVolume);
@@ -87,12 +85,12 @@ public class SettingsManager : MonoBehaviour
         }
     }
 
-    private void OnEnable()
+    private void OnEnable() //fixes scene issue with settings
     {
         SceneManager.sceneLoaded += onSceneLoad;
     }
 
-    private void OnDisable()
+    private void OnDisable() //fixes scene issue with settings
     {
         SceneManager.sceneLoaded -= onSceneLoad;
     }
