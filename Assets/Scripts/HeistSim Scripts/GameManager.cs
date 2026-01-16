@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,7 +18,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] Button wQuitButton;
     [SerializeField] Button lQuitButton;
     [SerializeField] Button retryButton;
+
+    [Header("---Timer---")]
+    [SerializeField] TMP_Text timerText;
     float timeScaleOrig;
+
+    float startTimer;
+    float endTimer;
+
+    bool timerOn;
+
+    string sceneName;
+   
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
@@ -52,7 +64,17 @@ public class GameManager : MonoBehaviour
         if (retryButton != null)
             retryButton.onClick.AddListener(retry);
 
-        
+        sceneName = SceneManager.GetActiveScene().name; //timer may fail here to the end of if statement due to start runtime
+        if(sceneName == "Asylum" || sceneName == "Mansion")
+        {
+            startTimer = Time.time;
+            timerOn = true;
+        }
+        else
+        {
+            timerOn = false;
+        }
+
     }
 
     // Update is called once per frame
@@ -62,6 +84,16 @@ public class GameManager : MonoBehaviour
     }
     public void missionComplete()
     {
+        if (timerOn)
+        {
+            endTimer = Time.time - startTimer;
+
+            int min = Mathf.FloorToInt(endTimer / 60f);
+            int sec = Mathf.FloorToInt(endTimer % 60f);
+
+            timerText.text = "Completed in: " + string.Format("{0:00}:{1:00}", min, sec);
+        }
+
         if(menuWin != null)
         {
             menuWin.SetActive(true);

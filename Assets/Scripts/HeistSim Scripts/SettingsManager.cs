@@ -30,8 +30,11 @@ public class SettingsManager : MonoBehaviour
     public float sfxVolume = 1f;
 
     float timeScaleOrig;
+    
+
 
     public bool isActive = false;
+    
 
     private void Awake()
     {
@@ -72,6 +75,9 @@ public class SettingsManager : MonoBehaviour
     }
     private void Update()
     {
+        if (SceneManager.GetActiveScene().name == title) //wont open menu in introscene
+            return;
+
         if (Input.GetButtonDown("Cancel"))
         {
             if (isActive)
@@ -105,15 +111,18 @@ public class SettingsManager : MonoBehaviour
     }
     public void openSettings()
     {
-        if (settingsUI != null)
+        if (SceneManager.GetActiveScene().name != title) // so you cant open menu in introscene
         {
-            settingsUI.SetActive(true);
-            isActive = true;
-            Time.timeScale = 0f;
+            if (settingsUI != null)
+            {
+                settingsUI.SetActive(true);
+                isActive = true;
+                Time.timeScale = 0f;
 
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
 
+            }
         }
     }
 
