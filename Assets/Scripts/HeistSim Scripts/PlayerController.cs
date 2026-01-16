@@ -90,15 +90,19 @@ public class PlayerController : MonoBehaviour
             isSprinting = false;
         }
     }
+    void crouch()
+    {
 
+    }
     public void takeDamage(int amount)
     {
         HP -= amount;
 
-        //if(HP <= 0)
-        //{
+        if(HP <= 0)
+        {
+            
         //SettingsManager.instance.gameOver(); //not yet made
-        //}
+        }
     }
 
     public void tazed()
