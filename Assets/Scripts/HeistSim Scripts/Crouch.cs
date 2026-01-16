@@ -10,7 +10,7 @@ public class Crouch : MonoBehaviour
     [SerializeField] float standHeight = -1f; // -1 means auto-detect from CharacterController
     [SerializeField] float crouchSpeed = 2f;
     [SerializeField] float crouchTransitionSpeed = 10f;
-    [SerializeField] KeyCode crouchKey = KeyCode.LeftControl;
+    
 
     float currentHeight;
 
@@ -43,16 +43,18 @@ public class Crouch : MonoBehaviour
 
     void handleInput()
     {
-        bool crouchPressed = Input.GetKeyDown(crouchKey);
-        bool crouchHeld = Input.GetKey(crouchKey);
-        bool crouchReleased = Input.GetKeyUp(crouchKey);
+        bool crouchToggle = Input.GetButtonDown("Crouch");
+        
+        //bool crouchReleased = Input.GetButtonDown("Crouch");
 
-        if (crouchPressed)
-            isCrouching = true;
+        if (crouchToggle)
+        {
+            if (!isCrouching)
+                isCrouching = true;
 
-        else if (!crouchHeld && isCrouching && canStand())
-            isCrouching = false;
-
+            else if (canStand())
+                isCrouching = false;
+        }
     }
     void updateHeight()
     {
