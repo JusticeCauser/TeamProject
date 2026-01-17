@@ -23,8 +23,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] Button retryButton;
 
     [Header("---Timer---")]
-    [SerializeField] TMP_Text timerText;
+    [SerializeField] TMP_Text timerTextWin;
+    [SerializeField] TMP_Text itemValueText;
+    [SerializeField] TMP_Text timerTextFail;
     [SerializeField] TMP_Text failText;
+
+
+
     float timeScaleOrig;
 
     float startTimer;
@@ -70,7 +75,7 @@ public class GameManager : MonoBehaviour
             retryButton.onClick.AddListener(retry);
 
         sceneName = SceneManager.GetActiveScene().name; //timer may fail here to the end of if statement due to start runtime
-        if (sceneName == "Asylum" || sceneName == "Mansion" || sceneName == "theHub")
+        if (sceneName == "Asylum" || sceneName == "Mansion")
         {
             startTimer = Time.time;
             timerOn = true;
@@ -115,9 +120,11 @@ public class GameManager : MonoBehaviour
             int min = Mathf.FloorToInt(endTimer / 60f);
             int sec = Mathf.FloorToInt(endTimer % 60f);
 
-            timerText.text = "Completed in: " + string.Format("{0:00}:{1:00}", min, sec);
+            timerTextWin.text = "Completed in: " + string.Format("{0:00}:{1:00}", min, sec);
 
         }
+        if (itemValueText != null)
+            itemValueText.text = "Total value collected: $" + playerScript.totalValue;
 
         if (menuWin != null)
         {
@@ -130,9 +137,17 @@ public class GameManager : MonoBehaviour
     public void missionFail(fail reason)
     { //capture, if not out in 60 seconds from HEAT timer
 
-       
         failReason = reason;
+        if (timerOn)
+        {
+            endTimer = Time.time - startTimer;
 
+            int min = Mathf.FloorToInt(endTimer / 60f);
+            int sec = Mathf.FloorToInt(endTimer % 60f);
+
+            timerTextFail.text = "Time Survived: " + string.Format("{0:00}:{1:00}", min, sec);
+
+        }
         if (menuLose != null)
         {
             menuLose.SetActive(true);
@@ -155,7 +170,7 @@ public class GameManager : MonoBehaviour
                 break;
 
             case fail.heatTimeExpired:
-                failText.text = "You didn't make it out in time.";
+                failText.text = "You didn't make it out in time. Backup arrived.";
                 break;
         }
            
