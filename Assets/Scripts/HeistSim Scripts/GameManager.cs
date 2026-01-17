@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
 
     }
     public void missionComplete()
-    {
+    { //completing 
         if (timerOn)
         {
             endTimer = Time.time - startTimer;
@@ -101,7 +101,7 @@ public class GameManager : MonoBehaviour
         }
     }
     public void missionFail()
-    {
+    { //capture, if not out in 60 seconds from HEAT timer
         if (menuLose != null)
         {
             menuLose.SetActive(true);
