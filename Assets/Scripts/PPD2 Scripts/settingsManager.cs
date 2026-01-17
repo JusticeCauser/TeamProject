@@ -71,7 +71,7 @@ public class settingsManager : MonoBehaviour
         cameraController camScript = gameManager.instance.player.GetComponentInChildren<cameraController>();
         if(camScript != null)
         {
-            camScript.SetMovementTilt(enableTilt);
+            //camScript.SetMovementTilt(enableTilt);
         }
     }
 
