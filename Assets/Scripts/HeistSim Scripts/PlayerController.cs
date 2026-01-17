@@ -24,13 +24,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] AudioClip[] audJump;
 
     [Header("---Items---")]
+    [SerializeField] int maxInventory = 7;
     [SerializeField] List<itemStats> itemList = new List<itemStats>();
     //[SerializeField] Transform droppedItem; for dropping items
 
     int jumpCount;
     int HPOrig;
     int itemListPos;
-    int totalValue;
+
+    public int totalValue;
 
     bool isPlayingSteps;
     bool isSprinting;
@@ -139,11 +141,15 @@ public class PlayerController : MonoBehaviour
     }
     public void grabItem(itemStats item)
     {
+        if (itemList.Count >= maxInventory)
+            return;
+
         itemList.Add(item);
         itemListPos = itemList.Count - 1;
 
         totalValue += item.itemValue;
     }
+  
     void selectItem()
     {
         if(Input.GetAxis("Mouse ScrollWheel") > 0 && itemListPos < itemList.Count - 1)
