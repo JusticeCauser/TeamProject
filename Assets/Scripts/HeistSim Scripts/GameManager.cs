@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
             retryButton.onClick.AddListener(retry);
 
         sceneName = SceneManager.GetActiveScene().name; //timer may fail here to the end of if statement due to start runtime
-        if (sceneName == "Asylum" || sceneName == "Mansion")
+        if (sceneName == "Asylum" || sceneName == "Mansion" || sceneName == "theHub")
         {
             startTimer = Time.time;
             timerOn = true;
@@ -84,7 +84,26 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+    }
+    private void OnEnable() //fixes scene issue with settings
+    {
+        SceneManager.sceneLoaded += onSceneLoad;
+    }
 
+    private void OnDisable() //fixes scene issue with settings
+    {
+        SceneManager.sceneLoaded -= onSceneLoad;
+    }
+    private void onSceneLoad(Scene scene, LoadSceneMode mode) // fixes issue where after quitting to lobby and loading back in, settings does not auto open
+    {
+        if (menuWin != null)
+            menuWin.SetActive(false);
+
+        if(menuLose != null)
+            menuLose.SetActive(false);
+
+        Time.timeScale = timeScaleOrig;
     }
     public void missionComplete()
     { //completing 
@@ -96,25 +115,32 @@ public class GameManager : MonoBehaviour
             int sec = Mathf.FloorToInt(endTimer % 60f);
 
             timerText.text = "Completed in: " + string.Format("{0:00}:{1:00}", min, sec);
+
         }
 
         if (menuWin != null)
         {
             menuWin.SetActive(true);
             Time.timeScale = 0f;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
     public void missionFail(fail reason)
     { //capture, if not out in 60 seconds from HEAT timer
 
+       
         failReason = reason;
 
         if (menuLose != null)
         {
             menuLose.SetActive(true);
             Time.timeScale = 0f;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
-        missionFailReason();
+       
+            missionFailReason();
     }
     void missionFailReason()
     {
