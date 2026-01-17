@@ -1,5 +1,8 @@
+//using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -20,8 +23,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] AudioClip[] audSteps;
     [SerializeField] AudioClip[] audJump;
 
+    [Header("---Items---")]
+    [SerializeField] List<itemStats> itemList = new List<itemStats>();
+    //[SerializeField] Transform droppedItem; for dropping items
+
     int jumpCount;
     int HPOrig;
+    int itemListPos;
+    public int totalValue;
 
     bool isPlayingSteps;
     bool isSprinting;
@@ -53,6 +62,7 @@ public class PlayerController : MonoBehaviour
         }
 
         sprint();
+        selectItem();
     }
 
     void movement()
@@ -126,6 +136,24 @@ public class PlayerController : MonoBehaviour
     {
         isHiding = false;
         controller.enabled = true;
+    }
+    public void grabItem(itemStats item)
+    {
+        itemList.Add(item);
+        itemListPos = itemList.Count - 1;
+
+        totalValue += item.itemValue;
+    }
+    void selectItem()
+    {
+        if(Input.GetAxis("Mouse ScrollWheel") > 0 && itemListPos < itemList.Count - 1)
+        {
+            itemListPos++;
+        }
+        if(Input.GetAxis("Mouse ScrollWheel") <  0 && itemListPos > 0)
+        {
+            itemListPos--;
+        }
     }
     public void applyUpgrades(upgradeData upgrade)
     {
