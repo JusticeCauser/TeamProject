@@ -24,8 +24,12 @@ public class GameManager : MonoBehaviour
 
     [Header("---Timer---")]
     [SerializeField] TMP_Text timerTextWin;
+    [SerializeField] TMP_Text itemValueText;
     [SerializeField] TMP_Text timerTextFail;
     [SerializeField] TMP_Text failText;
+
+
+
     float timeScaleOrig;
 
     float startTimer;
@@ -118,6 +122,8 @@ public class GameManager : MonoBehaviour
             timerTextWin.text = "Completed in: " + string.Format("{0:00}:{1:00}", min, sec);
 
         }
+        if (itemValueText != null)
+            itemValueText.text = "Total value collected: $" + playerScript.totalValue;
 
         if (menuWin != null)
         {
