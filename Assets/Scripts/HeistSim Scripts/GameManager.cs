@@ -2,9 +2,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
+    public enum fail{ captured, heatTimeExpired}
+    private fail failReason;
     public static GameManager instance;
 
     public GameObject player;
@@ -21,6 +24,7 @@ public class GameManager : MonoBehaviour
 
     [Header("---Timer---")]
     [SerializeField] TMP_Text timerText;
+    [SerializeField] TMP_Text failText;
     float timeScaleOrig;
 
     float startTimer;
@@ -100,13 +104,34 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0f;
         }
     }
-    public void missionFail()
+    public void missionFail(fail reason)
     { //capture, if not out in 60 seconds from HEAT timer
+
+        failReason = reason;
+
         if (menuLose != null)
         {
             menuLose.SetActive(true);
             Time.timeScale = 0f;
         }
+        missionFailReason();
+    }
+    void missionFailReason()
+    {
+        if (failText == null)
+            return;
+
+        switch (failReason)
+        {
+            case fail.captured:
+                failText.text = "Why'd you get caught?";
+                break;
+
+            case fail.heatTimeExpired:
+                failText.text = "You didn't make it out in time.";
+                break;
+        }
+           
     }
     public void quitToLobby()
     {
