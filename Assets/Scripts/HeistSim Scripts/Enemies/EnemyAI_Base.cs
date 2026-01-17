@@ -1,6 +1,7 @@
 using System.Drawing;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem.XR.Haptics;
 using UnityEngine.Rendering;
 using static enemyAI_Guard;
 
@@ -23,6 +24,7 @@ public class EnemyAI_Base : MonoBehaviour
     [SerializeField] float roamSpeed;
     [SerializeField] float chaseSpeed;
     [SerializeField] float baseHearing;
+    [SerializeField] float suspiciousMax;
 
     float hearingSphreRadius;
     float searchTimer;
@@ -30,17 +32,21 @@ public class EnemyAI_Base : MonoBehaviour
     float angleToPlayer;
     float stoppingDistOrig;
     float alertedTimer;
+    float suspiciousTimer;
+    float lookTimer;
 
     public enum guardState
     {
         Idle,
         Patrol,
         Search,
+        Suspicious,
         Alerted,
         Chase
     }
 
     public guardState state = guardState.Idle;
+    public guardState previousState;
 
     bool playerInSightRange;
     [HideInInspector] public bool playerInHearingRange;
@@ -53,6 +59,7 @@ public class EnemyAI_Base : MonoBehaviour
     Vector3 startingPos;
 
     protected Transform playerTransform;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -63,6 +70,7 @@ public class EnemyAI_Base : MonoBehaviour
             playerTransform = gameManager.instance.player.transform;
 
         playerStateManager = playerTransform.GetComponent<PlayerStateManager>();
+        Debug.Log("canHearPlayer called. noise=" + playerStateManager.noiseLevelChecker());
     }
 
     // Update is called once per frame
@@ -83,6 +91,15 @@ public class EnemyAI_Base : MonoBehaviour
 
             case guardState.Chase:
                 ChaseBehavior();
+                break;
+            case guardState.Search:
+                SearchBehavior();
+                break;
+            case guardState.Suspicious:
+                SuspiciousBehavior();
+                break;
+            case guardState.Patrol:
+                PatrolBehavior();
                 break;
         }
     }
@@ -110,6 +127,41 @@ public class EnemyAI_Base : MonoBehaviour
                 agent.speed = chaseSpeed;
                 break;
         }
+    }
+    void SearchBehavior()
+    {
+
+    }
+    void SuspiciousBehavior()
+    {
+        suspiciousTimer += Time.deltaTime;
+
+        lastHeardPosition = playerTransform.position;
+        playerDir = lastHeardPosition - transform.position;
+        playerDir.y = 0f;
+        
+        if(suspiciousTimer < suspiciousMax)
+        {
+            agent.isStopped = true;
+            float newNoise = playerStateManager.noiseLevelChecker();
+
+            if(newNoise > 2f)
+            { 
+                agent.isStopped = false;
+                state = guardState.Alerted;
+                return;
+            }
+        }
+        else if (suspiciousTimer >= suspiciousMax)
+        {
+            agent.isStopped = false;
+            suspiciousTimer = 0f;
+            state = previousState;
+        }
+    }
+    void PatrolBehavior()
+    {
+
     }
     void IdleBehavior()
     {
@@ -193,7 +245,20 @@ public class EnemyAI_Base : MonoBehaviour
         {
             return false;
         }
-        if(noiseLevel >= 2)
+        if(noiseLevel >= 2 && noiseLevel < 5)
+        {
+            if(!canSeePlayer() && state != guardState.Suspicious)
+            {
+                suspiciousTimer = 0f;
+                previousState = state;
+                state = guardState.Suspicious;
+            }
+            if(canSeePlayer())
+            {
+                state = guardState.Chase;
+            }
+        }
+        if(noiseLevel >= 5 && noiseLevel <= 10)
         {
 
         }

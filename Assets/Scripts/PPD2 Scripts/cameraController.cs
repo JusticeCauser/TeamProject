@@ -46,19 +46,19 @@ public class cameraController : MonoBehaviour
 
         camRotX = Mathf.Clamp(camRotX, lockVertMin, lockVertMax);
 
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
-        float targetMoveTilt = -horizontalInput * moveTiltAmount;
-        currentMoveTilt = Mathf.Lerp(currentMoveTilt, targetMoveTilt, Time.deltaTime * moveTiltSpeed);
+        //float horizontalInput = Input.GetAxisRaw("Horizontal");
+        //float targetMoveTilt = -horizontalInput * moveTiltAmount;
+        //currentMoveTilt = Mathf.Lerp(currentMoveTilt, targetMoveTilt, Time.deltaTime * moveTiltSpeed);
 
         transform.localRotation = Quaternion.Euler(camRotX, 0, wallTiltZ + slideTiltZ + currentMoveTilt);
 
         transform.parent.Rotate(Vector3.up * mouseX);
     }
 
-    public void SetMovementTilt(bool enabled)
-    {
-        moveTiltAmount = enabled ? 2f : 0;
-    }
+    //public void SetMovementTilt(bool enabled)
+    //{
+    //    moveTiltAmount = enabled ? 2f : 0;
+    //}
 
     public void AdjustPitch(float delta)
     {
