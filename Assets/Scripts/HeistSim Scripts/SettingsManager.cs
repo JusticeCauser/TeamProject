@@ -29,7 +29,7 @@ public class SettingsManager : MonoBehaviour
     public float masterVolume = 1f;
     public float ambientVolume = 1f;
     public float sfxVolume = 1f;
-    public float sensitivity;
+    public float sensitivity = 300f;
 
     float timeScaleOrig;
     
@@ -66,9 +66,6 @@ public class SettingsManager : MonoBehaviour
 
         if (sfxSlide != null) sfxSlide.SetValueWithoutNotify(sfxVolume);
         sfxSlide.onValueChanged.AddListener(setSFXVolume);
-
-        if (cameraController.instance != null)
-            sensitivity = cameraController.instance.sens;
 
         if (sensitivitySlide != null) sensitivitySlide.SetValueWithoutNotify(sensitivity);
         sensitivitySlide.onValueChanged.AddListener(setSensitivity);
@@ -139,8 +136,8 @@ public class SettingsManager : MonoBehaviour
         isActive = false;
         Time.timeScale = timeScaleOrig;
 
-        //Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void setMasterVolume(float volume)
