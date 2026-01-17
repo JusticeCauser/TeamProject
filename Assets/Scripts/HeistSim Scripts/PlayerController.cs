@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     int jumpCount;
     int HPOrig;
     int itemListPos;
-    int totalValue;
+    public int totalValue;
 
     bool isPlayingSteps;
     bool isSprinting;
