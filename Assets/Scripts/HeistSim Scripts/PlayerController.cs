@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        //crouch = GetComponent<Crouch>();
+        crouch = GetComponent<Crouch>();
     }
     // Update is called once per frame
     void Update()
