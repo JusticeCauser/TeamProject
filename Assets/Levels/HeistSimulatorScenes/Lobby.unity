@@ -548,7 +548,6 @@ MonoBehaviour:
   controller: {fileID: 0}
   crouchHeight: 1
   standHeight: -1
-  crouchSpeed: 2
   crouchTransitionSpeed: 10
 --- !u!1 &1921872704
 GameObject:
