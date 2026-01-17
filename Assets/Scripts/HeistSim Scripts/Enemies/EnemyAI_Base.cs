@@ -66,8 +66,8 @@ public class EnemyAI_Base : MonoBehaviour
         startingPos = transform.position;
         stoppingDistOrig = agent.stoppingDistance;
 
-        if (gameManager.instance.player != null)
-            playerTransform = gameManager.instance.player.transform;
+        if (GameManager.instance.player != null)
+            playerTransform = GameManager.instance.player.transform;
 
         playerStateManager = playerTransform.GetComponent<PlayerStateManager>();
     }

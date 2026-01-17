@@ -2,10 +2,13 @@ using System.Drawing;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class DogAI : EnemyAI_Base
+public class DogAI : MonoBehaviour
 {
+    [SerializeField] Renderer model;
+    [SerializeField] NavMeshAgent agent;
+    [SerializeField] Animator anim;
 
-    [SerializeField] enemyAI_Guard doghandler;
+    [SerializeField] HandlerAI doghandler;
 
     [SerializeField] int faceTargetSpeed;
     [SerializeField] int FOV;
@@ -213,7 +216,7 @@ public class DogAI : EnemyAI_Base
 
     void bark()
     {
-        anim.SetTrigger("Bark");
+        //anim.SetTrigger("Bark");
         if (playerTransform == null) return;
 
         Vector3 pDir = playerTransform.position;
