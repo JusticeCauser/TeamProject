@@ -23,15 +23,17 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] Slider masterSlide;
     [SerializeField] Slider ambientSlide;
     [SerializeField] Slider sfxSlide;
+    [SerializeField] Slider sensitivitySlide;
 
 
     public float masterVolume = 1f;
     public float ambientVolume = 1f;
     public float sfxVolume = 1f;
+    public float sensitivity;
 
     float timeScaleOrig;
     
-
+     
 
     public bool isActive = false;
     
@@ -64,6 +66,12 @@ public class SettingsManager : MonoBehaviour
 
         if (sfxSlide != null) sfxSlide.SetValueWithoutNotify(sfxVolume);
         sfxSlide.onValueChanged.AddListener(setSFXVolume);
+
+        if (cameraController.instance != null)
+            sensitivity = cameraController.instance.sens;
+
+        if (sensitivitySlide != null) sensitivitySlide.SetValueWithoutNotify(sensitivity);
+        sensitivitySlide.onValueChanged.AddListener(setSensitivity);
 
         if (settingsUI != null)
             settingsUI.SetActive(false);
@@ -165,7 +173,16 @@ public class SettingsManager : MonoBehaviour
         audioManager.instance.setVolume();
 
     }
+    public void setSensitivity(float value)
+    {
+        sensitivity = value;
 
+        PlayerPrefs.SetFloat("Sensitivity", value);
+        PlayerPrefs.Save();
+
+        if (cameraController.instance != null)
+            cameraController.instance.sens = value;
+    }
     public void quitToLobby()
     {
         if (SceneManager.GetActiveScene().name == lobby) //if youre in lobby it just closes menu
