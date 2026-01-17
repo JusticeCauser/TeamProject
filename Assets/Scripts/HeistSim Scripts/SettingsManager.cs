@@ -24,17 +24,18 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] Slider ambientSlide;
     [SerializeField] Slider sfxSlide;
     [SerializeField] Slider sensitivitySlide;
+    [SerializeField] Toggle yInvertToggle;
 
 
     public float masterVolume = 1f;
     public float ambientVolume = 1f;
     public float sfxVolume = 1f;
     public float sensitivity = 300f;
+    public bool invertY = false;
+
 
     float timeScaleOrig;
     
-     
-
     public bool isActive = false;
     
 
@@ -69,6 +70,9 @@ public class SettingsManager : MonoBehaviour
 
         if (sensitivitySlide != null) sensitivitySlide.SetValueWithoutNotify(sensitivity);
         sensitivitySlide.onValueChanged.AddListener(setSensitivity);
+
+        if (yInvertToggle != null) yInvertToggle.SetIsOnWithoutNotify(invertY);
+        yInvertToggle.onValueChanged.AddListener(setInvert);
 
         if (settingsUI != null)
             settingsUI.SetActive(false);
@@ -179,6 +183,16 @@ public class SettingsManager : MonoBehaviour
 
         if (cameraController.instance != null)
             cameraController.instance.sens = value;
+    }
+    public void setInvert(bool invert)
+    {
+        invertY = invert;
+
+        PlayerPrefs.SetInt("Invert Y", invert ? 1 : 0);
+        PlayerPrefs.Save();
+
+        if(cameraController.instance != null)
+            cameraController.instance.invertY = invert;
     }
     public void quitToLobby()
     {
