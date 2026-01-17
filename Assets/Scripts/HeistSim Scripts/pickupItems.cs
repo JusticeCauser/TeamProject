@@ -1,6 +1,4 @@
 using UnityEngine;
-
-[CreateAssetMenu]
 public class pickupItems : MonoBehaviour
 {
     [SerializeField] itemStats item;
