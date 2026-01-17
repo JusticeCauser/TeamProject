@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class introButtons : MonoBehaviour
 {
 
-    [SerializeField] string lobby = "Lobby";
+    [SerializeField] string theHub = "theHub";
     
     
 
@@ -14,7 +14,7 @@ public class introButtons : MonoBehaviour
     }
     public void Play()
     {
-        SceneManager.LoadScene(lobby);
+        SceneManager.LoadScene(theHub);
 
     }
     public void Quit()
