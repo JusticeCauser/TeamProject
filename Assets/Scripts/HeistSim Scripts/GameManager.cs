@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
             retryButton.onClick.AddListener(retry);
 
         sceneName = SceneManager.GetActiveScene().name; //timer may fail here to the end of if statement due to start runtime
-        if (sceneName == "Asylum" || sceneName == "Mansion" || sceneName == "theHub")
+        if (sceneName == "Asylum" || sceneName == "Mansion")
         {
             startTimer = Time.time;
             timerOn = true;
@@ -154,7 +154,7 @@ public class GameManager : MonoBehaviour
                 break;
 
             case fail.heatTimeExpired:
-                failText.text = "You didn't make it out in time.";
+                failText.text = "You didn't make it out in time. Backup arrived.";
                 break;
         }
            
