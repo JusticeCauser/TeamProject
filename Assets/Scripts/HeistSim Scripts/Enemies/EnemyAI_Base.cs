@@ -31,7 +31,7 @@ public class EnemyAI_Base : MonoBehaviour
     float roamTimer;
     float angleToPlayer;
     float stoppingDistOrig;
-    float alertedTimer;
+    public float alertedTimer;
     float suspiciousTimer;
     float lookTimer;
 
@@ -51,12 +51,12 @@ public class EnemyAI_Base : MonoBehaviour
     bool playerInSightRange;
     [HideInInspector] public bool playerInHearingRange;
 
-    Vector3 playerDir;
-    Vector3 alertTargetPos;
-    Vector3 alertLookDir;
-    Vector3 lastAlertPosition;
-    Vector3 lastHeardPosition;
-    Vector3 startingPos;
+    protected Vector3 playerDir;
+    protected Vector3 alertTargetPos;
+    protected Vector3 alertLookDir;
+    protected Vector3 lastAlertPosition;
+    protected Vector3 lastHeardPosition;
+    protected Vector3 startingPos;
 
     protected Transform playerTransform;
 
@@ -66,11 +66,10 @@ public class EnemyAI_Base : MonoBehaviour
         startingPos = transform.position;
         stoppingDistOrig = agent.stoppingDistance;
 
-        if (gameManager.instance.player != null)
-            playerTransform = gameManager.instance.player.transform;
+        if (GameManager.instance.player != null)
+            playerTransform = GameManager.instance.player.transform;
 
         playerStateManager = playerTransform.GetComponent<PlayerStateManager>();
-        Debug.Log("canHearPlayer called. noise=" + playerStateManager.noiseLevelChecker());
     }
 
     // Update is called once per frame
@@ -241,21 +240,23 @@ public class EnemyAI_Base : MonoBehaviour
 
         float noiseLevel = playerStateManager.noiseLevelChecker();
 
+        bool seePlayer = canSeePlayer();
         if(noiseLevel <= 0)
         {
             return false;
         }
         if(noiseLevel >= 2 && noiseLevel < 5)
         {
-            if(!canSeePlayer() && state != guardState.Suspicious)
+            if (seePlayer)
+            {
+                state = guardState.Chase;
+                return true;
+            }
+            if (state != guardState.Suspicious)
             {
                 suspiciousTimer = 0f;
                 previousState = state;
                 state = guardState.Suspicious;
-            }
-            if(canSeePlayer())
-            {
-                state = guardState.Chase;
             }
         }
         if(noiseLevel >= 5 && noiseLevel <= 10)
@@ -271,7 +272,9 @@ public class EnemyAI_Base : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            //Debug.Log("EnteringTrigger");
             playerInSightRange = true;
+            //playerInHearingRange = true;
         }
     }
 
@@ -280,6 +283,7 @@ public class EnemyAI_Base : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInSightRange = false;
+            playerInHearingRange = false;
         }
     }
     void facePlayer()
