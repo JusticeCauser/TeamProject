@@ -6,18 +6,16 @@ public class HandlerAI : EnemyAI_Base
 {
     [SerializeField] guardType type;
 
-    [SerializeField] enemyAI_Dog dog;
-    [SerializeField] enemyAI_Dog dog2;
+    [SerializeField] DogAI dog;
+    [SerializeField] DogAI dog2;
 
-    Vector3 alertTargetPos;
-    Vector3 alertLookDir;
     public enum guardType
     {
         Handler,
         Elite_Handler
     }
 
-    void onBarkAlert(Vector3 position, Vector3 anchor)
+    public void onBarkAlert(Vector3 position, Vector3 anchor)
     {
         alertTargetPos = position;
 
@@ -32,8 +30,16 @@ public class HandlerAI : EnemyAI_Base
         //moves guard toward anchor
         agent.stoppingDistance = 0;
         agent.SetDestination(alertTargetPos);
-        //sets state to alerted
-        state = guardState.Alerted;
+        //sets state to searching
+        state = guardState.Search;
         alertedTimer = 0;
+    }
+
+    public void onRadioIn(Vector3 position)
+    {
+        alertTargetPos = position;
+
+        agent.SetDestination(alertTargetPos);
+        state = guardState.Search;
     }
 }
