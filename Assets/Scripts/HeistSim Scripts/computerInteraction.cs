@@ -1,14 +1,14 @@
 using UnityEngine;
 using TMPro;
 
-public class pegboardInteraction : MonoBehaviour
+public class computerInteraction : MonoBehaviour
 {
     private hubManager hubManager;
     private bool playerInRange = false;
 
     [SerializeField] TMP_Text promptText;
     [SerializeField] GameObject backButton;
-    [SerializeField] GameObject loadoutPanel;
+    [SerializeField] GameObject pcPanel;
     // later, grayed out gear, purchase options (maybe from PC, need to discuss)
 
     void Start()
@@ -17,20 +17,20 @@ public class pegboardInteraction : MonoBehaviour
 
         if (promptText != null)
             promptText.gameObject.SetActive(false);
-        if (loadoutPanel != null)
-            loadoutPanel.SetActive(false);
+        if (pcPanel != null)
+            pcPanel.SetActive(false);
     }
 
     private void Update()
     {
         // hide loadout panel if player exits 'back'
-        if(!hubManager.IsInInteraction() && loadoutPanel != null && loadoutPanel.activeSelf)
+        if (!hubManager.IsInInteraction() && pcPanel != null && pcPanel.activeSelf)
         {
-            loadoutPanel.SetActive(false);
+            pcPanel.SetActive(false);
         }
 
         // hide prompt if in interaction
-        if(hubManager.IsInInteraction())
+        if (hubManager.IsInInteraction())
         {
             if (promptText != null)
                 promptText.gameObject.SetActive(false);
@@ -43,7 +43,7 @@ public class pegboardInteraction : MonoBehaviour
 
         bool isLookingAt = false;
 
-        if(playerInRange)
+        if (playerInRange)
         {
             Vector3 toBoard = (transform.position - Camera.main.transform.position).normalized;
             float dot = Vector3.Dot(Camera.main.transform.forward, toBoard);
@@ -53,17 +53,17 @@ public class pegboardInteraction : MonoBehaviour
         if (promptText != null)
             promptText.gameObject.SetActive(isLookingAt);
 
-        if(isLookingAt && Input.GetKeyDown(KeyCode.E))
+        if (isLookingAt && Input.GetKeyDown(KeyCode.E))
         {
-            // pegboard view only if not in process
-            hubManager.EnterInteraction(hubManager.pegboardTarget, backButton, null, null);
+            // PC view only if not in process
+            hubManager.EnterInteraction(hubManager.computerTarget, backButton, null, null);
 
             //if (promptText != null)
             //    promptText.gameObject.SetActive(true);
 
-            // show loadout panel separately
-            if (loadoutPanel != null)
-                loadoutPanel.SetActive(true);
+            // show pc panel separately
+            if (pcPanel != null)
+                pcPanel.SetActive(true);
         }
     }
 
@@ -75,7 +75,7 @@ public class pegboardInteraction : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             playerInRange = false;
 
