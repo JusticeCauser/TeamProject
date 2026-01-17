@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class hubManager : MonoBehaviour
 {
+    [Header("Mission Tracking")]
+    private string selectedMission = "";
+    private bool inMissionFlow = false;
+   
     [Header("Camera Settings")]
     public Camera playerCamera;
     public float transitionSpeed = 3f;
@@ -32,9 +36,12 @@ public class hubManager : MonoBehaviour
     [Header("UI References")]
     public GameObject missionConfirmPanel;
     public GameObject loadoutConfirmPanel;
+    public GameObject loadoutPanel;
     public GameObject trunkPanel;
     public GameObject hubBackButton;
-    
+    public GameObject mission1Button;
+    public GameObject mission2Button;
+
     public MonoBehaviour playerController;
 
     private void Start()
@@ -148,6 +155,9 @@ public class hubManager : MonoBehaviour
         if (currentMission1Button != null) currentMission1Button.SetActive(false);
         if (currentMission2Button != null) currentMission2Button.SetActive(false);
 
+        // hide loadout panel when going back
+        if (loadoutPanel != null) loadoutPanel.SetActive(false);
+
         // go back to previous/exit
         if(previousTarget != null)
         {
@@ -177,6 +187,16 @@ public class hubManager : MonoBehaviour
     {
         isInInteraction = false;
         currentTarget = null;
+        inMissionFlow = false;
+
+        // reset loadout selection when exiting flow
+        loadoutManager lm = FindFirstObjectByType<loadoutManager>();
+        if (lm != null)
+            lm.ResetSelection();
+
+        // then hide loadout panels? what the fuck
+        if(loadoutPanel != null)
+            loadoutPanel.SetActive(false);
 
         // show player renderer when viewing interactive
         Renderer playerRenderer = playerController.GetComponent<Renderer>();
@@ -224,6 +244,10 @@ public class hubManager : MonoBehaviour
 
         EnterInteraction(pegboardTarget, hubBackButton, null, null);
 
+        // show loadout panel when entering through mission flow
+        if (loadoutPanel != null)
+            loadoutPanel.SetActive(true);
+
         //currentTarget = pegboardTarget;
 
         //// hide confirmation panel
@@ -241,10 +265,55 @@ public class hubManager : MonoBehaviour
             loadoutConfirmPanel.SetActive(false);
 
         // transition to trunk shot
-        EnterInteraction(trunkTarget, hubBackButton, null, null);
+        EnterInteraction(trunkTarget, null, null, null); // no back button here, handled by NO button
 
         // show trunk panel
         if (trunkPanel != null)
             trunkPanel.SetActive(true);
+    }
+
+    public void ReturnToPegboardFromTrunk()
+    {
+        // hide trunk panel
+        if (trunkPanel != null)
+            trunkPanel.SetActive(false);
+
+        // set directly to pegboard view
+        currentTarget = pegboardTarget;
+
+        previousTarget = whiteboardTarget;
+        previousBackButton = hubBackButton;
+        previousMission1Button = mission1Button;
+        previousMission2Button = mission2Button;
+
+        //// transition cam back to pegboard
+        //EnterInteraction(pegboardTarget, hubBackButton, null, null);
+
+        // show back button
+        if (hubBackButton != null)
+            hubBackButton.SetActive(true);
+
+        // show loadout panel
+        if (loadoutPanel != null)
+            loadoutPanel.SetActive(true);
+
+        // tell loadout manager deselect last tool
+        loadoutManager lm = FindFirstObjectByType<loadoutManager>();
+        if (lm != null)
+            lm.DeselectLastTool();
+    }
+
+    public void SelectMission(string missionName)
+    {
+        selectedMission = missionName;
+        inMissionFlow = true;
+
+        if (missionConfirmPanel != null)
+            missionConfirmPanel.SetActive(true);
+    }
+
+    public bool IsInMissionFlow()
+    {
+        return inMissionFlow;
     }
 }

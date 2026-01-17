@@ -9,8 +9,8 @@ public class loadoutManager : MonoBehaviour
     public Button[] toolButtons; //needs placeholders assigned, 10 gadgets so far
 
     [Header("UI")]
-    public GameObject confirmLoadoutButton;
     public GameObject loadoutConfirmPanel;
+    public GameObject loadoutPanel;
 
     [Header("Selection Settings")]
     public int maxTools = 3; // maybe need to be default 4, but for now 3 for easier testing
@@ -22,10 +22,6 @@ public class loadoutManager : MonoBehaviour
 
     private void Start()
     {
-        // hide confirm buttons at starrt
-        if (confirmLoadoutButton != null)
-            confirmLoadoutButton.SetActive(false);
-
         // set up button listeners
         for(int i = 0; i < toolButtons.Length; i++)
         {
@@ -36,6 +32,11 @@ public class loadoutManager : MonoBehaviour
 
     void ToggleTool(int toolIndex)
     {
+        // only allow selection if in mission flow
+        hubManager hm = FindFirstObjectByType<hubManager>();
+        if (hm != null && !hm.IsInMissionFlow())
+            return;
+
         // get tool name from button text
         string toolName = toolButtons[toolIndex].GetComponentInChildren<TMP_Text>().text;
 
@@ -63,10 +64,18 @@ public class loadoutManager : MonoBehaviour
 
     void UpdateConfirmButton()
     {
+        bool allToolsSelected = selectedToolIndices.Count == maxTools;
+
         // show confirmbutton only if max selected
-        if(confirmLoadoutButton != null)
+        if(loadoutConfirmPanel != null)
         {
-            confirmLoadoutButton.SetActive(selectedToolIndices.Count == maxTools);
+            loadoutConfirmPanel.SetActive(allToolsSelected);
+        }
+
+        // hide loadout panel when confirm panel shows
+        if (loadoutPanel != null)
+        {
+            loadoutPanel.SetActive(!allToolsSelected);
         }
     }
 
@@ -92,5 +101,17 @@ public class loadoutManager : MonoBehaviour
         selectedToolIndices.Clear();
         selectedToolNames.Clear();
         UpdateConfirmButton();
+    }
+
+    public void DeselectLastTool()
+    {
+        if (selectedToolIndices.Count > 0)
+        {
+            int lastIndex = selectedToolIndices[selectedToolIndices.Count - 1];
+            selectedToolIndices.RemoveAt(selectedToolIndices.Count - 1);
+            selectedToolNames.RemoveAt(selectedToolNames.Count - 1);
+            toolButtons[lastIndex].GetComponent<Image>().color = unselectedColor;
+            UpdateConfirmButton();
+        }
     }
 }
