@@ -130,7 +130,7 @@ public class audioManager : MonoBehaviour
                 ambientAudioType(ambientType.intro);
                 break;
 
-            case "Lobby":
+            case "theHub":
                 ambientAudioType(ambientType.lobby);
                 break;
 
