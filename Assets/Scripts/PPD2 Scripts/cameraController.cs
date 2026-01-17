@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class cameraController : MonoBehaviour
 {
+    public static cameraController instance;
     // Levi edits/additions
     // changing Serialized Fields to public so I can access in settingsManager.cs
     public float sens;
@@ -25,6 +26,8 @@ public class cameraController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        instance = this;
+      
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
