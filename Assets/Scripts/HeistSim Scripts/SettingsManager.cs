@@ -10,7 +10,7 @@ public class SettingsManager : MonoBehaviour
 
     public static SettingsManager instance;
     
-    [SerializeField] string lobby = "lobby";
+    [SerializeField] string lobby = "theHub";
     [SerializeField] string title = "IntroScene";
 
     [Header("Settings UI")]
@@ -110,9 +110,7 @@ public class SettingsManager : MonoBehaviour
 
     }
     public void openSettings()
-    {
-        if (SceneManager.GetActiveScene().name != title) // so you cant open menu in introscene
-        {
+    {      
             if (settingsUI != null)
             {
                 settingsUI.SetActive(true);
@@ -122,8 +120,7 @@ public class SettingsManager : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
 
-            }
-        }
+            }       
     }
 
     public void closeSettings()
