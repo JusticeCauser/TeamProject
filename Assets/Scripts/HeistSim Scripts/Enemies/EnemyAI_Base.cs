@@ -59,6 +59,7 @@ public class EnemyAI_Base : MonoBehaviour
     Vector3 startingPos;
 
     protected Transform playerTransform;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -69,6 +70,7 @@ public class EnemyAI_Base : MonoBehaviour
             playerTransform = gameManager.instance.player.transform;
 
         playerStateManager = playerTransform.GetComponent<PlayerStateManager>();
+        Debug.Log("canHearPlayer called. noise=" + playerStateManager.noiseLevelChecker());
     }
 
     // Update is called once per frame
@@ -142,19 +144,20 @@ public class EnemyAI_Base : MonoBehaviour
         {
             agent.isStopped = true;
             float newNoise = playerStateManager.noiseLevelChecker();
+
             if(newNoise > 2f)
             { 
-                state = guardState.Alerted;
-            }
-            else if (suspiciousTimer >= suspiciousMax)
-            {
                 agent.isStopped = false;
-                suspiciousTimer = 0f;
-                state = previousState;
-
+                state = guardState.Alerted;
+                return;
             }
         }
-        
+        else if (suspiciousTimer >= suspiciousMax)
+        {
+            agent.isStopped = false;
+            suspiciousTimer = 0f;
+            state = previousState;
+        }
     }
     void PatrolBehavior()
     {
