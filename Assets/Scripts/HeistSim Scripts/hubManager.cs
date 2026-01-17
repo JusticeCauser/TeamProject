@@ -13,7 +13,7 @@ public class hubManager : MonoBehaviour
     public Transform computerTarget;
 
     private Transform originalCameraParent;
-    private Vector3 originalLocalPosiiton;
+    private Vector3 originalLocalPosition;
     private Quaternion originalLocalRotation;
 
     private bool isInInteraction = false;
@@ -31,6 +31,8 @@ public class hubManager : MonoBehaviour
 
     [Header("UI References")]
     public GameObject missionConfirmPanel;
+    public GameObject loadoutConfirmPanel;
+    public GameObject trunkPanel;
     public GameObject hubBackButton;
     
     public MonoBehaviour playerController;
@@ -38,7 +40,7 @@ public class hubManager : MonoBehaviour
     private void Start()
     {
         originalCameraParent = playerCamera.transform.parent;
-        originalLocalPosiiton = playerCamera.transform.localPosition;
+        originalLocalPosition = playerCamera.transform.localPosition;
         originalLocalRotation = playerCamera.transform.localRotation;
     }
 
@@ -192,7 +194,7 @@ public class hubManager : MonoBehaviour
 
         // return cam to player
         playerCamera.transform.SetParent(originalCameraParent);
-        playerCamera.transform.localPosition = originalLocalPosiiton;
+        playerCamera.transform.localPosition = originalLocalPosition;
         playerCamera.transform.localRotation = originalLocalRotation;
 
         // Hide cursor
@@ -230,5 +232,19 @@ public class hubManager : MonoBehaviour
         //{
         //    confirmPanel.SetActive(false);
         //}
+    }
+
+    public void ProceedToTrunk()
+    {
+        // hide confirmation panel
+        if (loadoutConfirmPanel != null)
+            loadoutConfirmPanel.SetActive(false);
+
+        // transition to trunk shot
+        EnterInteraction(trunkTarget, hubBackButton, null, null);
+
+        // show trunk panel
+        if (trunkPanel != null)
+            trunkPanel.SetActive(true);
     }
 }
