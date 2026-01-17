@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
 
     bool isPlayingSteps;
     bool isSprinting;
+    bool isHiding;
 
     Vector3 moveDir; //vector made for movement x,y,z. wasd. instead of multiple if statements.
     Vector3 playerVel; //separately handle gravity and jump. offers more control
@@ -46,7 +47,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (SettingsManager.instance == null || !SettingsManager.instance.isActive)
+        if (isHiding || SettingsManager.instance == null || !SettingsManager.instance.isActive)
         {
             movement();
         }
@@ -112,12 +113,20 @@ public class PlayerController : MonoBehaviour
             //SettingsManager.instance.gameOver(); //not yet made
         }
     }
-
     public void tazed()
     {
 
     }
-
+    void hide()
+    {
+        isHiding = true;
+       controller.enabled = false;
+    }
+    void exitHide()
+    {
+        isHiding = false;
+        controller.enabled = true;
+    }
     public void applyUpgrades(upgradeData upgrade)
     {
         //if we want to carry over player upgrades
