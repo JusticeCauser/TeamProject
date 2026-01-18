@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[RequireComponent(typeof(playerController))]
+[RequireComponent(typeof(PlayerController))]
 [RequireComponent(typeof(CharacterController))]
 public class GrapplingHook : MonoBehaviour
 {
@@ -28,7 +28,7 @@ public class GrapplingHook : MonoBehaviour
     [SerializeField] float lineExtendSpeed = 150f;
     [SerializeField] float lineWidth = 0.04f;
 
-    playerController player;
+    PlayerController player;
     CharacterController controller;
     Camera mainCam;
 
@@ -47,7 +47,7 @@ public class GrapplingHook : MonoBehaviour
 
     void Awake()
     {
-        player = GetComponent<playerController>();
+        player = GetComponent<PlayerController>();
         controller = GetComponent<CharacterController>();
 
         if (lineRenderer == null)
@@ -148,7 +148,7 @@ public class GrapplingHook : MonoBehaviour
         }
     }
     void HandleInput()
-    {
+    { //comment out 152-155 to test in gadgetry scene
         bool hasGrappler = gadgetInventory.instance != null && gadgetInventory.instance.HasGadget("Grappler");
 
         if (!hasGrappler)
@@ -199,14 +199,14 @@ public class GrapplingHook : MonoBehaviour
     {
         RaycastHit hit;
 
-        if(requireGrapplePoints)
+        if (requireGrapplePoints)
         {
             // only grapple GrapplePoint
-            if(Physics.Raycast(mainCam.transform.position, mainCam.transform.forward, out hit, maxGrappleDistance, grapplePointLayer))
+            if (Physics.Raycast(mainCam.transform.position, mainCam.transform.forward, out hit, maxGrappleDistance, grapplePointLayer))
             {
                 GrapplePoint pointComponent = hit.collider.GetComponent<GrapplePoint>();
 
-                if(pointComponent != null && pointComponent.IsActive())
+                if (pointComponent != null && pointComponent.IsActive())
                 {
                     currentTargetPoint = pointComponent;
                     grapplePoint = pointComponent.GetGrapplePosition();
@@ -217,7 +217,7 @@ public class GrapplingHook : MonoBehaviour
         else
         {
             // grapple on any surface (if toggled)
-            if(Physics.Raycast(mainCam.transform.position, mainCam.transform.forward, out hit, maxGrappleDistance, grappleableLayers))
+            if (Physics.Raycast(mainCam.transform.position, mainCam.transform.forward, out hit, maxGrappleDistance, grappleableLayers))
             {
                 // check if we hit a grapple point
                 GrapplePoint pointComponent = hit.collider.GetComponent<GrapplePoint>();
@@ -230,23 +230,24 @@ public class GrapplingHook : MonoBehaviour
                 else
                 {
                     grapplePoint = hit.point;
-                    currentTargetPoint = null;                   
+                    currentTargetPoint = null;
                 }
                 StartGrappleSequence();
             }
-        // original function
-        //if (Physics.Raycast(mainCam.transform.position, mainCam.transform.forward, out hit, maxGrappleDistance, grappleableLayers))
-        //{
-        //    grapplePoint = hit.point;
-        //    lineExtending = true;
-        //    currentLineLength = 0f;
-        //    ropeLength = Vector3.Distance(transform.position, grapplePoint);
-        //    lineRenderer.enabled = true;
+            // original function
+            //if (Physics.Raycast(mainCam.transform.position, mainCam.transform.forward, out hit, maxGrappleDistance, grappleableLayers))
+            //{
+            //    grapplePoint = hit.point;
+            //    lineExtending = true;
+            //    currentLineLength = 0f;
+            //    ropeLength = Vector3.Distance(transform.position, grapplePoint);
+            //    lineRenderer.enabled = true;
 
-        //    // inherit current velocity for smooth transition
-        //    grappleVelocity = player.GetVelocity() * 0.5f;
-        //    swingVelocity = Vector3.zero;
+            //    // inherit current velocity for smooth transition
+            //    grappleVelocity = player.GetVelocity() * 0.5f;
+            //    swingVelocity = Vector3.zero;
         }
+    
     }
 
     void StartGrappleSequence()
