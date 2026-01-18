@@ -231,6 +231,13 @@ public class DogAI : MonoBehaviour
         GameManager.instance.alertSys.raiseBarkAlert(forwardAnchor.position, forwardAnchor.forward, alertRadius);
     }
 
+    public void onRecall(Vector3 position)
+    {
+        Vector3 returnPos = position;
+
+        agent.SetDestination(returnPos);
+    }
+
     void AlertedBehavior()
     {
         if (canSeePlayer())
