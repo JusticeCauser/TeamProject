@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class cameraController : MonoBehaviour
 {
+    public static cameraController instance;
     // Levi edits/additions
     // changing Serialized Fields to public so I can access in settingsManager.cs
     public float sens;
@@ -15,7 +16,7 @@ public class cameraController : MonoBehaviour
 
     [Header("----- Movement Tilt -----")]
     [SerializeField] float moveTiltAmount = 0f; // Levi change - off by default
-    [SerializeField] float moveTiltSpeed = 8f;
+   // [SerializeField] float moveTiltSpeed = 8f;
 
     public bool IsMovementTiltEnabled => moveTiltAmount > 0f;
 
@@ -25,6 +26,8 @@ public class cameraController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        instance = this;
+      
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -46,19 +49,19 @@ public class cameraController : MonoBehaviour
 
         camRotX = Mathf.Clamp(camRotX, lockVertMin, lockVertMax);
 
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
-        float targetMoveTilt = -horizontalInput * moveTiltAmount;
-        currentMoveTilt = Mathf.Lerp(currentMoveTilt, targetMoveTilt, Time.deltaTime * moveTiltSpeed);
+        //float horizontalInput = Input.GetAxisRaw("Horizontal");
+        //float targetMoveTilt = -horizontalInput * moveTiltAmount;
+        //currentMoveTilt = Mathf.Lerp(currentMoveTilt, targetMoveTilt, Time.deltaTime * moveTiltSpeed);
 
         transform.localRotation = Quaternion.Euler(camRotX, 0, wallTiltZ + slideTiltZ + currentMoveTilt);
 
         transform.parent.Rotate(Vector3.up * mouseX);
     }
 
-    public void SetMovementTilt(bool enabled)
-    {
-        moveTiltAmount = enabled ? 2f : 0;
-    }
+    //public void SetMovementTilt(bool enabled)
+    //{
+    //    moveTiltAmount = enabled ? 2f : 0;
+    //}
 
     public void AdjustPitch(float delta)
     {
