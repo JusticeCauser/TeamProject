@@ -70,6 +70,8 @@ public class PlayerController : MonoBehaviour
 
     void movement()
     {
+        if (isHiding == true) return;
+
         float actualSpeed = speed; // needed for conversion
 
         if (controller.isGrounded)
@@ -84,7 +86,6 @@ public class PlayerController : MonoBehaviour
             actualSpeed = crouchSpeed;
 
         controller.Move(moveDir * actualSpeed * Time.deltaTime); //makes it frame rate independent. one second to be one second. any time dealing with input always time delta time
-
 
         jump();
         controller.Move(playerVel * Time.deltaTime); //using jump
