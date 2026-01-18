@@ -189,7 +189,6 @@ MonoBehaviour:
   wallTiltZ: 0
   slideTiltZ: 0
   moveTiltAmount: 1.5
-  moveTiltSpeed: 8
 --- !u!114 &5375564850620277480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,7 +220,7 @@ GameObject:
   - component: {fileID: 3208948494003773320}
   - component: {fileID: 508957861487470888}
   - component: {fileID: 1490800043490925948}
-  - component: {fileID: -2167486896614264719}
+  - component: {fileID: 6099111275490944047}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -374,8 +373,11 @@ MonoBehaviour:
   gravity: 35
   audSteps: []
   audJump: []
+  maxInventory: 7
+  itemList: []
+  totalValue: 0
   crouchSpeed: 2
---- !u!114 &-2167486896614264719
+--- !u!114 &6099111275490944047
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -384,16 +386,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 3377885465133513441}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9ac45634569ded4bb9b2e50c6cfe840, type: 3}
+  m_Script: {fileID: 11500000, guid: aa5231c235164594194c07435ea6e48f, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HackerInteractor
-  hackKey: 104
-  interactKey: 101
-  range: 3
-  keypadLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  requireLineOfSight: 1
-  keypadPanel: {fileID: 0}
-  hackPanel: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::Interactor
+  facingAxis: 0
+  cam: {fileID: 1640881659612375221}
   promptUI: {fileID: 0}
+  range: 4
+  chestHeight: 1
+  interactMask:
+    serializedVersion: 2
+    m_Bits: 384
+  maxAngle: 55
+  requireLineOfSight: 1
+  debugDraw: 1
+  uiLocked: 0
