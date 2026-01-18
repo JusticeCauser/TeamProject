@@ -18,6 +18,7 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] Button backButton;
     [SerializeField] Button quitButton;
     [SerializeField] Button quitGameButton;
+    
 
     [Header("-----Audio Sliders-----")]
     [SerializeField] Slider masterSlide;
@@ -77,10 +78,24 @@ public class SettingsManager : MonoBehaviour
         if (settingsUI != null)
             settingsUI.SetActive(false);
 
+
         if (backButton != null)
+        {
+            backButton.onClick.AddListener(menuButtonSound);
             backButton.onClick.AddListener(closeSettings);
+        }
 
+        if (quitButton != null)
+        {
+            backButton.onClick.AddListener(menuButtonSound);
+            backButton.onClick.AddListener(quitToLobby);
+        }
 
+        if (quitGameButton != null)
+        {
+            backButton.onClick.AddListener(menuButtonSound);
+            backButton.onClick.AddListener(quitToTitle);
+        }
     }
     private void Update()
     {
@@ -142,6 +157,17 @@ public class SettingsManager : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        if(SceneManager.GetActiveScene().name != title) //makes it to where you have cursor in intro scene after going into settings multiple times
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
     }
 
     public void setMasterVolume(float volume)
@@ -193,6 +219,11 @@ public class SettingsManager : MonoBehaviour
 
         if(cameraController.instance != null)
             cameraController.instance.invertY = invert;
+    }
+    void menuButtonSound()
+    {
+        if (audioManager.instance != null)
+            audioManager.instance.playButtonSound();
     }
     public void quitToLobby()
     {
