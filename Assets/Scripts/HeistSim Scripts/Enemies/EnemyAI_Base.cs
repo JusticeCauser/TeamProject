@@ -13,6 +13,7 @@ public class EnemyAI_Base : MonoBehaviour
     [SerializeField] Renderer model;
     [SerializeField] protected NavMeshAgent agent;
     [SerializeField] Animator anim;
+    public Transform[] patrolPoints;
     //These fields allow the enemy to have speed, sight, and other important things - like time spent alert or searching
     [SerializeField] int animTranSpeed;
     [SerializeField] int faceTargetSpeed;
@@ -34,6 +35,7 @@ public class EnemyAI_Base : MonoBehaviour
     public float alertedTimer;
     float suspiciousTimer;
     float lookTimer;
+    protected int destPatrolPoints;
 
     public enum guardState
     {
@@ -57,6 +59,8 @@ public class EnemyAI_Base : MonoBehaviour
     protected Vector3 lastAlertPosition;
     protected Vector3 lastHeardPosition;
     protected Vector3 startingPos;
+    protected Vector3 pointApos;
+    protected Vector3 pointBpos;
 
     protected Transform playerTransform;
 
@@ -127,6 +131,13 @@ public class EnemyAI_Base : MonoBehaviour
                 break;
         }
     }
+    void nextPoint()
+    {
+        if (patrolPoints == null || patrolPoints.Length == 0) return;
+
+        agent.SetDestination(patrolPoints[destPatrolPoints].position);
+        destPatrolPoints = (destPatrolPoints + 1) % patrolPoints.Length;
+    }
     void SearchBehavior()
     {
 
@@ -160,7 +171,26 @@ public class EnemyAI_Base : MonoBehaviour
     }
     void PatrolBehavior()
     {
+        destPatrolPoints = 0;
+        if (patrolPoints != null && patrolPoints.Length > 0)
+        {
+            {
+                agent.isStopped = false;
+                agent.SetDestination(patrolPoints[destPatrolPoints].position);
+                destPatrolPoints = (destPatrolPoints + 1) % patrolPoints.Length;
+                state = guardState.Patrol;
+            }
+        }
+        if (canSeePlayer())
+        {
+            state = guardState.Chase;
+        }
+        if (agent.pathPending) return;
 
+        if(agent.remainingDistance <= agent.stoppingDistance + 0.1f)
+        {
+            nextPoint();
+        }
     }
     void IdleBehavior()
     {

@@ -15,18 +15,19 @@ public enum playerState
 public class PlayerStateManager : MonoBehaviour
 {
     public playerState currentState = playerState.Idle;
+
     [SerializeField][Range(0,10)] float noiseLevel;
+    
+    PlayerController player;
+
     bool isCrouching;
-
-    bool isHiding;
-
     bool isMoving;
-    public float speedMult { get; private set; }
+    bool isHiding;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        player = GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -34,6 +35,14 @@ public class PlayerStateManager : MonoBehaviour
     {
         crouching();
         moving();
+        hiding();
+        if (isHiding)
+        {
+            currentState = playerState.Hiding;
+            isMoving = false;
+            noiseLevel = 0;
+            return;
+        }
         noiseLevelChecker();
 
         switch (currentState)
@@ -70,7 +79,7 @@ public class PlayerStateManager : MonoBehaviour
                 {
                     currentState = playerState.Sneaking;
                 }
-                break;
+                    break;
 
             case playerState.Sneaking:
 
@@ -108,7 +117,7 @@ public class PlayerStateManager : MonoBehaviour
                 break;
 
             case playerState.Moving:
-                if (isMoving == false)
+                if (isMoving != true)
                 {
                     currentState = playerState.Idle;
                 }
@@ -123,8 +132,11 @@ public class PlayerStateManager : MonoBehaviour
                 break;
 
             case playerState.Hiding:
-
-                break;
+                if (!isHiding)
+                {
+                    currentState = isMoving ? playerState.Moving : playerState.Idle;
+                }
+                    break;
         }
 
     }
@@ -139,6 +151,8 @@ public class PlayerStateManager : MonoBehaviour
 
     void moving()
     {
+        if (isHiding == true) return;
+
         if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
         {
             isMoving = true;
@@ -146,6 +160,18 @@ public class PlayerStateManager : MonoBehaviour
         else
         {
             isMoving = false;
+        }
+    }
+
+    void hiding()
+    {
+        if (player.isHiding == true)
+        {
+            isHiding = true;
+        }
+        else
+        {
+            isHiding = false;
         }
     }
     
