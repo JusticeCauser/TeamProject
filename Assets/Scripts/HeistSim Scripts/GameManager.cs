@@ -143,6 +143,7 @@ public class GameManager : MonoBehaviour
     { //capture, if not out in 60 seconds from HEAT timer
 
         failReason = reason;
+
         if (timerOn)
         {
             endTimer = Time.time - startTimer;
