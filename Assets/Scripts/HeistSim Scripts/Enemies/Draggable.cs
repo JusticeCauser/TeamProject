@@ -23,11 +23,29 @@ public class Draggable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(!playerInRange || player == null || enemy == null) return;
+
+        bool canDrag = enemy.isKnockedOut;
+
+        if (prompt != null)
+        {
+            prompt.gameObject.SetActive(canDrag);
+        }
+
+        if (!canDrag) return;
+
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            if (!player.isDragging)
+                player.startDrag(enemy);
+            else if (player.isDragging)
+                player.stopDrag();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!other.CompareTag("Player")) return;
         player = other.GetComponent<PlayerController>();
 
         playerInRange = (player != null);
@@ -42,14 +60,15 @@ public class Draggable : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
 
+        if (player != null && player.isDragging)
+        {
+            player.stopDrag();
+        }
+
         playerInRange = false;
         player = null;
 
         if (prompt != null)
             prompt.gameObject.SetActive(false);
-    }
-    void startDrag()
-    {
-        
     }
 }
