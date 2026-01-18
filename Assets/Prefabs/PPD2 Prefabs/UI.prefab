@@ -959,14 +959,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33b323d0c4560d74e9d65d818f07a818, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::gameManager
+  levelGen: {fileID: 0}
+  useProcGen: 0
   menuActive: {fileID: 0}
   menuPause: {fileID: 7199329321891855548}
   menuWin: {fileID: 924839763804551571}
   menuLose: {fileID: 2099293220128325636}
   menuSettings: {fileID: 424859801623380348}
   menuStats: {fileID: 7617631674865968578}
-  menuCustomization: {fileID: 6762156121056865578}
-  menuCheats: {fileID: 8783922841904573076}
   gameGoalCountText: {fileID: 2170487466776592488}
   alertSys: {fileID: 1438257196486527163}
   player: {fileID: 0}
@@ -974,13 +974,8 @@ MonoBehaviour:
   playerHPFrontBar: {fileID: 3847680261820766159}
   playerHPBackBar: {fileID: 8266581201016899926}
   playerDamageScreen: {fileID: 192400952000012819}
-  playerHealScreen: {fileID: 8594692443799127877}
-  poisonIcon: {fileID: 3400623481034495583}
-  poisonRing: {fileID: 1994927764940953356}
   stunIcon: {fileID: 8409423255911110798}
   stunRing: {fileID: 7183671952099139429}
-  frostIcon: {fileID: 7384311377709861362}
-  frostRing: {fileID: 8010332076526661884}
   isPaused: 0
 --- !u!114 &8550285520405596353
 MonoBehaviour:
