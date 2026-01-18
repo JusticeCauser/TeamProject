@@ -71,6 +71,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup
 
     private void Awake()
     {
+        controller = GetComponent<CharacterController>();
         //if(instance == null)
         //{
             //instance = this;
