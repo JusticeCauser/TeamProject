@@ -66,14 +66,14 @@ public class DogAI : MonoBehaviour
 
         startingPos = (doghandler != null) ? doghandler.transform.position : transform.position;
         stoppingDistOrig = agent.stoppingDistance;
-        if (gameManager.instance.player != null)
-            playerTransform = gameManager.instance.player.transform;
+        if (GameManager.instance.player != null)
+            playerTransform = GameManager.instance.player.transform;
     }
 
     void Update()
     {
         applyStateMovement();
-        locomotionAnim();
+        //locomotionAnim();
 
         switch (state)
         {
@@ -91,12 +91,12 @@ public class DogAI : MonoBehaviour
         }
     }
 
-    void locomotionAnim()
-    {
-        float agentCurSpeed = agent.velocity.magnitude / agent.speed;
-        float agentSpeedAnim = anim.GetFloat("Speed");
-        anim.SetFloat("Speed", Mathf.Lerp(agentSpeedAnim, agentCurSpeed, Time.deltaTime * animTranSpeed));
-    }
+    //void locomotionAnim()
+    //{
+    //    float agentCurSpeed = agent.velocity.magnitude / agent.speed;
+    //    float agentSpeedAnim = anim.GetFloat("Speed");
+    //    anim.SetFloat("Speed", Mathf.Lerp(agentSpeedAnim, agentCurSpeed, Time.deltaTime * animTranSpeed));
+    //}
     void applyStateMovement()
     {
         switch (state)

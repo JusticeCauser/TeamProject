@@ -36,13 +36,14 @@ public class PlayerController : MonoBehaviour
 
     bool isPlayingSteps;
     bool isSprinting;
-    bool isHiding;
+    public bool isHiding;
 
     Vector3 moveDir; //vector made for movement x,y,z. wasd. instead of multiple if statements.
     Vector3 playerVel; //separately handle gravity and jump. offers more control
 
     [SerializeField] float crouchSpeed = 2f;
     Crouch crouch;
+    KeypadUI keypad;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -69,6 +70,8 @@ public class PlayerController : MonoBehaviour
 
     void movement()
     {
+        if (isHiding == true) return;
+
         float actualSpeed = speed; // needed for conversion
 
         if (controller.isGrounded)
@@ -84,7 +87,6 @@ public class PlayerController : MonoBehaviour
 
         controller.Move(moveDir * actualSpeed * Time.deltaTime); //makes it frame rate independent. one second to be one second. any time dealing with input always time delta time
 
-
         jump();
         controller.Move(playerVel * Time.deltaTime); //using jump
 
@@ -94,6 +96,9 @@ public class PlayerController : MonoBehaviour
 
     void jump()
     {
+        if (keypad != null && keypad.IsOpen)
+            return;
+
         if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
         {
             playerVel.y = jumpSpeed;
@@ -129,12 +134,12 @@ public class PlayerController : MonoBehaviour
     {
 
     }
-    void hide()
+    public void hide()
     {
         isHiding = true;
        controller.enabled = false;
     }
-    void exitHide()
+    public void exitHide()
     {
         isHiding = false;
         controller.enabled = true;
