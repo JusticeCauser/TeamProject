@@ -29,4 +29,12 @@ public class GuardAI : EnemyAI_Base
             guard2.onAllyAlert(playerTransform.position);
         }
     }
+
+    public void onRadioIn(Vector3 position)
+    {
+        alertTargetPos = position;
+
+        agent.SetDestination(alertTargetPos);
+        state = guardState.Search;
+    }
 }

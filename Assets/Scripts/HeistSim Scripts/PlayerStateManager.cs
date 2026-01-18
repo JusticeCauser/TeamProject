@@ -97,9 +97,13 @@ public class PlayerStateManager : MonoBehaviour
                 {
                     currentState = playerState.Sneaking;
                 }
-                else if (isCrouching != true && isMoving == true)
+                else if (!Input.GetButton("Sprint"))
                 {
                     currentState = playerState.Moving;
+                }
+                else
+                {
+                    currentState = playerState.Sprinting;
                 }
                 break;
 
@@ -147,34 +151,34 @@ public class PlayerStateManager : MonoBehaviour
     
     public float noiseLevelChecker()
     {
-        float level = 0;
+        
         switch(currentState)
         {
             case playerState.Idle:
-                level = 0;
+                noiseLevel = 0;
                 break;
 
             case playerState.CrouchedIdle:
-                level = 0;
+                noiseLevel = 0;
                 break;
 
             case playerState.Sneaking:
-                level = 3;
+                noiseLevel = 3;
                 break;
                 
             case playerState.Sprinting:
-                level = 8;
+                noiseLevel = 8;
                 break;
 
             case playerState.Moving:
-                level = 4;
+                noiseLevel = 4;
                 break;
 
             case playerState.Hiding:
-                level = 0;
+                noiseLevel = 0;
                 break;
         }
-        return level;
+        return noiseLevel;
     }
 }
 

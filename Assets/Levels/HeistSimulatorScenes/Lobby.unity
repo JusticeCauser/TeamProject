@@ -345,6 +345,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3319698450656636261, guid: f6a109bfbf56c464ca5f4566b180f7e9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4180841581711991089, guid: f6a109bfbf56c464ca5f4566b180f7e9, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -392,7 +396,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3377885465133513441, guid: f6a109bfbf56c464ca5f4566b180f7e9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1687501978}
   m_SourcePrefab: {fileID: 100100000, guid: f6a109bfbf56c464ca5f4566b180f7e9, type: 3}
 --- !u!1 &773097056
 GameObject:
@@ -521,6 +528,27 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!1 &1687501971 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3377885465133513441, guid: f6a109bfbf56c464ca5f4566b180f7e9, type: 3}
+  m_PrefabInstance: {fileID: 540749986}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1687501978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687501971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c05f1e77dd6aba74cab8c502df5e630c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Crouch
+  controller: {fileID: 0}
+  crouchHeight: 1
+  standHeight: -1
+  crouchTransitionSpeed: 10
 --- !u!1 &1921872704
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@ public class SettingsManager : MonoBehaviour
 
     public static SettingsManager instance;
     
-    [SerializeField] string lobby = "lobby";
+    [SerializeField] string lobby = "theHub";
     [SerializeField] string title = "IntroScene";
 
     [Header("Settings UI")]
@@ -23,16 +23,19 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] Slider masterSlide;
     [SerializeField] Slider ambientSlide;
     [SerializeField] Slider sfxSlide;
+    [SerializeField] Slider sensitivitySlide;
+    [SerializeField] Toggle yInvertToggle;
 
 
     public float masterVolume = 1f;
     public float ambientVolume = 1f;
     public float sfxVolume = 1f;
+    public float sensitivity = 300f;
+    public bool invertY = false;
+
 
     float timeScaleOrig;
     
-
-
     public bool isActive = false;
     
 
@@ -64,6 +67,12 @@ public class SettingsManager : MonoBehaviour
 
         if (sfxSlide != null) sfxSlide.SetValueWithoutNotify(sfxVolume);
         sfxSlide.onValueChanged.AddListener(setSFXVolume);
+
+        if (sensitivitySlide != null) sensitivitySlide.SetValueWithoutNotify(sensitivity);
+        sensitivitySlide.onValueChanged.AddListener(setSensitivity);
+
+        if (yInvertToggle != null) yInvertToggle.SetIsOnWithoutNotify(invertY);
+        yInvertToggle.onValueChanged.AddListener(setInvert);
 
         if (settingsUI != null)
             settingsUI.SetActive(false);
@@ -110,9 +119,7 @@ public class SettingsManager : MonoBehaviour
 
     }
     public void openSettings()
-    {
-        if (SceneManager.GetActiveScene().name != title) // so you cant open menu in introscene
-        {
+    {      
             if (settingsUI != null)
             {
                 settingsUI.SetActive(true);
@@ -122,8 +129,7 @@ public class SettingsManager : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
 
-            }
-        }
+            }       
     }
 
     public void closeSettings()
@@ -134,8 +140,8 @@ public class SettingsManager : MonoBehaviour
         isActive = false;
         Time.timeScale = timeScaleOrig;
 
-        //Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void setMasterVolume(float volume)
@@ -168,7 +174,26 @@ public class SettingsManager : MonoBehaviour
         audioManager.instance.setVolume();
 
     }
+    public void setSensitivity(float value)
+    {
+        sensitivity = value;
 
+        PlayerPrefs.SetFloat("Sensitivity", value);
+        PlayerPrefs.Save();
+
+        if (cameraController.instance != null)
+            cameraController.instance.sens = value;
+    }
+    public void setInvert(bool invert)
+    {
+        invertY = invert;
+
+        PlayerPrefs.SetInt("Invert Y", invert ? 1 : 0);
+        PlayerPrefs.Save();
+
+        if(cameraController.instance != null)
+            cameraController.instance.invertY = invert;
+    }
     public void quitToLobby()
     {
         if (SceneManager.GetActiveScene().name == lobby) //if youre in lobby it just closes menu

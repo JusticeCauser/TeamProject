@@ -1,5 +1,8 @@
+//using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -20,11 +23,20 @@ public class PlayerController : MonoBehaviour
     [SerializeField] AudioClip[] audSteps;
     [SerializeField] AudioClip[] audJump;
 
+    [Header("---Items---")]
+    [SerializeField] int maxInventory = 7;
+    [SerializeField] List<itemStats> itemList = new List<itemStats>();
+    //[SerializeField] Transform droppedItem; for dropping items
+
     int jumpCount;
     int HPOrig;
+    int itemListPos;
+
+    public int totalValue;
 
     bool isPlayingSteps;
     bool isSprinting;
+    bool isHiding;
 
     Vector3 moveDir; //vector made for movement x,y,z. wasd. instead of multiple if statements.
     Vector3 playerVel; //separately handle gravity and jump. offers more control
@@ -41,17 +53,18 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        //crouch = GetComponent<Crouch>();
+        crouch = GetComponent<Crouch>();
     }
     // Update is called once per frame
     void Update()
     {
-        if (SettingsManager.instance == null || !SettingsManager.instance.isActive)
+        if (isHiding || SettingsManager.instance == null || !SettingsManager.instance.isActive)
         {
             movement();
         }
 
         sprint();
+        selectItem();
     }
 
     void movement()
@@ -112,12 +125,42 @@ public class PlayerController : MonoBehaviour
             //SettingsManager.instance.gameOver(); //not yet made
         }
     }
-
     public void tazed()
     {
 
     }
+    void hide()
+    {
+        isHiding = true;
+       controller.enabled = false;
+    }
+    void exitHide()
+    {
+        isHiding = false;
+        controller.enabled = true;
+    }
+    public void grabItem(itemStats item)
+    {
+        if (itemList.Count >= maxInventory)
+            return;
 
+        itemList.Add(item);
+        itemListPos = itemList.Count - 1;
+
+        totalValue += item.itemValue;
+    }
+  
+    void selectItem()
+    {
+        if(Input.GetAxis("Mouse ScrollWheel") > 0 && itemListPos < itemList.Count - 1)
+        {
+            itemListPos++;
+        }
+        if(Input.GetAxis("Mouse ScrollWheel") <  0 && itemListPos > 0)
+        {
+            itemListPos--;
+        }
+    }
     public void applyUpgrades(upgradeData upgrade)
     {
         //if we want to carry over player upgrades

@@ -1,6 +1,7 @@
 using System.Drawing;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem.XR.Haptics;
 using UnityEngine.Rendering;
 using static enemyAI_Guard;
 
@@ -23,44 +24,50 @@ public class EnemyAI_Base : MonoBehaviour
     [SerializeField] float roamSpeed;
     [SerializeField] float chaseSpeed;
     [SerializeField] float baseHearing;
+    [SerializeField] float suspiciousMax;
 
     float hearingSphreRadius;
     float searchTimer;
     float roamTimer;
     float angleToPlayer;
     float stoppingDistOrig;
-    float alertedTimer;
+    public float alertedTimer;
+    float suspiciousTimer;
+    float lookTimer;
 
     public enum guardState
     {
         Idle,
         Patrol,
         Search,
+        Suspicious,
         Alerted,
         Chase
     }
 
     public guardState state = guardState.Idle;
+    public guardState previousState;
 
     bool playerInSightRange;
     [HideInInspector] public bool playerInHearingRange;
 
-    Vector3 playerDir;
-    Vector3 alertTargetPos;
-    Vector3 alertLookDir;
-    Vector3 lastAlertPosition;
-    Vector3 lastHeardPosition;
-    Vector3 startingPos;
+    protected Vector3 playerDir;
+    protected Vector3 alertTargetPos;
+    protected Vector3 alertLookDir;
+    protected Vector3 lastAlertPosition;
+    protected Vector3 lastHeardPosition;
+    protected Vector3 startingPos;
 
     protected Transform playerTransform;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         startingPos = transform.position;
         stoppingDistOrig = agent.stoppingDistance;
 
-        if (gameManager.instance.player != null)
-            playerTransform = gameManager.instance.player.transform;
+        if (GameManager.instance.player != null)
+            playerTransform = GameManager.instance.player.transform;
 
         playerStateManager = playerTransform.GetComponent<PlayerStateManager>();
     }
@@ -83,6 +90,15 @@ public class EnemyAI_Base : MonoBehaviour
 
             case guardState.Chase:
                 ChaseBehavior();
+                break;
+            case guardState.Search:
+                SearchBehavior();
+                break;
+            case guardState.Suspicious:
+                SuspiciousBehavior();
+                break;
+            case guardState.Patrol:
+                PatrolBehavior();
                 break;
         }
     }
@@ -110,6 +126,41 @@ public class EnemyAI_Base : MonoBehaviour
                 agent.speed = chaseSpeed;
                 break;
         }
+    }
+    void SearchBehavior()
+    {
+
+    }
+    void SuspiciousBehavior()
+    {
+        suspiciousTimer += Time.deltaTime;
+
+        lastHeardPosition = playerTransform.position;
+        playerDir = lastHeardPosition - transform.position;
+        playerDir.y = 0f;
+        
+        if(suspiciousTimer < suspiciousMax)
+        {
+            agent.isStopped = true;
+            float newNoise = playerStateManager.noiseLevelChecker();
+
+            if(newNoise > 2f)
+            { 
+                agent.isStopped = false;
+                state = guardState.Alerted;
+                return;
+            }
+        }
+        else if (suspiciousTimer >= suspiciousMax)
+        {
+            agent.isStopped = false;
+            suspiciousTimer = 0f;
+            state = previousState;
+        }
+    }
+    void PatrolBehavior()
+    {
+
     }
     void IdleBehavior()
     {
@@ -189,11 +240,26 @@ public class EnemyAI_Base : MonoBehaviour
 
         float noiseLevel = playerStateManager.noiseLevelChecker();
 
+        bool seePlayer = canSeePlayer();
         if(noiseLevel <= 0)
         {
             return false;
         }
-        if(noiseLevel >= 2)
+        if(noiseLevel >= 2 && noiseLevel < 5)
+        {
+            if (seePlayer)
+            {
+                state = guardState.Chase;
+                return true;
+            }
+            if (state != guardState.Suspicious)
+            {
+                suspiciousTimer = 0f;
+                previousState = state;
+                state = guardState.Suspicious;
+            }
+        }
+        if(noiseLevel >= 5 && noiseLevel <= 10)
         {
 
         }
@@ -206,7 +272,9 @@ public class EnemyAI_Base : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            //Debug.Log("EnteringTrigger");
             playerInSightRange = true;
+            //playerInHearingRange = true;
         }
     }
 
@@ -215,6 +283,7 @@ public class EnemyAI_Base : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInSightRange = false;
+            playerInHearingRange = false;
         }
     }
     void facePlayer()
