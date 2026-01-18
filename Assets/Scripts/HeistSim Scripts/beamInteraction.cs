@@ -2,7 +2,8 @@ using UnityEngine;
 using TMPro;
 public class beamInteraction : MonoBehaviour
 {
-
+    public Transform beamStart;
+    public Transform beamEnd;
     [SerializeField] TMP_Text promptText;
 
     private LineRenderer line;
@@ -16,17 +17,28 @@ public class beamInteraction : MonoBehaviour
     }
     void Update()
     {
-        if (playerInRange && !beamDisabled && Input.GetKeyDown(KeyCode.E))
+        if (!beamDisabled && line != null && beamStart != null && beamEnd != null)
         {
-            // disable beam
-            if (line != null)
-                line.enabled = false;
-
-            beamDisabled = true;
-
-            if (promptText != null)
-                promptText.gameObject.SetActive(false);
+            line.SetPosition(0, beamStart.position);
+            line.SetPosition(1, beamEnd.position);
         }
+
+        // handle interaction 
+        if(playerInRange && !beamDisabled && Input.GetKeyDown(KeyCode.E))
+        {
+            DisableBeam();
+        }
+    }
+
+    void DisableBeam()
+    {
+        beamDisabled = true;
+
+        if (line != null)
+            line.enabled = false;
+
+        if (promptText != null)
+            promptText.gameObject.SetActive(false);
     }
 
     void OnTriggerEnter(Collider other)
@@ -35,7 +47,10 @@ public class beamInteraction : MonoBehaviour
         {
             playerInRange = true;
             if (promptText != null)
+            {
+                promptText.text = "Press E to place mirror";
                 promptText.gameObject.SetActive(true);
+            }
         }
     }
 
