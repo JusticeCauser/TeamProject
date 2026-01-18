@@ -14,6 +14,14 @@ public class GrapplingHook : MonoBehaviour
     [SerializeField] float minDistanceToDetach = 2f;
     [SerializeField] LayerMask grappleableLayers = ~0;
 
+    [Header("----- Grapple Point Detection -----")]
+    [SerializeField] bool requireGrapplePoints = false;
+    [SerializeField] float grapplePointDetectionRadius = 2f;
+    [SerializeField] LayerMask grapplePointLayer = ~0;
+
+    private GrapplePoint currentTargetPoint;
+    private GrapplePoint lastHighlightedPoint;
+
     [Header("----- Line Settings -----")]
     [SerializeField] LineRenderer lineRenderer;
     [SerializeField] Transform grappleOrigin;
@@ -86,11 +94,66 @@ public class GrapplingHook : MonoBehaviour
         if (gameManager.instance != null && gameManager.instance.isPaused)
             return;
 
+        HighlightNearestGrapplePoint();
         HandleInput();
     }
 
+    void HighlightNearestGrapplePoint()
+    {
+        if (isGrappling || lineExtending)
+            return;
+
+        RaycastHit hit;
+        GrapplePoint targetPoint = null;
+
+        if(Physics.Raycast(mainCam.transform.position, mainCam.transform.forward, out hit, maxGrappleDistance, grappleableLayers))
+        {
+            // check if actually looking
+            GrapplePoint point = hit.collider.GetComponent<GrapplePoint>();
+            if(point != null && point.IsActive())
+            {
+                targetPoint = point;
+            }
+            else
+            {
+                // check nearby
+                Collider[] nearbyPoints = Physics.OverlapSphere(hit.point, grapplePointDetectionRadius, grapplePointLayer);
+                float closestDist = float.MaxValue;
+
+                foreach (Collider col in nearbyPoints)
+                {
+                    GrapplePoint gp = col.GetComponent<GrapplePoint>();
+                    if(gp != null && gp.IsActive())
+                    {
+                        float dist = Vector3.Distance(hit.point, gp.GetGrapplePosition());
+                        if(dist < closestDist)
+                        {
+                            closestDist = dist;
+                            targetPoint = gp;
+                        }
+                    }
+                }
+            }
+        }
+        // update highlights
+        if(lastHighlightedPoint != targetPoint)
+        {
+            if (lastHighlightedPoint != null)
+                lastHighlightedPoint.SetHighlight(false);
+
+            if (targetPoint != null)
+                targetPoint.SetHighlight(true);
+
+            lastHighlightedPoint = targetPoint;
+        }
+    }
     void HandleInput()
     {
+        bool hasGrappler = gadgetInventory.instance != null && gadgetInventory.instance.HasGadget("Grappler");
+
+        if (!hasGrappler)
+            return;
+
         if (Input.GetKeyDown(KeyCode.Q))
         {
             if (isGrappling || lineExtending)
@@ -135,18 +198,67 @@ public class GrapplingHook : MonoBehaviour
     void StartGrapple()
     {
         RaycastHit hit;
-        if (Physics.Raycast(mainCam.transform.position, mainCam.transform.forward, out hit, maxGrappleDistance, grappleableLayers))
-        {
-            grapplePoint = hit.point;
-            lineExtending = true;
-            currentLineLength = 0f;
-            ropeLength = Vector3.Distance(transform.position, grapplePoint);
-            lineRenderer.enabled = true;
 
-            // inherit current velocity for smooth transition
-            grappleVelocity = player.GetVelocity() * 0.5f;
-            swingVelocity = Vector3.zero;
+        if(requireGrapplePoints)
+        {
+            // only grapple GrapplePoint
+            if(Physics.Raycast(mainCam.transform.position, mainCam.transform.forward, out hit, maxGrappleDistance, grapplePointLayer))
+            {
+                GrapplePoint pointComponent = hit.collider.GetComponent<GrapplePoint>();
+
+                if(pointComponent != null && pointComponent.IsActive())
+                {
+                    currentTargetPoint = pointComponent;
+                    grapplePoint = pointComponent.GetGrapplePosition();
+                    StartGrappleSequence();
+                }
+            }
         }
+        else
+        {
+            // grapple on any surface (if toggled)
+            if(Physics.Raycast(mainCam.transform.position, mainCam.transform.forward, out hit, maxGrappleDistance, grappleableLayers))
+            {
+                // check if we hit a grapple point
+                GrapplePoint pointComponent = hit.collider.GetComponent<GrapplePoint>();
+
+                if (pointComponent != null && pointComponent.IsActive())
+                {
+                    currentTargetPoint = pointComponent;
+                    grapplePoint = pointComponent.GetGrapplePosition();
+                }
+                else
+                {
+                    grapplePoint = hit.point;
+                    currentTargetPoint = null;                   
+                }
+                StartGrappleSequence();
+            }
+        // original function
+        //if (Physics.Raycast(mainCam.transform.position, mainCam.transform.forward, out hit, maxGrappleDistance, grappleableLayers))
+        //{
+        //    grapplePoint = hit.point;
+        //    lineExtending = true;
+        //    currentLineLength = 0f;
+        //    ropeLength = Vector3.Distance(transform.position, grapplePoint);
+        //    lineRenderer.enabled = true;
+
+        //    // inherit current velocity for smooth transition
+        //    grappleVelocity = player.GetVelocity() * 0.5f;
+        //    swingVelocity = Vector3.zero;
+        }
+    }
+
+    void StartGrappleSequence()
+    {
+        lineExtending = true;
+        currentLineLength = 0f;
+        ropeLength = Vector3.Distance(transform.position, grapplePoint);
+        lineRenderer.enabled = true;
+
+        // inherit velocity for smooth transition
+        grappleVelocity = player.GetVelocity() * 0.5f;
+        swingVelocity = Vector3.zero;
     }
 
     void ExtendLine()
@@ -274,6 +386,13 @@ public class GrapplingHook : MonoBehaviour
         isGrappling = false;
         lineExtending = false;
         lineRenderer.enabled = false;
+
+        // clear grapple point reference
+        if(currentTargetPoint != null)
+        {
+            currentTargetPoint.SetHighlight(false);
+            currentTargetPoint = null;
+        }
 
         if (clearVelocity)
         {
