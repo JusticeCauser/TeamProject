@@ -8,7 +8,7 @@ public class Crouch : MonoBehaviour
     [Header("Crouch Settings")]
     [SerializeField] float crouchHeight = 1f;
     [SerializeField] float standHeight = -1f; // -1 means auto-detect from CharacterController
-    [SerializeField] float crouchSpeed = 2f;
+    //[SerializeField] float crouchSpeed = 2f;
     [SerializeField] float crouchTransitionSpeed = 10f;
     
 
