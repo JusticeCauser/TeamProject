@@ -34,7 +34,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6157442171814291185}
   - {fileID: 410502912674601472}
   - {fileID: 1824234394098122473}
   m_Father: {fileID: 6508605988028803658}
@@ -162,7 +161,6 @@ MonoBehaviour:
   wallTiltZ: 0
   slideTiltZ: 0
   moveTiltAmount: 1.5
-  moveTiltSpeed: 8
 --- !u!114 &2151276161239564864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -516,6 +514,11 @@ MonoBehaviour:
   grappleableLayers:
     serializedVersion: 2
     m_Bits: 4294967295
+  requireGrapplePoints: 0
+  grapplePointDetectionRadius: 2
+  grapplePointLayer:
+    serializedVersion: 2
+    m_Bits: 4294967295
   lineRenderer: {fileID: 0}
   grappleOrigin: {fileID: 6346118020789667773}
   lineExtendSpeed: 100
@@ -829,137 +832,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1001 &4447009243189602397
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 7642987605847085021}
-    m_Modifications:
-    - target: {fileID: 7173815278906741782, guid: e7461e3cb4dfd384ea54841be167ca84, type: 3}
-      propertyPath: m_Name
-      value: Pistol_B
-      objectReference: {fileID: 0}
-    - target: {fileID: 7173815278906741782, guid: e7461e3cb4dfd384ea54841be167ca84, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7549530855202475692, guid: e7461e3cb4dfd384ea54841be167ca84, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7549530855202475692, guid: e7461e3cb4dfd384ea54841be167ca84, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7549530855202475692, guid: e7461e3cb4dfd384ea54841be167ca84, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7549530855202475692, guid: e7461e3cb4dfd384ea54841be167ca84, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.5339966
-      objectReference: {fileID: 0}
-    - target: {fileID: 7549530855202475692, guid: e7461e3cb4dfd384ea54841be167ca84, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 7549530855202475692, guid: e7461e3cb4dfd384ea54841be167ca84, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.675
-      objectReference: {fileID: 0}
-    - target: {fileID: 7549530855202475692, guid: e7461e3cb4dfd384ea54841be167ca84, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9972704
-      objectReference: {fileID: 0}
-    - target: {fileID: 7549530855202475692, guid: e7461e3cb4dfd384ea54841be167ca84, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7549530855202475692, guid: e7461e3cb4dfd384ea54841be167ca84, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7549530855202475692, guid: e7461e3cb4dfd384ea54841be167ca84, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.07383611
-      objectReference: {fileID: 0}
-    - target: {fileID: 7549530855202475692, guid: e7461e3cb4dfd384ea54841be167ca84, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7549530855202475692, guid: e7461e3cb4dfd384ea54841be167ca84, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7549530855202475692, guid: e7461e3cb4dfd384ea54841be167ca84, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 8.469
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7173815278906741782, guid: e7461e3cb4dfd384ea54841be167ca84, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7488051339960944148}
-    - targetCorrespondingSourceObject: {fileID: 1831996051309936448, guid: e7461e3cb4dfd384ea54841be167ca84, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7298407527378050900}
-  m_SourcePrefab: {fileID: 100100000, guid: e7461e3cb4dfd384ea54841be167ca84, type: 3}
---- !u!1 &2655573381261219613 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1831996051309936448, guid: e7461e3cb4dfd384ea54841be167ca84, type: 3}
-  m_PrefabInstance: {fileID: 4447009243189602397}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7298407527378050900
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2655573381261219613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aac0aec76bd2caf4aa0e1a0629199cb2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Flashlight
-  range: 30
-  spotAngle: 45
-  intensity: 45
-  lightColor: {r: 1, g: 1, b: 1, a: 1}
-  toggleKey: 102
---- !u!4 &6157442171814291185 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7549530855202475692, guid: e7461e3cb4dfd384ea54841be167ca84, type: 3}
-  m_PrefabInstance: {fileID: 4447009243189602397}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &6789301390581726283 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7173815278906741782, guid: e7461e3cb4dfd384ea54841be167ca84, type: 3}
-  m_PrefabInstance: {fileID: 4447009243189602397}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7488051339960944148
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6789301390581726283}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 965cecbf196457e4e9ac02db3165339b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GunIdleAnimations
-  idleThreshold: 15
-  animationInterval: 5
-  returnDuration: 0.25
-  spinSpeed: 360
-  flipDuration: 0.6
-  tossHeight: 0.15
-  tossDuration: 0.8
-  twiddleDuration: 1.2
-  inspectDuration: 2
-  juggleDuration: 1.4
-  flourishDuration: 1.8

@@ -1,5 +1,6 @@
 //using NUnit.Framework;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
 
@@ -28,6 +29,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] List<itemStats> itemList = new List<itemStats>();
     //[SerializeField] Transform droppedItem; for dropping items
 
+    [Header("---Enemy---")]
+    [SerializeField] Transform dragPoint;
+
+    EnemyAI_Base draggedEnemy;
+    public bool isDragging => draggedEnemy != null;
+
     int jumpCount;
     int HPOrig;
     int itemListPos;
@@ -40,6 +47,7 @@ public class PlayerController : MonoBehaviour
 
     Vector3 moveDir; //vector made for movement x,y,z. wasd. instead of multiple if statements.
     Vector3 playerVel; //separately handle gravity and jump. offers more control
+    Vector3 externalVelocity;
 
     [SerializeField] float crouchSpeed = 2f;
     Crouch crouch;
@@ -66,6 +74,7 @@ public class PlayerController : MonoBehaviour
 
         sprint();
         selectItem();
+        draggingEnemy();
     }
 
     void movement()
@@ -120,16 +129,31 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void takeDamage(int amount)
+    public Vector3 GetVelocity()
     {
-        HP -= amount;
-
-        if (HP <= 0)
-        {
-
-            //SettingsManager.instance.gameOver(); //not yet made
-        }
+        return (moveDir * speed) + externalVelocity + playerVel;
     }
+    public void SetExternalVelocity(Vector3 velocity)
+    {
+        externalVelocity = velocity;
+        //externalVelocity = new Vector3(velocity.x, 0, velocity.z);
+    }
+    public void GrappleJump(Vector3 grappleVelocity)
+    {
+        playerVel = grappleVelocity;
+        playerVel.y += jumpSpeed * .7f;
+        jumpCount = 0;
+    }
+    //public void takeDamage(int amount)
+    //{
+    //    HP -= amount;
+
+    //    if (HP <= 0)
+    //    {
+
+    //        //SettingsManager.instance.gameOver(); //not yet made
+    //    }
+    //}
     public void tazed()
     {
 
@@ -169,5 +193,36 @@ public class PlayerController : MonoBehaviour
     public void applyUpgrades(upgradeData upgrade)
     {
         //if we want to carry over player upgrades
+    }
+
+    void draggingEnemy()
+    {
+        if (draggedEnemy != null)
+        {
+            draggedEnemy.transform.position = Vector3.Lerp(
+                draggedEnemy.transform.position,
+                dragPoint.position,
+                Time.deltaTime * 12f
+            );
+
+            draggedEnemy.transform.rotation = Quaternion.Lerp(
+                draggedEnemy.transform.rotation,
+                dragPoint.rotation,
+                Time.deltaTime * 12f
+            );
+        }
+    }
+
+    public void startDrag(EnemyAI_Base enemy)
+    {
+        draggedEnemy = enemy;
+        enemy.isBeingDragged = true;
+    }
+    public void stopDrag()
+    {
+        if (draggedEnemy != null)
+            draggedEnemy.isBeingDragged = false;
+
+        draggedEnemy = null;
     }
 }

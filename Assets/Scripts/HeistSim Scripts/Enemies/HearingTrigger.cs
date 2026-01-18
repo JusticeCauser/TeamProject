@@ -21,7 +21,9 @@ public class HearingTrigger : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if (enemyParent == null) return;
+        if (enemyParent.state == EnemyAI_Base.guardState.KnockedOut) return;
+        if (other.CompareTag("Player"))
         {
             Debug.Log("HEARING TRIGGER STAY");
             enemyParent.canHearPlayer();
