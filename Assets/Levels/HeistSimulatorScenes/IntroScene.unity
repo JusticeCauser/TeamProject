@@ -3835,6 +3835,10 @@ PrefabInstance:
       propertyPath: ambientAudio
       value: 
       objectReference: {fileID: 1637254767}
+    - target: {fileID: 7023172629523692256, guid: 29944858046d96c45b22b79a63e6d331, type: 3}
+      propertyPath: menuButtonClicked
+      value: 
+      objectReference: {fileID: 8300000, guid: 41b94c437bb667e40993148887bdc48e, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5019,9 +5023,11 @@ MonoBehaviour:
   lQuitButton: {fileID: 155264517}
   retryButton: {fileID: 1844605411}
   timerTextWin: {fileID: 1464633948}
-  itemValueText: {fileID: 0}
+  itemValueText: {fileID: 807253413}
   timerTextFail: {fileID: 1351481050}
   failText: {fileID: 1208517058}
+  heatTimer: 60
+  alertSys: {fileID: 0}
 --- !u!222 &3781546399451723526
 CanvasRenderer:
   m_ObjectHideFlags: 0

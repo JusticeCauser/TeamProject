@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
         timeScaleOrig = Time.timeScale;
 
         player = GameObject.FindWithTag("Player");
-        playerScript = player.GetComponent<PlayerController>();
+        //playerScript = player.GetComponent<PlayerController>();
 
         if (player != null) //bc player doesnt exist in introscene
         {
