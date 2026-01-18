@@ -385,7 +385,7 @@ GameObject:
   - component: {fileID: 1317883502675476287}
   - component: {fileID: 4196409847800020669}
   - component: {fileID: 2601524773939811076}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (157)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1051,7 +1051,7 @@ GameObject:
   - component: {fileID: 2338799307521130378}
   - component: {fileID: 4111181839888497293}
   - component: {fileID: 9026981797198151059}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1162,7 +1162,7 @@ GameObject:
   - component: {fileID: 5638662171275160068}
   - component: {fileID: 4917998796958422987}
   - component: {fileID: 2909620819889539706}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (151)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1358,6 +1358,117 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 269603282068298866}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &289125699470976876
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 672823379560407771}
+  - component: {fileID: 1921556031297152313}
+  - component: {fileID: 3377227905959226777}
+  - component: {fileID: 5994759066641751790}
+  m_Layer: 0
+  m_Name: Cube (175)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &672823379560407771
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 289125699470976876}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -159.5, y: -2.25, z: 5}
+  m_LocalScale: {x: 6, y: 6.5, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 601634983147793587}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &1921556031297152313
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 289125699470976876}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &3377227905959226777
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 289125699470976876}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5994759066641751790
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 289125699470976876}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -2050,7 +2161,7 @@ GameObject:
   - component: {fileID: 5577814264346784975}
   - component: {fileID: 3944753967712745858}
   - component: {fileID: 6176289097486633216}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2276,7 +2387,7 @@ GameObject:
   - component: {fileID: 4622953524254437373}
   - component: {fileID: 927515779673732537}
   - component: {fileID: 8867684984916667546}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2611,7 +2722,7 @@ GameObject:
   - component: {fileID: 2117017447668044507}
   - component: {fileID: 7245661889627279338}
   - component: {fileID: 7054318645953750915}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (161)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2719,6 +2830,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1447165624248234312}
+  - component: {fileID: 8984108999310172069}
   - component: {fileID: 589489593844180913}
   - component: {fileID: 3575627035737745426}
   - component: {fileID: 5221656549010917607}
@@ -2744,6 +2856,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2088039069208346085}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &8984108999310172069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 596896638186699012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fcccd18ec6b1c4a9ab082168f31ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactableGlass
+  requiredGadget: Glass Cutter
+  isLocked: 1
+  promptText: {fileID: 0}
 --- !u!33 &589489593844180913
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3052,6 +3179,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1733880863479003553}
+  - component: {fileID: 2664426263893555804}
   - component: {fileID: 3866776166648560981}
   - component: {fileID: 6357725404942833989}
   - component: {fileID: 5488517392545075128}
@@ -3077,6 +3205,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2088039069208346085}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2664426263893555804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610644621794186243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fcccd18ec6b1c4a9ab082168f31ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactableGlass
+  requiredGadget: Glass Cutter
+  isLocked: 1
+  promptText: {fileID: 0}
 --- !u!33 &3866776166648560981
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3277,7 +3420,7 @@ GameObject:
   - component: {fileID: 1490887643843808038}
   - component: {fileID: 648911448567543439}
   - component: {fileID: 3404625444793469815}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (153)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3385,6 +3528,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3762230389905904353}
+  - component: {fileID: 431266963075550824}
   - component: {fileID: 2909170031348877090}
   - component: {fileID: 6986439791676851548}
   - component: {fileID: 6383003879232182802}
@@ -3410,6 +3554,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2088039069208346085}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &431266963075550824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 678948362117755314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fcccd18ec6b1c4a9ab082168f31ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactableGlass
+  requiredGadget: Glass Cutter
+  isLocked: 1
+  promptText: {fileID: 0}
 --- !u!33 &2909170031348877090
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3758,7 +3917,7 @@ GameObject:
   - component: {fileID: 222661364504729103}
   - component: {fileID: 5077563182967544317}
   - component: {fileID: 3325639670025769485}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4428,7 +4587,7 @@ GameObject:
   - component: {fileID: 1279245459322854283}
   - component: {fileID: 457060012040295371}
   - component: {fileID: 6751580941065110310}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (120)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4539,7 +4698,7 @@ GameObject:
   - component: {fileID: 4778179754410197600}
   - component: {fileID: 8352344697528928795}
   - component: {fileID: 5741187735632614916}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (173)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4650,7 +4809,7 @@ GameObject:
   - component: {fileID: 6549831047461735168}
   - component: {fileID: 6692738493411709276}
   - component: {fileID: 5554180849208846503}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (160)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4761,7 +4920,7 @@ GameObject:
   - component: {fileID: 7700925095576025874}
   - component: {fileID: 9168889063910171784}
   - component: {fileID: 4966480065742615402}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (92)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4872,7 +5031,7 @@ GameObject:
   - component: {fileID: 1898114321054784996}
   - component: {fileID: 7791669660373610381}
   - component: {fileID: 617053016423479545}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (107)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5110,8 +5269,8 @@ Transform:
   m_GameObject: {fileID: 1074628327325839338}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -200.5, y: 2, z: 5}
-  m_LocalScale: {x: 7, y: 5, z: 1}
+  m_LocalPosition: {x: -200.5, y: 1.25, z: 5}
+  m_LocalScale: {x: 7, y: 6.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 601634983147793587}
@@ -5205,7 +5364,7 @@ GameObject:
   - component: {fileID: 1756654667128501781}
   - component: {fileID: 7270906731276024307}
   - component: {fileID: 3416961071867410779}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (114)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5538,7 +5697,7 @@ GameObject:
   - component: {fileID: 2821866796929596509}
   - component: {fileID: 5834225563626181134}
   - component: {fileID: 6841534077454932649}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5873,7 +6032,7 @@ GameObject:
   - component: {fileID: 1540455684039948583}
   - component: {fileID: 7097368409901701350}
   - component: {fileID: 3734770702925538038}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6094,6 +6253,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5229824368464096879}
+  - component: {fileID: 7852191363255042566}
   - component: {fileID: 8347471438015493684}
   - component: {fileID: 2544972168654066727}
   - component: {fileID: 3018346495967953275}
@@ -6119,6 +6279,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2088039069208346085}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7852191363255042566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382870014828450896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fcccd18ec6b1c4a9ab082168f31ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactableGlass
+  requiredGadget: Glass Cutter
+  isLocked: 1
+  promptText: {fileID: 0}
 --- !u!33 &8347471438015493684
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -6224,8 +6399,8 @@ Transform:
   m_GameObject: {fileID: 1417976450354071124}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -163.5, y: 2, z: 5}
-  m_LocalScale: {x: 6, y: 5, z: 1}
+  m_LocalPosition: {x: -163.5, y: 1.25, z: 5}
+  m_LocalScale: {x: 6, y: 6.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 601634983147793587}
@@ -6538,6 +6713,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4572863088236343859}
+  - component: {fileID: 8441385076565715227}
   - component: {fileID: 4419264983289148270}
   - component: {fileID: 480284907915979096}
   - component: {fileID: 2416946967083004394}
@@ -6563,6 +6739,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2088039069208346085}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8441385076565715227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495383081894837153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fcccd18ec6b1c4a9ab082168f31ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactableGlass
+  requiredGadget: Glass Cutter
+  isLocked: 1
+  promptText: {fileID: 0}
 --- !u!33 &4419264983289148270
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -6652,7 +6843,7 @@ GameObject:
   - component: {fileID: 360761622311348370}
   - component: {fileID: 1110913352696541003}
   - component: {fileID: 8883535100792352088}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6876,7 +7067,7 @@ GameObject:
   - component: {fileID: 775660234702467947}
   - component: {fileID: 1134048167012679011}
   - component: {fileID: 4556296922913314318}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (98)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7336,8 +7527,8 @@ Transform:
   m_GameObject: {fileID: 1764378339495782053}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -194.5, y: 2.5, z: 82.5}
-  m_LocalScale: {x: 6, y: 5, z: 1}
+  m_LocalPosition: {x: -194.5, y: 1.75, z: 82.5}
+  m_LocalScale: {x: 6, y: 6.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2088039069208346085}
@@ -7542,7 +7733,7 @@ GameObject:
   - component: {fileID: 3202162321973344678}
   - component: {fileID: 5023325061511718275}
   - component: {fileID: 8361705059665995805}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (112)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7875,7 +8066,7 @@ GameObject:
   - component: {fileID: 13359230118858734}
   - component: {fileID: 5141803732737318794}
   - component: {fileID: 6480701548349861143}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Pool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8097,7 +8288,7 @@ GameObject:
   - component: {fileID: 5493294285291308401}
   - component: {fileID: 1249827732567582824}
   - component: {fileID: 4782809460843476394}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (103)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8208,7 +8399,7 @@ GameObject:
   - component: {fileID: 3680436068654779167}
   - component: {fileID: 6949582586463647683}
   - component: {fileID: 1446749412827459458}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8538,6 +8729,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5791804758741681882}
+  - component: {fileID: 3558830197558578127}
   - component: {fileID: 7391373645540947144}
   - component: {fileID: 3814287299025556359}
   - component: {fileID: 1451306616949552469}
@@ -8563,6 +8755,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 601634983147793587}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3558830197558578127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2050257705030065157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fcccd18ec6b1c4a9ab082168f31ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactableGlass
+  requiredGadget: Glass Cutter
+  isLocked: 1
+  promptText: {fileID: 0}
 --- !u!33 &7391373645540947144
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -8762,6 +8969,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3093715311802662974}
+  - component: {fileID: 1847158697479911093}
   - component: {fileID: 5071785919996699860}
   - component: {fileID: 7542135546327044042}
   - component: {fileID: 1497689361216849728}
@@ -8787,6 +8995,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2088039069208346085}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1847158697479911093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063158631091583863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fcccd18ec6b1c4a9ab082168f31ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactableGlass
+  requiredGadget: Glass Cutter
+  isLocked: 1
+  promptText: {fileID: 0}
 --- !u!33 &5071785919996699860
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -8987,7 +9210,7 @@ GameObject:
   - component: {fileID: 1960066386766621319}
   - component: {fileID: 952624340144739615}
   - component: {fileID: 4750449103572081314}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (167)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9650,6 +9873,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4845625105675626180}
+  - component: {fileID: 7973706952723479588}
   - component: {fileID: 1926068464514847770}
   - component: {fileID: 7749408217580982916}
   - component: {fileID: 8121822313060619732}
@@ -9675,6 +9899,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2088039069208346085}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7973706952723479588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2267829659522768850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fcccd18ec6b1c4a9ab082168f31ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactableGlass
+  requiredGadget: Glass Cutter
+  isLocked: 1
+  promptText: {fileID: 0}
 --- !u!33 &1926068464514847770
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -9764,7 +10003,7 @@ GameObject:
   - component: {fileID: 7464789708786868493}
   - component: {fileID: 1662026777213624954}
   - component: {fileID: 7685714818286015353}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10876,7 +11115,7 @@ GameObject:
   - component: {fileID: 235915916577800262}
   - component: {fileID: 8786258882824451572}
   - component: {fileID: 5587096100052671114}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (159)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11875,7 +12114,7 @@ GameObject:
   - component: {fileID: 7686684899970359792}
   - component: {fileID: 7473691632398962883}
   - component: {fileID: 3704234173513218790}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12321,7 +12560,7 @@ GameObject:
   - component: {fileID: 7725265316528839476}
   - component: {fileID: 3261978222748481193}
   - component: {fileID: 7581561556676901240}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (154)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12984,6 +13223,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1818600454861235457}
+  - component: {fileID: 205304760080128836}
   - component: {fileID: 3916082686100287614}
   - component: {fileID: 1650882768447096016}
   - component: {fileID: 6949852331106896623}
@@ -13009,6 +13249,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2088039069208346085}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &205304760080128836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3368023098418843865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fcccd18ec6b1c4a9ab082168f31ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactableGlass
+  requiredGadget: Glass Cutter
+  isLocked: 1
+  promptText: {fileID: 0}
 --- !u!33 &3916082686100287614
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -13197,6 +13452,117 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &3405871803908927133
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7028389173933225957}
+  - component: {fileID: 4072575265466287723}
+  - component: {fileID: 5537796807389769786}
+  - component: {fileID: 853092325011197884}
+  m_Layer: 0
+  m_Name: Cube (126)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7028389173933225957
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3405871803908927133}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -194.5, y: -1.75, z: 77.75}
+  m_LocalScale: {x: 6, y: 6.5, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2088039069208346085}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!33 &4072575265466287723
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3405871803908927133}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &5537796807389769786
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3405871803908927133}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &853092325011197884
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3405871803908927133}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3408047930953135159
 GameObject:
   m_ObjectHideFlags: 0
@@ -13209,7 +13575,7 @@ GameObject:
   - component: {fileID: 440479986947488782}
   - component: {fileID: 7329660393906147713}
   - component: {fileID: 2795295013280790234}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (156)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13764,7 +14130,7 @@ GameObject:
   - component: {fileID: 8714426220949698252}
   - component: {fileID: 7835904714312238987}
   - component: {fileID: 4064991456752527846}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13988,7 +14354,7 @@ GameObject:
   - component: {fileID: 265462445935452715}
   - component: {fileID: 1573027193241072847}
   - component: {fileID: 1736206402614802068}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (102)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14096,6 +14462,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7119130161528386755}
+  - component: {fileID: 6861526094886983290}
   - component: {fileID: 1187616201084698400}
   - component: {fileID: 49690360429390055}
   - component: {fileID: 5765653594068520378}
@@ -14121,6 +14488,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 601634983147793587}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6861526094886983290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3687346380923580778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fcccd18ec6b1c4a9ab082168f31ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactableGlass
+  requiredGadget: Glass Cutter
+  isLocked: 1
+  promptText: {fileID: 0}
 --- !u!33 &1187616201084698400
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -15209,7 +15591,7 @@ GameObject:
   - component: {fileID: 4255347388485245779}
   - component: {fileID: 7726315395963357757}
   - component: {fileID: 8970345849605413082}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15433,7 +15815,7 @@ GameObject:
   - component: {fileID: 1521918544619657522}
   - component: {fileID: 45407905449815103}
   - component: {fileID: 4084219023204694625}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15876,6 +16258,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7535381309232235263}
+  - component: {fileID: 5135037557424884721}
   - component: {fileID: 741223665845537568}
   - component: {fileID: 5034735175812459145}
   - component: {fileID: 6640845013282687732}
@@ -15901,6 +16284,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2088039069208346085}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5135037557424884721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4123765825832734966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fcccd18ec6b1c4a9ab082168f31ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactableGlass
+  requiredGadget: Glass Cutter
+  isLocked: 1
+  promptText: {fileID: 0}
 --- !u!33 &741223665845537568
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -16805,6 +17203,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3477551377692298333}
+  - component: {fileID: 6180132965500620479}
   - component: {fileID: 3929563651790048949}
   - component: {fileID: 8514306373771393525}
   - component: {fileID: 3993740716981219451}
@@ -16830,6 +17229,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 601634983147793587}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6180132965500620479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4319737494163254261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fcccd18ec6b1c4a9ab082168f31ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactableGlass
+  requiredGadget: Glass Cutter
+  isLocked: 1
+  promptText: {fileID: 0}
 --- !u!33 &3929563651790048949
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -17365,7 +17779,7 @@ GameObject:
   - component: {fileID: 5957914656558447031}
   - component: {fileID: 5629641700363907482}
   - component: {fileID: 503935128283650301}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (171)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17476,7 +17890,7 @@ GameObject:
   - component: {fileID: 548129432215674639}
   - component: {fileID: 1268388490953823814}
   - component: {fileID: 2125570661120598342}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17806,6 +18220,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5684627132812098352}
+  - component: {fileID: 423723584927524603}
   - component: {fileID: 3899700859633773239}
   - component: {fileID: 7250891776323106424}
   - component: {fileID: 1944610013667467643}
@@ -17831,6 +18246,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2088039069208346085}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &423723584927524603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4627064193864944725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fcccd18ec6b1c4a9ab082168f31ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactableGlass
+  requiredGadget: Glass Cutter
+  isLocked: 1
+  promptText: {fileID: 0}
 --- !u!33 &3899700859633773239
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -18047,8 +18477,8 @@ Transform:
   m_GameObject: {fileID: 4663448870193969860}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -194.5, y: 2.5, z: 33}
-  m_LocalScale: {x: 3, y: 5, z: 1}
+  m_LocalPosition: {x: -194.5, y: 1.75, z: 33}
+  m_LocalScale: {x: 3, y: 6.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2088039069208346085}
@@ -18179,7 +18609,7 @@ GameObject:
   - component: {fileID: 1049217176283712851}
   - component: {fileID: 6188706905929748102}
   - component: {fileID: 4072699436881050457}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (97)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18842,6 +19272,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1199621443758100000}
+  - component: {fileID: 7101507112999957703}
   - component: {fileID: 9027597883469937961}
   - component: {fileID: 7249634526845871884}
   - component: {fileID: 1926230076754201607}
@@ -18867,6 +19298,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 601634983147793587}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7101507112999957703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4867071552620666654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fcccd18ec6b1c4a9ab082168f31ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactableGlass
+  requiredGadget: Glass Cutter
+  isLocked: 1
+  promptText: {fileID: 0}
 --- !u!33 &9027597883469937961
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -19064,6 +19510,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1898152418231413492}
+  - component: {fileID: 8091349229923265900}
   - component: {fileID: 4191071241379746377}
   - component: {fileID: 2055455205733684272}
   - component: {fileID: 8848897706411824478}
@@ -19089,6 +19536,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2088039069208346085}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8091349229923265900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4883701388232903376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fcccd18ec6b1c4a9ab082168f31ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactableGlass
+  requiredGadget: Glass Cutter
+  isLocked: 1
+  promptText: {fileID: 0}
 --- !u!33 &4191071241379746377
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -19397,6 +19859,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2235607278717947359}
+  - component: {fileID: 3048954995244754220}
   - component: {fileID: 550868441228885511}
   - component: {fileID: 1262935215766360889}
   - component: {fileID: 72224092228127436}
@@ -19422,6 +19885,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8030106949620500351}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3048954995244754220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4926166789852422599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fcccd18ec6b1c4a9ab082168f31ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactableGlass
+  requiredGadget: Glass Cutter
+  isLocked: 1
+  promptText: {fileID: 0}
 --- !u!33 &550868441228885511
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -19596,6 +20074,117 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4935837447769660146}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &4975532237852560367
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1081069028782406646}
+  - component: {fileID: 7948082615753705106}
+  - component: {fileID: 4011308019097359787}
+  - component: {fileID: 9090626387084885065}
+  m_Layer: 0
+  m_Name: Cube (174)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1081069028782406646
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4975532237852560367}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -167.25, y: -2.25, z: 5}
+  m_LocalScale: {x: 6, y: 6.5, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 601634983147793587}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &7948082615753705106
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4975532237852560367}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &4011308019097359787
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4975532237852560367}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &9090626387084885065
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4975532237852560367}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -20109,6 +20698,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4841321710508510002}
+  - component: {fileID: 6194414756139964297}
   - component: {fileID: 5814745399728601605}
   - component: {fileID: 2817328592734240807}
   - component: {fileID: 6920721022600507852}
@@ -20134,6 +20724,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8030106949620500351}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6194414756139964297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5088249270731114545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fcccd18ec6b1c4a9ab082168f31ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactableGlass
+  requiredGadget: Glass Cutter
+  isLocked: 1
+  promptText: {fileID: 0}
 --- !u!33 &5814745399728601605
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -20223,7 +20828,7 @@ GameObject:
   - component: {fileID: 2697466561868578405}
   - component: {fileID: 16402774867497306}
   - component: {fileID: 9142938309384924380}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (158)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20442,6 +21047,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1116528987380117466}
+  - component: {fileID: 6913989941375361522}
   - component: {fileID: 8495080149753877054}
   - component: {fileID: 5917911570957785497}
   - component: {fileID: 8546148292508296408}
@@ -20467,6 +21073,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2088039069208346085}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6913989941375361522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5138348187714590351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fcccd18ec6b1c4a9ab082168f31ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactableGlass
+  requiredGadget: Glass Cutter
+  isLocked: 1
+  promptText: {fileID: 0}
 --- !u!33 &8495080149753877054
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -20861,6 +21482,8 @@ Transform:
   - {fileID: 7892170790159435079}
   - {fileID: 1871803322620035933}
   - {fileID: 1338656813650466688}
+  - {fileID: 6777212088669208404}
+  - {fileID: 7028389173933225957}
   - {fileID: 7699410932755700667}
   - {fileID: 5935753319657753893}
   - {fileID: 2419680805065160823}
@@ -20966,6 +21589,8 @@ Transform:
   - {fileID: 1281457344667843350}
   - {fileID: 626845603667998533}
   - {fileID: 6333804771304129491}
+  - {fileID: 8120142843173286638}
+  - {fileID: 1166614569384415405}
   - {fileID: 2019256320903268507}
   - {fileID: 6970381484418198598}
   - {fileID: 3304043233678401110}
@@ -21004,6 +21629,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5929085650747666088}
+  - component: {fileID: 3758394451742523159}
   - component: {fileID: 2038432596615806891}
   - component: {fileID: 1421993557258295338}
   - component: {fileID: 7413336169651814248}
@@ -21029,6 +21655,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2088039069208346085}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3758394451742523159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5300815409724027334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fcccd18ec6b1c4a9ab082168f31ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactableGlass
+  requiredGadget: Glass Cutter
+  isLocked: 1
+  promptText: {fileID: 0}
 --- !u!33 &2038432596615806891
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -21229,7 +21870,7 @@ GameObject:
   - component: {fileID: 8114981902647815052}
   - component: {fileID: 4721088759198451992}
   - component: {fileID: 876587695848066655}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21339,6 +21980,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7569096895011788857}
+  - component: {fileID: 5301881352792986866}
   - component: {fileID: 4935972538867817284}
   - component: {fileID: 8599000295190689462}
   - component: {fileID: 5103494010788996582}
@@ -21364,6 +22006,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 601634983147793587}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &5301881352792986866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5413260006136896464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fcccd18ec6b1c4a9ab082168f31ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactableGlass
+  requiredGadget: Glass Cutter
+  isLocked: 1
+  promptText: {fileID: 0}
 --- !u!33 &4935972538867817284
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -21450,6 +22107,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6816802798669477122}
+  - component: {fileID: 350113384809224921}
   - component: {fileID: 7046986612926502166}
   - component: {fileID: 7444305059390515404}
   - component: {fileID: 3895570998727239837}
@@ -21475,6 +22133,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2088039069208346085}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &350113384809224921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5421639630066183630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fcccd18ec6b1c4a9ab082168f31ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactableGlass
+  requiredGadget: Glass Cutter
+  isLocked: 1
+  promptText: {fileID: 0}
 --- !u!33 &7046986612926502166
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -21564,7 +22237,7 @@ GameObject:
   - component: {fileID: 5626131284664575661}
   - component: {fileID: 5324718618327194938}
   - component: {fileID: 4680225878247933854}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21788,7 +22461,7 @@ GameObject:
   - component: {fileID: 298023518322613047}
   - component: {fileID: 5661336451990194243}
   - component: {fileID: 2035151929311343158}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (96)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22345,7 +23018,7 @@ GameObject:
   - component: {fileID: 5391843032948266665}
   - component: {fileID: 4975395678206199845}
   - component: {fileID: 7430882714924380321}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22902,7 +23575,7 @@ GameObject:
   - component: {fileID: 1479221075748534022}
   - component: {fileID: 1610082835429394030}
   - component: {fileID: 5039112530574729881}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (119)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23029,8 +23702,8 @@ Transform:
   m_GameObject: {fileID: 5605357065665632896}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -125, y: 2, z: 15}
-  m_LocalScale: {x: 10, y: 5, z: 1}
+  m_LocalPosition: {x: -125, y: 1.25, z: 15}
+  m_LocalScale: {x: 10, y: 6.4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 601634983147793587}
@@ -23121,6 +23794,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 238802385521054823}
+  - component: {fileID: 4433261219499016125}
   - component: {fileID: 2605260016298654606}
   - component: {fileID: 8898660975805078182}
   - component: {fileID: 4481388020767376618}
@@ -23146,6 +23820,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2088039069208346085}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &4433261219499016125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5641130944751620879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fcccd18ec6b1c4a9ab082168f31ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactableGlass
+  requiredGadget: Glass Cutter
+  isLocked: 1
+  promptText: {fileID: 0}
 --- !u!33 &2605260016298654606
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -23568,7 +24257,7 @@ GameObject:
   - component: {fileID: 8393957515202921509}
   - component: {fileID: 6136326972574538141}
   - component: {fileID: 3389141288430131939}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (108)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23679,7 +24368,7 @@ GameObject:
   - component: {fileID: 6587908208975990548}
   - component: {fileID: 8454895161735256999}
   - component: {fileID: 3795101977691557066}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (166)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24234,7 +24923,7 @@ GameObject:
   - component: {fileID: 9168218330621217067}
   - component: {fileID: 3356068307071541620}
   - component: {fileID: 846260977652169709}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (95)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24999,6 +25688,117 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &6054038605709645971
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1166614569384415405}
+  - component: {fileID: 7180490525247316337}
+  - component: {fileID: 3127510196648360269}
+  - component: {fileID: 5514593996052857293}
+  m_Layer: 0
+  m_Name: Cube (128)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1166614569384415405
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6054038605709645971}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -194.5, y: -1.75, z: 30.5}
+  m_LocalScale: {x: 3, y: 6.5, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2088039069208346085}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!33 &7180490525247316337
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6054038605709645971}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &3127510196648360269
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6054038605709645971}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5514593996052857293
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6054038605709645971}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6090020359449432556
 GameObject:
   m_ObjectHideFlags: 0
@@ -25554,6 +26354,117 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &6138085649888125945
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8368253791945453240}
+  - component: {fileID: 60635193541267051}
+  - component: {fileID: 5170090076182098793}
+  - component: {fileID: 1453758376017527858}
+  m_Layer: 0
+  m_Name: Cube (177)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8368253791945453240
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6138085649888125945}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -198.25, y: -2.25, z: 5}
+  m_LocalScale: {x: 7, y: 6.5, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 601634983147793587}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &60635193541267051
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6138085649888125945}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &5170090076182098793
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6138085649888125945}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1453758376017527858
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6138085649888125945}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6138349700356271673
 GameObject:
   m_ObjectHideFlags: 0
@@ -25677,7 +26588,7 @@ GameObject:
   - component: {fileID: 3452000750855154914}
   - component: {fileID: 6817460725939843366}
   - component: {fileID: 8603794348712123922}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (121)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25788,7 +26699,7 @@ GameObject:
   - component: {fileID: 13284608121915462}
   - component: {fileID: 7362976380940410721}
   - component: {fileID: 166623694007159594}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (101)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25899,7 +26810,7 @@ GameObject:
   - component: {fileID: 252385502102163528}
   - component: {fileID: 2472441569064921559}
   - component: {fileID: 7690487377500673225}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (165)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26010,7 +26921,7 @@ GameObject:
   - component: {fileID: 2108189992734919872}
   - component: {fileID: 5152711309836703810}
   - component: {fileID: 5186904012421437444}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27172,7 +28083,7 @@ GameObject:
   - component: {fileID: 1323436285414494276}
   - component: {fileID: 2407692530186737777}
   - component: {fileID: 8851787021206937099}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (99)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27479,6 +28390,117 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6775539478188169282}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &6777040970198974984
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6550624213879228159}
+  - component: {fileID: 3817688768692689376}
+  - component: {fileID: 5903188489457814939}
+  - component: {fileID: 8207132097528705773}
+  m_Layer: 0
+  m_Name: Cube (176)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6550624213879228159
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6777040970198974984}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -129, y: -2.25, z: 15}
+  m_LocalScale: {x: 10, y: 6.4, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 601634983147793587}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &3817688768692689376
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6777040970198974984}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &5903188489457814939
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6777040970198974984}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &8207132097528705773
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6777040970198974984}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -27826,6 +28848,117 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &6921828362920079428
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6777212088669208404}
+  - component: {fileID: 5960750434375192051}
+  - component: {fileID: 9149947096319033907}
+  - component: {fileID: 4732651139650802480}
+  m_Layer: 0
+  m_Name: Cube (125)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6777212088669208404
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6921828362920079428}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -194.5, y: -1.75, z: 87.656}
+  m_LocalScale: {x: 6, y: 6.5, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2088039069208346085}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!33 &5960750434375192051
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6921828362920079428}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &9149947096319033907
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6921828362920079428}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4732651139650802480
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6921828362920079428}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6923158871977749541
 GameObject:
   m_ObjectHideFlags: 0
@@ -27835,6 +28968,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 767515353055201942}
+  - component: {fileID: 8625852013930626420}
   - component: {fileID: 7698069129005064877}
   - component: {fileID: 1061776613003086927}
   - component: {fileID: 8791853286905954332}
@@ -27860,6 +28994,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 601634983147793587}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8625852013930626420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6923158871977749541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fcccd18ec6b1c4a9ab082168f31ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactableGlass
+  requiredGadget: Glass Cutter
+  isLocked: 1
+  promptText: {fileID: 0}
 --- !u!33 &7698069129005064877
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -28060,7 +29209,7 @@ GameObject:
   - component: {fileID: 2508848071813519416}
   - component: {fileID: 5085390463572780832}
   - component: {fileID: 8525364167083734240}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (152)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28390,6 +29539,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2396870246394371196}
+  - component: {fileID: 511758571097941894}
   - component: {fileID: 7348784315825286724}
   - component: {fileID: 7630564298240372081}
   - component: {fileID: 296887978026226818}
@@ -28415,6 +29565,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8030106949620500351}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &511758571097941894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7108863473188424367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fcccd18ec6b1c4a9ab082168f31ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactableGlass
+  requiredGadget: Glass Cutter
+  isLocked: 1
+  promptText: {fileID: 0}
 --- !u!33 &7348784315825286724
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -28612,6 +29777,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1711468493875152931}
+  - component: {fileID: 7396110905260643507}
   - component: {fileID: 7457382496169661539}
   - component: {fileID: 2009162106708597637}
   - component: {fileID: 788544501155119034}
@@ -28637,6 +29803,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 601634983147793587}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7396110905260643507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7169771969398877639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fcccd18ec6b1c4a9ab082168f31ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactableGlass
+  requiredGadget: Glass Cutter
+  isLocked: 1
+  promptText: {fileID: 0}
 --- !u!33 &7457382496169661539
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -28726,7 +29907,7 @@ GameObject:
   - component: {fileID: 7829107073562760698}
   - component: {fileID: 6476150263648092180}
   - component: {fileID: 1164637630369370939}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (111)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28834,6 +30015,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 293584570788381602}
+  - component: {fileID: 5660372148785421440}
   - component: {fileID: 2323801495215111927}
   - component: {fileID: 5076330650871421227}
   - component: {fileID: 691003582356455707}
@@ -28859,6 +30041,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2088039069208346085}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5660372148785421440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7177293172883260390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fcccd18ec6b1c4a9ab082168f31ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactableGlass
+  requiredGadget: Glass Cutter
+  isLocked: 1
+  promptText: {fileID: 0}
 --- !u!33 &2323801495215111927
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -28945,6 +30142,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2346496704125166930}
+  - component: {fileID: 4009228222379448940}
   - component: {fileID: 2047431286459463599}
   - component: {fileID: 6930753357036009943}
   - component: {fileID: 5530283382083278808}
@@ -28970,6 +30168,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 601634983147793587}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4009228222379448940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7179129430664348296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fcccd18ec6b1c4a9ab082168f31ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactableGlass
+  requiredGadget: Glass Cutter
+  isLocked: 1
+  promptText: {fileID: 0}
 --- !u!33 &2047431286459463599
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -29056,6 +30269,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8891394226661246212}
+  - component: {fileID: 1453858333922368604}
   - component: {fileID: 6216935522049809405}
   - component: {fileID: 8677794332462022555}
   - component: {fileID: 973884027112577698}
@@ -29081,6 +30295,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2088039069208346085}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &1453858333922368604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7182797477918978572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fcccd18ec6b1c4a9ab082168f31ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactableGlass
+  requiredGadget: Glass Cutter
+  isLocked: 1
+  promptText: {fileID: 0}
 --- !u!33 &6216935522049809405
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -29281,7 +30510,7 @@ GameObject:
   - component: {fileID: 4885748904615910544}
   - component: {fileID: 2627937377514731341}
   - component: {fileID: 4038171399438330611}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (113)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29503,7 +30732,7 @@ GameObject:
   - component: {fileID: 6663290353128453625}
   - component: {fileID: 5429659729208477767}
   - component: {fileID: 598859727714534066}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (122)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29611,6 +30840,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6036929992707933096}
+  - component: {fileID: 2029004762519257836}
   - component: {fileID: 7237621451682248962}
   - component: {fileID: 8553919942655714019}
   - component: {fileID: 7931290876693734318}
@@ -29636,6 +30866,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2088039069208346085}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &2029004762519257836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7335395957343371481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fcccd18ec6b1c4a9ab082168f31ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactableGlass
+  requiredGadget: Glass Cutter
+  isLocked: 1
+  promptText: {fileID: 0}
 --- !u!33 &7237621451682248962
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -29949,7 +31194,7 @@ GameObject:
   - component: {fileID: 2750534364263732295}
   - component: {fileID: 5687303338504478413}
   - component: {fileID: 955788561346632354}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (116)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30060,7 +31305,7 @@ GameObject:
   - component: {fileID: 3535976654080972944}
   - component: {fileID: 5724887895740449454}
   - component: {fileID: 4592144570051746520}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (170)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30726,7 +31971,7 @@ GameObject:
   - component: {fileID: 2831874047643709346}
   - component: {fileID: 1968252084346182663}
   - component: {fileID: 7664819064170710210}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (109)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30948,7 +32193,7 @@ GameObject:
   - component: {fileID: 2503996031162291318}
   - component: {fileID: 933380112016974686}
   - component: {fileID: 2059780447703675303}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (93)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31393,7 +32638,7 @@ GameObject:
   - component: {fileID: 7906211483632293617}
   - component: {fileID: 1811306966396404053}
   - component: {fileID: 9125711108847270684}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (172)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31617,7 +32862,7 @@ GameObject:
   - component: {fileID: 6906964299434193033}
   - component: {fileID: 3073992302420738734}
   - component: {fileID: 5800538792012285426}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (115)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31728,7 +32973,7 @@ GameObject:
   - component: {fileID: 2327962877754323903}
   - component: {fileID: 8918440553669997223}
   - component: {fileID: 3118022646336877967}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (105)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32838,7 +34083,7 @@ GameObject:
   - component: {fileID: 1768679362022675320}
   - component: {fileID: 8179746948472940093}
   - component: {fileID: 3781716615064971293}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (106)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32949,7 +34194,7 @@ GameObject:
   - component: {fileID: 2634151918172702040}
   - component: {fileID: 8960817978472181920}
   - component: {fileID: 4613065620431833120}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (100)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33612,6 +34857,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6077716391800278840}
+  - component: {fileID: 5760005201447172141}
   - component: {fileID: 9204046491762601160}
   - component: {fileID: 8244195495365914533}
   - component: {fileID: 4398693384143593942}
@@ -33637,6 +34883,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2088039069208346085}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &5760005201447172141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8448501481182299470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fcccd18ec6b1c4a9ab082168f31ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactableGlass
+  requiredGadget: Glass Cutter
+  isLocked: 1
+  promptText: {fileID: 0}
 --- !u!33 &9204046491762601160
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -33726,7 +34987,7 @@ GameObject:
   - component: {fileID: 3992584118494278605}
   - component: {fileID: 4899973139823582062}
   - component: {fileID: 8874607098321309009}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (94)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34378,8 +35639,12 @@ Transform:
   - {fileID: 2358123117568174899}
   - {fileID: 7456885761000076557}
   - {fileID: 6014558907660697009}
+  - {fileID: 1081069028782406646}
+  - {fileID: 672823379560407771}
   - {fileID: 3279691314662479259}
+  - {fileID: 8368253791945453240}
   - {fileID: 1357958261730433594}
+  - {fileID: 6550624213879228159}
   - {fileID: 4888434073125503255}
   - {fileID: 5962555008230276791}
   - {fileID: 55467844978424999}
@@ -34443,6 +35708,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5140060224070481399}
+  - component: {fileID: 2952945735273501009}
   - component: {fileID: 5166641012042669834}
   - component: {fileID: 3617503625280345501}
   - component: {fileID: 2677447659302474517}
@@ -34468,6 +35734,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2088039069208346085}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &2952945735273501009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8564248964075199295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fcccd18ec6b1c4a9ab082168f31ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactableGlass
+  requiredGadget: Glass Cutter
+  isLocked: 1
+  promptText: {fileID: 0}
 --- !u!33 &5166641012042669834
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -35334,7 +36615,7 @@ GameObject:
   - component: {fileID: 3491767385790346052}
   - component: {fileID: 732404773601328142}
   - component: {fileID: 4890182348083521539}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (110)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35442,6 +36723,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7380280626925761923}
+  - component: {fileID: 215270650926666723}
   - component: {fileID: 6500709689024438125}
   - component: {fileID: 2082500367370473086}
   - component: {fileID: 1306235541533154771}
@@ -35467,6 +36749,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2088039069208346085}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &215270650926666723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8922460305699012505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fcccd18ec6b1c4a9ab082168f31ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactableGlass
+  requiredGadget: Glass Cutter
+  isLocked: 1
+  promptText: {fileID: 0}
 --- !u!33 &6500709689024438125
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -35655,6 +36952,117 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &8935348432565768333
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8120142843173286638}
+  - component: {fileID: 5034753581392957690}
+  - component: {fileID: 729233928858288266}
+  - component: {fileID: 4246326478518986376}
+  m_Layer: 0
+  m_Name: Cube (127)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8120142843173286638
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8935348432565768333}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -194.5, y: -1.75, z: 35.429}
+  m_LocalScale: {x: 3, y: 6.5, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2088039069208346085}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!33 &5034753581392957690
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8935348432565768333}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &729233928858288266
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8935348432565768333}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4246326478518986376
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8935348432565768333}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8995512838947358181
 GameObject:
   m_ObjectHideFlags: 0
@@ -35664,6 +37072,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2060887612933685643}
+  - component: {fileID: 9032702391216284924}
   - component: {fileID: 2677702005945901540}
   - component: {fileID: 6916276923998234970}
   - component: {fileID: 738538818767068934}
@@ -35689,6 +37098,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2088039069208346085}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &9032702391216284924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8995512838947358181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fcccd18ec6b1c4a9ab082168f31ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactableGlass
+  requiredGadget: Glass Cutter
+  isLocked: 1
+  promptText: {fileID: 0}
 --- !u!33 &2677702005945901540
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -35886,6 +37310,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1800740438291865129}
+  - component: {fileID: 7644883150262029321}
   - component: {fileID: 6254997078796348823}
   - component: {fileID: 2077648131997219922}
   - component: {fileID: 8948215066783664054}
@@ -35911,6 +37336,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2088039069208346085}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7644883150262029321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9019809678496189135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fcccd18ec6b1c4a9ab082168f31ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactableGlass
+  requiredGadget: Glass Cutter
+  isLocked: 1
+  promptText: {fileID: 0}
 --- !u!33 &6254997078796348823
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -36441,6 +37881,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1622953856249560457}
+  - component: {fileID: 7816263084535393970}
   - component: {fileID: 2961030135192479327}
   - component: {fileID: 8718097005993601834}
   - component: {fileID: 4841315276643153331}
@@ -36466,6 +37907,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8030106949620500351}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7816263084535393970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9143968800087333543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fcccd18ec6b1c4a9ab082168f31ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactableGlass
+  requiredGadget: Glass Cutter
+  isLocked: 1
+  promptText: {fileID: 0}
 --- !u!33 &2961030135192479327
 MeshFilter:
   m_ObjectHideFlags: 0
