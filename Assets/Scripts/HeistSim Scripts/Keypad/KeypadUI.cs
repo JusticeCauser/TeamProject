@@ -1,6 +1,5 @@
 using UnityEngine;
 using TMPro;
-using UnityEditor.Rendering;
 
 public class KeypadUI : MonoBehaviour
 {
@@ -13,6 +12,10 @@ public class KeypadUI : MonoBehaviour
     public bool maskInput = false;
     public bool allowKeyboardInput = true;
 
+    [Header("Interactor")]
+    public Interactor playerInteractor;
+    public PromptUI promptUI;
+
     private string current = "";
     private KeypadTarget activeTarget;
 
@@ -21,6 +24,8 @@ public class KeypadUI : MonoBehaviour
     private void Awake()
     {
         gameObject.SetActive(false);
+        current = "";
+        ShowDisplayMode();
         RefreshDisplay();
     }
 
@@ -32,15 +37,47 @@ public class KeypadUI : MonoBehaviour
         HandleKeyboardInput();
     }
 
+    private void ShowDisplayMode()
+    {
+        if (displayText)
+            displayText.gameObject.SetActive(true);
+        if (messageText)
+            messageText.gameObject.SetActive(false);
+    }
+
+    private void ShowMessageMode(string msg)
+    {
+        if (displayText)
+            displayText.gameObject.SetActive(false);
+
+        if(messageText)
+        {
+            messageText.gameObject.SetActive(true);
+            messageText.text = msg;
+        }
+    }
+
     public void Open(KeypadTarget target)
     {
         activeTarget = target;
-        ResetState();
-        SetMessage("Enter code");
+        current = "";
         gameObject.SetActive(true);
+
+        if (promptUI != null)
+            promptUI.Hide();
+        if (playerInteractor != null)
+        {
+            playerInteractor.uiLocked = true;
+            playerInteractor.SetInputCooldown(0.15f);
+        }
+
+        ShowMessageMode("Enter code");
+        Invoke(nameof(ReturnToDisplay), 0.6f);
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+
+        Input.ResetInputAxes();
     }
 
     public void Close()
@@ -50,6 +87,14 @@ public class KeypadUI : MonoBehaviour
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+
+        if (playerInteractor != null)
+        {
+            playerInteractor.uiLocked = false;
+            playerInteractor.SetInputCooldown(0.15f);
+        }
+
+        Input.ResetInputAxes();
     }
 
     public void PressDigit(string digit)
@@ -57,11 +102,12 @@ public class KeypadUI : MonoBehaviour
         if (!IsOpen || current.Length >= maxDigits)
             return;
 
+        ShowDisplayMode();
+
         if (digit.Length != 1 || digit[0] < '0' || digit[0] > '9')
             return;
 
         current += digit;
-        SetMessage("");
         RefreshDisplay();
     }
 
@@ -110,15 +156,23 @@ public class KeypadUI : MonoBehaviour
         bool ok = activeTarget.TrySubmit(current);
         if(ok)
         {
-            SetMessage("ACCESS GRANTED");
+            ShowMessageMode("ACCESS GRANTED");
             Invoke(nameof(Close), 0.25f);
         }
         else
         {
-            SetMessage("ACCESS DENIED");
+            ShowMessageMode("ACCESS DENIED");
             current = "";
-            RefreshDisplay();
+            Invoke(nameof(ReturnToDisplay), 0.6f);
         }
+    }
+
+    private void ReturnToDisplay()
+    {
+        if (!IsOpen)
+            return;
+        ShowDisplayMode();
+        RefreshDisplay();
     }
 
     public void PressClose() => Close();
@@ -126,7 +180,7 @@ public class KeypadUI : MonoBehaviour
     private void ResetState()
     {
         current = "";
-        SetMessage("");
+        ShowDisplayMode();
         RefreshDisplay();
     }
 
@@ -136,14 +190,8 @@ public class KeypadUI : MonoBehaviour
             return;
 
         if (current.Length == 0)
-            displayText.text = "____";
+            displayText.text = new string('_', Mathf.Max(4, maxDigits));
         else
             displayText.text = maskInput ? new string('*', current.Length) : current;
-    }
-
-    private void SetMessage(string msg)
-    {
-        if (messageText != null)
-            messageText.text = msg;
     }
 }

@@ -17,6 +17,11 @@ public class GameProgress : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         ElevatorUnlocked = PlayerPrefs.GetInt("ElevatorUnlocked", 0) == 1;
+
+#if UNITY_EDITOR
+        PlayerPrefs.DeleteKey("ElevatorUnlocked");
+        ElevatorUnlocked = false;
+#endif
     }
 
     public void SetElevatorUnlocked(bool value)
