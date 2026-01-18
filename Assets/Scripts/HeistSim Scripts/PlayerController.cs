@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
 
     Vector3 moveDir; //vector made for movement x,y,z. wasd. instead of multiple if statements.
     Vector3 playerVel; //separately handle gravity and jump. offers more control
+    Vector3 externalVelocity;
 
     [SerializeField] float crouchSpeed = 2f;
     Crouch crouch;
@@ -128,16 +129,31 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void takeDamage(int amount)
+    public Vector3 GetVelocity()
     {
-        HP -= amount;
-
-        if (HP <= 0)
-        {
-
-            //SettingsManager.instance.gameOver(); //not yet made
-        }
+        return (moveDir * speed) + externalVelocity + playerVel;
     }
+    public void SetExternalVelocity(Vector3 velocity)
+    {
+        externalVelocity = velocity;
+        //externalVelocity = new Vector3(velocity.x, 0, velocity.z);
+    }
+    public void GrappleJump(Vector3 grappleVelocity)
+    {
+        playerVel = grappleVelocity;
+        playerVel.y += jumpSpeed * .7f;
+        jumpCount = 0;
+    }
+    //public void takeDamage(int amount)
+    //{
+    //    HP -= amount;
+
+    //    if (HP <= 0)
+    //    {
+
+    //        //SettingsManager.instance.gameOver(); //not yet made
+    //    }
+    //}
     public void tazed()
     {
 
