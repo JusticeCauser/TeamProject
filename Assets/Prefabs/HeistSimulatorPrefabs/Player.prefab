@@ -375,7 +375,10 @@ MonoBehaviour:
   audJump: []
   maxInventory: 7
   itemList: []
+  draggedEnemy: {fileID: 0}
+  dragPoint: {fileID: 0}
   totalValue: 0
+  isHiding: 0
   crouchSpeed: 2
 --- !u!114 &6099111275490944047
 MonoBehaviour:
