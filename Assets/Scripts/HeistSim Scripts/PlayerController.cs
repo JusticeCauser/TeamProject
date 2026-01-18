@@ -1,5 +1,6 @@
 //using NUnit.Framework;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
 
@@ -29,8 +30,10 @@ public class PlayerController : MonoBehaviour
     //[SerializeField] Transform droppedItem; for dropping items
 
     [Header("---Enemy---")]
-    [SerializeField] EnemyAI_Base draggedEnemy;
     [SerializeField] Transform dragPoint;
+
+    EnemyAI_Base draggedEnemy;
+    public bool isDragging => draggedEnemy != null;
 
     int jumpCount;
     int HPOrig;
@@ -208,5 +211,18 @@ public class PlayerController : MonoBehaviour
                 Time.deltaTime * 12f
             );
         }
+    }
+
+    public void startDrag(EnemyAI_Base enemy)
+    {
+        draggedEnemy = enemy;
+        enemy.isBeingDragged = true;
+    }
+    public void stopDrag()
+    {
+        if (draggedEnemy != null)
+            draggedEnemy.isBeingDragged = false;
+
+        draggedEnemy = null;
     }
 }
