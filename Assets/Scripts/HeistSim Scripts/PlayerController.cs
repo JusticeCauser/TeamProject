@@ -137,7 +137,7 @@ public class PlayerController : MonoBehaviour
     public void hide()
     {
         isHiding = true;
-       controller.enabled = false;
+        controller.enabled = false;
     }
     public void exitHide()
     {
