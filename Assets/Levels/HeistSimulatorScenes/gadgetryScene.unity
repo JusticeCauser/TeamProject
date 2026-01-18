@@ -1218,7 +1218,12 @@ MonoBehaviour:
   grappleOrigin: {fileID: 337739012}
   lineExtendSpeed: 150
   lineWidth: 0.04
---- !u!114 &583132218
+--- !u!143 &583132221 stripped
+CharacterController:
+  m_CorrespondingSourceObject: {fileID: 508957861487470888, guid: f6a109bfbf56c464ca5f4566b180f7e9, type: 3}
+  m_PrefabInstance: {fileID: 1144543441}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &583132226
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1227,10 +1232,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 583132208}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a400c8d07e9027c4f8e2a5c89267b115, type: 3}
+  m_Script: {fileID: 11500000, guid: e81a01bc81c000d469a4969a1528cb5e, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::playerController
-  controller: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  controller: {fileID: 583132221}
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 0
@@ -1242,10 +1247,12 @@ MonoBehaviour:
   gravity: 15
   audSteps: []
   audJump: []
-  HPOrig: 0
-  isGodMode: 0
-  groundedVelocityDecay: 15
-  airVelocityDecay: 0.5
+  maxInventory: 7
+  itemList: []
+  dragPoint: {fileID: 0}
+  totalValue: 0
+  isHiding: 0
+  crouchSpeed: 2
 --- !u!1 &621877579
 GameObject:
   m_ObjectHideFlags: 0
@@ -1951,13 +1958,13 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3377885465133513441, guid: f6a109bfbf56c464ca5f4566b180f7e9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 583132218}
-    - targetCorrespondingSourceObject: {fileID: 3377885465133513441, guid: f6a109bfbf56c464ca5f4566b180f7e9, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 583132217}
     - targetCorrespondingSourceObject: {fileID: 3377885465133513441, guid: f6a109bfbf56c464ca5f4566b180f7e9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 583132216}
+    - targetCorrespondingSourceObject: {fileID: 3377885465133513441, guid: f6a109bfbf56c464ca5f4566b180f7e9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 583132226}
   m_SourcePrefab: {fileID: 100100000, guid: f6a109bfbf56c464ca5f4566b180f7e9, type: 3}
 --- !u!1 &1163010215
 GameObject:
