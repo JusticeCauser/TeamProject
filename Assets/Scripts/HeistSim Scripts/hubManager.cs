@@ -1,4 +1,7 @@
+using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class hubManager : MonoBehaviour
 {
@@ -315,5 +318,27 @@ public class hubManager : MonoBehaviour
     public bool IsInMissionFlow()
     {
         return inMissionFlow;
+    }
+
+    public void StartMission()
+    {
+        // get selected gadgets from loadout manager
+        loadoutManager lm = FindFirstObjectByType<loadoutManager>();
+        if(lm != null)
+        {
+            List<string> selectedGadgets = lm.GetSelectedToolNames();
+
+            // store in playerprefs to transfer to next scene
+            PlayerPrefs.SetString("SelectedGadgets", string.Join(",", selectedGadgets));
+            PlayerPrefs.Save();
+        }
+        if (selectedMission == "mansion")
+        {
+            SceneManager.LoadScene("Mansion");
+        }
+        else if (selectedMission == "facility")
+        {
+            SceneManager.LoadScene("Facility");
+        }
     }
 }
