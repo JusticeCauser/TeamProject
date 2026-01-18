@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMP_Text itemValueText;
     [SerializeField] TMP_Text timerTextFail;
     [SerializeField] TMP_Text failText;
+    [SerializeField] TMP_Text maxHeatTextWin;
+    [SerializeField] TMP_Text maxHeatTextFail;
 
     [Header("---HEAT System---")]
     [SerializeField] float heatTimer = 60f;
@@ -131,6 +133,9 @@ public class GameManager : MonoBehaviour
         if (itemValueText != null)
             itemValueText.text = "Total value collected: $" + playerScript.totalValue;
 
+        if(maxHeatTextWin != null && HeatManager.Instance != null) //shows only whole percentage, no decimals
+            maxHeatTextWin.text = "Max Heat: " + HeatManager.Instance.maxHeatReached.ToString("F0") + "%";
+
         if (menuWin != null)
         {
             menuWin.SetActive(true);
@@ -153,6 +158,9 @@ public class GameManager : MonoBehaviour
             timerTextFail.text = "Time Survived: " + string.Format("{0:00}:{1:00}", min, sec);
 
         }
+        if (maxHeatTextFail != null && HeatManager.Instance != null) //shows only whole percentage, no decimals
+            maxHeatTextFail.text = "Max Heat: " + HeatManager.Instance.maxHeatReached.ToString("F0") + "%";
+
         if (menuLose != null)
         {
             menuLose.SetActive(true);
