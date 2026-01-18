@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class HearingTrigger : MonoBehaviour
 {
-    protected EnemyAI_Base enemyParent;
+    EnemyAI_Base enemyParent;
 
     void Start()
     {
