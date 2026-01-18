@@ -2700,14 +2700,6 @@ PrefabInstance:
       propertyPath: m_LocalRotation.w
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3319698450656636261, guid: f6a109bfbf56c464ca5f4566b180f7e9, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3319698450656636261, guid: f6a109bfbf56c464ca5f4566b180f7e9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
-      objectReference: {fileID: 0}
     - target: {fileID: 8979850569794537284, guid: f6a109bfbf56c464ca5f4566b180f7e9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.12
