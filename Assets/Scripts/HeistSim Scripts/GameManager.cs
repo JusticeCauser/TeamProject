@@ -148,6 +148,11 @@ public class GameManager : MonoBehaviour
     { //capture, if not out in 60 seconds from HEAT timer
 
         failReason = reason;
+
+        //Testing failsafe 
+        //Time.timeScale = 0f;
+        //Cursor.lockState = CursorLockMode.None;
+        //Cursor.visible = true;
         if (timerOn)
         {
             endTimer = Time.time - startTimer;
