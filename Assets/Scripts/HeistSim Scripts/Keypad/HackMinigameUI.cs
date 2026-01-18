@@ -24,6 +24,10 @@ public class HackMinigameUI : MonoBehaviour
     [Header("Input")]
     public KeyCode lockInKey = KeyCode.Space;
 
+    [Header("PlayerInteractor")]
+    public Interactor playerInteractor;
+    public PromptUI promptUI;
+
     private KeypadTarget target;
     private int locks;
     private float dir = 1f;
@@ -50,8 +54,18 @@ public class HackMinigameUI : MonoBehaviour
         SetStatus("Align the marker and Lock In!");
         gameObject.SetActive(true);
 
+        if (promptUI != null)
+            promptUI.Hide();
+        if (playerInteractor != null)
+        {
+            playerInteractor.uiLocked = true;
+            playerInteractor.SetInputCooldown(0.15f);
+        }
+
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+
+        Input.ResetInputAxes();
     }
 
     public void Close()
@@ -62,6 +76,14 @@ public class HackMinigameUI : MonoBehaviour
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+
+        if (playerInteractor != null)
+        {
+            playerInteractor.uiLocked = false;
+            playerInteractor.SetInputCooldown(0.15f);
+        }
+
+        Input.ResetInputAxes();
     }
 
     // Update is called once per frame
