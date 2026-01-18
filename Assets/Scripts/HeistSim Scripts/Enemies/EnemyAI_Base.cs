@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Drawing;
 using UnityEngine;
 using UnityEngine.AI;
@@ -36,6 +37,7 @@ public class EnemyAI_Base : MonoBehaviour
     float suspiciousTimer;
     float lookTimer;
     protected int destPatrolPoints;
+    float canHearTimer;
 
     public enum guardState
     {
@@ -44,7 +46,8 @@ public class EnemyAI_Base : MonoBehaviour
         Search,
         Suspicious,
         Alerted,
-        Chase
+        Chase,
+        KnockedOut
     }
 
     public guardState state = guardState.Idle;
@@ -69,6 +72,17 @@ public class EnemyAI_Base : MonoBehaviour
     {
         startingPos = transform.position;
         stoppingDistOrig = agent.stoppingDistance;
+
+        destPatrolPoints = 0;
+        if (patrolPoints != null && patrolPoints.Length > 0)
+        {
+            {
+                agent.isStopped = false;
+                agent.SetDestination(patrolPoints[destPatrolPoints].position);
+                destPatrolPoints = (destPatrolPoints + 1) % patrolPoints.Length;
+                state = guardState.Patrol;
+            }
+        }
 
         if (GameManager.instance.player != null)
             playerTransform = GameManager.instance.player.transform;
@@ -104,6 +118,8 @@ public class EnemyAI_Base : MonoBehaviour
             case guardState.Patrol:
                 PatrolBehavior();
                 break;
+            case guardState.KnockedOut:
+                break;
         }
     }
     void locomotionAnim()
@@ -130,6 +146,29 @@ public class EnemyAI_Base : MonoBehaviour
                 agent.speed = chaseSpeed;
                 break;
         }
+    }
+
+    public void takeKnockOut(float duration)
+    {
+        if (state == guardState.KnockedOut) return;
+
+        StopAllCoroutines();
+        StartCoroutine(knockedOut(duration));
+    }
+
+    IEnumerator knockedOut(float duration)
+    {
+        previousState = state;
+        state = guardState.KnockedOut;
+
+        agent.isStopped = true;
+        agent.ResetPath();
+
+        yield return new WaitForSeconds(duration);
+
+        agent.isStopped = false;
+
+        state = (patrolPoints != null && patrolPoints.Length > 0) ? guardState.Patrol : guardState.Idle;
     }
     void nextPoint()
     {
@@ -171,16 +210,6 @@ public class EnemyAI_Base : MonoBehaviour
     }
     void PatrolBehavior()
     {
-        destPatrolPoints = 0;
-        if (patrolPoints != null && patrolPoints.Length > 0)
-        {
-            {
-                agent.isStopped = false;
-                agent.SetDestination(patrolPoints[destPatrolPoints].position);
-                destPatrolPoints = (destPatrolPoints + 1) % patrolPoints.Length;
-                state = guardState.Patrol;
-            }
-        }
         if (canSeePlayer())
         {
             state = guardState.Chase;

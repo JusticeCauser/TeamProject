@@ -7,7 +7,7 @@ public class AlertSystem : MonoBehaviour
     public void raiseBarkAlert(Vector3 position, Vector3 forward, float radius)
     {
         Collider[] hits = Physics.OverlapSphere(position, radius, enemyMask);
-        
+        Debug.Log("I Barked");
         for(int i = 0; i < hits.Length; i++)
         {
             HandlerAI guard = hits[i].GetComponent<HandlerAI>();
