@@ -23,11 +23,11 @@ public class pegboardInteraction : MonoBehaviour
 
     private void Update()
     {
-        // hide loadout panel if player exits 'back'
-        if(!hubManager.IsInInteraction() && loadoutPanel != null && loadoutPanel.activeSelf)
-        {
-            loadoutPanel.SetActive(false);
-        }
+        //// hide loadout panel if player exits 'back'
+        //if(!hubManager.IsInInteraction() && loadoutPanel != null && loadoutPanel.activeSelf)
+        //{
+        //    loadoutPanel.SetActive(false);
+        //}
 
         // hide prompt if in interaction
         if(hubManager.IsInInteraction())

@@ -16,7 +16,7 @@ public class cameraController : MonoBehaviour
 
     [Header("----- Movement Tilt -----")]
     [SerializeField] float moveTiltAmount = 0f; // Levi change - off by default
-    [SerializeField] float moveTiltSpeed = 8f;
+   // [SerializeField] float moveTiltSpeed = 8f;
 
     public bool IsMovementTiltEnabled => moveTiltAmount > 0f;
 

@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] float crouchSpeed = 2f;
     Crouch crouch;
+    KeypadUI keypad;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -94,6 +95,9 @@ public class PlayerController : MonoBehaviour
 
     void jump()
     {
+        if (keypad != null && keypad.IsOpen)
+            return;
+
         if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
         {
             playerVel.y = jumpSpeed;

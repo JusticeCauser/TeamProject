@@ -28,6 +28,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMP_Text timerTextFail;
     [SerializeField] TMP_Text failText;
 
+    [Header("---HEAT System---")]
+    [SerializeField] float heatTimer = 60f;
+
 
 
     float timeScaleOrig;
@@ -55,7 +58,9 @@ public class GameManager : MonoBehaviour
         }
 
         timeScaleOrig = Time.timeScale;
+
         player = GameObject.FindWithTag("Player");
+        playerScript = player.GetComponent<PlayerController>();
 
         if (player != null) //bc player doesnt exist in introscene
         {
