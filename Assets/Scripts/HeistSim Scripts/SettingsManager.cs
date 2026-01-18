@@ -18,6 +18,8 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] Button backButton;
     [SerializeField] Button quitButton;
     [SerializeField] Button quitGameButton;
+   
+    
 
     [Header("-----Audio Sliders-----")]
     [SerializeField] Slider masterSlide;
@@ -59,28 +61,62 @@ public class SettingsManager : MonoBehaviour
        //will clean up later with function for cleaner look if need be
         timeScaleOrig = Time.timeScale;
 
-        if (masterSlide != null) masterSlide.SetValueWithoutNotify(masterVolume);
-        masterSlide.onValueChanged.AddListener(setMasterVolume);
+        if (masterSlide != null)
+        {
+            masterSlide.SetValueWithoutNotify(masterVolume);
+            masterSlide.onValueChanged.AddListener(sliderSound);
+            masterSlide.onValueChanged.AddListener(setMasterVolume);
+        }
 
-        if (ambientSlide != null) ambientSlide.SetValueWithoutNotify(ambientVolume);
-        ambientSlide.onValueChanged.AddListener(setAmbientVolume);
+        if (ambientSlide != null)
+        {
+            ambientSlide.SetValueWithoutNotify(ambientVolume);
+            ambientSlide.onValueChanged.AddListener(sliderSound);
+            ambientSlide.onValueChanged.AddListener(setAmbientVolume);
+        }
 
-        if (sfxSlide != null) sfxSlide.SetValueWithoutNotify(sfxVolume);
-        sfxSlide.onValueChanged.AddListener(setSFXVolume);
+        if (sfxSlide != null)
+        {
+            sfxSlide.SetValueWithoutNotify(sfxVolume);
+            sfxSlide.onValueChanged.AddListener(sliderSound);
+            sfxSlide.onValueChanged.AddListener(setSFXVolume);
+        }
 
-        if (sensitivitySlide != null) sensitivitySlide.SetValueWithoutNotify(sensitivity);
-        sensitivitySlide.onValueChanged.AddListener(setSensitivity);
+        if (sensitivitySlide != null)
+        {
+            sensitivitySlide.SetValueWithoutNotify(sensitivity);
+            sensitivitySlide.onValueChanged.AddListener(sliderSound);
+            sensitivitySlide.onValueChanged.AddListener(setSensitivity);
+        }
 
-        if (yInvertToggle != null) yInvertToggle.SetIsOnWithoutNotify(invertY);
-        yInvertToggle.onValueChanged.AddListener(setInvert);
+        if (yInvertToggle != null)
+        {
+            yInvertToggle.SetIsOnWithoutNotify(invertY);
+            yInvertToggle.onValueChanged.AddListener(toggleSound);
+            yInvertToggle.onValueChanged.AddListener(setInvert);
+        }
 
         if (settingsUI != null)
             settingsUI.SetActive(false);
 
+
         if (backButton != null)
+        {
+            backButton.onClick.AddListener(menuButtonSound);
             backButton.onClick.AddListener(closeSettings);
+        }
 
+        if (quitButton != null)
+        {
+            quitButton.onClick.AddListener(menuButtonSound);
+            quitButton.onClick.AddListener(quitToLobby);
+        }
 
+        if (quitGameButton != null)
+        {
+            quitGameButton.onClick.AddListener(menuButtonSound);
+            quitGameButton.onClick.AddListener(quitToTitle);
+        }
     }
     private void Update()
     {
@@ -142,6 +178,17 @@ public class SettingsManager : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        if(SceneManager.GetActiveScene().name != title)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
     }
 
     public void setMasterVolume(float volume)
@@ -193,6 +240,21 @@ public class SettingsManager : MonoBehaviour
 
         if(cameraController.instance != null)
             cameraController.instance.invertY = invert;
+    }
+    void menuButtonSound()
+    {
+        if (audioManager.instance != null)
+            audioManager.instance.playButtonSound();
+    }
+    void sliderSound(float value)
+    {
+        if(audioManager.instance != null)
+            audioManager.instance.playSliderSound(value);
+    }
+    void toggleSound(bool value)
+    {
+        if(audioManager.instance != null)
+            audioManager.instance.playButtonSound();
     }
     public void quitToLobby()
     {

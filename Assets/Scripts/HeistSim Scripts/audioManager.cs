@@ -31,6 +31,8 @@ public class audioManager : MonoBehaviour
     [Header("---SFX Clips---")]
     [SerializeField] AudioClip bark;
     [SerializeField] AudioClip footsteps;
+    [SerializeField] AudioClip menuButtonClicked;
+    [SerializeField] AudioClip slider;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
@@ -66,6 +68,17 @@ public class audioManager : MonoBehaviour
     void Update()
     {
 
+    }
+
+    public void playButtonSound()
+    {
+        if (sfxAudio != null && menuButtonClicked != null)
+            sfxAudio.PlayOneShot(menuButtonClicked);
+    }
+    public void playSliderSound(float value)
+    {
+        if(sfxAudio != null && slider  != null)
+            sfxAudio.PlayOneShot(slider);
     }
     public void setVolume()
     {
