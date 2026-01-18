@@ -9,6 +9,8 @@ public class HandlerAI : EnemyAI_Base
     [SerializeField] DogAI dog;
     [SerializeField] DogAI dog2;
 
+    Vector3 currentPos;
+
     public enum guardType
     {
         Handler,
@@ -41,5 +43,16 @@ public class HandlerAI : EnemyAI_Base
 
         agent.SetDestination(alertTargetPos);
         state = guardState.Search;
+    }
+
+    public void recall()
+    {
+        currentPos = agent.transform.position;
+        Vector3 dogPosition = dog.transform.position - currentPos;
+        if (dog == null) return;
+        if (dog != null && dogPosition.sqrMagnitude > 15f)
+        {
+            GameManager.instance.alertSys.raiseRecall(currentPos);
+        }
     }
 }
