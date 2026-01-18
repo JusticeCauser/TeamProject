@@ -59,7 +59,7 @@ public class EnemyAI_Base : MonoBehaviour
 
     bool playerInSightRange;
     [HideInInspector] public bool playerInHearingRange;
-    bool isKnockedOut => state == guardState.KnockedOut;
+    public bool isKnockedOut => state == guardState.KnockedOut;
 
     protected Vector3 playerDir;
     protected Vector3 alertTargetPos;
@@ -100,7 +100,7 @@ public class EnemyAI_Base : MonoBehaviour
     {
         applyStateMovement();
         // locomotionAnim();
-        if (isKnockedOut) return;
+        if (isKnockedOut || isBeingDragged) return;
 
         switch (state)
         {
