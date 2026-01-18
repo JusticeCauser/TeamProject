@@ -28,6 +28,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] List<itemStats> itemList = new List<itemStats>();
     //[SerializeField] Transform droppedItem; for dropping items
 
+    [Header("---Enemy---")]
+    [SerializeField] EnemyAI_Base draggedEnemy;
+    [SerializeField] Transform dragPoint;
+
     int jumpCount;
     int HPOrig;
     int itemListPos;
@@ -66,6 +70,7 @@ public class PlayerController : MonoBehaviour
 
         sprint();
         selectItem();
+        draggingEnemy();
     }
 
     void movement()
@@ -169,5 +174,23 @@ public class PlayerController : MonoBehaviour
     public void applyUpgrades(upgradeData upgrade)
     {
         //if we want to carry over player upgrades
+    }
+
+    void draggingEnemy()
+    {
+        if (draggedEnemy != null)
+        {
+            draggedEnemy.transform.position = Vector3.Lerp(
+                draggedEnemy.transform.position,
+                dragPoint.position,
+                Time.deltaTime * 12f
+            );
+
+            draggedEnemy.transform.rotation = Quaternion.Lerp(
+                draggedEnemy.transform.rotation,
+                dragPoint.rotation,
+                Time.deltaTime * 12f
+            );
+        }
     }
 }

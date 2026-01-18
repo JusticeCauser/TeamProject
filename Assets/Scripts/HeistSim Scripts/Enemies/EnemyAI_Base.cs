@@ -28,6 +28,10 @@ public class EnemyAI_Base : MonoBehaviour
     [SerializeField] float baseHearing;
     [SerializeField] float suspiciousMax;
 
+    [Header("Drag")]
+    public bool isBeingDragged;
+    [SerializeField] Transform dragAttachPoint;
+
     float hearingSphreRadius;
     float searchTimer;
     float roamTimer;
@@ -55,6 +59,7 @@ public class EnemyAI_Base : MonoBehaviour
 
     bool playerInSightRange;
     [HideInInspector] public bool playerInHearingRange;
+    bool isKnockedOut => state == guardState.KnockedOut;
 
     protected Vector3 playerDir;
     protected Vector3 alertTargetPos;
@@ -94,7 +99,8 @@ public class EnemyAI_Base : MonoBehaviour
     void Update()
     {
         applyStateMovement();
-       // locomotionAnim();
+        // locomotionAnim();
+        if (isKnockedOut) return;
 
         switch (state)
         {
