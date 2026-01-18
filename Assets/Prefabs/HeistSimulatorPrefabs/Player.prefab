@@ -221,6 +221,7 @@ GameObject:
   - component: {fileID: 3208948494003773320}
   - component: {fileID: 508957861487470888}
   - component: {fileID: 1490800043490925948}
+  - component: {fileID: -2167486896614264719}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -373,3 +374,26 @@ MonoBehaviour:
   gravity: 35
   audSteps: []
   audJump: []
+  crouchSpeed: 2
+--- !u!114 &-2167486896614264719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3377885465133513441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9ac45634569ded4bb9b2e50c6cfe840, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HackerInteractor
+  hackKey: 104
+  interactKey: 101
+  range: 3
+  keypadLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  requireLineOfSight: 1
+  keypadPanel: {fileID: 0}
+  hackPanel: {fileID: 0}
+  promptUI: {fileID: 0}
