@@ -62,6 +62,7 @@ public class DogAI : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.instance == null) return;
         applyStateMovement();
         //locomotionAnim();
 
@@ -77,6 +78,10 @@ public class DogAI : MonoBehaviour
 
             case dogState.Chase:
                 ChaseBehavior();
+                break;
+
+            case dogState.Recall:
+                RecallBehavior();
                 break;
         }
     }
@@ -102,6 +107,10 @@ public class DogAI : MonoBehaviour
 
             case dogState.Chase:
                 agent.speed = chaseSpeed;
+                break;
+
+            case dogState.Recall:
+                agent.speed = roamSpeed;
                 break;
         }
     }
@@ -225,10 +234,10 @@ public class DogAI : MonoBehaviour
 
         GameManager.instance.alertSys.raiseBarkAlert(forwardAnchor.position, forwardAnchor.forward, alertRadius);
     }
-    public void recalled()
+    public bool recalled()
     {
-        state = dogState.Recall;
-        return;
+        RecallBehavior();
+        return true;
     }
     public void onRecall(Vector3 position)
     {
@@ -237,6 +246,10 @@ public class DogAI : MonoBehaviour
         agent.SetDestination(returnPos);
 
         recalled();
+    }
+    void RecallBehavior()
+    {
+
     }
 
     public void bite(GameObject playerObj)

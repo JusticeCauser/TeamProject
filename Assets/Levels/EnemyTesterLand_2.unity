@@ -982,6 +982,10 @@ PrefabInstance:
       propertyPath: doghandler
       value: 
       objectReference: {fileID: 1620139073}
+    - target: {fileID: 6921169198345182609, guid: 7bc424453043922408e620f44126a43b, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8452470355179082392, guid: 7bc424453043922408e620f44126a43b, type: 3}
       propertyPath: m_Name
       value: Dog
