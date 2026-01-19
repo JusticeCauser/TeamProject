@@ -338,7 +338,7 @@ public class hubManager : MonoBehaviour
         }
         else if (selectedMission == "facility")
         {
-            SceneManager.LoadScene("Asylum");
+            SceneManager.LoadScene("LoadingIntroAsylum");
         }
     }
 }
