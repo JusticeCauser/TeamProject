@@ -783,6 +783,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5503150100206073096}
+  - component: {fileID: -2781702808416064231}
   - component: {fileID: 1611480114841453438}
   - component: {fileID: 7004407898400090228}
   - component: {fileID: 288657896101805849}
@@ -816,6 +817,18 @@ Transform:
   - {fileID: 2083714461928028554}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-2781702808416064231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2623580852539053723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8851ea7d2de7944e8fd608ac5acb43a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GuardHeatListener
 --- !u!95 &1611480114841453438
 Animator:
   serializedVersion: 7
@@ -878,6 +891,7 @@ MonoBehaviour:
   chaseSpeed: 5
   baseHearing: 5
   suspiciousMax: 3
+  hidingspots: []
   isBeingDragged: 0
   dragAttachPoint: {fileID: 0}
   alertedTimer: 0

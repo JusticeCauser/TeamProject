@@ -116,6 +116,10 @@ public class GameManager : MonoBehaviour
             menuLose.SetActive(false);
 
         Time.timeScale = timeScaleOrig;
+
+        player = GameObject.FindWithTag("Player");
+        if (player != null)
+            playerScript = player.GetComponent<PlayerController>();
     }
     public void missionComplete()
     { //completing 
@@ -131,7 +135,7 @@ public class GameManager : MonoBehaviour
             timerTextWin.text = "Completed in: " + string.Format("{0:00}:{1:00}", min, sec);
 
         }
-        if (itemValueText != null)
+        if (itemValueText != null && playerScript != null)
             itemValueTextFail.text = "Total value collected: $" + playerScript.totalValue;
         if(objectivesBonusText.text != null && ObjectiveManager.instance != null)
         {
@@ -174,7 +178,7 @@ public class GameManager : MonoBehaviour
         if (maxHeatTextFail != null && HeatManager.Instance != null) //shows only whole percentage, no decimals
             maxHeatTextFail.text = "Max Heat: " + HeatManager.Instance.maxHeatReached.ToString("F0") + "%";
 
-        if (itemValueText != null)
+        if (itemValueTextFail != null && playerScript != null)
             itemValueText.text = "Total value collected: $" + playerScript.totalValue;
 
         if (menuLose != null)
@@ -223,8 +227,6 @@ public class GameManager : MonoBehaviour
 
         else
             SceneManager.LoadScene(currScene);
-
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
         //string map = SceneManager.GetActiveScene().name;
         //SceneManager.LoadScene(map);
