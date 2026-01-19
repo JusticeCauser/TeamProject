@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] string currScene;
 
+    [Header("---HUD---")]
+    [SerializeField] GameObject heatUIRoot;
+
     [Header("---Menus---")]
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
@@ -114,6 +117,8 @@ public class GameManager : MonoBehaviour
 
         if(menuLose != null)
             menuLose.SetActive(false);
+        if (heatUIRoot != null)
+            heatUIRoot.SetActive(true);
 
         Time.timeScale = timeScaleOrig;
     }
@@ -132,7 +137,7 @@ public class GameManager : MonoBehaviour
 
         }
         if (itemValueText != null)
-            itemValueTextFail.text = "Total value collected: $" + playerScript.totalValue;
+            itemValueText.text = "Total value collected: $" + playerScript.totalValue;
         if(objectivesBonusText.text != null && ObjectiveManager.instance != null)
         {
             int bonus = ObjectiveManager.instance.GetTotalMoneyBonus();
@@ -147,6 +152,9 @@ public class GameManager : MonoBehaviour
         
         if (menuWin != null)
         {
+            if (heatUIRoot != null)
+                heatUIRoot.SetActive(false);
+
             menuWin.SetActive(true);
             Time.timeScale = 0f;
             Cursor.lockState = CursorLockMode.None;
@@ -175,10 +183,12 @@ public class GameManager : MonoBehaviour
             maxHeatTextFail.text = "Max Heat: " + HeatManager.Instance.maxHeatReached.ToString("F0") + "%";
 
         if (itemValueText != null)
-            itemValueText.text = "Total value collected: $" + playerScript.totalValue;
+            itemValueTextFail.text = "Total value collected: $" + playerScript.totalValue;
 
         if (menuLose != null)
         {
+            if (heatUIRoot != null)
+                heatUIRoot.SetActive(false);
             menuLose.SetActive(true);
             Time.timeScale = 0f;
             Cursor.lockState = CursorLockMode.None;
@@ -224,7 +234,6 @@ public class GameManager : MonoBehaviour
         else
             SceneManager.LoadScene(currScene);
 
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
         //string map = SceneManager.GetActiveScene().name;
         //SceneManager.LoadScene(map);
