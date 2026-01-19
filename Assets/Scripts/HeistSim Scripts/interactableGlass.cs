@@ -22,15 +22,39 @@ public class interactableGlass : MonoBehaviour
         if (!playerInRange || !isLocked)
             return;
 
-        // show prompt when in range
-        if (promptText != null)
-            promptText.text = "Press E to use " + requiredGadget;
+        // check if player has gadget
+        bool hasGadget = gadgetInventory.instance != null && gadgetInventory.instance.HasGadget(requiredGadget);
 
-        // test world, assume player has gadget
-        if (Input.GetKeyDown(KeyCode.E))
+        // show prompt when in range (or not if missing gadget)
+        if (promptText != null)
+        {
+            if (hasGadget)
+            {
+                promptText.text = "Press E to use " + requiredGadget;
+            }
+            else
+            {
+                promptText.text = "Missing: " + requiredGadget;
+            }
+        }
+        // only allow interaction if player has gadget
+        if (hasGadget && Input.GetKeyDown(KeyCode.E))
         {
             CutGlass();
         }
+        /////////////
+        //if (!playerInRange || !isLocked)
+        //    return;
+
+        //// show prompt when in range
+        //if (promptText != null)
+        //    promptText.text = "Press E to use " + requiredGadget;
+
+        //// test world, assume player has gadget
+        //if (Input.GetKeyDown(KeyCode.E))
+        //{
+        //    CutGlass();
+        //}
     }
 
     void CutGlass()

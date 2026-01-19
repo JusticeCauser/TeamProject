@@ -149,7 +149,7 @@ public class GrapplingHook : MonoBehaviour
     }
     void HandleInput()
     { //comment out 152-155 to test in gadgetry scene
-        bool hasGrappler = gadgetInventory.instance != null && gadgetInventory.instance.HasGadget("Grappler");
+        bool hasGrappler = gadgetInventory.instance != null && gadgetInventory.instance.HasGadget("Grapple");
 
         if (!hasGrappler)
             return;
