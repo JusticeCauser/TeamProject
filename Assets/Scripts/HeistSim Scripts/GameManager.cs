@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public PlayerController playerScript;
 
+    [SerializeField] string currScene;
+
     [Header("---Menus---")]
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
@@ -198,7 +200,21 @@ public class GameManager : MonoBehaviour
     }
     public void retry()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if (ObjectiveManager.instance != null)
+            ObjectiveManager.instance.resetObjectives();
+
+        currScene = SceneManager.GetActiveScene().name;
+
+        if (currScene == "Asylum")
+            SceneManager.LoadScene("LoadingIntroAsylum");
+
+        else if (currScene == "Mansion")
+            SceneManager.LoadScene("LoadingIntroMansion");
+
+        else
+            SceneManager.LoadScene(currScene);
+
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
         //string map = SceneManager.GetActiveScene().name;
         //SceneManager.LoadScene(map);

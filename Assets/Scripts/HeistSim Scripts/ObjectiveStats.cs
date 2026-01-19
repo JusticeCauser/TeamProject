@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public class ObjectiveStats : MonoBehaviour
+[System.Serializable]
+public class ObjectiveStats
 {
     public ObjectiveManager.ObjectiveType type;
 

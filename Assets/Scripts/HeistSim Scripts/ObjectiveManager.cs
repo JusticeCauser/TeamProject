@@ -1,19 +1,21 @@
 //using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ObjectiveManager : MonoBehaviour
 {
     public static ObjectiveManager instance;
     public enum ObjectiveType { restrictedLoadout, specificItem, timeLimit, heatBelow, undetected }
-    
 
     [Header("Objectives Settings")]
     [SerializeField] int objectivesPerGame = 2;
 
-   
+    [Header("Objectives")]
     public List<ObjectiveStats> objectivesActive = new List<ObjectiveStats>();
+    public string objectivesText;
 
+    
     bool detected;
     bool restrictedLoadoutFail;
 
@@ -22,19 +24,39 @@ public class ObjectiveManager : MonoBehaviour
     private void Awake()
     {
         if (instance == null)
+        {
             instance = this;
+            DontDestroyOnLoad(gameObject);
+
+            if (objectivesActive.Count == 0)
+                randomizeObjectives();
+            
+        }
         else
+        {
             Destroy(gameObject);
+        }
+        
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         levelStartTime = Time.time;
-        randomizeObjectives();
     }
+    public string objectives()
+    {
+        objectivesText = "OBJECTIVES:\n";
 
+        foreach (var objective in objectivesActive)
+        {
+            objectivesText += "* " + objective.objectiveDescripton + "\n";
+        }
+        
+        return objectivesText;
+    }
     void randomizeObjectives() //assigning objectives to player 
     {
+        
         List<ObjectiveStats> rObjectivePool = new List<ObjectiveStats>();
         rObjectivePool.Add(new ObjectiveStats
         {
@@ -58,13 +80,14 @@ public class ObjectiveManager : MonoBehaviour
             type = ObjectiveType.restrictedLoadout,
             objectiveDescripton = "Complete the heist using only 2 gadgets"
         });
-
+        
         for (int i = 0; i < objectivesPerGame; i++)
         {
             int rand = Random.Range(0, rObjectivePool.Count);
             objectivesActive.Add(rObjectivePool[rand]);
             rObjectivePool.RemoveAt(rand);
         }
+        
     }
     public void playerDetected()
     {
@@ -117,6 +140,14 @@ public class ObjectiveManager : MonoBehaviour
 
         }
         checkObjectivesCompleted();
+    }
+    public void resetObjectives() //if clicking retry on fail reset and randomize objectives again
+    {
+        objectivesActive.Clear();
+        detected = false;
+        restrictedLoadoutFail = false;
+        levelStartTime = Time.time;
+        randomizeObjectives();
     }
     // Update is called once per frame
     void Update()
