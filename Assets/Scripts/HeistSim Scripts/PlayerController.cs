@@ -159,13 +159,18 @@ public class PlayerController : MonoBehaviour
     public void tazed(float duration)
     {
         if(isStunned == true) return;
-            StartCoroutine(isTazed(duration));
+
+        StartCoroutine(isTazed(duration));
     }
 
     IEnumerator isTazed(float duration)
     {
+        Debug.Log($"[TAZE] START duration={duration} time={Time.time} unscaled={Time.unscaledTime} scale={Time.timeScale} enabled={enabled}");
         isStunned = true;
-        yield return new WaitForSeconds(duration);
+
+        yield return new WaitForSecondsRealtime(duration);
+
+        Debug.Log($"[TAZE] END time={Time.time} unscaled={Time.unscaledTime} scale={Time.timeScale} enabled={enabled}");
         isStunned = false;
     }
     public void hide()
