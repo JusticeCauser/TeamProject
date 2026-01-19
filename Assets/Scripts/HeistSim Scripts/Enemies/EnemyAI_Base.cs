@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Drawing;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem.XR.Haptics;
@@ -372,5 +373,18 @@ public class EnemyAI_Base : MonoBehaviour
                 state = guardState.Idle;
             }
         }
+    }
+
+    public void Capture(GameObject playerObj)
+    {
+        if (Time.timeScale == 0f) return;
+
+        if (state == guardState.KnockedOut) return;
+        if (isBeingDragged == true) return;
+        
+        PlayerController player = playerObj.GetComponent<PlayerController>();
+        if (player != null && player.isHiding) return;
+
+        GameManager.instance.missionFail(GameManager.fail.captured);
     }
 }

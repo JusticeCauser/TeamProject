@@ -8,6 +8,7 @@ public class HeatManager : MonoBehaviour
     [Header("Heat Settings")]
     public float heat = 0f;
     public float maxHeat = 100f;
+    public float maxHeatReached;
 
     [Header("Decay")]
     public float heatDecayRate = 5f;
@@ -42,6 +43,9 @@ public class HeatManager : MonoBehaviour
     {
         heat = Mathf.Clamp(heat + amount, 0, maxHeat);
         lastHeatGainTime = Time.time;
+
+        if(heat > maxHeatReached)
+            maxHeatReached = heat;
     }
 
     public void ReducedHeat(float amount)
