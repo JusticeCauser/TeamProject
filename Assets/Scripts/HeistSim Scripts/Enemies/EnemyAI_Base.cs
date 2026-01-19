@@ -29,6 +29,8 @@ public class EnemyAI_Base : MonoBehaviour
     [SerializeField] float baseHearing;
     [SerializeField] float suspiciousMax;
 
+    [SerializeField] IHide[] hidingspots;
+
     [Header("Drag")]
     public bool isBeingDragged;
     [SerializeField] Transform dragAttachPoint;
@@ -43,6 +45,7 @@ public class EnemyAI_Base : MonoBehaviour
     float lookTimer;
     protected int destPatrolPoints;
     float canHearTimer;
+    protected int destHidingSpots;
 
     public enum guardState
     {
@@ -186,7 +189,20 @@ public class EnemyAI_Base : MonoBehaviour
     }
     void SearchBehavior()
     {
+        if(!canSeePlayer())
+        {
+            if (agent.remainingDistance <= agent.stoppingDistance + 0.1f)
+            {
+                nextHideSpot();
+            }
+        }
+    }
+    void nextHideSpot()
+    {
+        if (hidingspots == null || hidingspots.Length == 0) return;
 
+        agent.SetDestination(hidingspots[destHidingSpots].transform.position);
+        destHidingSpots = (destHidingSpots + 1) % hidingspots.Length;
     }
     void SuspiciousBehavior()
     {
@@ -382,5 +398,12 @@ public class EnemyAI_Base : MonoBehaviour
         if (player != null && player.isHiding) return;
 
         GameManager.instance.missionFail(GameManager.fail.captured);
+    }
+    public void onRadioIn(Vector3 position)
+    {
+        alertTargetPos = position;
+
+        agent.SetDestination(alertTargetPos);
+        state = guardState.Search;
     }
 }
