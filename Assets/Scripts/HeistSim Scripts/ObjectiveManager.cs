@@ -81,7 +81,7 @@ public class ObjectiveManager : MonoBehaviour
         rObjectivePool.Add(new ObjectiveStats
         {
             type = ObjectiveType.restrictedLoadout,
-            objectiveDescripton = "Complete the heist using only 2 gadgets"
+            objectiveDescripton = "Complete the heist using only 2 gadgets",
             percentBonus = .20f
         });
         
