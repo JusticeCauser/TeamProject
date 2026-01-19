@@ -26,9 +26,24 @@ public class HeatManager : MonoBehaviour
 
     public event Action<HeatState> OnHeatStateChanged;
 
+    private void Start()
+    {
+        currentState = GetStateFromHeat();
+        OnHeatStateChanged?.Invoke(currentState);
+
+        if (currentState == HeatState.Emergency)
+            emergencyTimer = escapeTime;
+    }
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame
@@ -80,6 +95,8 @@ public class HeatManager : MonoBehaviour
 
     HeatState GetStateFromHeat()
     {
+        if (heat <= 0.01f)
+            return HeatState.Calm;
         if (heat < 25f)
             return HeatState.Suspicious;
         if (heat < 50f)
