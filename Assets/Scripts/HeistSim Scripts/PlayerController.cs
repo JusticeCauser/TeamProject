@@ -238,4 +238,9 @@ public class PlayerController : MonoBehaviour
 
         draggedEnemy = null;
     }
+
+    public void isBit()
+    {
+        
+    }
 }

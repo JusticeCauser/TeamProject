@@ -37,22 +37,22 @@ public class HandlerAI : EnemyAI_Base
         alertedTimer = 0;
     }
 
-    public void onRadioIn(Vector3 position)
-    {
-        alertTargetPos = position;
-
-        agent.SetDestination(alertTargetPos);
-        state = guardState.Search;
-    }
-
     public void recall()
     {
-        currentPos = agent.transform.position;
-        Vector3 dogPosition = dog.transform.position - currentPos;
-        if (dog == null) return;
-        if (dog != null && dogPosition.sqrMagnitude > 15f)
+        Vector3 handlerPos = transform.position;
+
+        if (dog != null)
         {
-            GameManager.instance.alertSys.raiseRecall(currentPos);
+            Vector3 d = dog.transform.position - handlerPos;
+            if (d.sqrMagnitude > 15f)
+                dog.onRecall(handlerPos);
+        }
+
+        if (dog2 != null)
+        {
+            Vector3 d2 = dog2.transform.position - handlerPos;
+            if (d2.sqrMagnitude > 15f)
+                dog2.onRecall(handlerPos);
         }
     }
 }

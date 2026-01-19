@@ -34,14 +34,6 @@ public class GuardAI : EnemyAI_Base
         }
     }
 
-    public void onRadioIn(Vector3 position)
-    {
-        alertTargetPos = position;
-
-        agent.SetDestination(alertTargetPos);
-        state = guardState.Search;
-    }
-
     protected override void tryToTaze()
     {
         toTaze();
