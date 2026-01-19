@@ -258,6 +258,7 @@ GameObject:
   - component: {fileID: 170824852}
   - component: {fileID: 170824855}
   - component: {fileID: 170824854}
+  - component: {fileID: 170824856}
   - component: {fileID: 170824853}
   m_Layer: 6
   m_Name: CaptureRange
@@ -275,7 +276,7 @@ Transform:
   m_GameObject: {fileID: 170824851}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.8, z: 0.43}
+  m_LocalPosition: {x: 0, y: 1.21, z: 0.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -327,7 +328,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1
+  m_Radius: 0.25
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &170824855
 MeshFilter:
@@ -337,6 +338,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 170824851}
   m_Mesh: {fileID: 0}
+--- !u!114 &170824856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170824851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81a2eeba0ecbf1f4795cd5c52e3706ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CaptureTrigger
 --- !u!1 &184497581
 GameObject:
   m_ObjectHideFlags: 0
@@ -1899,17 +1912,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   player: {fileID: 0}
   playerScript: {fileID: 0}
-  menuWin: {fileID: 0}
-  menuLose: {fileID: 0}
+  currScene: 
+  menuWin: {fileID: 2038640917}
+  menuLose: {fileID: 1816442855}
   wQuitButton: {fileID: 0}
   lQuitButton: {fileID: 0}
   retryButton: {fileID: 0}
   timerTextWin: {fileID: 0}
   itemValueText: {fileID: 0}
+  itemValueTextFail: {fileID: 0}
   timerTextFail: {fileID: 0}
   failText: {fileID: 0}
-  heatTimer: 60
+  maxHeatTextWin: {fileID: 0}
+  maxHeatTextFail: {fileID: 0}
   alertSys: {fileID: 124898420}
+--- !u!1 &1816442855 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2099293220128325636, guid: 89d0ed69243669544a51684c3d5723a2, type: 3}
+  m_PrefabInstance: {fileID: 917327879}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2038640917 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 924839763804551571, guid: 89d0ed69243669544a51684c3d5723a2, type: 3}
+  m_PrefabInstance: {fileID: 917327879}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2060763354 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 2a9979b14acae404f8d4cd863daf1b34, type: 3}
@@ -2267,6 +2293,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3234359886046308735, guid: af062c8bc34d57247a9c7a478c3c41e8, type: 3}
+      propertyPath: tazeDist
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3234359886046308735, guid: af062c8bc34d57247a9c7a478c3c41e8, type: 3}
       propertyPath: roamSpeed
       value: 5
       objectReference: {fileID: 0}
@@ -2275,8 +2305,12 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3234359886046308735, guid: af062c8bc34d57247a9c7a478c3c41e8, type: 3}
+      propertyPath: tazeRange
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3234359886046308735, guid: af062c8bc34d57247a9c7a478c3c41e8, type: 3}
       propertyPath: chaseSpeed
-      value: 8
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3234359886046308735, guid: af062c8bc34d57247a9c7a478c3c41e8, type: 3}
       propertyPath: baseHearing
@@ -2324,7 +2358,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5426346182797811465, guid: af062c8bc34d57247a9c7a478c3c41e8, type: 3}
       propertyPath: m_StoppingDistance
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

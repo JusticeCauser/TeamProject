@@ -273,6 +273,13 @@ public class EnemyAI_Base : MonoBehaviour
         {
             state = guardState.Alerted;
         }
+
+        tryToTaze();
+    }
+
+    protected virtual void tryToTaze()
+    {
+
     }
     bool canSeePlayer()
     {

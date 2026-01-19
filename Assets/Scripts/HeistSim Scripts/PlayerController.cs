@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
+using System.Collections;
 
 
 public class PlayerController : MonoBehaviour
@@ -40,7 +41,7 @@ public class PlayerController : MonoBehaviour
     int itemListPos;
 
     public int totalValue;
-
+    public bool isStunned;
     bool isPlayingSteps;
     bool isSprinting;
     public bool isHiding;
@@ -80,6 +81,7 @@ public class PlayerController : MonoBehaviour
     void movement()
     {
         if (isHiding == true) return;
+        if (isStunned == true) return;
 
         float actualSpeed = speed; // needed for conversion
 
@@ -154,9 +156,17 @@ public class PlayerController : MonoBehaviour
     //        //SettingsManager.instance.gameOver(); //not yet made
     //    }
     //}
-    public void tazed()
+    public void tazed(float duration)
     {
+        if(isStunned == true) return;
+            StartCoroutine(isTazed(duration));
+    }
 
+    IEnumerator isTazed(float duration)
+    {
+        isStunned = true;
+        yield return new WaitForSecondsRealtime(duration);
+        isStunned = false;
     }
     public void hide()
     {
