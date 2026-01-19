@@ -15,7 +15,8 @@ public class ObjectiveManager : MonoBehaviour
     public List<ObjectiveStats> objectivesActive = new List<ObjectiveStats>();
     public string objectivesText;
 
-    
+    int totalBonus;
+
     bool detected;
     bool restrictedLoadoutFail;
 
@@ -62,27 +63,27 @@ public class ObjectiveManager : MonoBehaviour
         {
             type = ObjectiveType.specificItem,
             objectiveDescripton = "Steal the *insert item here*",
-            flatMoneyBonus = 500
+            moneyBonus = 500
         });
         rObjectivePool.Add(new ObjectiveStats
         {
             type = ObjectiveType.heatBelow,
             objectiveDescripton = "Keep HEAT below 60%",
             heatLimit = 60f,
-            percentBonus = .20f
+            moneyBonus = 75
         });
         rObjectivePool.Add(new ObjectiveStats
         {
             type = ObjectiveType.timeLimit,
             objectiveDescripton = "Completet heist within 5 minutes",
             timeLimit = 300f,
-            flatMoneyBonus = 300
+            moneyBonus = 300
         });
         rObjectivePool.Add(new ObjectiveStats
         {
             type = ObjectiveType.restrictedLoadout,
             objectiveDescripton = "Complete the heist using only 2 gadgets",
-            percentBonus = .20f
+            moneyBonus = 75
         });
         
         for (int i = 0; i < objectivesPerGame; i++)
@@ -92,6 +93,17 @@ public class ObjectiveManager : MonoBehaviour
             rObjectivePool.RemoveAt(rand);
         }
         
+    }
+    public int GetTotalMoneyBonus()
+    {
+        totalBonus = 0;
+
+        foreach(var objective in objectivesActive)
+        {
+            if (objective.objectiveComplete)
+                totalBonus += objective.moneyBonus;
+        }
+        return totalBonus;
     }
     public void playerDetected()
     {
