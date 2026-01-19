@@ -285,6 +285,7 @@ public class EnemyAI_Base : MonoBehaviour
     protected virtual void tryToTaze()
     {
 
+
     }
     bool canSeePlayer()
     {
