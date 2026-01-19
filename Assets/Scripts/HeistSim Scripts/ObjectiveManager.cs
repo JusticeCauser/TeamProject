@@ -62,23 +62,27 @@ public class ObjectiveManager : MonoBehaviour
         {
             type = ObjectiveType.specificItem,
             objectiveDescripton = "Steal the *insert item here*",
+            flatMoneyBonus = 500
         });
         rObjectivePool.Add(new ObjectiveStats
         {
             type = ObjectiveType.heatBelow,
             objectiveDescripton = "Keep HEAT below 60%",
-            heatLimit = 60f
+            heatLimit = 60f,
+            percentBonus = .20f
         });
         rObjectivePool.Add(new ObjectiveStats
         {
             type = ObjectiveType.timeLimit,
             objectiveDescripton = "Completet heist within 5 minutes",
-            timeLimit = 300f
+            timeLimit = 300f,
+            flatMoneyBonus = 300
         });
         rObjectivePool.Add(new ObjectiveStats
         {
             type = ObjectiveType.restrictedLoadout,
             objectiveDescripton = "Complete the heist using only 2 gadgets"
+            percentBonus = .20f
         });
         
         for (int i = 0; i < objectivesPerGame; i++)

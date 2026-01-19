@@ -11,4 +11,7 @@ public class ObjectiveStats
 
     public float heatLimit;
     public float timeLimit;
+
+    public int flatMoneyBonus; //if wanting to do flat rate bonus for 
+    public float percentBonus; //if wanting to do a percentage bonus instead
 }
