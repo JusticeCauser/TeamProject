@@ -11,6 +11,7 @@ public class CaptureTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("I bit you");
         if (!other.CompareTag("Player")) return;
 
         if (enemyParent != null)
