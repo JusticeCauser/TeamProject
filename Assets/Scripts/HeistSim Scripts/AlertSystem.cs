@@ -18,14 +18,16 @@ public class AlertSystem : MonoBehaviour
         }
     }
 
-    public void radioIn(Vector3 position, Vector3 forward, float radius)
+    public void radioIn(Vector3 position)
     {
+        float radius = 20f;
+
         Collider[] hits = Physics.OverlapSphere(position, radius, enemyMask);
 
         for(int i = 0; i < hits.Length; i++)
         {
-            GuardAI guard = hits[i].GetComponent<GuardAI>();
-            HandlerAI handler = hits[i].GetComponent<HandlerAI>();
+            GuardAI guard = hits[i].GetComponentInParent<GuardAI>();
+            HandlerAI handler = hits[i].GetComponentInParent<HandlerAI>();
             if(guard != null)
             {
                 guard.onRadioIn(position);
@@ -39,19 +41,17 @@ public class AlertSystem : MonoBehaviour
 
     public void raiseRecall(Vector3 position)
     {
-        Collider[] hits = Physics.OverlapSphere(position, enemyMask);
+        float radius = 20f;
+
+        Collider[] hits = Physics.OverlapSphere(position, radius, enemyMask);
 
         for (int i = 0; i < hits.Length; i++)
         {
-            DogAI dog1 = hits[i].GetComponent<DogAI>();
-            DogAI dog2 = hits[i].GetComponent<DogAI>();
-            if(dog1 != null)
+            DogAI dog = hits[i].GetComponent<DogAI>();
+
+            if(dog != null)
             {
-                dog1.onRecall(position);
-            }
-            if(dog2 != null)
-            {
-                dog2.onRecall(position);
+                dog.onRecall(position);
             }
         }
     }
