@@ -227,6 +227,7 @@ public class DogAI : MonoBehaviour
         {
             transform.rotation = Quaternion.LookRotation(dir);
         }
+        HeatManager.Instance.AddHeat(15f);
 
         GameManager.instance.alertSys.raiseBarkAlert(forwardAnchor.position, forwardAnchor.forward, alertRadius);
     }

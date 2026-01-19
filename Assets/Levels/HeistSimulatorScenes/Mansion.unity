@@ -1291,6 +1291,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HidingSpotLocker (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 2939146835064553162, guid: 5f4188761390b814ebdface4236d7f3f, type: 3}
+      propertyPath: prompt
+      value: 
+      objectReference: {fileID: 841415524}
     - target: {fileID: 7145176231687950471, guid: 5f4188761390b814ebdface4236d7f3f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 134.75829
@@ -1592,10 +1596,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1251416421}
     - target: {fileID: 1013929047570166729, guid: bb960f1647c73dc40ad24214f3904eb0, type: 3}
-      propertyPath: patrolPoints.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1013929047570166729, guid: bb960f1647c73dc40ad24214f3904eb0, type: 3}
       propertyPath: 'patrolPoints.Array.data[0]'
       value: 
       objectReference: {fileID: 1188711963}
@@ -1672,6 +1672,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HidingSpotLocker (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 2939146835064553162, guid: 5f4188761390b814ebdface4236d7f3f, type: 3}
+      propertyPath: prompt
+      value: 
+      objectReference: {fileID: 841415524}
     - target: {fileID: 7145176231687950471, guid: 5f4188761390b814ebdface4236d7f3f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 164.8842
@@ -1851,7 +1855,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::interactableGlass
   requiredGadget: Glass Cutter
   isLocked: 1
-  promptText: {fileID: 0}
+  promptText: {fileID: 841415524}
 --- !u!4 &487327329
 Transform:
   m_ObjectHideFlags: 0
@@ -2517,6 +2521,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HidingSpotLocker (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 2939146835064553162, guid: 5f4188761390b814ebdface4236d7f3f, type: 3}
+      propertyPath: prompt
+      value: 
+      objectReference: {fileID: 841415524}
     - target: {fileID: 7145176231687950471, guid: 5f4188761390b814ebdface4236d7f3f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 182.72075
@@ -2703,6 +2711,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HidingSpotLocker (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2939146835064553162, guid: 5f4188761390b814ebdface4236d7f3f, type: 3}
+      propertyPath: prompt
+      value: 
+      objectReference: {fileID: 841415524}
     - target: {fileID: 7145176231687950471, guid: 5f4188761390b814ebdface4236d7f3f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 328.80875
@@ -3387,6 +3399,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HidingSpotLocker (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2939146835064553162, guid: 5f4188761390b814ebdface4236d7f3f, type: 3}
+      propertyPath: prompt
+      value: 
+      objectReference: {fileID: 841415524}
     - target: {fileID: 7145176231687950471, guid: 5f4188761390b814ebdface4236d7f3f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 321.43872
@@ -3865,6 +3881,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HidingSpotLocker (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 2939146835064553162, guid: 5f4188761390b814ebdface4236d7f3f, type: 3}
+      propertyPath: prompt
+      value: 
+      objectReference: {fileID: 841415524}
     - target: {fileID: 7145176231687950471, guid: 5f4188761390b814ebdface4236d7f3f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 274.83926
@@ -3922,6 +3942,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HidingSpotLocker (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2939146835064553162, guid: 5f4188761390b814ebdface4236d7f3f, type: 3}
+      propertyPath: prompt
+      value: 
+      objectReference: {fileID: 841415524}
     - target: {fileID: 7145176231687950471, guid: 5f4188761390b814ebdface4236d7f3f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 331.18997
@@ -5120,10 +5144,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dog
       objectReference: {fileID: 0}
-    - target: {fileID: 8452470355179082392, guid: 7bc424453043922408e620f44126a43b, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 9081198233459902498, guid: 7bc424453043922408e620f44126a43b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 203.75
@@ -5962,6 +5982,23 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c244918a7c49e84f8c23eed39b374de, type: 3}
+--- !u!1 &1365435882 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5390499715971866487, guid: bb960f1647c73dc40ad24214f3904eb0, type: 3}
+  m_PrefabInstance: {fileID: 2082530977}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1365435890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1365435882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8851ea7d2de7944e8fd608ac5acb43a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GuardHeatListener
 --- !u!1001 &1378681609
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7273,6 +7310,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HidingSpotLocker
       objectReference: {fileID: 0}
+    - target: {fileID: 2939146835064553162, guid: 5f4188761390b814ebdface4236d7f3f, type: 3}
+      propertyPath: prompt
+      value: 
+      objectReference: {fileID: 841415524}
     - target: {fileID: 7145176231687950471, guid: 5f4188761390b814ebdface4236d7f3f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 140.94821
@@ -8349,6 +8390,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HidingSpotLocker (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 2939146835064553162, guid: 5f4188761390b814ebdface4236d7f3f, type: 3}
+      propertyPath: prompt
+      value: 
+      objectReference: {fileID: 841415524}
     - target: {fileID: 7145176231687950471, guid: 5f4188761390b814ebdface4236d7f3f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 159.47177
@@ -8603,7 +8648,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5390499715971866487, guid: bb960f1647c73dc40ad24214f3904eb0, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 1365435890}
   m_SourcePrefab: {fileID: 100100000, guid: bb960f1647c73dc40ad24214f3904eb0, type: 3}
 --- !u!1001 &2097146949
 PrefabInstance:
