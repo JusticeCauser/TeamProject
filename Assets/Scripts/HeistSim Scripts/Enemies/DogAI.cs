@@ -33,6 +33,10 @@ public class DogAI : MonoBehaviour
     float stoppingDistOrig;
     public Transform forwardAnchor;
 
+    //Dog Bite Controls
+    [SerializeField] float biteDist;
+    [SerializeField] float biteDuration;
+    
 
     //States of dog for use in transitioning the dog behavior
     public enum dogState
