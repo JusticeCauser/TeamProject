@@ -10,6 +10,7 @@ public class LoadingIntro : MonoBehaviour
     [SerializeField] TMP_Text levelText;
     [SerializeField] Image loadBar;
     [SerializeField] TMP_Text continueText;
+    [SerializeField] TMP_Text objectivesText;
    
 
     [SerializeField] float loadingBarFilled = 3;
@@ -22,6 +23,9 @@ public class LoadingIntro : MonoBehaviour
     {
         loadBar.fillAmount = 0;
         continueText.gameObject.SetActive(false);
+
+        if (ObjectiveManager.instance != null && objectivesText != null)
+            objectivesText.text = ObjectiveManager.instance.objectives();
 
         StartCoroutine(loadBarFill());
     }

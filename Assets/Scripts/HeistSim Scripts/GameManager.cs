@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public PlayerController playerScript;
 
+    [SerializeField] string currScene;
+
     [Header("---Menus---")]
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
@@ -25,13 +27,11 @@ public class GameManager : MonoBehaviour
     [Header("---Timer---")]
     [SerializeField] TMP_Text timerTextWin;
     [SerializeField] TMP_Text itemValueText;
+    [SerializeField] TMP_Text itemValueTextFail;
     [SerializeField] TMP_Text timerTextFail;
     [SerializeField] TMP_Text failText;
-
-    [Header("---HEAT System---")]
-    [SerializeField] float heatTimer = 60f;
-
-
+    [SerializeField] TMP_Text maxHeatTextWin;
+    [SerializeField] TMP_Text maxHeatTextFail;  
 
     float timeScaleOrig;
 
@@ -129,7 +129,10 @@ public class GameManager : MonoBehaviour
 
         }
         if (itemValueText != null)
-            itemValueText.text = "Total value collected: $" + playerScript.totalValue;
+            itemValueTextFail.text = "Total value collected: $" + playerScript.totalValue;
+
+        if(maxHeatTextWin != null && HeatManager.Instance != null) //shows only whole percentage, no decimals
+            maxHeatTextWin.text = "Max Heat: " + HeatManager.Instance.maxHeatReached.ToString("F0") + "%";
 
         if (menuWin != null)
         {
@@ -143,6 +146,11 @@ public class GameManager : MonoBehaviour
     { //capture, if not out in 60 seconds from HEAT timer
 
         failReason = reason;
+
+        //Testing failsafe 
+        //Time.timeScale = 0f;
+        //Cursor.lockState = CursorLockMode.None;
+        //Cursor.visible = true;
         if (timerOn)
         {
             endTimer = Time.time - startTimer;
@@ -153,6 +161,12 @@ public class GameManager : MonoBehaviour
             timerTextFail.text = "Time Survived: " + string.Format("{0:00}:{1:00}", min, sec);
 
         }
+        if (maxHeatTextFail != null && HeatManager.Instance != null) //shows only whole percentage, no decimals
+            maxHeatTextFail.text = "Max Heat: " + HeatManager.Instance.maxHeatReached.ToString("F0") + "%";
+
+        if (itemValueText != null)
+            itemValueText.text = "Total value collected: $" + playerScript.totalValue;
+
         if (menuLose != null)
         {
             menuLose.SetActive(true);
@@ -186,7 +200,21 @@ public class GameManager : MonoBehaviour
     }
     public void retry()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if (ObjectiveManager.instance != null)
+            ObjectiveManager.instance.resetObjectives();
+
+        currScene = SceneManager.GetActiveScene().name;
+
+        if (currScene == "Asylum")
+            SceneManager.LoadScene("LoadingIntroAsylum");
+
+        else if (currScene == "Mansion")
+            SceneManager.LoadScene("LoadingIntroMansion");
+
+        else
+            SceneManager.LoadScene(currScene);
+
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
         //string map = SceneManager.GetActiveScene().name;
         //SceneManager.LoadScene(map);
