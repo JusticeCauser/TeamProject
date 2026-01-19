@@ -32,9 +32,17 @@ public class Interactor : MonoBehaviour
 
     void Update()
     {
+        if (Time.unscaledTime < inputCooldownUntil || uiLocked)
+        {
+            if (promptUI != null)
+                promptUI.Hide();
+            current = null;
+            return;
+        }
+
         ScanProximityFacing();
 
-        if (current != null && Input.GetKeyDown(KeyCode.E))
+        if (current != null && current.CanInteract && Input.GetKeyDown(KeyCode.E))
         {
             current.Interact();
         }
@@ -45,20 +53,6 @@ public class Interactor : MonoBehaviour
             keypad?.Hack();
         }
 
-        if (Time.unscaledTime < inputCooldownUntil)
-        {
-            if (promptUI != null)
-                promptUI.Hide();
-            current = null;
-            return;
-        }
-        if (uiLocked)
-        {
-            if (promptUI != null)
-                promptUI.Hide();
-            current = null;
-            return;
-        }
     }
 
     void ScanProximityFacing()

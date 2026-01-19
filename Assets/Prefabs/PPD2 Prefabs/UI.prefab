@@ -9192,6 +9192,7 @@ MonoBehaviour:
   player: {fileID: 0}
   playerScript: {fileID: 0}
   currScene: 
+  heatUIRoot: {fileID: 0}
   menuWin: {fileID: 924839763804551571}
   menuLose: {fileID: 2099293220128325636}
   wQuitButton: {fileID: 0}
@@ -9571,7 +9572,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &52229913213522821
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13438,6 +13439,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hide
       objectReference: {fileID: 0}
+    - target: {fileID: 2759504313178072645, guid: bd300003f7317e440abe0557192664a7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7553155630979055883, guid: bd300003f7317e440abe0557192664a7, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -13540,6 +13545,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: KnockOut
       objectReference: {fileID: 0}
+    - target: {fileID: 6808458531962964249, guid: 3c9b2b8e1dbfc754fb46f82ab5913f36, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8918842305067339319, guid: 3c9b2b8e1dbfc754fb46f82ab5913f36, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -13641,6 +13650,10 @@ PrefabInstance:
     - target: {fileID: 6904277202426285152, guid: 2da212107b587604cafd72f783f29d02, type: 3}
       propertyPath: m_Name
       value: Drag
+      objectReference: {fileID: 0}
+    - target: {fileID: 6904277202426285152, guid: 2da212107b587604cafd72f783f29d02, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7171831439597397296, guid: 2da212107b587604cafd72f783f29d02, type: 3}
       propertyPath: m_Pivot.x
