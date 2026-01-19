@@ -165,7 +165,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator isTazed(float duration)
     {
         isStunned = true;
-        yield return new WaitForSeconds(duration);
+        yield return new WaitForSecondsRealtime(duration);
         isStunned = false;
     }
     public void hide()
