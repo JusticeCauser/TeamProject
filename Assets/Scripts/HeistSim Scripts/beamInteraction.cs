@@ -2,6 +2,9 @@ using UnityEngine;
 using TMPro;
 public class beamInteraction : MonoBehaviour
 {
+    [Header("Settings")]
+    public string requiredGadget = "Pocket Mirrors";
+
     public Transform beamStart;
     public Transform beamEnd;
     [SerializeField] TMP_Text promptText;
@@ -23,11 +26,28 @@ public class beamInteraction : MonoBehaviour
             line.SetPosition(1, beamEnd.position);
         }
 
-        // handle interaction 
-        if(playerInRange && !beamDisabled && Input.GetKeyDown(KeyCode.E))
+        if(playerInRange && !beamDisabled)
         {
-            DisableBeam();
+            bool hasGadget = gadgetInventory.instance != null && gadgetInventory.instance.HasGadget(requiredGadget);
+
+            if(promptText != null)
+            {
+                if (hasGadget)
+                    promptText.text = "Press E to place Mirror";
+                else
+                    promptText.text = "Missing: " + requiredGadget;
+            }
+
+            if(hasGadget && Input.GetKeyDown(KeyCode.E))
+            {
+                DisableBeam();
+            }
         }
+        //// handle interaction 
+        //if(playerInRange && !beamDisabled && Input.GetKeyDown(KeyCode.E))
+        //{
+        //    DisableBeam();
+        //}
     }
 
     void DisableBeam()
