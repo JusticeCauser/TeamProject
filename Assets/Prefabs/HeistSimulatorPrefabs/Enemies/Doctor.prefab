@@ -2778,6 +2778,7 @@ GameObject:
   - component: {fileID: 6828057104600506823}
   - component: {fileID: 3592297255153832385}
   - component: {fileID: 5948674100125022620}
+  - component: {fileID: 603235832116640623}
   m_Layer: 0
   m_Name: Doctor
   m_TagString: Untagged
@@ -2887,8 +2888,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GuardAI
   model: {fileID: 6708296723769895762}
-  agent: {fileID: 0}
-  anim: {fileID: 0}
+  agent: {fileID: 603235832116640623}
+  anim: {fileID: 4457658671661053369}
   patrolPoints: []
   animTranSpeed: 0
   faceTargetSpeed: 0
@@ -2958,6 +2959,28 @@ CapsuleCollider:
   m_Height: 10
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!195 &603235832116640623
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6951082315728975225}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &6960936011190965417
 GameObject:
   m_ObjectHideFlags: 0
