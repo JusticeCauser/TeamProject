@@ -10,7 +10,8 @@ public enum playerState
     CrouchedIdle,
     Sprinting,
     Hiding,
-    Moving
+    Moving,
+    Stunned
 }
 public class PlayerStateManager : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class PlayerStateManager : MonoBehaviour
     bool isCrouching;
     bool isMoving;
     bool isHiding;
+    bool isStunned;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -33,8 +35,6 @@ public class PlayerStateManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        crouching();
-        moving();
         hiding();
         if (isHiding)
         {
@@ -43,6 +43,16 @@ public class PlayerStateManager : MonoBehaviour
             noiseLevel = 0;
             return;
         }
+        stunned();
+        if(isStunned)
+        {
+            currentState = playerState.Stunned;
+            isMoving = false;
+            noiseLevel = 0;
+            return;
+        }
+        crouching();
+        moving();
         noiseLevelChecker();
 
         switch (currentState)
@@ -137,6 +147,12 @@ public class PlayerStateManager : MonoBehaviour
                     currentState = isMoving ? playerState.Moving : playerState.Idle;
                 }
                     break;
+            case playerState.Stunned:
+                if (!isStunned)
+                {
+                    currentState = isMoving ? playerState.Moving : playerState.Idle;
+                }
+                break;
         }
 
     }
@@ -175,6 +191,17 @@ public class PlayerStateManager : MonoBehaviour
         }
     }
     
+    void stunned()
+    {
+        if(player.isStunned == true)
+        {
+            isStunned = true;
+        }
+        else
+        {
+            isStunned = false;
+        }
+    }
     public float noiseLevelChecker()
     {
         
@@ -201,6 +228,10 @@ public class PlayerStateManager : MonoBehaviour
                 break;
 
             case playerState.Hiding:
+                noiseLevel = 0;
+                break;
+
+            case playerState.Stunned:
                 noiseLevel = 0;
                 break;
         }
