@@ -53,21 +53,10 @@ public class DogAI : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
-        if (difficultyManager.instance != null)
-        {
-
-            SphereCollider triggerCollider = GetComponent<SphereCollider>();
-            if (triggerCollider != null && triggerCollider.isTrigger)
-            {
-                triggerCollider.radius *= difficultyManager.instance.GetDogDetectionMultiplier();
-            }
-        }
-
         startingPos = (doghandler != null) ? doghandler.transform.position : transform.position;
         stoppingDistOrig = agent.stoppingDistance;
-        if (GameManager.instance.player != null)
-            playerTransform = GameManager.instance.player.transform;
+        if (PlayerController.instance != null)
+            playerTransform = PlayerController.instance.transform;
     }
 
     void Update()
@@ -241,7 +230,6 @@ public class DogAI : MonoBehaviour
     public void bite(GameObject playerObj)
     {
         if (Time.timeScale == 0f) return;
-
 
         PlayerController player = playerObj.GetComponent<PlayerController>();
         if (player != null && player.isHiding) return;

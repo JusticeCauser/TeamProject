@@ -192,6 +192,10 @@ PrefabInstance:
       propertyPath: dog
       value: 
       objectReference: {fileID: 1576773866}
+    - target: {fileID: 1013929047570166729, guid: bb960f1647c73dc40ad24214f3904eb0, type: 3}
+      propertyPath: dragAttachPoint
+      value: 
+      objectReference: {fileID: 1575617147}
     - target: {fileID: 4721239445337572813, guid: bb960f1647c73dc40ad24214f3904eb0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 89.47464
@@ -1455,6 +1459,10 @@ PrefabInstance:
       propertyPath: dog
       value: 
       objectReference: {fileID: 1251416421}
+    - target: {fileID: 1013929047570166729, guid: bb960f1647c73dc40ad24214f3904eb0, type: 3}
+      propertyPath: dragAttachPoint
+      value: 
+      objectReference: {fileID: 1575617147}
     - target: {fileID: 4721239445337572813, guid: bb960f1647c73dc40ad24214f3904eb0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 205.35
@@ -1848,6 +1856,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1620051845612386489, guid: 4fa51ccf4043e8d47aa89e4b6f51f8cd, type: 3}
+      propertyPath: dragAttachPoint
+      value: 
+      objectReference: {fileID: 1575617147}
     - target: {fileID: 5759699976505692447, guid: 4fa51ccf4043e8d47aa89e4b6f51f8cd, type: 3}
       propertyPath: prompt
       value: 
@@ -3805,6 +3817,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1620051845612386489, guid: 4fa51ccf4043e8d47aa89e4b6f51f8cd, type: 3}
+      propertyPath: dragAttachPoint
+      value: 
+      objectReference: {fileID: 1575617147}
     - target: {fileID: 5759699976505692447, guid: 4fa51ccf4043e8d47aa89e4b6f51f8cd, type: 3}
       propertyPath: prompt
       value: 
@@ -5629,6 +5645,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2856699883489677603, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
   m_PrefabInstance: {fileID: 973237637}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1575617147 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3210707800499152509, guid: f6a109bfbf56c464ca5f4566b180f7e9, type: 3}
+  m_PrefabInstance: {fileID: 130748494}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1576773865
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5880,6 +5901,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1620051845612386489, guid: 4fa51ccf4043e8d47aa89e4b6f51f8cd, type: 3}
+      propertyPath: dragAttachPoint
+      value: 
+      objectReference: {fileID: 1575617147}
     - target: {fileID: 5759699976505692447, guid: 4fa51ccf4043e8d47aa89e4b6f51f8cd, type: 3}
       propertyPath: prompt
       value: 
@@ -5950,6 +5975,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1620051845612386489, guid: 4fa51ccf4043e8d47aa89e4b6f51f8cd, type: 3}
+      propertyPath: dragAttachPoint
+      value: 
+      objectReference: {fileID: 1575617147}
     - target: {fileID: 5759699976505692447, guid: 4fa51ccf4043e8d47aa89e4b6f51f8cd, type: 3}
       propertyPath: prompt
       value: 
@@ -6547,6 +6576,10 @@ PrefabInstance:
       propertyPath: dog
       value: 
       objectReference: {fileID: 1902850430}
+    - target: {fileID: 1013929047570166729, guid: bb960f1647c73dc40ad24214f3904eb0, type: 3}
+      propertyPath: dragAttachPoint
+      value: 
+      objectReference: {fileID: 1575617147}
     - target: {fileID: 4721239445337572813, guid: bb960f1647c73dc40ad24214f3904eb0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 154.455
@@ -7431,6 +7464,10 @@ PrefabInstance:
       propertyPath: dog
       value: 
       objectReference: {fileID: 639975014}
+    - target: {fileID: 1013929047570166729, guid: bb960f1647c73dc40ad24214f3904eb0, type: 3}
+      propertyPath: dragAttachPoint
+      value: 
+      objectReference: {fileID: 1575617147}
     - target: {fileID: 4721239445337572813, guid: bb960f1647c73dc40ad24214f3904eb0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 284.6
@@ -7598,6 +7635,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1620051845612386489, guid: 4fa51ccf4043e8d47aa89e4b6f51f8cd, type: 3}
+      propertyPath: dragAttachPoint
+      value: 
+      objectReference: {fileID: 1575617147}
     - target: {fileID: 5759699976505692447, guid: 4fa51ccf4043e8d47aa89e4b6f51f8cd, type: 3}
       propertyPath: prompt
       value: 

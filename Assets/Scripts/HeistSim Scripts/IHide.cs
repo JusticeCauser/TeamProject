@@ -23,6 +23,7 @@ public class IHide : MonoBehaviour
         }
 
         if (prompt != null)
+
         {
             prompt.gameObject.SetActive(false);
         }
@@ -50,7 +51,7 @@ public class IHide : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        player = GameManager.instance.player.GetComponent<PlayerController>();
+        player = PlayerController.instance.GetComponent<PlayerController>();
         if (other.CompareTag("Player") && prompt != null)
         {
             prompt.gameObject.SetActive(true);

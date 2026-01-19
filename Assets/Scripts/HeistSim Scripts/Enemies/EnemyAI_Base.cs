@@ -93,8 +93,8 @@ public class EnemyAI_Base : MonoBehaviour
             }
         }
 
-        if (GameManager.instance.player != null)
-            playerTransform = GameManager.instance.player.transform;
+        if (PlayerController.instance != null)
+            playerTransform = PlayerController.instance.transform;
 
         playerStateManager = playerTransform.GetComponent<PlayerStateManager>();
     }
