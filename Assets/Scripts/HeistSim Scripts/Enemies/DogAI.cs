@@ -234,7 +234,7 @@ public class DogAI : MonoBehaviour
 
         PlayerController player = playerObj.GetComponent<PlayerController>();
         if (player != null && player.isHiding) return;
-
+        Debug.Log("I bit you!");
         GameManager.instance.missionFail(GameManager.fail.captured);
     }
     void AlertedBehavior()

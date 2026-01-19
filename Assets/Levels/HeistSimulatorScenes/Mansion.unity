@@ -193,6 +193,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1576773866}
     - target: {fileID: 1013929047570166729, guid: bb960f1647c73dc40ad24214f3904eb0, type: 3}
+      propertyPath: dragAttachPoint
+      value: 
+      objectReference: {fileID: 130748495}
+    - target: {fileID: 1013929047570166729, guid: bb960f1647c73dc40ad24214f3904eb0, type: 3}
       propertyPath: patrolPoints.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -501,6 +505,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6a109bfbf56c464ca5f4566b180f7e9, type: 3}
+--- !u!4 &130748495 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3210707800499152509, guid: f6a109bfbf56c464ca5f4566b180f7e9, type: 3}
+  m_PrefabInstance: {fileID: 130748494}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &162976632 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3743568285724928142, guid: 5c244918a7c49e84f8c23eed39b374de, type: 3}
@@ -2000,6 +2009,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1620051845612386489, guid: 4fa51ccf4043e8d47aa89e4b6f51f8cd, type: 3}
+      propertyPath: dragAttachPoint
+      value: 
+      objectReference: {fileID: 130748495}
     - target: {fileID: 1620051845612386489, guid: 4fa51ccf4043e8d47aa89e4b6f51f8cd, type: 3}
       propertyPath: patrolPoints.Array.size
       value: 2
@@ -4087,6 +4100,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.020000005, y: 0.020000009, z: 0.020000007}
   m_Center: {x: 0.0000019073486, y: 0, z: 0}
+--- !u!114 &1085441018 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1013929047570166729, guid: bb960f1647c73dc40ad24214f3904eb0, type: 3}
+  m_PrefabInstance: {fileID: 1840952831}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3cc9833ed4de544a4dd4ae2e796556, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HandlerAI
 --- !u!1001 &1091928574
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4572,6 +4596,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1620051845612386489, guid: 4fa51ccf4043e8d47aa89e4b6f51f8cd, type: 3}
+      propertyPath: dragAttachPoint
+      value: 
+      objectReference: {fileID: 130748495}
     - target: {fileID: 5759699976505692447, guid: 4fa51ccf4043e8d47aa89e4b6f51f8cd, type: 3}
       propertyPath: prompt
       value: 
@@ -5140,6 +5168,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4300117873875358374, guid: 7bc424453043922408e620f44126a43b, type: 3}
+      propertyPath: doghandler
+      value: 
+      objectReference: {fileID: 1595881225}
     - target: {fileID: 8452470355179082392, guid: 7bc424453043922408e620f44126a43b, type: 3}
       propertyPath: m_Name
       value: Dog
@@ -6603,6 +6635,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4300117873875358374, guid: 7bc424453043922408e620f44126a43b, type: 3}
+      propertyPath: doghandler
+      value: 
+      objectReference: {fileID: 2101350976}
     - target: {fileID: 8452470355179082392, guid: 7bc424453043922408e620f44126a43b, type: 3}
       propertyPath: m_Name
       value: Dog (2)
@@ -6663,6 +6699,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b95b732557fbd649a468afb77ab8482, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DogAI
+--- !u!114 &1595881225 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1013929047570166729, guid: bb960f1647c73dc40ad24214f3904eb0, type: 3}
+  m_PrefabInstance: {fileID: 469620605}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3cc9833ed4de544a4dd4ae2e796556, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HandlerAI
 --- !u!1001 &1611744176
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6909,6 +6956,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1620051845612386489, guid: 4fa51ccf4043e8d47aa89e4b6f51f8cd, type: 3}
+      propertyPath: dragAttachPoint
+      value: 
+      objectReference: {fileID: 130748495}
+    - target: {fileID: 1620051845612386489, guid: 4fa51ccf4043e8d47aa89e4b6f51f8cd, type: 3}
       propertyPath: patrolPoints.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -6990,6 +7041,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1620051845612386489, guid: 4fa51ccf4043e8d47aa89e4b6f51f8cd, type: 3}
+      propertyPath: dragAttachPoint
+      value: 
+      objectReference: {fileID: 130748495}
     - target: {fileID: 1620051845612386489, guid: 4fa51ccf4043e8d47aa89e4b6f51f8cd, type: 3}
       propertyPath: patrolPoints.Array.size
       value: 2
@@ -7620,6 +7675,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1902850430}
     - target: {fileID: 1013929047570166729, guid: bb960f1647c73dc40ad24214f3904eb0, type: 3}
+      propertyPath: dragAttachPoint
+      value: 
+      objectReference: {fileID: 130748495}
+    - target: {fileID: 1013929047570166729, guid: bb960f1647c73dc40ad24214f3904eb0, type: 3}
       propertyPath: patrolPoints.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -7762,6 +7821,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4300117873875358374, guid: 7bc424453043922408e620f44126a43b, type: 3}
+      propertyPath: doghandler
+      value: 
+      objectReference: {fileID: 1085441018}
     - target: {fileID: 8452470355179082392, guid: 7bc424453043922408e620f44126a43b, type: 3}
       propertyPath: m_Name
       value: Dog (3)
@@ -8777,6 +8840,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 384703839783981566, guid: 9f2b6707a51f01a49b0c4d858af90fc5, type: 3}
   m_PrefabInstance: {fileID: 2100042083}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2101350976 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1013929047570166729, guid: bb960f1647c73dc40ad24214f3904eb0, type: 3}
+  m_PrefabInstance: {fileID: 77358300}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3cc9833ed4de544a4dd4ae2e796556, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HandlerAI
 --- !u!1001 &2110300262
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8825,6 +8899,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1620051845612386489, guid: 4fa51ccf4043e8d47aa89e4b6f51f8cd, type: 3}
+      propertyPath: dragAttachPoint
+      value: 
+      objectReference: {fileID: 130748495}
     - target: {fileID: 1620051845612386489, guid: 4fa51ccf4043e8d47aa89e4b6f51f8cd, type: 3}
       propertyPath: patrolPoints.Array.size
       value: 2
