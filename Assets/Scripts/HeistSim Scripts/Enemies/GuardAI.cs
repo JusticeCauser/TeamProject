@@ -23,6 +23,7 @@ public class GuardAI : EnemyAI_Base
 
     public void onAlert()
     {
+        HeatManager.Instance.AddHeat(8f);
 
         if (guard1 != null)
         {

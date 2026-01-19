@@ -1389,6 +1389,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4721239445337572813}
+  - component: {fileID: 5221674663039688873}
   - component: {fileID: 1685782868738269111}
   - component: {fileID: 7787154114051697505}
   - component: {fileID: 9030921628770727422}
@@ -1424,6 +1425,18 @@ Transform:
   - {fileID: 1627120041772768423}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5221674663039688873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5390499715971866487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8851ea7d2de7944e8fd608ac5acb43a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GuardHeatListener
 --- !u!95 &1685782868738269111
 Animator:
   serializedVersion: 7
@@ -1488,7 +1501,9 @@ MonoBehaviour:
   model: {fileID: 2976841030127155551}
   agent: {fileID: 6717869921785302652}
   anim: {fileID: 1685782868738269111}
-  patrolPoints: []
+  patrolPoints:
+  - {fileID: 0}
+  - {fileID: 0}
   animTranSpeed: 0
   faceTargetSpeed: 3
   FOV: 70
@@ -1500,6 +1515,7 @@ MonoBehaviour:
   chaseSpeed: 8
   baseHearing: 5
   suspiciousMax: 3
+  hidingspots: []
   isBeingDragged: 0
   dragAttachPoint: {fileID: 0}
   alertedTimer: 0
