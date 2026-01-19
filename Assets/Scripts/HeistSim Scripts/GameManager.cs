@@ -133,7 +133,15 @@ public class GameManager : MonoBehaviour
         }
         if (itemValueText != null)
             itemValueTextFail.text = "Total value collected: $" + playerScript.totalValue;
+        if(objectivesBonusText.text != null && ObjectiveManager.instance != null)
+        {
+            int bonus = ObjectiveManager.instance.GetTotalMoneyBonus();
 
+            if (bonus > 0)
+                objectivesBonusText.text = "Objective Bonus: $" + bonus + "\n";
+            else
+                objectivesBonusText.text = "Objective Bonus: $0";
+        }
         if(maxHeatTextWin != null && HeatManager.Instance != null) //shows only whole percentage, no decimals
             maxHeatTextWin.text = "Max Heat: " + HeatManager.Instance.maxHeatReached.ToString("F0") + "%";
         
