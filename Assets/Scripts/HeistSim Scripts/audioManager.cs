@@ -26,7 +26,8 @@ public class audioManager : MonoBehaviour
     [SerializeField] AudioClip lobbyClip;
     [SerializeField] AudioClip asylumClip;
     [SerializeField] AudioClip mansionClip;
-
+    [SerializeField] AudioClip missionCompleteClip;
+    [SerializeField] AudioClip missionFailClip;
 
     [Header("---SFX Clips---")]
     [SerializeField] AudioClip bark;
@@ -79,6 +80,16 @@ public class audioManager : MonoBehaviour
     {
         if(sfxAudio != null && slider  != null)
             sfxAudio.PlayOneShot(slider);
+    }
+    public void playMissionCompleteSound()
+    {
+        if(sfxAudio  != null && missionCompleteClip != null)
+            sfxAudio.PlayOneShot(missionCompleteClip);
+    }
+    public void playMissionFailSound()
+    {
+        if(sfxAudio != null && missionFailClip != null)
+            sfxAudio.PlayOneShot(missionFailClip);
     }
     public void setVolume()
     {
