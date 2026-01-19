@@ -2,6 +2,9 @@ using UnityEngine;
 using TMPro;
 public class printSource : MonoBehaviour
 {
+    [Header("Settings")]
+    public string requiredGadget = "Fingerprint Lifter";
+
     [SerializeField] TMP_Text promptText;
     private bool playerInRange = false;
     private bool printLifted = false;
@@ -13,10 +16,27 @@ public class printSource : MonoBehaviour
     }
     void Update()
     {
-        if(playerInRange && !printLifted && Input.GetKeyDown(KeyCode.E))
+        if (!playerInRange || printLifted)
+            return;
+
+        bool hasGadget = gadgetInventory.instance != null && gadgetInventory.instance.HasGadget(requiredGadget);
+
+        if (promptText != null)
+        {
+            if (hasGadget)
+                promptText.text = "Press E to lift Fingerprint";
+            else
+                promptText.text = "Missing: " + requiredGadget;
+        }
+
+        if (hasGadget && Input.GetKeyDown(KeyCode.E))
         {
             LiftPrint();
         }
+        //if (playerInRange && !printLifted && Input.GetKeyDown(KeyCode.E))
+        //{
+        //    LiftPrint();
+        //}
     }
 
     void LiftPrint()
@@ -36,7 +56,7 @@ public class printSource : MonoBehaviour
             playerInRange = true;
             if(promptText != null)
             {
-                promptText.text = "Press E to lift Fingerprint";
+                //promptText.text = "Press E to lift Fingerprint";
                 promptText.gameObject.SetActive(true);
             }
         }
