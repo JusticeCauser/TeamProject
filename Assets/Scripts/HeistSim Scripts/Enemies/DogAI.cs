@@ -238,9 +238,15 @@ public class DogAI : MonoBehaviour
         agent.SetDestination(returnPos);
     }
 
-    public void bite()
+    public void bite(GameObject playerObj)
     {
+        if (Time.timeScale == 0f) return;
 
+
+        PlayerController player = playerObj.GetComponent<PlayerController>();
+        if (player != null && player.isHiding) return;
+
+        GameManager.instance.missionFail(GameManager.fail.captured);
     }
     void AlertedBehavior()
     {
