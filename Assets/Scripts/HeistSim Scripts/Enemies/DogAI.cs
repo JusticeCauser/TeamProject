@@ -238,6 +238,10 @@ public class DogAI : MonoBehaviour
         agent.SetDestination(returnPos);
     }
 
+    public void bite()
+    {
+
+    }
     void AlertedBehavior()
     {
         if (canSeePlayer())
