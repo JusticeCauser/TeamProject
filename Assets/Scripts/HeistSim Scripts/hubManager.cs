@@ -334,11 +334,11 @@ public class hubManager : MonoBehaviour
         }
         if (selectedMission == "mansion")
         {
-            SceneManager.LoadScene("Mansion");
+            SceneManager.LoadScene("LoadingIntroMansion");
         }
         else if (selectedMission == "facility")
         {
-            SceneManager.LoadScene("Facility");
+            SceneManager.LoadScene("Asylum");
         }
     }
 }
