@@ -206,6 +206,8 @@ public class EnemyAI_Base : MonoBehaviour
     }
     void SuspiciousBehavior()
     {
+        HeatManager.Instance.AddHeat(3f * Time.deltaTime);
+
         suspiciousTimer += Time.deltaTime;
 
         lastHeardPosition = playerTransform.position;
@@ -274,6 +276,8 @@ public class EnemyAI_Base : MonoBehaviour
 
     void ChaseBehavior()
     {
+        HeatManager.Instance.AddHeat(15f * Time.deltaTime);
+
         if (!canSeePlayer())
         {
             state = guardState.Alerted;
@@ -300,6 +304,7 @@ public class EnemyAI_Base : MonoBehaviour
         {
             if (angleToPlayer <= FOV && hit.collider.CompareTag("Player"))
             {
+                HeatManager.Instance.AddHeat(10f * Time.deltaTime);
                 agent.SetDestination(playerPos);
 
                 if (agent.remainingDistance <= agent.stoppingDistance)
@@ -318,6 +323,7 @@ public class EnemyAI_Base : MonoBehaviour
         if (playerTransform == null) return false;
 
         float noiseLevel = playerStateManager.noiseLevelChecker();
+        HeatManager.Instance.AddHeat(noiseLevel * 2f * Time.deltaTime);
 
         bool seePlayer = canSeePlayer();
         if(noiseLevel <= 0)

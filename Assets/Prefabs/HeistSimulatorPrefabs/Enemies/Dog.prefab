@@ -2054,6 +2054,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9081198233459902498}
+  - component: {fileID: 4400518389237933918}
   - component: {fileID: 2947264529252586072}
   - component: {fileID: 4300117873875358374}
   - component: {fileID: 4061395861274820435}
@@ -2089,6 +2090,18 @@ Transform:
   - {fileID: 5082211126889486834}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4400518389237933918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8452470355179082392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8851ea7d2de7944e8fd608ac5acb43a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GuardHeatListener
 --- !u!95 &2947264529252586072
 Animator:
   serializedVersion: 7
