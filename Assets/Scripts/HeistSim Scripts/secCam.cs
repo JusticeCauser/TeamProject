@@ -19,6 +19,8 @@ public class secCam : MonoBehaviour
     [Header("Interaction")]
     [SerializeField] TMP_Text promptText;
     public float jamDuration = 60f;
+    public string requiredGadget = "Camera Jammer";
+
 
     private bool isSweeping = true;
     private bool isJammed = false;
@@ -45,8 +47,18 @@ public class secCam : MonoBehaviour
 
     void Update()
     {
+        bool hasGadget = gadgetInventory.instance != null && gadgetInventory.instance.HasGadget(requiredGadget);
+
+        if (playerInRange && !isJammed && promptText != null)
+        {
+            if (hasGadget)
+                promptText.text = "Press E to jam Camera";
+            else
+                promptText.text = "Missing: " + requiredGadget;
+        }
+
         // sweeping
-        if(isSweeping && !isJammed)
+        if (isSweeping && !isJammed)
         {
             currentAngle += sweepSpeed * Time.deltaTime;
             float yRotation = initialYRotation + (Mathf.PingPong(currentAngle, sweepAngle * 2) - sweepAngle);
@@ -69,7 +81,7 @@ public class secCam : MonoBehaviour
             }
         }    
         // player interaction
-        if(playerInRange && !isJammed && Input.GetKeyDown(KeyCode.E))
+        if(playerInRange && !isJammed && hasGadget && Input.GetKeyDown(KeyCode.E))
         {
             JamCamera();
         }
