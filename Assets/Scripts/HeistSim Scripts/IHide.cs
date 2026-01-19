@@ -5,12 +5,13 @@ public class IHide : MonoBehaviour
 {
     [SerializeField] TMP_Text prompt;
     [SerializeField] GameObject hideSpot;
+    [SerializeField] GameObject outsideHide;
     PlayerController player;
 
     bool playerInRange;
 
     Vector3 hidePos;
-    Vector3 outsideHide;
+    Vector3 outsideHidePos;
     Transform playerTransform;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -38,14 +39,14 @@ public class IHide : MonoBehaviour
         {
             if (!player.isHiding)
             {
-                outsideHide = player.transform.position;
+                outsideHidePos = outsideHide.transform.position;
                 player.transform.position = hidePos;
                 player.hide();
             }
             else if (player.isHiding)
             { 
                 player.exitHide(); 
-                player.transform.position = outsideHide;
+                player.transform.position = outsideHidePos;
             }
         }
     }
