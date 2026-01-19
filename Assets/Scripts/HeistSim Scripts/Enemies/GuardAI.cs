@@ -60,9 +60,10 @@ public class GuardAI : EnemyAI_Base
         PlayerController player = playerTransform.GetComponent<PlayerController>();
 
         if (player == null) return;
+        if (player.isStunned) return;
         if (Time.time < nextTazeTime) return;
         nextTazeTime = Time.time + tazeCooldown;
-
+        Debug.Log($"TAZE by {name} at {Time.time}");
         player.tazed(stunDuration);
     }
 }
