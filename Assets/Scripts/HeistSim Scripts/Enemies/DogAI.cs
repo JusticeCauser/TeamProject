@@ -40,7 +40,8 @@ public class DogAI : MonoBehaviour
         Idle,
         Patrol,
         Alerted,
-        Chase
+        Chase,
+        Recall
     }
 
     public dogState state = dogState.Idle;
@@ -136,12 +137,16 @@ public class DogAI : MonoBehaviour
         roamTimer = 0;
         agent.stoppingDistance = 0;
 
-        Vector3 ranPos = Random.insideUnitSphere * roamDist;
-        ranPos += startingPos;
+        if (doghandler != null) startingPos = doghandler.transform.position;
+
+        Vector3 ranPos = Random.insideUnitSphere * roamDist + startingPos;
+        ranPos.y = startingPos.y;
 
         NavMeshHit hit;
-        NavMesh.SamplePosition(ranPos, out hit, roamDist, 1);
-        agent.SetDestination(hit.position);
+        if (NavMesh.SamplePosition(ranPos, out hit, roamDist, NavMesh.AllAreas))
+        {
+            agent.SetDestination(hit.position);
+        }
     }
     void ChaseBehavior()
     {
@@ -220,12 +225,18 @@ public class DogAI : MonoBehaviour
 
         GameManager.instance.alertSys.raiseBarkAlert(forwardAnchor.position, forwardAnchor.forward, alertRadius);
     }
-
+    public void recalled()
+    {
+        state = dogState.Recall;
+        return;
+    }
     public void onRecall(Vector3 position)
     {
         Vector3 returnPos = position;
 
         agent.SetDestination(returnPos);
+
+        recalled();
     }
 
     public void bite(GameObject playerObj)
@@ -234,7 +245,7 @@ public class DogAI : MonoBehaviour
 
         PlayerController player = playerObj.GetComponent<PlayerController>();
         if (player != null && player.isHiding) return;
-
+        Debug.Log("I bit you!");
         GameManager.instance.missionFail(GameManager.fail.captured);
     }
     void AlertedBehavior()

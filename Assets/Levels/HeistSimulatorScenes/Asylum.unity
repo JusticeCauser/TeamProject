@@ -1973,6 +1973,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7878731106214795599}
     - target: {fileID: 1013929047570166729, guid: bb960f1647c73dc40ad24214f3904eb0, type: 3}
+      propertyPath: dragAttachPoint
+      value: 
+      objectReference: {fileID: 596954356}
+    - target: {fileID: 1013929047570166729, guid: bb960f1647c73dc40ad24214f3904eb0, type: 3}
       propertyPath: patrolPoints.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -2384,6 +2388,10 @@ PrefabInstance:
       propertyPath: dog
       value: 
       objectReference: {fileID: 4300117873875358374, guid: 7bc424453043922408e620f44126a43b, type: 3}
+    - target: {fileID: 8560217863885761600, guid: 71fd39f17c6534345bd6ef47688381ce, type: 3}
+      propertyPath: dragAttachPoint
+      value: 
+      objectReference: {fileID: 596954356}
     - target: {fileID: 8560217863885761600, guid: 71fd39f17c6534345bd6ef47688381ce, type: 3}
       propertyPath: patrolPoints.Array.size
       value: 4
@@ -3676,6 +3684,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 288657896101805849, guid: ddf1d2e906249a34da4980528e876a4c, type: 3}
+      propertyPath: dragAttachPoint
+      value: 
+      objectReference: {fileID: 596954356}
     - target: {fileID: 288657896101805849, guid: ddf1d2e906249a34da4980528e876a4c, type: 3}
       propertyPath: patrolPoints.Array.size
       value: 4
@@ -7055,6 +7067,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1457939179}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &596954356 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3210707800499152509, guid: f6a109bfbf56c464ca5f4566b180f7e9, type: 3}
+  m_PrefabInstance: {fileID: 1082273347861215786}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &649582263
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8360,6 +8377,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1620051845612386489, guid: 4fa51ccf4043e8d47aa89e4b6f51f8cd, type: 3}
+      propertyPath: dragAttachPoint
+      value: 
+      objectReference: {fileID: 596954356}
     - target: {fileID: 1620051845612386489, guid: 4fa51ccf4043e8d47aa89e4b6f51f8cd, type: 3}
       propertyPath: patrolPoints.Array.size
       value: 2
@@ -15903,6 +15924,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 288657896101805849, guid: ddf1d2e906249a34da4980528e876a4c, type: 3}
+      propertyPath: dragAttachPoint
+      value: 
+      objectReference: {fileID: 596954356}
+    - target: {fileID: 288657896101805849, guid: ddf1d2e906249a34da4980528e876a4c, type: 3}
       propertyPath: patrolPoints.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -16649,6 +16674,10 @@ PrefabInstance:
       propertyPath: dog
       value: 
       objectReference: {fileID: 1956942341}
+    - target: {fileID: 1013929047570166729, guid: bb960f1647c73dc40ad24214f3904eb0, type: 3}
+      propertyPath: dragAttachPoint
+      value: 
+      objectReference: {fileID: 596954356}
     - target: {fileID: 1013929047570166729, guid: bb960f1647c73dc40ad24214f3904eb0, type: 3}
       propertyPath: patrolPoints.Array.size
       value: 2
@@ -17594,6 +17623,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1620051845612386489, guid: 4fa51ccf4043e8d47aa89e4b6f51f8cd, type: 3}
+      propertyPath: dragAttachPoint
+      value: 
+      objectReference: {fileID: 596954356}
     - target: {fileID: 1620051845612386489, guid: 4fa51ccf4043e8d47aa89e4b6f51f8cd, type: 3}
       propertyPath: patrolPoints.Array.size
       value: 2
