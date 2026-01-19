@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isHiding || SettingsManager.instance == null || !SettingsManager.instance.isActive)
+        if (isStunned || isHiding || SettingsManager.instance == null || !SettingsManager.instance.isActive)
         {
             movement();
         }
@@ -165,12 +165,10 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator isTazed(float duration)
     {
-        Debug.Log($"[TAZE] START duration={duration} time={Time.time} unscaled={Time.unscaledTime} scale={Time.timeScale} enabled={enabled}");
         isStunned = true;
 
         yield return new WaitForSecondsRealtime(duration);
 
-        Debug.Log($"[TAZE] END time={Time.time} unscaled={Time.unscaledTime} scale={Time.timeScale} enabled={enabled}");
         isStunned = false;
     }
     public void hide()
