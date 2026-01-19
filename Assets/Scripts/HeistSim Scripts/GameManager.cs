@@ -15,9 +15,6 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] string currScene;
 
-    [Header("---HUD---")]
-    [SerializeField] GameObject heatUIRoot;
-
     [Header("---Menus---")]
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
@@ -117,10 +114,12 @@ public class GameManager : MonoBehaviour
 
         if(menuLose != null)
             menuLose.SetActive(false);
-        if (heatUIRoot != null)
-            heatUIRoot.SetActive(true);
 
         Time.timeScale = timeScaleOrig;
+
+        player = GameObject.FindWithTag("Player");
+        if (player != null)
+            playerScript = player.GetComponent<PlayerController>();
     }
     public void missionComplete()
     { //completing 
@@ -136,8 +135,8 @@ public class GameManager : MonoBehaviour
             timerTextWin.text = "Completed in: " + string.Format("{0:00}:{1:00}", min, sec);
 
         }
-        if (itemValueText != null)
-            itemValueText.text = "Total value collected: $" + playerScript.totalValue;
+        if (itemValueText != null && playerScript != null)
+            itemValueTextFail.text = "Total value collected: $" + playerScript.totalValue;
         if(objectivesBonusText.text != null && ObjectiveManager.instance != null)
         {
             int bonus = ObjectiveManager.instance.GetTotalMoneyBonus();
@@ -152,9 +151,6 @@ public class GameManager : MonoBehaviour
         
         if (menuWin != null)
         {
-            if (heatUIRoot != null)
-                heatUIRoot.SetActive(false);
-
             menuWin.SetActive(true);
             Time.timeScale = 0f;
             Cursor.lockState = CursorLockMode.None;
@@ -182,13 +178,11 @@ public class GameManager : MonoBehaviour
         if (maxHeatTextFail != null && HeatManager.Instance != null) //shows only whole percentage, no decimals
             maxHeatTextFail.text = "Max Heat: " + HeatManager.Instance.maxHeatReached.ToString("F0") + "%";
 
-        if (itemValueText != null)
-            itemValueTextFail.text = "Total value collected: $" + playerScript.totalValue;
+        if (itemValueTextFail != null && playerScript != null)
+            itemValueText.text = "Total value collected: $" + playerScript.totalValue;
 
         if (menuLose != null)
         {
-            if (heatUIRoot != null)
-                heatUIRoot.SetActive(false);
             menuLose.SetActive(true);
             Time.timeScale = 0f;
             Cursor.lockState = CursorLockMode.None;
@@ -233,7 +227,6 @@ public class GameManager : MonoBehaviour
 
         else
             SceneManager.LoadScene(currScene);
-
 
         //string map = SceneManager.GetActiveScene().name;
         //SceneManager.LoadScene(map);
