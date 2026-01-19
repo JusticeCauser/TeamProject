@@ -230,42 +230,31 @@ public class EnemyAI_Base : MonoBehaviour
     }
     void IdleBehavior()
     {
-        if (agent.remainingDistance < 0.01f)
-            roamTimer += Time.deltaTime;
-
-        if (playerInSightRange && canSeePlayer())
-        {
-            checkRoam();
-        }
-        else if (!playerInSightRange)
-        {
-            checkRoam();
-        }
-        else
-        {
+        if(canSeePlayer())
+        { 
             state = guardState.Chase;
         }
     }
 
-    void checkRoam()
-    {
-        if (agent.remainingDistance < 0.01f && roamTimer >= roamPauseTime)
-        {
-            roam();
-        }
-    }
-    void roam()
-    {
-        roamTimer = 0;
-        agent.stoppingDistance = 0;
+    //void checkRoam()
+    //{
+    //    if (agent.remainingDistance < 0.01f && roamTimer >= roamPauseTime)
+    //    {
+    //        roam();
+    //    }
+    //}
+    //void roam()
+    //{
+    //    roamTimer = 0;
+    //    agent.stoppingDistance = 0;
 
-        Vector3 ranPos = Random.insideUnitSphere * roamDist;
-        ranPos += startingPos;
+    //    Vector3 ranPos = Random.insideUnitSphere * roamDist;
+    //    ranPos += startingPos;
 
-        NavMeshHit hit;
-        NavMesh.SamplePosition(ranPos, out hit, roamDist, 1);
-        agent.SetDestination(hit.position);
-    }
+    //    NavMeshHit hit;
+    //    NavMesh.SamplePosition(ranPos, out hit, roamDist, 1);
+    //    agent.SetDestination(hit.position);
+    //}
 
     void ChaseBehavior()
     {
@@ -334,7 +323,7 @@ public class EnemyAI_Base : MonoBehaviour
         }
         if(noiseLevel >= 5 && noiseLevel <= 10)
         {
-
+            state = guardState.Search;
         }
         lastHeardPosition = playerTransform.position;
         playerDir = lastHeardPosition - transform.position;
