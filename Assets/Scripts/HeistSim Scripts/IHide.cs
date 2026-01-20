@@ -44,9 +44,9 @@ public class IHide : MonoBehaviour
                 player.hide();
             }
             else if (player.isHiding)
-            { 
-                player.exitHide(); 
+            {
                 player.transform.position = outsideHidePos;
+                player.exitHide(); 
             }
         }
     }
