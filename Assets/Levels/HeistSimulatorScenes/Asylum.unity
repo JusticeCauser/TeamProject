@@ -675,6 +675,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1548624624}
     m_Modifications:
+    - target: {fileID: -3702543535719335874, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 1260932834}
     - target: {fileID: 1607019896630675636, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
       propertyPath: m_Name
       value: TempArtifact (24)
@@ -737,6 +741,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1548624624}
     m_Modifications:
+    - target: {fileID: -3702543535719335874, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 1260932834}
     - target: {fileID: 1607019896630675636, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
       propertyPath: m_Name
       value: TempArtifact (19)
@@ -1132,6 +1140,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1548624624}
     m_Modifications:
+    - target: {fileID: -3702543535719335874, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 1260932834}
     - target: {fileID: 1607019896630675636, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
       propertyPath: m_Name
       value: TempArtifact (18)
@@ -3622,6 +3634,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1548624624}
     m_Modifications:
+    - target: {fileID: -3702543535719335874, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 1260932834}
     - target: {fileID: 1607019896630675636, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
       propertyPath: m_Name
       value: TempArtifact (28)
@@ -4528,6 +4544,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1548624624}
     m_Modifications:
+    - target: {fileID: -3702543535719335874, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 1260932834}
     - target: {fileID: 1607019896630675636, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
       propertyPath: m_Name
       value: TempArtifact (32)
@@ -4701,6 +4721,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1548624624}
     m_Modifications:
+    - target: {fileID: -3702543535719335874, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 1260932834}
     - target: {fileID: 1607019896630675636, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
       propertyPath: m_Name
       value: TempArtifact (21)
@@ -5067,6 +5091,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1548624624}
     m_Modifications:
+    - target: {fileID: -3702543535719335874, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 1260932834}
     - target: {fileID: 1607019896630675636, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
       propertyPath: m_Name
       value: TempArtifact (17)
@@ -7196,6 +7224,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1548624624}
     m_Modifications:
+    - target: {fileID: -3702543535719335874, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 1260932834}
     - target: {fileID: 1607019896630675636, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
       propertyPath: m_Name
       value: TempArtifact (20)
@@ -7363,6 +7395,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1548624624}
     m_Modifications:
+    - target: {fileID: -3702543535719335874, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 1260932834}
     - target: {fileID: 1607019896630675636, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
       propertyPath: m_Name
       value: TempArtifact (11)
@@ -8843,6 +8879,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1548624624}
     m_Modifications:
+    - target: {fileID: -3702543535719335874, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 1260932834}
     - target: {fileID: 1607019896630675636, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
       propertyPath: m_Name
       value: TempArtifact (27)
@@ -8905,6 +8945,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1548624624}
     m_Modifications:
+    - target: {fileID: -3702543535719335874, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 1260932834}
     - target: {fileID: 1607019896630675636, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
       propertyPath: m_Name
       value: TempArtifact (15)
@@ -9875,6 +9919,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1548624624}
     m_Modifications:
+    - target: {fileID: -3702543535719335874, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 1260932834}
     - target: {fileID: 1607019896630675636, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
       propertyPath: m_Name
       value: TempArtifact (2)
@@ -11503,6 +11551,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1548624624}
     m_Modifications:
+    - target: {fileID: -3702543535719335874, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 1260932834}
     - target: {fileID: 1607019896630675636, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
       propertyPath: m_Name
       value: TempArtifact (4)
@@ -12606,6 +12658,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1548624624}
     m_Modifications:
+    - target: {fileID: -3702543535719335874, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 1260932834}
     - target: {fileID: 1607019896630675636, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
       propertyPath: m_Name
       value: TempArtifact (30)
@@ -12920,6 +12976,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1548624624}
     m_Modifications:
+    - target: {fileID: -3702543535719335874, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 1260932834}
     - target: {fileID: 1607019896630675636, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
       propertyPath: m_Name
       value: TempArtifact (34)
@@ -12982,6 +13042,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1548624624}
     m_Modifications:
+    - target: {fileID: -3702543535719335874, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 1260932834}
     - target: {fileID: 1607019896630675636, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
       propertyPath: m_Name
       value: TempArtifact (9)
@@ -13437,6 +13501,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1548624624}
     m_Modifications:
+    - target: {fileID: -3702543535719335874, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 1260932834}
     - target: {fileID: 1607019896630675636, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
       propertyPath: m_Name
       value: TempArtifact (22)
@@ -13610,6 +13678,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1548624624}
     m_Modifications:
+    - target: {fileID: -3702543535719335874, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 1260932834}
     - target: {fileID: 1607019896630675636, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
       propertyPath: m_Name
       value: TempArtifact (14)
@@ -14437,6 +14509,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1548624624}
     m_Modifications:
+    - target: {fileID: -3702543535719335874, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 1260932834}
     - target: {fileID: 1607019896630675636, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
       propertyPath: m_Name
       value: TempArtifact (5)
@@ -14831,6 +14907,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5629664086754616157, guid: 3e76586087f593e4c89e18c7cd84ab96, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 1260932834}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14849,6 +14929,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1548624624}
     m_Modifications:
+    - target: {fileID: -3702543535719335874, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 1260932834}
     - target: {fileID: 1607019896630675636, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
       propertyPath: m_Name
       value: TempArtifact (6)
@@ -14911,6 +14995,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1548624624}
     m_Modifications:
+    - target: {fileID: -3702543535719335874, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 1260932834}
     - target: {fileID: 1607019896630675636, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
       propertyPath: m_Name
       value: TempArtifact (33)
@@ -14973,6 +15061,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1548624624}
     m_Modifications:
+    - target: {fileID: -3702543535719335874, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 1260932834}
     - target: {fileID: 1607019896630675636, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
       propertyPath: m_Name
       value: TempArtifact (25)
@@ -15171,6 +15263,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1548624624}
     m_Modifications:
+    - target: {fileID: -3702543535719335874, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 1260932834}
     - target: {fileID: 1607019896630675636, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
       propertyPath: m_Name
       value: TempArtifact (29)
@@ -15344,6 +15440,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1548624624}
     m_Modifications:
+    - target: {fileID: -3702543535719335874, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 1260932834}
     - target: {fileID: 1607019896630675636, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
       propertyPath: m_Name
       value: TempArtifact (8)
@@ -16132,6 +16232,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1548624624}
     m_Modifications:
+    - target: {fileID: -3702543535719335874, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 1260932834}
     - target: {fileID: 1607019896630675636, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
       propertyPath: m_Name
       value: TempArtifact (3)
@@ -17513,6 +17617,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1548624624}
     m_Modifications:
+    - target: {fileID: -3702543535719335874, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 1260932834}
     - target: {fileID: 1607019896630675636, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
       propertyPath: m_Name
       value: TempArtifact (16)
@@ -18859,6 +18967,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1548624624}
     m_Modifications:
+    - target: {fileID: -3702543535719335874, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 1260932834}
     - target: {fileID: 1607019896630675636, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
       propertyPath: m_Name
       value: TempArtifact (35)
@@ -18963,6 +19075,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MissionEndInteractable
   result: 0
   promptText: '[E] Escape'
+  missingObjectiveText: Find the primary objective first
+  requirePrimaryObjective: 1
 --- !u!65 &1625047173
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19580,6 +19694,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1548624624}
     m_Modifications:
+    - target: {fileID: -3702543535719335874, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 1260932834}
     - target: {fileID: 1607019896630675636, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
       propertyPath: m_Name
       value: TempArtifact (7)
@@ -20638,6 +20756,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1548624624}
     m_Modifications:
+    - target: {fileID: -3702543535719335874, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 1260932834}
     - target: {fileID: 1607019896630675636, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
       propertyPath: m_Name
       value: TempArtifact
@@ -20868,6 +20990,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1548624624}
     m_Modifications:
+    - target: {fileID: -3702543535719335874, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 1260932834}
     - target: {fileID: 1607019896630675636, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
       propertyPath: m_Name
       value: TempArtifact (26)
@@ -21070,6 +21196,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1548624624}
     m_Modifications:
+    - target: {fileID: -3702543535719335874, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 1260932834}
     - target: {fileID: 1607019896630675636, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
       propertyPath: m_Name
       value: TempArtifact (23)
@@ -22477,6 +22607,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1548624624}
     m_Modifications:
+    - target: {fileID: -3702543535719335874, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 1260932834}
     - target: {fileID: 1607019896630675636, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
       propertyPath: m_Name
       value: TempArtifact (1)
@@ -22718,6 +22852,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1548624624}
     m_Modifications:
+    - target: {fileID: -3702543535719335874, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 1260932834}
     - target: {fileID: 1607019896630675636, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
       propertyPath: m_Name
       value: TempArtifact (12)
@@ -22780,6 +22918,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1548624624}
     m_Modifications:
+    - target: {fileID: -3702543535719335874, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 1260932834}
     - target: {fileID: 1607019896630675636, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
       propertyPath: m_Name
       value: TempArtifact (31)
@@ -23912,6 +24054,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1548624624}
     m_Modifications:
+    - target: {fileID: -3702543535719335874, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 1260932834}
     - target: {fileID: 1607019896630675636, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
       propertyPath: m_Name
       value: TempArtifact (13)
@@ -24262,6 +24408,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1548624624}
     m_Modifications:
+    - target: {fileID: -3702543535719335874, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 1260932834}
     - target: {fileID: 1607019896630675636, guid: 9ade75ba332252247812cf2dd34364f9, type: 3}
       propertyPath: m_Name
       value: TempArtifact (10)

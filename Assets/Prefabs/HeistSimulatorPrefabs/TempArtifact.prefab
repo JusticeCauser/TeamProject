@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7330918971693395549}
   - component: {fileID: 5734579185039627770}
   - component: {fileID: 4368868287237378368}
+  - component: {fileID: -3702543535719335874}
   m_Layer: 0
   m_Name: TempArtifact
   m_TagString: Untagged
@@ -113,3 +114,17 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-3702543535719335874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1607019896630675636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4059551d27611194db426c9150a432ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::pickupItems
+  item: {fileID: 11400000, guid: 28ed7770358bba248a1f3221ffe61c71, type: 2}
+  promptText: {fileID: 0}
