@@ -7,4 +7,5 @@ public class itemStats : ScriptableObject
 
     public string itemName;
     public int itemValue;
+    public bool isPrimaryObjective = false;
 }

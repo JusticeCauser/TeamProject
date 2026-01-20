@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
     int HPOrig;
     int itemListPos;
 
+    public bool hasPrimaryObjective = false;
     public int totalValue;
     public bool isStunned;
     bool isPlayingSteps;
@@ -190,6 +191,12 @@ public class PlayerController : MonoBehaviour
         itemListPos = itemList.Count - 1;
 
         totalValue += item.itemValue;
+
+        // is item primary?
+        if(item.isPrimaryObjective)
+        {
+            hasPrimaryObjective = true;
+        }
     }
   
     void selectItem()
