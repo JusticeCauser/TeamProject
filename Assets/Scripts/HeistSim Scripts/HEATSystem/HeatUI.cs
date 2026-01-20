@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class HeatUI : MonoBehaviour
 {
+    private static HeatUI instance;
+
     [Header("References")]
     public HeatManager heatManager;
     public Image heatFill;
@@ -24,6 +26,20 @@ public class HeatUI : MonoBehaviour
             heatManager.OnHeatStateChanged += OnHeatStateChanged;
 
         RefreshAll();
+    }
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
     }
 
     private void OnDestroy()

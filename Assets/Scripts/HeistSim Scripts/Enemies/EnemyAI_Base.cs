@@ -79,6 +79,7 @@ public class EnemyAI_Base : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (GameManager.instance == null) return;
         startingPos = transform.position;
         stoppingDistOrig = agent.stoppingDistance;
 
