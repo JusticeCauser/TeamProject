@@ -2335,6 +2335,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4300117873875358374, guid: 7bc424453043922408e620f44126a43b, type: 3}
+      propertyPath: doghandler
+      value: 
+      objectReference: {fileID: 1365435894}
     - target: {fileID: 8452470355179082392, guid: 7bc424453043922408e620f44126a43b, type: 3}
       propertyPath: m_Name
       value: Dog (1)
@@ -2728,6 +2732,10 @@ PrefabInstance:
       propertyPath: prompt
       value: 
       objectReference: {fileID: 841415524}
+    - target: {fileID: 6472910570815426957, guid: 5f4188761390b814ebdface4236d7f3f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7145176231687950471, guid: 5f4188761390b814ebdface4236d7f3f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 328.80875
@@ -6035,6 +6043,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8851ea7d2de7944e8fd608ac5acb43a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GuardHeatListener
+--- !u!114 &1365435894 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1013929047570166729, guid: bb960f1647c73dc40ad24214f3904eb0, type: 3}
+  m_PrefabInstance: {fileID: 2082530977}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1365435882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3cc9833ed4de544a4dd4ae2e796556, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HandlerAI
 --- !u!1001 &1378681609
 PrefabInstance:
   m_ObjectHideFlags: 0
