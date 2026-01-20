@@ -6,7 +6,7 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
-    public enum fail{ captured, heatTimeExpired}
+    public enum fail { captured, heatTimeExpired }
     private fail failReason;
     public static GameManager instance;
 
@@ -14,6 +14,19 @@ public class GameManager : MonoBehaviour
     public PlayerController playerScript;
 
     [SerializeField] string currScene;
+
+    [Header("---HUD---")]
+    [SerializeField] GameObject heatUIRoot;
+
+    [Header("---HUD Rules---")]
+    [SerializeField] bool useHeatUiWhiteList = true;
+    [SerializeField]
+    string[] ScenesWithHeatUI =
+    {
+        "Asylum",
+        "Mansion",
+        "MansionVault"
+    };
 
     [Header("---Menus---")]
     [SerializeField] GameObject menuWin;
@@ -115,11 +128,18 @@ public class GameManager : MonoBehaviour
         if(menuLose != null)
             menuLose.SetActive(false);
 
+        bool showHeat = ShouldShowHeatUI(scene.name);
+
+        if (heatUIRoot != null)
+            heatUIRoot.SetActive(showHeat);
+
         Time.timeScale = timeScaleOrig;
 
         player = GameObject.FindWithTag("Player");
         if (player != null)
             playerScript = player.GetComponent<PlayerController>();
+
+        SetInteractionLocked(false);
     }
     public void missionComplete()
     { //completing 
@@ -136,8 +156,8 @@ public class GameManager : MonoBehaviour
 
         }
         if (itemValueText != null && playerScript != null)
-            itemValueTextFail.text = "Total value collected: $" + playerScript.totalValue;
-        if(objectivesBonusText.text != null && ObjectiveManager.instance != null)
+            itemValueText.text = "Total value collected: $" + playerScript.totalValue;
+        if(objectivesBonusText != null && ObjectiveManager.instance != null)
         {
             int bonus = ObjectiveManager.instance.GetTotalMoneyBonus();
 
@@ -151,6 +171,12 @@ public class GameManager : MonoBehaviour
         
         if (menuWin != null)
         {
+            SetInteractionLocked(true);
+
+            if (heatUIRoot != null)
+            {
+                heatUIRoot.SetActive(false);
+            }
             menuWin.SetActive(true);
             Time.timeScale = 0f;
             Cursor.lockState = CursorLockMode.None;
@@ -179,10 +205,14 @@ public class GameManager : MonoBehaviour
             maxHeatTextFail.text = "Max Heat: " + HeatManager.Instance.maxHeatReached.ToString("F0") + "%";
 
         if (itemValueTextFail != null && playerScript != null)
-            itemValueText.text = "Total value collected: $" + playerScript.totalValue;
+            itemValueTextFail.text = "Total value collected: $" + playerScript.totalValue;
 
         if (menuLose != null)
         {
+            SetInteractionLocked(true);
+
+            if (heatUIRoot != null)
+                heatUIRoot.SetActive(false);
             menuLose.SetActive(true);
             Time.timeScale = 0f;
             Cursor.lockState = CursorLockMode.None;
@@ -230,5 +260,35 @@ public class GameManager : MonoBehaviour
 
         //string map = SceneManager.GetActiveScene().name;
         //SceneManager.LoadScene(map);
+    }
+
+    bool ShouldShowHeatUI(string sceneName)
+    {
+        if (!useHeatUiWhiteList)
+            return true;
+
+        if (ScenesWithHeatUI == null)
+            return false;
+
+        for (int i = 0; i < ScenesWithHeatUI.Length; i++)
+        {
+            if (ScenesWithHeatUI[i] == sceneName)
+                return true;
+        }
+
+        return false;
+    }
+
+    void SetInteractionLocked(bool locked)
+    {
+        var interactor = FindFirstObjectByType<Interactor>();
+        if (interactor != null)
+        {
+            interactor.uiLocked = locked;
+
+            var prompt = FindFirstObjectByType<PromptUI>();
+            if (prompt != null)
+                prompt.Hide();
+        }
     }
 }

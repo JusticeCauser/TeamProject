@@ -31,7 +31,6 @@ public class MissionEndInteractable : MonoBehaviour, IInteractable
 
         if (GameManager.instance == null)
         {
-            Debug.LogError("GameManager.instance is NULL in this scene.");
             used = false;
             return;
         }

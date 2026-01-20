@@ -3266,6 +3266,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HeatSystemUI
       objectReference: {fileID: 0}
+    - target: {fileID: 5623255734813365983, guid: 487e817318785d744b675a059819560e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
