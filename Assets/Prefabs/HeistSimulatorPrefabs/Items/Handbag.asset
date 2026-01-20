@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41b7ae35dc959644eb0aa64f6a121617, type: 3}
   m_Name: Handbag
   m_EditorClassIdentifier: Assembly-CSharp::itemStats
-  itemName: Watch
+  itemName: Handbag
   itemValue: 0
