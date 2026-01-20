@@ -26,11 +26,57 @@ public class beamInteraction : MonoBehaviour
             line.SetPosition(1, beamEnd.position);
         }
 
-        if(playerInRange && !beamDisabled)
+        //if(playerInRange && !beamDisabled)
+        //{
+        //    bool isLookingAt = false;
+        //    Vector3 toBeam = (transform.position - Camera.main.transform.position).normalized;
+        //    float dot = Vector3.Dot(Camera.main.transform.forward, toBeam);
+        //
+        //    if(dot > 0.5f)
+        //    {
+        //        Ray ray = new Ray(Camera.main.transform.position, toBeam);
+        //        RaycastHit hit;
+        //
+        //        if(Physics.Raycast(ray, out hit, 5f))
+        //        {
+        //            if(hit.collider.gameObject == gameObject || hit.collider.transform.IsChildOf(transform))
+        //            {
+        //                isLookingAt = true;
+        //            }
+        //        }
+        //    }    
+        //
+        //    if(promptText != null)
+        //    {
+        //        if(isLookingAt)
+        //        {
+        //            bool hasGadget = gadgetInventory.instance != null && gadgetInventory.instance.HasGadget(requiredGadget);
+        //
+        //            promptText.text = hasGadget ?
+        //                "Press E to place Mirror" :
+        //                "Missing: " + requiredGadget;
+        //            promptText.gameObject.SetActive(true);
+        //        }
+        //        else
+        //        {
+        //            promptText.gameObject.SetActive(false);
+        //        }
+        //    }
+        //
+        //    if(isLookingAt && Input.GetKeyDown(KeyCode.E))
+        //    {
+        //        bool hasGadget = gadgetInventory.instance != null && gadgetInventory.instance.HasGadget(requiredGadget);
+        //
+        //        if (hasGadget)
+        //            DisableBeam();
+        //    }
+        //}
+
+        if (playerInRange && !beamDisabled)
         {
             bool hasGadget = gadgetInventory.instance != null && gadgetInventory.instance.HasGadget(requiredGadget);
 
-            if(promptText != null)
+            if (promptText != null)
             {
                 if (hasGadget)
                     promptText.text = "Press E to place Mirror";
@@ -38,13 +84,13 @@ public class beamInteraction : MonoBehaviour
                     promptText.text = "Missing: " + requiredGadget;
             }
 
-            if(hasGadget && Input.GetKeyDown(KeyCode.E))
+            if (hasGadget && Input.GetKeyDown(KeyCode.E))
             {
                 DisableBeam();
             }
         }
         //// handle interaction 
-        //if(playerInRange && !beamDisabled && Input.GetKeyDown(KeyCode.E))
+        //if (playerInRange && !beamDisabled && Input.GetKeyDown(KeyCode.E))
         //{
         //    DisableBeam();
         //}
@@ -67,10 +113,7 @@ public class beamInteraction : MonoBehaviour
         {
             playerInRange = true;
             if (promptText != null)
-            {
-                promptText.text = "Press E to place mirror";
                 promptText.gameObject.SetActive(true);
-            }
         }
     }
 

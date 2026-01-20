@@ -57,7 +57,11 @@ public class codehackDisplay : MonoBehaviour
     IEnumerator OpenCase()
     {
         Quaternion startRot = displayCase.transform.localRotation;
-        Quaternion endRot = startRot * Quaternion.Euler(90, 0, 0);
+        Quaternion endRot = startRot * Quaternion.Euler(60, 0, 0);
+
+        Vector3 startPos = displayCase.transform.localPosition;
+        Vector3 endPos = startPos + new Vector3(0, -0.5f, 1f);
+
         float duration = 1.5f;
         float elapsed = 0f;
 
