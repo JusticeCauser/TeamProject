@@ -7008,6 +7008,18 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 701495a6d8f904147a2eacc28dce06f3, type: 2}
+    - target: {fileID: 2353251087256054259, guid: 5bbb5fc7a0343e14daa6d5d2b5a21d24, type: 3}
+      propertyPath: m_Size.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353251087256054259, guid: 5bbb5fc7a0343e14daa6d5d2b5a21d24, type: 3}
+      propertyPath: m_Size.y
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353251087256054259, guid: 5bbb5fc7a0343e14daa6d5d2b5a21d24, type: 3}
+      propertyPath: m_Size.z
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2925821863910342260, guid: 5bbb5fc7a0343e14daa6d5d2b5a21d24, type: 3}
       propertyPath: promptText
       value: 
