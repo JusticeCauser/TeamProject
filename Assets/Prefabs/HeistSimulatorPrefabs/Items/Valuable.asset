@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 41b7ae35dc959644eb0aa64f6a121617, type: 3}
-  m_Name: Cash-M
+  m_Name: Valuable
   m_EditorClassIdentifier: Assembly-CSharp::itemStats
-  itemName: Cash (Med Stack)
-  itemValue: 0
+  itemName: Valuable
+  itemValue: 50
