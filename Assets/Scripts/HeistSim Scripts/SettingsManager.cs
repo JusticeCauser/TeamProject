@@ -18,6 +18,7 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] Button backButton;
     [SerializeField] Button quitButton;
     [SerializeField] Button quitGameButton;
+    [SerializeField] Button restoreButton;
    
     
 
@@ -278,5 +279,26 @@ public class SettingsManager : MonoBehaviour
     {
         Time.timeScale = timeScaleOrig;
         SceneManager.LoadScene(title);
+    }
+
+    public void restoreToDefault()
+    {
+        if (masterSlide != null)
+            masterSlide.value = 1f;
+
+        if(ambientSlide != null)
+            ambientSlide.value = 1f;
+
+        if(sfxSlide != null)
+            sfxSlide.value = 1f;
+
+        if(sensitivitySlide != null)
+            sensitivitySlide.value = 300f;
+
+        if (yInvertToggle != null)
+            yInvertToggle.isOn = false;
+
+        if (InputManager.instance != null)
+            InputManager.instance.resetToDefault();
     }
 }
