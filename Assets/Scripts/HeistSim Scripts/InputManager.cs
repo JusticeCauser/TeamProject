@@ -1,50 +1,38 @@
 using UnityEngine;
-
 public class InputManager : MonoBehaviour
 {
-
     public static InputManager instance;
-
     [Header("Rebindable Keys")]
     [SerializeField] KeyCode defaultInteractKey = KeyCode.E;
-
     KeyCode interactKey;
-
-    bool isRebound;
     void Awake() //persist across scenes
     {
-
         if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            interactKey = PlayerPrefs.HasKey("InteractKey") ? (KeyCode)PlayerPrefs.GetInt("InteractKey") : defaultInteractKey; //cleaner than if statement
         }
         else
         {
             Destroy(gameObject);
-            return;
+
         }
     }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+  
+    public bool interactKeyPressed()
     {
-        
+        return Input.GetKeyDown(interactKey);
     }
+    public KeyCode getinteractKey() //getter for current key
+    {
+        return interactKey;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
-    public void getinteractKey(KeyCode key) //getter
+    public void setInteractKey(KeyCode key) //setter- sets new key and saves players choice
     {
         interactKey = key;
-       
-    }
-
-    public void setInteractKey(KeyCode key) //setter
-    {
-        interactKey = key;
+        PlayerPrefs.SetInt("InteractKey", (int)interactKey);
         PlayerPrefs.Save();
     }
     public void resetToDefault()
