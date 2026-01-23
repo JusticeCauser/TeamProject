@@ -20,7 +20,7 @@ public class secCam : MonoBehaviour
     [SerializeField] TMP_Text promptText;
     public float jamDuration = 60f;
     public string requiredGadget = "Camera Jammer";
-
+    float maxDistance = 7f;
 
     private bool isSweeping = true;
     private bool isJammed = false;
@@ -49,12 +49,32 @@ public class secCam : MonoBehaviour
     {
         bool hasGadget = gadgetInventory.instance != null && gadgetInventory.instance.HasGadget(requiredGadget);
 
-        if (playerInRange && !isJammed && promptText != null)
+        bool isLookingAt = false;
+
+        if (!isJammed)
         {
-            if (hasGadget)
-                promptText.text = "Press E to jam Camera";
+            RaycastHit hit;
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, maxDistance))
+            {
+                isLookingAt = hit.collider.gameObject == gameObject;
+            }
+        }
+
+        if (promptText != null)
+        {
+            if (isLookingAt)
+            {
+                promptText.gameObject.SetActive(true);
+                if (hasGadget)
+                    promptText.text = "Press E to jam Camera";
+                else
+                    promptText.text = "Missing: " + requiredGadget;
+
+            }
             else
-                promptText.text = "Missing: " + requiredGadget;
+            {
+                promptText.gameObject.SetActive(false);
+            }
         }
 
         // sweeping
@@ -66,7 +86,7 @@ public class secCam : MonoBehaviour
         }
 
         // jamming
-        if(isJammed)
+        if (isJammed)
         {
             jamTimer -= Time.deltaTime;
 
@@ -81,7 +101,7 @@ public class secCam : MonoBehaviour
             }
         }    
         // player interaction
-        if(playerInRange && !isJammed && hasGadget && Input.GetKeyDown(KeyCode.E))
+        if(isLookingAt && hasGadget && Input.GetKeyDown(KeyCode.E))
         {
             JamCamera();
         }
@@ -149,9 +169,9 @@ public class secCam : MonoBehaviour
     {
         if(other.CompareTag("Player") && !isJammed)
         {
-            playerInRange = true;
             if(promptText != null)
             {
+                playerInRange = true;
                 promptText.text = "Press E to jam Camera";
                 promptText.gameObject.SetActive(true);
             }
