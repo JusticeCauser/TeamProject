@@ -19,6 +19,7 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] Button quitButton;
     [SerializeField] Button quitGameButton;
     [SerializeField] Button restoreButton;
+    
    
     
 
@@ -117,6 +118,12 @@ public class SettingsManager : MonoBehaviour
         {
             quitGameButton.onClick.AddListener(menuButtonSound);
             quitGameButton.onClick.AddListener(quitToTitle);
+        }
+
+        if(restoreButton != null)
+        {
+            restoreButton.onClick.AddListener(menuButtonSound);
+            restoreButton.onClick.AddListener(restoreToDefault);
         }
     }
     private void Update()
