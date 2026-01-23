@@ -119,17 +119,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &350315208 stripped
+--- !u!114 &137563585 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3085027063034536683, guid: 9399bb3269062014eb364a6b174fbba1, type: 3}
-  m_PrefabInstance: {fileID: 1297703582519434268}
+  m_CorrespondingSourceObject: {fileID: 640963987168330361, guid: f6a109bfbf56c464ca5f4566b180f7e9, type: 3}
+  m_PrefabInstance: {fileID: 1860616242}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4c8ff8052f5e8c4ba0340f9538ca456, type: 3}
+  m_Script: {fileID: 11500000, guid: 93608ac58addd6641b739bfe291a8feb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HackMinigameUI
+  m_EditorClassIdentifier: Assembly-CSharp::NoiseManager
 --- !u!1 &543790444
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,17 +356,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &554296492 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1824927014361273093, guid: 9399bb3269062014eb364a6b174fbba1, type: 3}
-  m_PrefabInstance: {fileID: 1297703582519434268}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 673993a3a031c0048a0fe08d31da4ce9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::KeypadUI
 --- !u!1 &861145158
 GameObject:
   m_ObjectHideFlags: 0
@@ -1030,18 +1019,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -2167486896614264719, guid: f6a109bfbf56c464ca5f4566b180f7e9, type: 3}
-      propertyPath: promptUI
-      value: 
-      objectReference: {fileID: 1981527352}
-    - target: {fileID: -2167486896614264719, guid: f6a109bfbf56c464ca5f4566b180f7e9, type: 3}
-      propertyPath: hackPanel
-      value: 
-      objectReference: {fileID: 350315208}
-    - target: {fileID: -2167486896614264719, guid: f6a109bfbf56c464ca5f4566b180f7e9, type: 3}
-      propertyPath: keypadPanel
-      value: 
-      objectReference: {fileID: 554296492}
     - target: {fileID: 3319698450656636261, guid: f6a109bfbf56c464ca5f4566b180f7e9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.2744318
@@ -1155,7 +1132,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7811a3a1f275eb042b453b7b638ba515, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.34
+      value: 0.33
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7811a3a1f275eb042b453b7b638ba515, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1167,7 +1144,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7811a3a1f275eb042b453b7b638ba515, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.75
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7811a3a1f275eb042b453b7b638ba515, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1206,17 +1183,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7811a3a1f275eb042b453b7b638ba515, type: 3}
---- !u!114 &1981527352 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8469365429037315752, guid: 9399bb3269062014eb364a6b174fbba1, type: 3}
-  m_PrefabInstance: {fileID: 1297703582519434268}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1aed86e97347d8145832a98239f18463, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PromptUI
 --- !u!1001 &1297703582519434268
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1463,14 +1429,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4960434527280285354, guid: 487e817318785d744b675a059819560e, type: 3}
-      propertyPath: heatManager
-      value: 
-      objectReference: {fileID: 1866455858}
     - target: {fileID: 5623255734813365983, guid: 487e817318785d744b675a059819560e, type: 3}
       propertyPath: m_Name
       value: HeatSystemUI
       objectReference: {fileID: 0}
+    - target: {fileID: 7617732851581235443, guid: 487e817318785d744b675a059819560e, type: 3}
+      propertyPath: noiseManager
+      value: 
+      objectReference: {fileID: 137563585}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
