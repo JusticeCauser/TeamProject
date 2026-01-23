@@ -254,6 +254,7 @@ GameObject:
   - component: {fileID: 6099111275490944047}
   - component: {fileID: 2229284572061642417}
   - component: {fileID: 1274579851119869242}
+  - component: {fileID: 640963987168330361}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -410,7 +411,9 @@ MonoBehaviour:
   maxInventory: 7
   itemList: []
   dragPoint: {fileID: 3210707800499152509}
+  hasPrimaryObjective: 0
   totalValue: 0
+  isStunned: 0
   isHiding: 0
   crouchSpeed: 2
 --- !u!114 &6099111275490944047
@@ -449,7 +452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c05f1e77dd6aba74cab8c502df5e630c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Crouch
-  controller: {fileID: 0}
+  controller: {fileID: 508957861487470888}
   crouchHeight: 1
   standHeight: -1
   crouchTransitionSpeed: 10
@@ -467,3 +470,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStateManager
   currentState: 0
   noiseLevel: 0
+--- !u!114 &640963987168330361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3377885465133513441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93608ac58addd6641b739bfe291a8feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NoiseManager
+  noise: 0
+  riseSpeed: 120
+  fallSpeed: 60
+  idleNoise: 0
+  crouchWalkNoise: 15
+  walkNoise: 30
+  sprintNoise: 65
+  jumpLandSpike: 10
+  characterController: {fileID: 508957861487470888}
+  walkSpeedRef: 4
+  sprintSpeedRef: 7
+  isCrouching: 0
+  isSprinting: 0
+  isGrounded: 1
+  fadeQuietThreshold: 10
+  fadeDelay: 1.5
+  fadedAlpha: 0.2
+  fadeInSpeed: 8
+  fadeOutSpeed: 3
+  debugEnabled: 1
+  lastSource: None
+  lastSpikeAmount: 0
