@@ -55,7 +55,8 @@ public class EnemyAI_Base : MonoBehaviour
         Suspicious,
         Alerted,
         Chase,
-        KnockedOut
+        KnockedOut,
+        Hunt
     }
 
     public guardState state = guardState.Idle;

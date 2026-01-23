@@ -11,10 +11,9 @@ public class HearingTrigger : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if (enemyParent.state == EnemyAI_Base.guardState.KnockedOut) return;
+        if (other.CompareTag("Player"))
         {
-            Debug.Log("Hearing enter: " + other.name + " tag=" + other.tag);
-            Debug.Log("ENTERED TRIGGER");
             enemyParent.playerInHearingRange = true;
         }
     }
@@ -23,11 +22,6 @@ public class HearingTrigger : MonoBehaviour
     {
         if (enemyParent == null) return;
         if (enemyParent.state == EnemyAI_Base.guardState.KnockedOut) return;
-        if (other.CompareTag("Player"))
-        {
-            Debug.Log("HEARING TRIGGER STAY");
-            enemyParent.canHearPlayer();
-        }
     }
 
     private void OnTriggerExit(Collider other)
