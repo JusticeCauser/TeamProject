@@ -1,62 +1,42 @@
+using System.Transactions;
 using UnityEngine;
+
+public enum keyType
+{
+moveKey,
+revealKey
+}
 
 public class keyFunction : MonoBehaviour
 {
-    [SerializeField] GameObject connectedObject;
-    [SerializeField] bool revealKey;
-    [SerializeField] bool moveKey;
-
-    movableObject movable;
+    [SerializeField] keyType setKeyType;
 
     float rotateSpeed = 45; // Degrees per second.
 
-    Vector3 rotationAxis = Vector3.up;
+    bool rotate = true;
 
-    private void OnValidate()
-    {
-//#if UNITY_EDITOR
-//        if (revealKey && connectedObject.activeSelf == true)
-//        {
-//            connectedObject.SetActive(false);
-//        }
-//        else if(!revealKey && connectedObject.activeSelf == false)
-//        {
-//            connectedObject.SetActive(true);
-//        }
-//#endif
-    }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        if(moveKey)
-        {
-            movable = connectedObject.GetComponent<movableObject>();
-        }
-    }
+    Vector3 rotationAxis = Vector3.right;
 
     void Update()
     {
-        transform.Rotate(rotationAxis.normalized * rotateSpeed * Time.deltaTime);
+        if(rotate)
+            transform.Rotate(rotationAxis.normalized * rotateSpeed * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
-        {
-            if(moveKey && movable != null)
-            {
-                if (!movable.GetIsMoving() && movable.GetDelayTimer() >= movable.GetDelayAmount())
-                {
-                    connectedObject.GetComponent<movableObject>().SetIsMoving(true);
-                }
-            }
-            else if(revealKey)
-            {
-                connectedObject.SetActive(true);
-            }
+        IPickup pickup = other.GetComponent<IPickup>();
 
+        if(other.CompareTag("Player") && pickup != null)
+        {
+           // pickup.addKey(this);
             Destroy(gameObject);
+            rotate = false;
         }
+    }
+
+    public keyType GetKeyType()
+    {
+        return setKeyType;
     }
 }

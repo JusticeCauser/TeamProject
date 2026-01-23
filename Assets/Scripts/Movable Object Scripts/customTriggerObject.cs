@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class customTriggerObject : MonoBehaviour
@@ -8,24 +9,36 @@ public class customTriggerObject : MonoBehaviour
 
     private void Start()
     {
-        
+        movable = connectedObject.GetComponent<movableObject>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        movable = connectedObject.GetComponent<movableObject>();
-
-        if (other.CompareTag("Player") && movable != null)
+        if (other.CompareTag("Player"))
         {
-            if(!movable.GetIsMoving() && movable.GetDelayTimer() >= movable.GetDelayAmount())
+            if(other.gameObject.transform.parent != transform.parent)
             {
-                connectedObject.GetComponent<movableObject>().SetIsMoving(true);
-            }
+                other.gameObject.transform.parent = transform.parent;
+            }  
         }
     }
 
-    //public void SetConnectedObject(GameObject obj)
-    //{
-    //    connectedObject = obj;
-    //}
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.CompareTag("Player") && movable != null)
+        {
+            if (!movable.GetIsMoving() && movable.GetDelayTimer() >= movable.GetDelayAmount())
+            {
+                connectedObject.GetComponent<movableObject>().SetIsMoving(true);
+            }
+        }   
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player") && other.gameObject.transform.parent != null)
+        {
+            other.gameObject.transform.parent = null;
+        }
+    }
 }

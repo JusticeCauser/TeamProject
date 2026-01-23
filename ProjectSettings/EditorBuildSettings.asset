@@ -5,12 +5,26 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Levels/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Levels/Justice'sScene.unity
-    guid: 83721a7f44619214ea2022a5b9f3c991
-  m_configObjects:
-    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    path: Assets/Levels/HeistSimulatorScenes/IntroScene.unity
+    guid: 88e7cca3239bcbd4eb634588a7bd6b54
+  - enabled: 1
+    path: Assets/Levels/HeistSimulatorScenes/theHub.unity
+    guid: da7a70ba8dae6ca4f81dccd6801f8781
+  - enabled: 1
+    path: Assets/Levels/HeistSimulatorScenes/LoadingIntroAsylum.unity
+    guid: b6c63be826b3298438660a48c8a18354
+  - enabled: 1
+    path: Assets/Levels/HeistSimulatorScenes/Asylum.unity
+    guid: 7afae9a60135554409b41c3bc7dfc404
+  - enabled: 1
+    path: Assets/Levels/HeistSimulatorScenes/LoadingIntroMansion.unity
+    guid: aa7a679ba9c69594cb9a4dcca5ca8b6e
+  - enabled: 1
+    path: Assets/Levels/HeistSimulatorScenes/Mansion.unity
+    guid: cec9fb71a2359f044944a69f3487ce41
+  - enabled: 1
+    path: Assets/Levels/HeistSimulatorScenes/MansionVault.unity
+    guid: 3e5ac60e97073da4cadbdbc19e679994
+  m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
