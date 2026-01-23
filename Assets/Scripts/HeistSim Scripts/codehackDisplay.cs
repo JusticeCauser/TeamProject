@@ -9,6 +9,7 @@ public class codehackDisplay : MonoBehaviour
     [Header("References")]
     [SerializeField] TMP_Text promptText;
     public GameObject displayCase;
+    //[SerializeField] float maxDistance = 5f;
 
     private bool playerInRange = false;
     private bool unlocked = false;
@@ -26,14 +27,29 @@ public class codehackDisplay : MonoBehaviour
 
         // player has gadget?
         bool hasGadget = gadgetInventory.instance != null && gadgetInventory.instance.HasGadget(requiredGadget);
+        //bool isLookingAt = false;
+
+        //RaycastHit hit;
+        //if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, maxDistance))
+        //{
+        //    isLookingAt = (hit.collider.gameObject == gameObject || hit.collider.transform.IsChildOf(transform));
+        //}
 
         if(promptText != null)
         {
-            if (hasGadget)
-                promptText.text = "Press E to hack";
-            else
-                promptText.text = "Missing: " + requiredGadget;
-        }
+            //if(isLookingAt)
+            //{
+            //    promptText.gameObject.SetActive(true);
+                if (hasGadget)
+                    promptText.text = "Press E to hack";
+                else
+                    promptText.text = "Missing: " + requiredGadget;
+            }
+        //    else
+        //    {
+        //        promptText.gameObject.SetActive(false);
+        //    }
+        //}
 
         if(hasGadget && Input.GetKeyDown(KeyCode.E))
         {
@@ -79,7 +95,7 @@ public class codehackDisplay : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player") && !unlocked)
+        if (other.CompareTag("Player") && !unlocked)
         {
             playerInRange = true;
             if (promptText != null)
@@ -89,7 +105,7 @@ public class codehackDisplay : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             playerInRange = false;
             if (promptText != null)
