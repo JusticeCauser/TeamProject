@@ -26,10 +26,15 @@ public class PlayerStateManager : MonoBehaviour
     bool isHiding;
     bool isStunned;
 
+    NoiseManager noiseManager;
+    Crouch crouch;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         player = GetComponent<PlayerController>();
+        noiseManager = GetComponent<NoiseManager>();
+        crouch = GetComponent<Crouch>();
     }
 
     // Update is called once per frame
@@ -53,7 +58,6 @@ public class PlayerStateManager : MonoBehaviour
         }
         crouching();
         moving();
-        noiseLevelChecker();
 
         switch (currentState)
         {
@@ -155,6 +159,8 @@ public class PlayerStateManager : MonoBehaviour
                 break;
         }
 
+        noiseLevelChecker();
+
     }
 
     void crouching()
@@ -205,36 +211,44 @@ public class PlayerStateManager : MonoBehaviour
     public float noiseLevelChecker()
     {
         
-        switch(currentState)
+        //switch(currentState)
+        //{
+        //    case playerState.Idle:
+        //        noiseLevel = 0;
+        //        break;
+        //
+        //    case playerState.CrouchedIdle:
+        //        noiseLevel = 0;
+        //        break;
+        //
+        //    case playerState.Sneaking:
+        //        noiseLevel = 3;
+        //        break;
+        //        
+        //    case playerState.Sprinting:
+        //        noiseLevel = 8;
+        //       break;
+        //
+        //    case playerState.Moving:
+        //        noiseLevel = 4;
+        //        break;
+        //
+        //    case playerState.Hiding:
+        //        noiseLevel = 0;
+        //        break;
+        //
+        //    case playerState.Stunned:
+        //        noiseLevel = 0;
+        //        break;
+        //}
+
+        if (noiseManager == null)
         {
-            case playerState.Idle:
-                noiseLevel = 0;
-                break;
-
-            case playerState.CrouchedIdle:
-                noiseLevel = 0;
-                break;
-
-            case playerState.Sneaking:
-                noiseLevel = 3;
-                break;
-                
-            case playerState.Sprinting:
-                noiseLevel = 8;
-                break;
-
-            case playerState.Moving:
-                noiseLevel = 4;
-                break;
-
-            case playerState.Hiding:
-                noiseLevel = 0;
-                break;
-
-            case playerState.Stunned:
-                noiseLevel = 0;
-                break;
+            noiseLevel = 0;
+            return noiseLevel;
         }
+
+        noiseLevel = Mathf.Clamp(noiseManager.noise / 10f, 0f, 10f);
         return noiseLevel;
     }
 }
