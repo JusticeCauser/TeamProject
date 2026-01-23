@@ -209,7 +209,7 @@ public class playerControllerBackup : MonoBehaviour, IDamage, IHeal
 
     public void updatePlayerUI()
     {
-        gameManager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
+        gameManager.instance.playerHPFrontBar.fillAmount = (float)HP / HPOrig;
     }
 
     IEnumerator flashRed()
@@ -220,9 +220,9 @@ public class playerControllerBackup : MonoBehaviour, IDamage, IHeal
     }
     IEnumerator flashGreen() //flash green for heal
     {
-        gameManager.instance.playerHealScreen.SetActive(true);
+        //gameManager.instance.playerHealScreen.SetActive(true);
         yield return new WaitForSeconds(0.1f); //active flash time
-        gameManager.instance.playerHealScreen.SetActive(false);
+        //gameManager.instance.playerHealScreen.SetActive(false);
     }
 
     public void heal(int healAmount)
@@ -287,8 +287,18 @@ public class playerControllerBackup : MonoBehaviour, IDamage, IHeal
         }
         poisoned = null;
     }
-    public void taze(int damage, float duration)
+    // Tazed Effect
+    public void taze(/*int damage,*/ float duration)
     {
+        StartCoroutine(TazeRoutine(duration));
+    }
+
+    private IEnumerator TazeRoutine(float duration)
+    {
+        tazed = true;
+
+        yield return new WaitForSeconds(duration);
+
         float timer = 0f;
 
         while (timer < duration)
