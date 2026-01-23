@@ -60,7 +60,7 @@ public class codehackDisplay : MonoBehaviour
         Quaternion endRot = startRot * Quaternion.Euler(60, 0, 0);
 
         Vector3 startPos = displayCase.transform.localPosition;
-        Vector3 endPos = startPos + new Vector3(0, -0.5f, 1f);
+        Vector3 endPos = startPos + new Vector3(0, 0.08f, 0.6f);
 
         float duration = 1.5f;
         float elapsed = 0f;
@@ -68,11 +68,13 @@ public class codehackDisplay : MonoBehaviour
         while(elapsed < duration)
         {
             displayCase.transform.localRotation = Quaternion.Lerp(startRot, endRot, elapsed / duration);
+            displayCase.transform.localPosition = Vector3.Lerp(startPos, endPos, elapsed / duration);
             elapsed += Time.deltaTime;
             yield return null;
         }
 
         displayCase.transform.localRotation = endRot;
+        displayCase.transform.localPosition = endPos;
     }
 
     private void OnTriggerEnter(Collider other)
