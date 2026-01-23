@@ -67,10 +67,14 @@ public class playerController : MonoBehaviour, IDamage, IPickup
     GrapplingHook grappleHook;
     bool grappleJumpedThisFrame;
 
+    NoiseManager noiseManager;
+    Crouch crouch;
+
     Camera mainCam;
 
     private void Awake()
     {
+        instance = this;
         controller = GetComponent<CharacterController>();
         //if(instance == null)
         //{
@@ -81,7 +85,8 @@ public class playerController : MonoBehaviour, IDamage, IPickup
         //{
         //    Destroy(gameObject);
         //}
-       
+        noiseManager = GetComponent<NoiseManager>();
+        crouch = GetComponent<Crouch>();
     }
 
     void Start()
@@ -105,6 +110,8 @@ public class playerController : MonoBehaviour, IDamage, IPickup
             movement();
        // }
         sprint();
+
+        UpdateNoise();
 
     }
 
@@ -146,7 +153,8 @@ public class playerController : MonoBehaviour, IDamage, IPickup
 
         if (!isGrappling)
         {
-            moveDir = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
+            moveDir = (Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward);
+            moveDir = Vector3.ClampMagnitude(moveDir, 1f);
 
             // calculate actual velocity for wall run (moveDir * speed + external + playerVel)
             Vector3 currentVelocity = (moveDir * speed) + externalVelocity + playerVel;
@@ -452,5 +460,19 @@ public class playerController : MonoBehaviour, IDamage, IPickup
         }
     }
 
-    
+    void UpdateNoise()
+    {
+        if (noiseManager == null)
+            return;
+
+        noiseManager.characterController = controller;
+
+        noiseManager.isSprinting = isSprinting;
+        noiseManager.isCrouching = (crouch != null && crouch.IsCrouching);
+        noiseManager.isGrounded = controller != null && controller.isGrounded;
+
+        noiseManager.walkSpeedRef = speedOrig;
+        noiseManager.sprintSpeedRef = speedOrig * sprintMod;
+    }
+
 }
