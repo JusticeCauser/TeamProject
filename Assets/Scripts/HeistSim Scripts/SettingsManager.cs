@@ -173,6 +173,9 @@ public class SettingsManager : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
 
+            if(InventoryManager.instance != null && InventoryManager.instance.inventoryUI != null)
+                InventoryManager.instance.inventoryUI.SetActive(false);
+
             }       
     }
 
@@ -197,6 +200,8 @@ public class SettingsManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
+        if (InventoryManager.instance != null && InventoryManager.instance.inventoryUI != null)
+            InventoryManager.instance.inventoryUI.SetActive(true);
     }
 
     public void setMasterVolume(float volume)

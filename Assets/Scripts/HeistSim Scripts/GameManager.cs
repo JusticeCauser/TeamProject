@@ -198,6 +198,8 @@ public class GameManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
+        if (InventoryManager.instance != null && InventoryManager.instance.inventoryUI != null)
+            InventoryManager.instance.inventoryUI.SetActive(false);
     }
     public void missionFail(fail reason)
     { //capture, if not out in 60 seconds from HEAT timer
@@ -242,8 +244,11 @@ public class GameManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
-       
-            missionFailReason();
+
+        if (InventoryManager.instance != null && InventoryManager.instance.inventoryUI != null)
+            InventoryManager.instance.inventoryUI.SetActive(false);
+
+        missionFailReason();
     }
     void missionFailReason()
     {

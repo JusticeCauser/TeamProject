@@ -27,8 +27,9 @@ public class PlayerController : MonoBehaviour
 
     [Header("---Items---")]
     [SerializeField] int maxInventory = 7;
-    [SerializeField] List<itemStats> itemList = new List<itemStats>();
-    //[SerializeField] Transform droppedItem; for dropping items
+    public List<itemStats> itemList = new List<itemStats>();
+    public Transform droppedItem; //for dropping items
+    
 
     [Header("---Enemy---")]
     [SerializeField] Transform dragPoint;
@@ -38,7 +39,7 @@ public class PlayerController : MonoBehaviour
 
     int jumpCount;
     int HPOrig;
-    int itemListPos;
+    public int itemListPos;
 
     public bool hasPrimaryObjective = false;
     public int totalValue;
@@ -214,6 +215,9 @@ public class PlayerController : MonoBehaviour
   
     void selectItem()
     {
+        if (itemList.Count == 0)
+            return;
+
         if(Input.GetAxis("Mouse ScrollWheel") > 0 && itemListPos < itemList.Count - 1)
         {
             itemListPos++;
