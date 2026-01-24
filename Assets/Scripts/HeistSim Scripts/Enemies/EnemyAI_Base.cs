@@ -226,7 +226,7 @@ public class EnemyAI_Base : MonoBehaviour
 
     void SearchBehavior()
     {
-        searchTimer += Time.deltaTime;
+        
         lastAlertPosition = playerTransform.position;
         agent.SetDestination(lastAlertPosition);
         
@@ -241,14 +241,22 @@ public class EnemyAI_Base : MonoBehaviour
             state = guardState.Chase;
             return;
         }
-        if (!canSeePlayer() && searchTimer <= searchDur)
+        searchTimer += Time.deltaTime;
+        if (searchTimer >= searchDur)
         {
-            checkRoam();
-            if (agent.remainingDistance <= agent.stoppingDistance + 0.1f)
-            {
-                nextHideSpot();
-            }
+            searchTimer = 0;
+            radioIn = false;
+            state = guardState.Patrol;
+            return;
         }
+        
+            
+        if (agent.remainingDistance <= agent.stoppingDistance + 0.1f)
+        {
+            roam(lastAlertPosition, roamDist);
+            //nextHideSpot();
+        }
+        
     }
     void nextHideSpot()
     {
@@ -304,24 +312,26 @@ public class EnemyAI_Base : MonoBehaviour
         }
     }
 
-    void checkRoam()
-    {
-        if (agent.remainingDistance < 0.01f && roamTimer >= roamPauseTime)
-        {
-            roam();
-        }
-    }
-    void roam()
+    //void checkRoam()
+    //{
+    //    if (agent.remainingDistance < 0.01f && roamTimer >= roamPauseTime)
+    //    {
+    //        roam();
+    //    }
+    //}
+    void roam(Vector3 center, float radius)
     {
         roamTimer = 0;
         agent.stoppingDistance = 0;
 
         Vector3 ranPos = Random.insideUnitSphere * roamDist;
-        ranPos += lastAlertPosition;
+        ranPos += center;
 
         NavMeshHit hit;
-        NavMesh.SamplePosition(ranPos, out hit, roamDist, 1);
-        agent.SetDestination(hit.position);
+        if (NavMesh.SamplePosition(ranPos, out hit, roamDist, 1));
+        {
+            agent.SetDestination(hit.position); 
+        }
     }
 
     void ChaseBehavior()
