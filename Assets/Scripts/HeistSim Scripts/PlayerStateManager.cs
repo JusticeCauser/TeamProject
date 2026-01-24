@@ -211,36 +211,36 @@ public class PlayerStateManager : MonoBehaviour
     public float noiseLevelChecker()
     {
         
-        //switch(currentState)
-        //{
-        //    case playerState.Idle:
-        //        noiseLevel = 0;
-        //        break;
+        switch(currentState)
+        {
+            case playerState.Idle:
+                noiseLevel = 0;
+                break;
         
-        //    case playerState.CrouchedIdle:
-        //        noiseLevel = 0;
-        //        break;
+            case playerState.CrouchedIdle:
+                noiseLevel = 0;
+                break;
         
-        //    case playerState.Sneaking:
-        //        noiseLevel = 3;
-        //        break;
+            case playerState.Sneaking:
+                noiseLevel = 3;
+                break;
                 
-        //    case playerState.Sprinting:
-        //        noiseLevel = 8;
-        //        break;
+            case playerState.Sprinting:
+                noiseLevel = 8;
+                break;
         
-        //    case playerState.Moving:
-        //        noiseLevel = 4;
-        //        break;
+            case playerState.Moving:
+                noiseLevel = 4;
+                break;
         
-        //    case playerState.Hiding:
-        //        noiseLevel = 0;
-        //        break;
+            case playerState.Hiding:
+                noiseLevel = 0;
+                break;
         
-        //    case playerState.Stunned:
-        //        noiseLevel = 0;
-        //        break;
-        //}
+            case playerState.Stunned:
+                noiseLevel = 0;
+                break;
+        }
 
         if (noiseManager == null)
         {
