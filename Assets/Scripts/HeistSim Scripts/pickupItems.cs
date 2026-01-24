@@ -20,10 +20,12 @@ public class pickupItems : MonoBehaviour
 
         if(promptText != null)
         {
-            promptText.text = "Press E to take " + item.itemName + " ($" + item.itemValue + ")";
+           // promptText.text = "Press E to take " + item.itemName + " ($" + item.itemValue + ")";
+           //this will show what the player currently has set for their interact key, tostring needed to display keycode name
+            promptText.text = "Press " + InputManager.instance.getinteractKey().ToString() + " to take " + item.itemName + " ($" + item.itemValue + ")";
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (InputManager.instance.interactKeyPressed())
         {
             PlayerController player = PlayerController.instance;
 
