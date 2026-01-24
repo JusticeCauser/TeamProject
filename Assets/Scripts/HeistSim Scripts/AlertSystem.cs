@@ -10,10 +10,10 @@ public class AlertSystem : MonoBehaviour
         Debug.Log("I Barked");
         for(int i = 0; i < hits.Length; i++)
         {
-            HandlerAI guard = hits[i].GetComponent<HandlerAI>();
-            if(guard != null)
+            HandlerAI handler = hits[i].GetComponentInParent<HandlerAI>();
+            if(handler != null)
             {
-                guard.onBarkAlert(position, forward);
+                handler.onBarkAlert(position, forward);
             }
         }
     }
