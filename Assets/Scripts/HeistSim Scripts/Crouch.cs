@@ -50,10 +50,17 @@ public class Crouch : MonoBehaviour
         if (crouchToggle)
         {
             if (!isCrouching)
+            {
                 isCrouching = true;
 
+                if (ObjectiveManager.instance != null)
+                    ObjectiveManager.instance.playerCrouched();
+            }
             else if (canStand())
+            {
                 isCrouching = false;
+            }
+                
         }
     }
     void updateHeight()

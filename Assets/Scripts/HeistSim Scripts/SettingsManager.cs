@@ -307,5 +307,8 @@ public class SettingsManager : MonoBehaviour
 
         if (InputManager.instance != null)
             InputManager.instance.resetToDefault();
+
+        if(KeybindManager.instance != null)
+            KeybindManager.instance.updateInteractText();
     }
 }

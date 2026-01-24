@@ -37,15 +37,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] Button lQuitButton;
     [SerializeField] Button retryButton;
 
-    [Header("---Timer---")]
+    [Header("---Text Fields---")]
     [SerializeField] TMP_Text timerTextWin;
     [SerializeField] TMP_Text itemValueText;
-    [SerializeField] TMP_Text itemValueTextFail;
+    //[SerializeField] TMP_Text itemValueTextFail;
     [SerializeField] TMP_Text timerTextFail;
     [SerializeField] TMP_Text failText;
     [SerializeField] TMP_Text maxHeatTextWin;
     [SerializeField] TMP_Text maxHeatTextFail;
     [SerializeField] TMP_Text objectivesBonusText;
+    [SerializeField] TMP_Text objectivesMissionCompletedText;
+    [SerializeField] TMP_Text objectivesMissionFailedText;
 
     float timeScaleOrig;
 
@@ -143,8 +145,12 @@ public class GameManager : MonoBehaviour
     }
     public void missionComplete()
     { //completing 
+
+        Debug.Log("mission complete");
+
         if(audioManager.instance != null)
             audioManager.instance.playMissionCompleteSound();
+
         if (timerOn)
         {
             endTimer = Time.time - startTimer;
@@ -155,8 +161,10 @@ public class GameManager : MonoBehaviour
             timerTextWin.text = "Completed in: " + string.Format("{0:00}:{1:00}", min, sec);
 
         }
+
         if (itemValueText != null && playerScript != null)
             itemValueText.text = "Total value collected: $" + playerScript.totalValue;
+
         if(objectivesBonusText != null && ObjectiveManager.instance != null)
         {
             int bonus = ObjectiveManager.instance.GetTotalMoneyBonus();
@@ -166,9 +174,17 @@ public class GameManager : MonoBehaviour
             else
                 objectivesBonusText.text = "Objective Bonus: $0";
         }
+
         if(maxHeatTextWin != null && HeatManager.Instance != null) //shows only whole percentage, no decimals
             maxHeatTextWin.text = "Max Heat: " + HeatManager.Instance.maxHeatReached.ToString("F0") + "%";
         
+        if(objectivesMissionCompletedText != null && ObjectiveManager.instance != null)
+        {
+            ObjectiveManager.instance.objectivesCompleted();
+            ObjectiveManager.instance.showObjectivesCompleted();
+            objectivesMissionCompletedText.text = ObjectiveManager.instance.objectivesCompleteText;
+        }
+
         if (menuWin != null)
         {
             SetInteractionLocked(true);
@@ -185,6 +201,7 @@ public class GameManager : MonoBehaviour
     }
     public void missionFail(fail reason)
     { //capture, if not out in 60 seconds from HEAT timer
+        Debug.Log("Mission fail");
 
         if (audioManager.instance != null)
             audioManager.instance.playMissionFailSound();
@@ -204,8 +221,15 @@ public class GameManager : MonoBehaviour
         if (maxHeatTextFail != null && HeatManager.Instance != null) //shows only whole percentage, no decimals
             maxHeatTextFail.text = "Max Heat: " + HeatManager.Instance.maxHeatReached.ToString("F0") + "%";
 
-        if (itemValueTextFail != null && playerScript != null)
-            itemValueTextFail.text = "Total value collected: $" + playerScript.totalValue;
+        //if (itemValueTextFail != null && playerScript != null)
+        //    itemValueTextFail.text = "Total value collected: $" + playerScript.totalValue;
+
+        if(objectivesMissionCompletedText != null && ObjectiveManager.instance != null)
+        {
+            ObjectiveManager.instance.objectivesCompleted();
+            ObjectiveManager.instance.showObjectivesCompleted();
+            objectivesMissionFailedText.text = ObjectiveManager.instance.objectivesCompleteText;
+        }
 
         if (menuLose != null)
         {
