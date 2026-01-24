@@ -6,7 +6,7 @@ public class pickupItems : MonoBehaviour
     [SerializeField] TMP_Text promptText;
 
     private bool playerInRange = false;
-
+    private bool itemPickedUp = false;
     private void Start()
     {
         if (promptText != null)
@@ -15,7 +15,7 @@ public class pickupItems : MonoBehaviour
 
     private void Update()
     {
-        if (!playerInRange || item == null)
+        if (!playerInRange || item == null || itemPickedUp)
             return;
 
         if(promptText != null)
@@ -31,6 +31,7 @@ public class pickupItems : MonoBehaviour
 
             if (player != null)
             {
+                itemPickedUp = true;
                 player.grabItem(item);
 
                 if (promptText != null)
@@ -43,6 +44,7 @@ public class pickupItems : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+       
         if(other.CompareTag("Player"))
         {
             playerInRange = true;
