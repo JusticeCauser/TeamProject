@@ -43,6 +43,8 @@ public class printSource : MonoBehaviour
     {
         printLifted = true;
 
+        FeedbackUI.instance?.ShowFeedback("Fingerprint lifted!");
+
         printManager.instance.hasFingerprint = true;
 
         if (promptText != null)

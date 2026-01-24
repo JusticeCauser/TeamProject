@@ -42,6 +42,8 @@ public class interactableGlass : MonoBehaviour
     {
         isLocked = false;
 
+        FeedbackUI.instance?.ShowFeedback("Glass Cut!");
+
         // remove pane of glass
         gameObject.SetActive(false);
 

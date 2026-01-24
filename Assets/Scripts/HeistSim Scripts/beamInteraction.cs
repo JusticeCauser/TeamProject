@@ -100,6 +100,8 @@ public class beamInteraction : MonoBehaviour
     {
         beamDisabled = true;
 
+        FeedbackUI.instance?.ShowFeedback("Beam Blocked!");
+
         if (line != null)
             line.enabled = false;
 
