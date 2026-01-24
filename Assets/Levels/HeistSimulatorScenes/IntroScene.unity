@@ -5280,8 +5280,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 712.26, y: -25}
-  m_SizeDelta: {x: 1424.52, y: 50}
+  m_AnchoredPosition: {x: 794.2787, y: -25}
+  m_SizeDelta: {x: 1588.5574, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1483715563
 MonoBehaviour:
@@ -5315,7 +5315,13 @@ MonoBehaviour:
     Prestige by Letterhend Studio on dafont.com\r\nRelationship of M\xE9lodrame by
     Sizimon.id on dafont.com\n\r\nSound Effects and Audio\r\nclicking-interface-select-201946
     by amaze98 on pixabay.com\r\nsuspense-sci-fi-underscore-music-loop-300215 by
-    Cyberwave-Orchestra on pixabay.com"
+    Cyberwave-Orchestra on pixabay.com\nWalking on Broken Glass by Alex_Jauk on pixabay.com\n\nPhotos\nBlue
+    Texture by bedneyimages on freepik.com\ncancorso_loadingscreen_backlight by Melissa
+    Bukovinsky\nClose-up macro view of scattered US 100 dollar bills in dramatic
+    lighting by Universal Footages on shuterstock.com\nFalling silver dollar sign
+    by user4436526 on freepik.com\nAncient Treasure Display on stockcake.com\nHD
+    wallpaper: concrete, texture, dark background, abstract by CelenaHehr on wallhere.com\n32
+    RPG Animations by blink on assetstore.unity.com"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6094,7 +6100,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 876021762}
   m_HandleRect: {fileID: 876021761}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
