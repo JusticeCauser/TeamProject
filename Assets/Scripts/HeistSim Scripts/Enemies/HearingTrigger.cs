@@ -11,9 +11,11 @@ public class HearingTrigger : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (enemyParent.state == EnemyAI_Base.guardState.KnockedOut) return;
+        //if (enemyParent.state == EnemyAI_Base.guardState.KnockedOut) return;
         if (other.CompareTag("Player"))
         {
+            Debug.Log($"Trigger hit: {other.name} layer={LayerMask.LayerToName(other.gameObject.layer)} tag={other.tag}");
+            Debug.Log("I can hear you");
             enemyParent.playerInHearingRange = true;
         }
     }
@@ -22,6 +24,10 @@ public class HearingTrigger : MonoBehaviour
     {
         if (enemyParent == null) return;
         if (enemyParent.state == EnemyAI_Base.guardState.KnockedOut) return;
+        if(other.CompareTag("Player"))
+        {
+            enemyParent.sampleHearing();
+        }
     }
 
     private void OnTriggerExit(Collider other)

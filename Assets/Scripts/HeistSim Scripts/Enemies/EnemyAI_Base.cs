@@ -104,25 +104,34 @@ public class EnemyAI_Base : MonoBehaviour
                 state = guardState.Patrol;
             }
         }
-
         if (PlayerController.instance != null)
             playerTransform = PlayerController.instance.transform;
-
-        playerStateManager = playerTransform.GetComponent<PlayerStateManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        applyStateMovement();
-        // locomotionAnim();
-        //if (GameManager.instance == null) return;
-        //if (PlayerController.instance == null) return;
-        if (isKnockedOut || isBeingDragged) return;
-        if (playerTransform == null || playerStateManager  == null) return;
+        if (GameManager.instance == null) return;
 
-        if (playerInHearingRange && state != guardState.Chase && state != guardState.Hunt)
-            sampleHearing();
+        if (playerTransform == null)
+        {
+            if (PlayerController.instance != null)
+                playerTransform = PlayerController.instance.transform;
+            else
+                return;
+        }
+
+        if (playerStateManager == null)
+        {
+            playerStateManager = playerTransform.GetComponent<PlayerStateManager>();
+            if (playerStateManager == null) return;
+        }
+        // locomotionAnim();
+
+        if (isKnockedOut || isBeingDragged) return;
+
+        applyStateMovement();
+
         switch (state)
         {
             case guardState.Idle:
@@ -148,6 +157,12 @@ public class EnemyAI_Base : MonoBehaviour
             case guardState.KnockedOut:
                 break;
         }
+
+        if (playerInHearingRange == true && state != guardState.Chase && state != guardState.Hunt)
+        {
+            sampleHearing();
+        }
+
     }
     void locomotionAnim()
     {
@@ -223,7 +238,10 @@ public class EnemyAI_Base : MonoBehaviour
     }
     void SuspiciousBehavior()
     {
-        HeatManager.Instance.AddHeat(3f * Time.deltaTime);
+        if (HeatManager.Instance != null)
+        {
+            HeatManager.Instance.AddHeat(3f * Time.deltaTime);
+        }
 
         agent.isStopped = true;
         suspiciousTimer += Time.deltaTime;
@@ -287,7 +305,10 @@ public class EnemyAI_Base : MonoBehaviour
 
     void ChaseBehavior()
     {
-        HeatManager.Instance.AddHeat(15f * Time.deltaTime);
+        if (HeatManager.Instance)
+        {
+            HeatManager.Instance.AddHeat(15f * Time.deltaTime);
+        }
 
         if (!canSeePlayer())
         {
@@ -315,7 +336,10 @@ public class EnemyAI_Base : MonoBehaviour
         {
             if (angleToPlayer <= FOV && hit.collider.CompareTag("Player"))
             {
-                HeatManager.Instance.AddHeat(10f * Time.deltaTime);
+                if (HeatManager.Instance != null)
+                {
+                    HeatManager.Instance.AddHeat(10f * Time.deltaTime);
+                }
                 agent.SetDestination(playerPos);
 
                 if (agent.remainingDistance <= agent.stoppingDistance)
@@ -342,7 +366,10 @@ public class EnemyAI_Base : MonoBehaviour
         nextHearingTime = Time.time + hearingInterval;
 
         float noiseLevel = playerStateManager.noiseLevelChecker();
-        HeatManager.Instance.AddHeat(noiseLevel * 2f * Time.deltaTime);
+        if (HeatManager.Instance != null)
+        {
+            HeatManager.Instance.AddHeat(noiseLevel * 2f * Time.deltaTime);
+        }
 
         if (noiseLevel <= 0)
         {
@@ -384,6 +411,11 @@ public class EnemyAI_Base : MonoBehaviour
         }
         if(state == guardState.Alerted)
         {
+            return;
+        }
+        if(canSeePlayer())
+        {
+            state = guardState.Chase;
             return;
         }
         return;
