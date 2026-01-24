@@ -42,8 +42,8 @@ public class whiteboardInteraction : MonoBehaviour
             promptText.gameObject.SetActive(isLookingAt);
 
         // allow E press
-        if(isLookingAt && Input.GetKeyDown(KeyCode.E))
-        {
+        if(isLookingAt && InputManager.instance.interactKeyPressed())
+            {
             hubManager.EnterInteraction(hubManager.whiteboardTarget, backButton, mission1Button, mission2Button);
 
             // hide prompt when viewing

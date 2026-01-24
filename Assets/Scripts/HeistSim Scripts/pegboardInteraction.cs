@@ -53,8 +53,8 @@ public class pegboardInteraction : MonoBehaviour
         if (promptText != null)
             promptText.gameObject.SetActive(isLookingAt);
 
-        if(isLookingAt && Input.GetKeyDown(KeyCode.E))
-        {
+        if(isLookingAt && InputManager.instance.interactKeyPressed())
+            {
             // pegboard view only if not in process
             hubManager.EnterInteraction(hubManager.pegboardTarget, backButton, null, null);
 
