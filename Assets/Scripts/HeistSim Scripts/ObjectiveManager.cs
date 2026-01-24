@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class ObjectiveManager : MonoBehaviour
 {
     public static ObjectiveManager instance;
-    public enum ObjectiveType { restrictedLoadout, specificItem, timeLimit, heatBelow, undetected }
+    public enum ObjectiveType { restrictedLoadout, specificItem, timeLimit, heatBelow, undetected, amount }
 
     [Header("Objectives Settings")]
     [SerializeField] int objectivesPerGame = 2;
@@ -14,6 +14,7 @@ public class ObjectiveManager : MonoBehaviour
     [Header("Objectives")]
     public List<ObjectiveStats> objectivesActive = new List<ObjectiveStats>();
     public string objectivesText;
+    public string objectivesCompleteText;
 
     int totalBonus;
 
@@ -79,13 +80,18 @@ public class ObjectiveManager : MonoBehaviour
             timeLimit = 300f,
             moneyBonus = 300
         });
+        //rObjectivePool.Add(new ObjectiveStats
+        //{
+        //    type = ObjectiveType.restrictedLoadout,
+        //    objectiveDescripton = "Complete the heist using only 2 gadgets",
+        //    moneyBonus = 75
+        //});
         rObjectivePool.Add(new ObjectiveStats
         {
-            type = ObjectiveType.restrictedLoadout,
-            objectiveDescripton = "Complete the heist using only 2 gadgets",
-            moneyBonus = 75
+            type = ObjectiveType.amount,
+            objectiveDescripton = "Steal at least $1500 of valuables",
+            moneyBonus = 400
         });
-        
         for (int i = 0; i < objectivesPerGame; i++)
         {
             int rand = Random.Range(0, rObjectivePool.Count);
@@ -110,7 +116,7 @@ public class ObjectiveManager : MonoBehaviour
         detected = true;
     }
  
-    public void specifimItemStolen(string item)
+    public void specificItemStolen(string item)
     {
         foreach(var objective in objectivesActive)
         {
@@ -149,13 +155,29 @@ public class ObjectiveManager : MonoBehaviour
                     objective.objectiveComplete = !detected;
                     break;
 
-                case ObjectiveType.restrictedLoadout: //complete only using certain items
-                    objective.objectiveComplete = !restrictedLoadoutFail;
+                //case ObjectiveType.restrictedLoadout: //complete only using certain items
+                //    objective.objectiveComplete = !restrictedLoadoutFail;
+                //    break;
+                case ObjectiveType.amount:
+                    objective.objectiveComplete = GameManager.instance.playerScript.totalValue >= 1500;
                     break;
             }
 
         }
         checkObjectivesCompleted();
+    }
+    public void showObjectivesCompleted()
+    {
+        objectivesCompleteText = "OBJECTIVES:\n";
+
+       foreach( var objective in objectivesActive)
+        {
+            if (objective.objectiveComplete)
+                objectivesCompleteText += "Completed - " + objective.objectiveDescripton + "+ $" + objective.moneyBonus + "\n";
+            else
+                objectivesCompleteText += "Failed - " + objective.objectiveDescripton + "($" + objective.moneyBonus + ")\n";
+        }
+        objectivesCompleteText += "\nTotal Bonus Received: $" + GetTotalMoneyBonus();
     }
     public void resetObjectives() //if clicking retry on fail reset and randomize objectives again
     {
@@ -165,9 +187,5 @@ public class ObjectiveManager : MonoBehaviour
         levelStartTime = Time.time;
         randomizeObjectives();
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+  
 }
