@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class ObjectiveManager : MonoBehaviour
 {
     public static ObjectiveManager instance;
-    public enum ObjectiveType { restrictedLoadout, specificItem, timeLimit, heatBelow, undetected, amount }
+    public enum ObjectiveType { restrictedLoadout, specificItem, timeLimit, heatBelow, undetected, amount, noCrouch, noSprint, noHiding, backwards }
 
     [Header("Objectives Settings")]
     [SerializeField] int objectivesPerGame = 2;
@@ -20,8 +20,13 @@ public class ObjectiveManager : MonoBehaviour
 
     bool detected;
     bool restrictedLoadoutFail;
+    bool crouched;
+    bool sprinted;
+    bool hid;
 
     float levelStartTime;
+    float movedBackwardsTime;
+    float totalMoveTime;
 
     private void Awake()
     {
@@ -58,7 +63,7 @@ public class ObjectiveManager : MonoBehaviour
     }
     void randomizeObjectives() //assigning objectives to player 
     {
-        
+
         List<ObjectiveStats> rObjectivePool = new List<ObjectiveStats>();
         rObjectivePool.Add(new ObjectiveStats
         {
@@ -76,7 +81,7 @@ public class ObjectiveManager : MonoBehaviour
         rObjectivePool.Add(new ObjectiveStats
         {
             type = ObjectiveType.timeLimit,
-            objectiveDescripton = "Completet heist within 5 minutes",
+            objectiveDescripton = "Complete heist within 5 minutes",
             timeLimit = 300f,
             moneyBonus = 300
         });
@@ -91,6 +96,30 @@ public class ObjectiveManager : MonoBehaviour
             type = ObjectiveType.amount,
             objectiveDescripton = "Steal at least $1500 of valuables",
             moneyBonus = 400
+        });
+        rObjectivePool.Add(new ObjectiveStats
+        {
+            type = ObjectiveType.noCrouch,
+            objectiveDescripton = "Complete mission without crouching",
+            moneyBonus = 200
+        });
+        rObjectivePool.Add(new ObjectiveStats
+        {
+            type = ObjectiveType.noSprint,
+            objectiveDescripton = "Complete mission without Sprinting",
+            moneyBonus = 250
+        });
+        rObjectivePool.Add(new ObjectiveStats
+        {
+            type = ObjectiveType.backwards,
+            objectiveDescripton = "Move backwards half of the time",
+            moneyBonus = 400
+        });
+        rObjectivePool.Add(new ObjectiveStats
+        {
+            type = ObjectiveType.noHiding,
+            objectiveDescripton = "Complete mission without Hiding",
+            moneyBonus = 200
         });
         for (int i = 0; i < objectivesPerGame; i++)
         {
@@ -114,6 +143,28 @@ public class ObjectiveManager : MonoBehaviour
     public void playerDetected()
     {
         detected = true;
+    }
+
+    public void playerCrouched()
+    {
+        crouched = true;
+    }
+
+    public void playerSprinted()
+    {
+        sprinted = true;
+    }
+
+    public void playerHid()
+    {
+        hid = true;
+    }
+
+    public void playerMovement(bool mBackwards, float time)
+    {
+        if (mBackwards)
+            movedBackwardsTime += time;
+        totalMoveTime += time;
     }
  
     public void specificItemStolen(string item)
@@ -158,8 +209,26 @@ public class ObjectiveManager : MonoBehaviour
                 //case ObjectiveType.restrictedLoadout: //complete only using certain items
                 //    objective.objectiveComplete = !restrictedLoadoutFail;
                 //    break;
+
                 case ObjectiveType.amount:
                     objective.objectiveComplete = GameManager.instance.playerScript.totalValue >= 1500;
+                    break;
+
+                case ObjectiveType.noCrouch:
+                    objective.objectiveComplete = !crouched;
+                    break;
+
+                case ObjectiveType.noSprint:
+                    objective.objectiveComplete = !sprinted;
+                    break;
+
+                case ObjectiveType.backwards:
+                    float backwards = totalMoveTime > 0 ? (movedBackwardsTime / totalMoveTime) * 100 : 0f;
+                    objective.objectiveComplete = backwards >= 50f;
+                    break;
+
+                case ObjectiveType.noHiding:
+                    objective.objectiveComplete = !hid;
                     break;
             }
 
@@ -184,6 +253,11 @@ public class ObjectiveManager : MonoBehaviour
         objectivesActive.Clear();
         detected = false;
         restrictedLoadoutFail = false;
+        crouched = false;
+        sprinted = false;
+        hid = false;
+        movedBackwardsTime = 0;
+        totalMoveTime = 0;
         levelStartTime = Time.time;
         randomizeObjectives();
     }
