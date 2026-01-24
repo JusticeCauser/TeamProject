@@ -225,7 +225,7 @@ public class DogAI : MonoBehaviour
     {
         //anim.SetTrigger("Bark");
         if (playerTransform == null) return;
-
+        if (state == dogState.Recall) return;
         Vector3 pDir = playerTransform.position;
         Vector3 dir = pDir - transform.position;
         dir.y = 0;
@@ -234,26 +234,31 @@ public class DogAI : MonoBehaviour
         {
             transform.rotation = Quaternion.LookRotation(dir);
         }
-        HeatManager.Instance.AddHeat(15f);
+        //HeatManager.Instance.AddHeat(15f);
 
         GameManager.instance.alertSys.raiseBarkAlert(forwardAnchor.position, forwardAnchor.forward, alertRadius);
     }
-    public bool recalled()
-    {
-        RecallBehavior();
-        return true;
-    }
     public void onRecall(Vector3 position)
     {
-        Vector3 returnPos = position;
-
-        agent.SetDestination(returnPos);
-
-        recalled();
+        agent.ResetPath();
+        agent.SetDestination(position);
+        state = dogState.Recall;
     }
     void RecallBehavior()
     {
+        if(doghandler == null)
+        {
+            state = dogState.Idle;
+            return;
+        }
 
+        Vector3 handlerpos = doghandler.transform.position;
+        agent.SetDestination(handlerpos);
+        float stopDist = 2f;
+        if((handlerpos - transform.position).sqrMagnitude <= stopDist * stopDist)
+        {
+            state = dogState.Idle;
+        }
     }
 
     public void bite(GameObject playerObj)
