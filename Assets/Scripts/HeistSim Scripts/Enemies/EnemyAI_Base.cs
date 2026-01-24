@@ -29,6 +29,7 @@ public class EnemyAI_Base : MonoBehaviour
     [SerializeField] float chaseSpeed;
     [SerializeField] float baseHearing;
     [SerializeField] float suspiciousMax;
+    [SerializeField] float sweepSpeed;
 
     [SerializeField] IHide[] hidingspots;
 
@@ -56,6 +57,7 @@ public class EnemyAI_Base : MonoBehaviour
     float canHearTimer;
     protected int destHidingSpots;
     bool heardAgain;
+    bool radioIn;
 
     public enum guardState
     {
@@ -154,6 +156,8 @@ public class EnemyAI_Base : MonoBehaviour
             case guardState.Patrol:
                 PatrolBehavior();
                 break;
+            case guardState.Hunt:
+                break;
             case guardState.KnockedOut:
                 break;
         }
@@ -219,15 +223,40 @@ public class EnemyAI_Base : MonoBehaviour
         agent.SetDestination(patrolPoints[destPatrolPoints].position);
         destPatrolPoints = (destPatrolPoints + 1) % patrolPoints.Length;
     }
+
     void SearchBehavior()
     {
-        if(!canSeePlayer())
+        
+        lastAlertPosition = playerTransform.position;
+        agent.SetDestination(lastAlertPosition);
+        
+        if(canSeePlayer())
         {
-            if (agent.remainingDistance <= agent.stoppingDistance + 0.1f)
+            lastAlertPosition = playerTransform.position;
+            if(!radioIn)
             {
-                nextHideSpot();
+                onRadioIn(lastAlertPosition);
+                radioIn = true;
             }
+            state = guardState.Chase;
+            return;
         }
+        searchTimer += Time.deltaTime;
+        if (searchTimer >= searchDur)
+        {
+            searchTimer = 0;
+            radioIn = false;
+            state = guardState.Patrol;
+            return;
+        }
+        
+            
+        if (agent.remainingDistance <= agent.stoppingDistance + 0.1f)
+        {
+            roam(lastAlertPosition, roamDist);
+            //nextHideSpot();
+        }
+        
     }
     void nextHideSpot()
     {
@@ -290,18 +319,20 @@ public class EnemyAI_Base : MonoBehaviour
     //        roam();
     //    }
     //}
-    //void roam()
-    //{
-    //    roamTimer = 0;
-    //    agent.stoppingDistance = 0;
+    void roam(Vector3 center, float radius)
+    {
+        roamTimer = 0;
+        agent.stoppingDistance = 0;
 
-    //    Vector3 ranPos = Random.insideUnitSphere * roamDist;
-    //    ranPos += startingPos;
+        Vector3 ranPos = Random.insideUnitSphere * roamDist;
+        ranPos += center;
 
-    //    NavMeshHit hit;
-    //    NavMesh.SamplePosition(ranPos, out hit, roamDist, 1);
-    //    agent.SetDestination(hit.position);
-    //}
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(ranPos, out hit, roamDist, 1));
+        {
+            agent.SetDestination(hit.position); 
+        }
+    }
 
     void ChaseBehavior()
     {

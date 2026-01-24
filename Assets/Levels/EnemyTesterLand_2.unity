@@ -119,6 +119,51 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &66992243
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 66992245}
+  - component: {fileID: 66992244}
+  m_Layer: 0
+  m_Name: InputManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &66992244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66992243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2c5080c597613a4fa9f0896a1ad0065, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InputManager
+  defaultInteractKey: 101
+--- !u!4 &66992245
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66992243}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -60.02672, y: 0, z: 183.24467}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &116314483
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -366,6 +411,7 @@ MonoBehaviour:
   chaseSpeed: 5
   baseHearing: 5
   suspiciousMax: 5
+  sweepSpeed: 0
   hidingspots: []
   isBeingDragged: 0
   dragAttachPoint: {fileID: 0}
@@ -605,6 +651,7 @@ MonoBehaviour:
   chaseSpeed: 5
   baseHearing: 5
   suspiciousMax: 5
+  sweepSpeed: 0
   hidingspots: []
   isBeingDragged: 0
   dragAttachPoint: {fileID: 0}
@@ -671,6 +718,7 @@ MonoBehaviour:
   chaseSpeed: 5
   baseHearing: 5
   suspiciousMax: 5
+  sweepSpeed: 0
   hidingspots: []
   isBeingDragged: 0
   dragAttachPoint: {fileID: 0}
@@ -1137,7 +1185,7 @@ PrefabInstance:
       objectReference: {fileID: 1237887726}
     - target: {fileID: 3319698450656636261, guid: f6a109bfbf56c464ca5f4566b180f7e9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -61.6
+      value: -64.59
       objectReference: {fileID: 0}
     - target: {fileID: 3319698450656636261, guid: f6a109bfbf56c464ca5f4566b180f7e9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1376,12 +1424,13 @@ MonoBehaviour:
   retryButton: {fileID: 0}
   timerTextWin: {fileID: 0}
   itemValueText: {fileID: 0}
-  itemValueTextFail: {fileID: 0}
   timerTextFail: {fileID: 0}
   failText: {fileID: 0}
   maxHeatTextWin: {fileID: 0}
   maxHeatTextFail: {fileID: 0}
   objectivesBonusText: {fileID: 0}
+  objectivesMissionCompletedText: {fileID: 0}
+  objectivesMissionFailedText: {fileID: 0}
   alertSys: {fileID: 1679522209}
 --- !u!224 &1940488064
 RectTransform:
@@ -1689,6 +1738,26 @@ PrefabInstance:
       propertyPath: 'patrolPoints.Array.data[2]'
       value: 
       objectReference: {fileID: 925394229}
+    - target: {fileID: 2497294743714408968, guid: ddf1d2e906249a34da4980528e876a4c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.94698703
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497294743714408968, guid: ddf1d2e906249a34da4980528e876a4c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497294743714408968, guid: ddf1d2e906249a34da4980528e876a4c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.32127193
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497294743714408968, guid: ddf1d2e906249a34da4980528e876a4c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497294743714408968, guid: ddf1d2e906249a34da4980528e876a4c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 37.48
+      objectReference: {fileID: 0}
     - target: {fileID: 2623580852539053723, guid: ddf1d2e906249a34da4980528e876a4c, type: 3}
       propertyPath: m_Name
       value: FaculityGuard
@@ -2021,6 +2090,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MansionHandler
       objectReference: {fileID: 0}
+    - target: {fileID: 5390499715971866487, guid: bb960f1647c73dc40ad24214f3904eb0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7787154114051697505, guid: bb960f1647c73dc40ad24214f3904eb0, type: 3}
       propertyPath: prompt
       value: 
@@ -2134,3 +2207,4 @@ SceneRoots:
   - {fileID: 884005201}
   - {fileID: 116314483}
   - {fileID: 1337149770}
+  - {fileID: 66992245}

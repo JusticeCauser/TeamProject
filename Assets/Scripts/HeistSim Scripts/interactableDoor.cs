@@ -72,6 +72,8 @@ public class interactableDoor : MonoBehaviour
     {
         isLocked = false;
 
+        FeedbackUI.instance?.ShowFeedback("Lock Picked!");
+
         StartCoroutine(SwingDoor());
 
         if (promptText != null)

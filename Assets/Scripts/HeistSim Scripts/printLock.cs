@@ -28,8 +28,10 @@ public class printLock : MonoBehaviour
             // success
             unlocked = true;
 
+            FeedbackUI.instance?.ShowFeedback("Fingerprint applied!");
+
             // open door/disable lock etc
-            if(scanDoor != null)
+            if (scanDoor != null)
             {
                 StartCoroutine(SlideDoor());
                 //scanDoor.transform.position += scanDoor.transform.right * 2f;

@@ -20,7 +20,7 @@ public class secCam : MonoBehaviour
     [SerializeField] TMP_Text promptText;
     public float jamDuration = 60f;
     public string requiredGadget = "Camera Jammer";
-    float maxDistance = 7f;
+    float maxDistance = 10f;
 
     private bool isSweeping = true;
     private bool isJammed = false;
@@ -129,6 +129,8 @@ public class secCam : MonoBehaviour
         isSweeping = false;
         jamTimer = jamDuration;
 
+        FeedbackUI.instance?.ShowFeedback("Camera Jammed!");
+
         StartCoroutine(DroopCamera());
 
         UpdateLightColor();
@@ -172,8 +174,8 @@ public class secCam : MonoBehaviour
             if(promptText != null)
             {
                 playerInRange = true;
-                promptText.text = "Press E to jam Camera";
-                promptText.gameObject.SetActive(true);
+                //promptText.text = "Press E to jam Camera";
+                //promptText.gameObject.SetActive(true);
             }
         }
     }
