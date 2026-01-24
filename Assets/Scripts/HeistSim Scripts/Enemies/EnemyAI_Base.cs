@@ -29,6 +29,7 @@ public class EnemyAI_Base : MonoBehaviour
     [SerializeField] float chaseSpeed;
     [SerializeField] float baseHearing;
     [SerializeField] float suspiciousMax;
+    [SerializeField] float sweepSpeed;
 
     [SerializeField] IHide[] hidingspots;
 
@@ -56,6 +57,7 @@ public class EnemyAI_Base : MonoBehaviour
     float canHearTimer;
     protected int destHidingSpots;
     bool heardAgain;
+    bool radioIn;
 
     public enum guardState
     {
@@ -154,6 +156,8 @@ public class EnemyAI_Base : MonoBehaviour
             case guardState.Patrol:
                 PatrolBehavior();
                 break;
+            case guardState.Hunt:
+                break;
             case guardState.KnockedOut:
                 break;
         }
@@ -219,10 +223,27 @@ public class EnemyAI_Base : MonoBehaviour
         agent.SetDestination(patrolPoints[destPatrolPoints].position);
         destPatrolPoints = (destPatrolPoints + 1) % patrolPoints.Length;
     }
+
     void SearchBehavior()
     {
-        if(!canSeePlayer())
+        searchTimer += Time.deltaTime;
+        lastAlertPosition = playerTransform.position;
+        agent.SetDestination(lastAlertPosition);
+        
+        if(canSeePlayer())
         {
+            lastAlertPosition = playerTransform.position;
+            if(!radioIn)
+            {
+                onRadioIn(lastAlertPosition);
+                radioIn = true;
+            }
+            state = guardState.Chase;
+            return;
+        }
+        if (!canSeePlayer() && searchTimer <= searchDur)
+        {
+            checkRoam();
             if (agent.remainingDistance <= agent.stoppingDistance + 0.1f)
             {
                 nextHideSpot();
@@ -283,25 +304,25 @@ public class EnemyAI_Base : MonoBehaviour
         }
     }
 
-    //void checkRoam()
-    //{
-    //    if (agent.remainingDistance < 0.01f && roamTimer >= roamPauseTime)
-    //    {
-    //        roam();
-    //    }
-    //}
-    //void roam()
-    //{
-    //    roamTimer = 0;
-    //    agent.stoppingDistance = 0;
+    void checkRoam()
+    {
+        if (agent.remainingDistance < 0.01f && roamTimer >= roamPauseTime)
+        {
+            roam();
+        }
+    }
+    void roam()
+    {
+        roamTimer = 0;
+        agent.stoppingDistance = 0;
 
-    //    Vector3 ranPos = Random.insideUnitSphere * roamDist;
-    //    ranPos += startingPos;
+        Vector3 ranPos = Random.insideUnitSphere * roamDist;
+        ranPos += lastAlertPosition;
 
-    //    NavMeshHit hit;
-    //    NavMesh.SamplePosition(ranPos, out hit, roamDist, 1);
-    //    agent.SetDestination(hit.position);
-    //}
+        NavMeshHit hit;
+        NavMesh.SamplePosition(ranPos, out hit, roamDist, 1);
+        agent.SetDestination(hit.position);
+    }
 
     void ChaseBehavior()
     {

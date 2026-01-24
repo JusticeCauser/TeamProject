@@ -1137,7 +1137,7 @@ PrefabInstance:
       objectReference: {fileID: 1237887726}
     - target: {fileID: 3319698450656636261, guid: f6a109bfbf56c464ca5f4566b180f7e9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -61.6
+      value: -64.59
       objectReference: {fileID: 0}
     - target: {fileID: 3319698450656636261, guid: f6a109bfbf56c464ca5f4566b180f7e9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1689,6 +1689,26 @@ PrefabInstance:
       propertyPath: 'patrolPoints.Array.data[2]'
       value: 
       objectReference: {fileID: 925394229}
+    - target: {fileID: 2497294743714408968, guid: ddf1d2e906249a34da4980528e876a4c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.94698703
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497294743714408968, guid: ddf1d2e906249a34da4980528e876a4c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497294743714408968, guid: ddf1d2e906249a34da4980528e876a4c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.32127193
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497294743714408968, guid: ddf1d2e906249a34da4980528e876a4c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497294743714408968, guid: ddf1d2e906249a34da4980528e876a4c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 37.48
+      objectReference: {fileID: 0}
     - target: {fileID: 2623580852539053723, guid: ddf1d2e906249a34da4980528e876a4c, type: 3}
       propertyPath: m_Name
       value: FaculityGuard
@@ -2020,6 +2040,10 @@ PrefabInstance:
     - target: {fileID: 5390499715971866487, guid: bb960f1647c73dc40ad24214f3904eb0, type: 3}
       propertyPath: m_Name
       value: MansionHandler
+      objectReference: {fileID: 0}
+    - target: {fileID: 5390499715971866487, guid: bb960f1647c73dc40ad24214f3904eb0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7787154114051697505, guid: bb960f1647c73dc40ad24214f3904eb0, type: 3}
       propertyPath: prompt
