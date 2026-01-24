@@ -61,7 +61,9 @@ public class codehackDisplay : MonoBehaviour
     {
         unlocked = true;
 
-        if(displayCase != null)
+        FeedbackUI.instance?.ShowFeedback("Code Hacked!");
+
+        if (displayCase != null)
         {
             StartCoroutine(OpenCase());
         }
