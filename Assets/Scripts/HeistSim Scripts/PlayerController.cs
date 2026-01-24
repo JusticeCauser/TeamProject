@@ -94,6 +94,13 @@ public class PlayerController : MonoBehaviour
 
         moveDir = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
 
+        if(ObjectiveManager.instance != null && moveDir.magnitude > 0.1f)
+        {
+            float input = Input.GetAxis("Vertical");
+            bool backwards = input < -0.1f;
+            ObjectiveManager.instance.playerMovement(backwards, Time.deltaTime);
+        }
+
         if (crouch != null && crouch.IsCrouching)
             actualSpeed = crouchSpeed;
 
@@ -124,6 +131,9 @@ public class PlayerController : MonoBehaviour
         {
             speed *= sprintMod;
             isSprinting = true;
+
+            if (ObjectiveManager.instance != null)
+                ObjectiveManager.instance.playerSprinted();
         }
         else if (Input.GetButtonUp("Sprint")) //if let go
         {
@@ -176,6 +186,9 @@ public class PlayerController : MonoBehaviour
     {
         isHiding = true;
         controller.enabled = false;
+
+        if(ObjectiveManager.instance != null)
+            ObjectiveManager.instance.playerHid();
     }
     public void exitHide()
     {
