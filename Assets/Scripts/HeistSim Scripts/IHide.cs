@@ -35,7 +35,7 @@ public class IHide : MonoBehaviour
     {
         if (!playerInRange || player == null) return;
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if(InputManager.instance.interactKeyPressed())
         {
             if (!player.isHiding)
             {

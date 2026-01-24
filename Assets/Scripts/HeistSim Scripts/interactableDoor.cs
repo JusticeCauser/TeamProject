@@ -8,8 +8,11 @@ public class interactableDoor : MonoBehaviour
     public string requiredGadget = "Lockpick";
     public bool isLocked = true;
 
+    [SerializeField] Transform doorMesh;
+
     [Header("UI")]
     [SerializeField] TMP_Text promptText;
+    [SerializeField] float lookDotThreshold = 0.7f;
 
     private bool playerInRange = false;
 
@@ -25,19 +28,36 @@ public class interactableDoor : MonoBehaviour
         if (!playerInRange || !isLocked)
             return;
 
+        // check if player is looking
+        bool isLookingAt = false;
+        if(playerInRange && doorMesh != null)
+        {
+            Vector3 toDoor = (doorMesh.position - Camera.main.transform.position).normalized;
+            float dot = Vector3.Dot(Camera.main.transform.forward, toDoor);
+            isLookingAt = dot > lookDotThreshold;
+        }
         // check if player has gadget
         bool hasGadget = gadgetInventory.instance != null && gadgetInventory.instance.HasGadget(requiredGadget);
 
         // show prompt when in range (or not if missing gadget)
         if (promptText != null)
         {
+            if(isLookingAt)
+            {
+                promptText.gameObject.SetActive(true);
+
             if (hasGadget)
                 promptText.text = "Press E to use " + requiredGadget;
             else
                 promptText.text = "Missing: " + requiredGadget;
+            }
+            else
+            {
+                promptText.gameObject.SetActive(false);
+            }
         }
         // only allow interaction if player has gadget
-        if (hasGadget && Input.GetKeyDown(KeyCode.E))
+        if (isLookingAt && hasGadget && Input.GetKeyDown(KeyCode.E))
         {
             UnlockDoor();
         }
