@@ -2,7 +2,7 @@ using UnityEngine;
 using System;
 
 
-//Sneaking is just crouched on the move
+
 public enum playerState
 {
     Idle,
@@ -216,27 +216,27 @@ public class PlayerStateManager : MonoBehaviour
         //    case playerState.Idle:
         //        noiseLevel = 0;
         //        break;
-        //
+        
         //    case playerState.CrouchedIdle:
         //        noiseLevel = 0;
         //        break;
-        //
+        
         //    case playerState.Sneaking:
         //        noiseLevel = 3;
         //        break;
-        //        
+                
         //    case playerState.Sprinting:
         //        noiseLevel = 8;
-        //       break;
-        //
+        //        break;
+        
         //    case playerState.Moving:
         //        noiseLevel = 4;
         //        break;
-        //
+        
         //    case playerState.Hiding:
         //        noiseLevel = 0;
         //        break;
-        //
+        
         //    case playerState.Stunned:
         //        noiseLevel = 0;
         //        break;
