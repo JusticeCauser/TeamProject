@@ -25,7 +25,7 @@ public class HandlerAI : EnemyAI_Base
         }
 
         alertTargetPos = position;
-        Debug.Log("I heard Bark");
+
         Vector3 playerDir = anchor;
         playerDir.y = 0;
 
