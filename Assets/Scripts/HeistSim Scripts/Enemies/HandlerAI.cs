@@ -23,6 +23,8 @@ public class HandlerAI : EnemyAI_Base
         {
             HeatManager.Instance.AddHeat(5f);
         }
+        if (dog != null && dog.state == DogAI.dogState.Recall) return;
+        if (dog2 != null && dog2.state == DogAI.dogState.Recall) return;
 
         alertTargetPos = position;
 
