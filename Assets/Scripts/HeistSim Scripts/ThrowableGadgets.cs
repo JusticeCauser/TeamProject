@@ -13,6 +13,11 @@ public class ThrowableGadgets : MonoBehaviour
     private int flashbangsRemaining = 2;
     private bool throwingFlash = true;
 
+    private void Start()
+    {
+        UpdateUI();
+    }
+
     private void Update()
     {
         bool hasFlash = gadgetInventory.instance != null && gadgetInventory.instance.HasGadget("Flashbangs");
@@ -34,13 +39,15 @@ public class ThrowableGadgets : MonoBehaviour
         {
             if(throwingFlash && hasFlash && flashbangsRemaining > 0)
             {
-                ThrowGadget(flashbangPrefab, "Flashbang");
                 flashbangsRemaining--;
+                ThrowGadget(flashbangPrefab, "Flashbang");
+                UpdateUI();
             }
             else if(!throwingFlash && hasSmoke && smokesRemaining > 0)
             {
-                ThrowGadget(smokePrefab, "Smoke Grenade");
                 smokesRemaining--;
+                ThrowGadget(smokePrefab, "Smoke Grenade");
+                UpdateUI();
             }
         }
     }
@@ -61,5 +68,11 @@ public class ThrowableGadgets : MonoBehaviour
             rb.AddForce(Camera.main.transform.forward * throwForce, ForceMode.Impulse);
         }
         Destroy(effect, effectDuration);
+    }
+
+    void UpdateUI()
+    {
+        if (GadgetDisplayUI.instance != null)
+            GadgetDisplayUI.instance.UpdateThrowableCount(flashbangsRemaining, smokesRemaining);
     }
 }
