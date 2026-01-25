@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class GuardHeatDetection : MonoBehaviour
 {
-    [Header("Heat Settings")]
     public float heatPerSecond = 10f;
     public float instantHeat = 15f;
 

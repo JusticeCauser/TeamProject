@@ -75,7 +75,7 @@ public class MissionEndInteractable : MonoBehaviour, IInteractable
                 if (ObjectiveManager.instance != null)
                     ObjectiveManager.instance.objectivesCompleted();
 
-                SceneManager.LoadScene("GetawayScene");
+                GameManager.instance.missionComplete();
                 break;
 
             case Result.LoseCaptured:

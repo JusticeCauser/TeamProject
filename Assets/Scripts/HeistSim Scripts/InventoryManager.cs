@@ -18,8 +18,8 @@ public class InventoryManager : MonoBehaviour
     public GameObject inventoryUI;
     [SerializeField] GameObject inventorySlot;
     [SerializeField] Transform inventoryBar;
-    [SerializeField] Color selectedSlotColor = Color.yellow;
-    [SerializeField] Color regularColor = Color.white;
+    [SerializeField] Color selectedSlotColor = new Color(0.6f, 0.8f, 0.6f, 0.8f);
+    [SerializeField] Color regularColor = new Color(0.8f, 0.7f, 0.2f, 0.5f);
 
     bool slotsCreated = false;
     List<InventorySlotsManager> itemSlots = new List<InventorySlotsManager>();
@@ -53,6 +53,25 @@ public class InventoryManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        currScene = SceneManager.GetActiveScene().name;
+
+        if(currScene != mansion && currScene != asylum) //checks so that it doesnt open anywhere else except mansion and asylum 
+        {
+            if(inventoryUI != null)
+                inventoryUI.SetActive(false);
+            return;
+        }
+
+        if(SettingsManager.instance != null && SettingsManager.instance.isActive)
+        {
+            if(inventoryUI != null)
+                inventoryUI.SetActive(false);
+            return;
+        }
+
+        if(inventoryUI != null)
+            inventoryUI.SetActive(true);
+
         updateInventoryBar();
 
         if(Input.GetKeyDown(KeyCode.G))

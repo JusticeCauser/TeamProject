@@ -16,6 +16,10 @@ public class EnemyAI_Base : MonoBehaviour
     [SerializeField] Renderer model;
     [SerializeField] protected NavMeshAgent agent;
     [SerializeField] Animator anim;
+    [SerializeField] LayerMask hidingSpotMask;
+    IHide targetHide;
+    Transform currentHidePos;
+    GuardAI guard;
     public Transform[] patrolPoints;
     //These fields allow the enemy to have speed, sight, and other important things - like time spent alert or searching
     [SerializeField] int animTranSpeed;
@@ -30,8 +34,7 @@ public class EnemyAI_Base : MonoBehaviour
     [SerializeField] float baseHearing;
     [SerializeField] float suspiciousMax;
     [SerializeField] float sweepSpeed;
-
-    [SerializeField] IHide[] hidingspots;
+    [SerializeField] float hideSearchRadius;
 
     [Header("Drag")]
     public bool isBeingDragged;
@@ -57,7 +60,7 @@ public class EnemyAI_Base : MonoBehaviour
     float canHearTimer;
     protected int destHidingSpots;
     bool heardAgain;
-    bool radioIn;
+    public bool radioIn;
 
     public enum guardState
     {
@@ -88,7 +91,7 @@ public class EnemyAI_Base : MonoBehaviour
     protected Vector3 pointBpos;
 
     protected Transform playerTransform;
-    
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -227,14 +230,10 @@ public class EnemyAI_Base : MonoBehaviour
 
     void SearchBehavior()
     {
-        
-        lastAlertPosition = playerTransform.position;
-        agent.SetDestination(lastAlertPosition);
-        
-        if(canSeePlayer())
+        if (canSeePlayer())
         {
             lastAlertPosition = playerTransform.position;
-            if(!radioIn)
+            if (!radioIn)
             {
                 onRadioIn(lastAlertPosition);
                 radioIn = true;
@@ -250,12 +249,24 @@ public class EnemyAI_Base : MonoBehaviour
             state = guardState.Patrol;
             return;
         }
-        
-            
+
         if (agent.remainingDistance <= agent.stoppingDistance + 0.1f)
         {
-            roam(lastAlertPosition, roamDist);
-            //nextHideSpot();
+            Transform hide = findHidingSpot();
+            if (hide != null)
+            {
+                //currentHidePos = hide;
+                //targetHide = hide.GetComponent<IHide>();
+                //agent.SetDestination(hide.position);
+                //if (targetHide != null && targetHide.hasPlayer)
+                //{
+                //    hideCapture(targetHide.occupied.gameObject);
+                //}
+            }
+            else
+            {
+                roam(lastAlertPosition, roamDist);
+            }
         }
     }
 
@@ -288,36 +299,64 @@ public class EnemyAI_Base : MonoBehaviour
         float huntTimer = 0;
         float huntDur = 10f;
         huntTimer += Time.deltaTime;
-        if (huntTimer <= huntDur && agent.remainingDistance <= agent.stoppingDistance + 0.1f)
+        if (agent.remainingDistance <= agent.stoppingDistance + 0.1f)
         {
-            roam(lastAlertPosition, roamDist);
-            //nextHideSpot();
+            Transform hide = findHidingSpot();
+            if (hide != null)
+            {
+                agent.SetDestination(hide.position);
+            }
+            else
+            {
+                roam(lastAlertPosition, roamDist);
+            }
         }
     }
-    void nextHideSpot()
+    Transform findHidingSpot()
     {
-        if (hidingspots == null || hidingspots.Length == 0) return;
+        Collider[] hits = Physics.OverlapSphere(transform.position, hideSearchRadius, hidingSpotMask);
 
-        agent.SetDestination(hidingspots[destHidingSpots].transform.position);
-        destHidingSpots = (destHidingSpots + 1) % hidingspots.Length;
+        float bDist = Mathf.Infinity;
+        Transform b = null;
+
+        foreach (var i in hits)
+        {
+            float dist = (i.transform.position - transform.position).sqrMagnitude;
+            if (dist < bDist)
+            {
+                bDist = dist;
+                b = i.transform;
+            }
+        }
+        return b;
     }
     void SuspiciousBehavior()
     {
-        if (HeatManager.Instance != null)
+        if (canSeePlayer())
         {
-            HeatManager.Instance.AddHeat(3f * Time.deltaTime);
+            agent.isStopped = false;
+            state = guardState.Chase;
+            suspiciousTimer = 0f;
+            return;
+        }
+
+        lastAlertPosition = playerTransform.position;
+        if (!radioIn)
+        {
+            GameManager.instance.alertSys.radioIn(lastAlertPosition);
+            radioIn = true;
         }
 
         agent.isStopped = true;
         suspiciousTimer += Time.deltaTime;
 
-        if(state != guardState.Suspicious)
+        if (state != guardState.Suspicious)
         {
             agent.isStopped = false;
             suspiciousTimer = 0;
             return;
         }
-        
+
         if (suspiciousTimer >= suspiciousMax)
         {
             agent.isStopped = false;
@@ -335,15 +374,15 @@ public class EnemyAI_Base : MonoBehaviour
         }
         if (agent.pathPending) return;
 
-        if(agent.remainingDistance <= agent.stoppingDistance + 0.1f)
+        if (agent.remainingDistance <= agent.stoppingDistance + 0.1f)
         {
             nextPoint();
         }
     }
     void IdleBehavior()
     {
-        if(canSeePlayer())
-        { 
+        if (canSeePlayer())
+        {
             state = guardState.Chase;
         }
     }
@@ -366,23 +405,27 @@ public class EnemyAI_Base : MonoBehaviour
         NavMeshHit hit;
         if (NavMesh.SamplePosition(ranPos, out hit, roamDist, 1))
         {
-            agent.SetDestination(hit.position); 
+            agent.SetDestination(hit.position);
         }
     }
 
     void ChaseBehavior()
     {
-        if (HeatManager.Instance)
+        lastAlertPosition = playerTransform.transform.position;
+        if (!radioIn)
         {
-            HeatManager.Instance.AddHeat(15f * Time.deltaTime);
+            GameManager.instance.alertSys.radioIn(lastAlertPosition);
+            radioIn = true;
         }
 
         if (!canSeePlayer())
         {
             state = guardState.Alerted;
         }
-
-        tryToTaze();
+        if (guard)
+        {
+            tryToTaze();
+        }
     }
 
     protected virtual void tryToTaze()
@@ -393,6 +436,8 @@ public class EnemyAI_Base : MonoBehaviour
     bool canSeePlayer()
     {
         if (playerTransform == null) return false;
+        var pc = PlayerController.instance;
+        if (pc != null && pc.isHiding) return false;
 
         Vector3 playerPos = playerTransform.position;
         playerDir = playerPos - transform.position;
@@ -403,9 +448,10 @@ public class EnemyAI_Base : MonoBehaviour
         {
             if (angleToPlayer <= FOV && hit.collider.CompareTag("Player"))
             {
-                if (HeatManager.Instance != null)
+                if (!radioIn)
                 {
-                    HeatManager.Instance.AddHeat(10f * Time.deltaTime);
+                    GameManager.instance.alertSys.radioIn(playerPos);
+                    radioIn = true;
                 }
                 agent.SetDestination(playerPos);
 
@@ -435,9 +481,10 @@ public class EnemyAI_Base : MonoBehaviour
         nextHearingTime = Time.time + hearingInterval;
 
         float noiseLevel = playerStateManager.noiseLevelChecker();
-        if (HeatManager.Instance != null)
+        if (!radioIn)
         {
-            HeatManager.Instance.AddHeat(noiseLevel * 2f * Time.deltaTime);
+            GameManager.instance.alertSys.radioIn(lastAlertPosition);
+            radioIn = true;
         }
 
         if (noiseLevel <= 0)
@@ -472,17 +519,17 @@ public class EnemyAI_Base : MonoBehaviour
             return;
         }
 
-        if(state == guardState.Suspicious)
+        if (state == guardState.Suspicious)
         {
             state = guardState.Alerted;
             alertedTimer = 0;
             return;
         }
-        if(state == guardState.Alerted)
+        if (state == guardState.Alerted)
         {
             return;
         }
-        if(canSeePlayer())
+        if (canSeePlayer())
         {
             state = guardState.Chase;
             return;
@@ -520,7 +567,7 @@ public class EnemyAI_Base : MonoBehaviour
         lastHeardPosition = playerTransform.position;
         playerDir = lastHeardPosition - transform.position;
         playerDir.y = 0f;
-        if(playerDir.sqrMagnitude > 0.001f)
+        if (playerDir.sqrMagnitude > 0.001f)
         {
             Quaternion rot = Quaternion.LookRotation(playerDir);
             agent.transform.rotation = Quaternion.Lerp(agent.transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
@@ -549,18 +596,26 @@ public class EnemyAI_Base : MonoBehaviour
 
         if (state == guardState.KnockedOut) return;
         if (isBeingDragged == true) return;
-        
+
         PlayerController player = playerObj.GetComponent<PlayerController>();
         if (player != null && player.isHiding) return;
 
         GameManager.instance.missionFail(GameManager.fail.captured);
     }
+
+    public void hideCapture(GameObject playerObj)
+    {
+        if (Time.timeScale == 0f) return;
+
+        if (state == guardState.KnockedOut) return;
+        if (isBeingDragged == true) return;
+
+        PlayerController player = playerObj.GetComponent<PlayerController>();
+
+        GameManager.instance.missionFail(GameManager.fail.captured);
+    }
     public void onRadioIn(Vector3 position)
     {
-        if(HeatManager.Instance != null)
-        {
-
-        }
         alertTargetPos = position;
 
         agent.SetDestination(alertTargetPos);
