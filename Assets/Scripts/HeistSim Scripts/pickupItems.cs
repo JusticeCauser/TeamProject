@@ -2,7 +2,7 @@ using UnityEngine;
 using TMPro;
 public class pickupItems : MonoBehaviour
 {
-    [SerializeField] itemStats item;
+    public itemStats item;
     [SerializeField] TMP_Text promptText;
 
     private bool playerInRange = false;
@@ -15,6 +15,7 @@ public class pickupItems : MonoBehaviour
 
     private void Update()
     {
+
         if (!playerInRange || item == null || itemPickedUp)
             return;
 
