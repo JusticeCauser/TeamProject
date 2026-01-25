@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::itemStats
   itemName: Valuable
   itemValue: 50
+  isPrimaryObjective: 0
+  itemInGame: {fileID: 7866213418004740021, guid: c829b50e4d4036642a327ae72fea419d, type: 3}

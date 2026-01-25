@@ -129,7 +129,15 @@ public class InventoryManager : MonoBehaviour
             Transform dropped = PlayerController.instance.droppedItem;
 
             if(dropped != null)
-                Instantiate(curr.itemInGame, dropped.position, Quaternion.identity);
+            {
+                GameObject droppedItem = Instantiate(curr.itemInGame, dropped.position, Quaternion.identity);
+
+                pickupItems pickupItem = droppedItem.GetComponent<pickupItems>();
+
+                if (pickupItem != null)
+                    pickupItem.item = curr;
+            }
+                
         }
         itemList.RemoveAt(currPos); //remove item
         PlayerController.instance.totalValue -= curr.itemValue; //remove value of item
