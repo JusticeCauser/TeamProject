@@ -146,9 +146,14 @@ public class GameManager : MonoBehaviour
     public void missionComplete()
     { //completing 
 
-        Debug.Log("mission complete");
+        StartCoroutine(missionCompleteWithScreenFade());
+    }
+    IEnumerator missionCompleteWithScreenFade()
+    {
+        if (FadeManager.instance != null)
+            yield return StartCoroutine(FadeManager.instance.screenFadeToBlack());
 
-        if(audioManager.instance != null)
+        if (audioManager.instance != null)
             audioManager.instance.playMissionCompleteSound();
 
         if (timerOn)
@@ -165,7 +170,7 @@ public class GameManager : MonoBehaviour
         if (itemValueText != null && playerScript != null)
             itemValueText.text = "Total value collected: $" + playerScript.totalValue;
 
-        if(objectivesBonusText != null && ObjectiveManager.instance != null)
+        if (objectivesBonusText != null && ObjectiveManager.instance != null)
         {
             int bonus = ObjectiveManager.instance.GetTotalMoneyBonus();
 
@@ -175,10 +180,10 @@ public class GameManager : MonoBehaviour
                 objectivesBonusText.text = "Objective Bonus: $0";
         }
 
-        if(maxHeatTextWin != null && HeatManager.Instance != null) //shows only whole percentage, no decimals
+        if (maxHeatTextWin != null && HeatManager.Instance != null) //shows only whole percentage, no decimals
             maxHeatTextWin.text = "Max Heat: " + HeatManager.Instance.maxHeatReached.ToString("F0") + "%";
-        
-        if(objectivesMissionCompletedText != null && ObjectiveManager.instance != null)
+
+        if (objectivesMissionCompletedText != null && ObjectiveManager.instance != null)
         {
             ObjectiveManager.instance.objectivesCompleted();
             ObjectiveManager.instance.showObjectivesCompleted();
@@ -201,9 +206,35 @@ public class GameManager : MonoBehaviour
         if (InventoryManager.instance != null && InventoryManager.instance.inventoryUI != null)
             InventoryManager.instance.inventoryUI.SetActive(false);
     }
+
     public void missionFail(fail reason)
     { //capture, if not out in 60 seconds from HEAT timer
         Debug.Log("Mission fail");
+
+        StartCoroutine(missionFailWithScreenFade(reason));
+        
+    }
+    void missionFailReason()
+    {
+        if (failText == null)
+            return;
+
+        switch (failReason)
+        {
+            case fail.captured:
+                failText.text = "Why'd you get caught?";
+                break;
+
+            case fail.heatTimeExpired:
+                failText.text = "You didn't make it out in time. Backup arrived.";
+                break;
+        }
+           
+    }
+    IEnumerator missionFailWithScreenFade(fail reason)
+    {
+        if (FadeManager.instance != null)
+            yield return StartCoroutine(FadeManager.instance.screenFadeToBlack());
 
         if (audioManager.instance != null)
             audioManager.instance.playMissionFailSound();
@@ -226,7 +257,7 @@ public class GameManager : MonoBehaviour
         //if (itemValueTextFail != null && playerScript != null)
         //    itemValueTextFail.text = "Total value collected: $" + playerScript.totalValue;
 
-        if(objectivesMissionCompletedText != null && ObjectiveManager.instance != null)
+        if (objectivesMissionCompletedText != null && ObjectiveManager.instance != null)
         {
             ObjectiveManager.instance.objectivesCompleted();
             ObjectiveManager.instance.showObjectivesCompleted();
@@ -249,23 +280,6 @@ public class GameManager : MonoBehaviour
             InventoryManager.instance.inventoryUI.SetActive(false);
 
         missionFailReason();
-    }
-    void missionFailReason()
-    {
-        if (failText == null)
-            return;
-
-        switch (failReason)
-        {
-            case fail.captured:
-                failText.text = "Why'd you get caught?";
-                break;
-
-            case fail.heatTimeExpired:
-                failText.text = "You didn't make it out in time. Backup arrived.";
-                break;
-        }
-           
     }
     public void quitToLobby()
     {
