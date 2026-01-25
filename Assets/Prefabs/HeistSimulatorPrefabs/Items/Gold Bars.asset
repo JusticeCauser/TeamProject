@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Gold Bars
   m_EditorClassIdentifier: Assembly-CSharp::itemStats
   itemName: Gold Bar
-  itemValue: 0
+  itemValue: 100
+  isPrimaryObjective: 0
+  itemInGame: {fileID: 8490686412807438097, guid: 17c1dc14f963a4946a9417a5932247ad, type: 3}

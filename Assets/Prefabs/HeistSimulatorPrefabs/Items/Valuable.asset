@@ -15,4 +15,4 @@ MonoBehaviour:
   itemName: Valuable
   itemValue: 50
   isPrimaryObjective: 0
-  itemInGame: {fileID: 7866213418004740021, guid: c829b50e4d4036642a327ae72fea419d, type: 3}
+  itemInGame: {fileID: 9136709561272437075, guid: 255bc83924dbb8a4a904a0855697e7c5, type: 3}

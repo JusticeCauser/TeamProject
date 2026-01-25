@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Laptop
   m_EditorClassIdentifier: Assembly-CSharp::itemStats
   itemName: Laptop
-  itemValue: 0
+  itemValue: 100
+  isPrimaryObjective: 0
+  itemInGame: {fileID: 1073597326949654313, guid: 6f0e8098205350248806a0c4a7af652a, type: 3}

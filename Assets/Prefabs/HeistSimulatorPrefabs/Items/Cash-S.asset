@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Cash-S
   m_EditorClassIdentifier: Assembly-CSharp::itemStats
   itemName: Cash (Small Stack)
-  itemValue: 0
+  itemValue: 10
+  isPrimaryObjective: 0
+  itemInGame: {fileID: 1174207935974849659, guid: 7eb0f969093e948419084f25a0871dc7, type: 3}

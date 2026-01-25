@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Painting
   m_EditorClassIdentifier: Assembly-CSharp::itemStats
   itemName: Painting
-  itemValue: 0
+  itemValue: 60
+  isPrimaryObjective: 0
+  itemInGame: {fileID: 7796816359055743949, guid: e52ad4e3f76933049aef6ee5cbdad898, type: 3}

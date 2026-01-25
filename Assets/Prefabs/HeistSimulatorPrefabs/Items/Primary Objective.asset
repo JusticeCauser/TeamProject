@@ -15,4 +15,4 @@ MonoBehaviour:
   itemName: Primary Objective
   itemValue: 1000
   isPrimaryObjective: 1
-  itemInGame: {fileID: 903702084279124655, guid: c893085a661960c4c8d79d24040e850b, type: 3}
+  itemInGame: {fileID: 7380028284511866560, guid: 306af579cc12582408039019d0b41936, type: 3}
