@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem.XR.Haptics;
 using UnityEngine.Rendering;
-using static enemyAI_Guard;
+
 
 public class EnemyAI_Base : MonoBehaviour
 {
@@ -157,6 +157,7 @@ public class EnemyAI_Base : MonoBehaviour
                 PatrolBehavior();
                 break;
             case guardState.Hunt:
+                HuntBehavior();
                 break;
             case guardState.KnockedOut:
                 break;
@@ -256,7 +257,42 @@ public class EnemyAI_Base : MonoBehaviour
             roam(lastAlertPosition, roamDist);
             //nextHideSpot();
         }
-        
+    }
+
+    void HuntBehavior()
+    {
+        roamDist = 20;
+        lastAlertPosition = playerTransform.position;
+        agent.SetDestination(lastAlertPosition);
+
+        if (canSeePlayer())
+        {
+            lastAlertPosition = playerTransform.position;
+            if (!radioIn)
+            {
+                onRadioIn(lastAlertPosition);
+                radioIn = true;
+            }
+            state = guardState.Chase;
+            return;
+        }
+        searchTimer += Time.deltaTime;
+        if (searchTimer >= searchDur)
+        {
+            searchTimer = 0;
+            radioIn = false;
+            state = guardState.Patrol;
+            return;
+        }
+
+        float huntTimer = 0;
+        float huntDur = 10f;
+        huntTimer += Time.deltaTime;
+        if (huntTimer <= huntDur && agent.remainingDistance <= agent.stoppingDistance + 0.1f)
+        {
+            roam(lastAlertPosition, roamDist);
+            //nextHideSpot();
+        }
     }
     void nextHideSpot()
     {
@@ -328,7 +364,7 @@ public class EnemyAI_Base : MonoBehaviour
         ranPos += center;
 
         NavMeshHit hit;
-        if (NavMesh.SamplePosition(ranPos, out hit, roamDist, 1));
+        if (NavMesh.SamplePosition(ranPos, out hit, roamDist, 1))
         {
             agent.SetDestination(hit.position); 
         }
@@ -392,6 +428,8 @@ public class EnemyAI_Base : MonoBehaviour
 
         if (playerTransform == null) return;
         if (playerInHearingRange == false) return;
+
+        if (state == guardState.Chase || state == guardState.Hunt) return;
 
         if (Time.time < nextHearingTime) return;
         nextHearingTime = Time.time + hearingInterval;
@@ -519,6 +557,10 @@ public class EnemyAI_Base : MonoBehaviour
     }
     public void onRadioIn(Vector3 position)
     {
+        if(HeatManager.Instance != null)
+        {
+
+        }
         alertTargetPos = position;
 
         agent.SetDestination(alertTargetPos);
