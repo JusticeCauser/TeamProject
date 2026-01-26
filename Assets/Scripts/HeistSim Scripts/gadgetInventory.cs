@@ -19,7 +19,7 @@ public class gadgetInventory : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
+    //editing to push
     void LoadGadgets()
     {
         // first check scene, if gadgetryScene always give all gadgets
