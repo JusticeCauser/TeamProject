@@ -91,8 +91,8 @@ public class GrapplingHook : MonoBehaviour
 
     void Update()
     {
-        if (gameManager.instance != null && gameManager.instance.isPaused)
-            return;
+        //if (gameManager.instance != null && gameManager.instance.isPaused)
+        //    return;
 
         HighlightNearestGrapplePoint();
         HandleInput();

@@ -74,8 +74,7 @@ GameObject:
   - component: {fileID: 4380295623876009111}
   - component: {fileID: 4180841581711991089}
   - component: {fileID: 1109923708984557476}
-  - component: {fileID: 139954277390333706}
-  - component: {fileID: 5375564850620277480}
+  - component: {fileID: 2993129651403013432}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -201,7 +200,7 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!114 &139954277390333706
+--- !u!114 &2993129651403013432
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -210,7 +209,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2993861403157703205}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1a644e4f31795d48bf23345e26cb913, type: 3}
+  m_Script: {fileID: 11500000, guid: 46876d7a9f83240409c35a76390c0692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::cameraController
   sens: 300
@@ -220,23 +219,6 @@ MonoBehaviour:
   wallTiltZ: 0
   slideTiltZ: 0
   moveTiltAmount: 1.5
---- !u!114 &5375564850620277480
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2993861403157703205}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 132e6b3c539418347a28fa259c0bed86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::viewBobbing
-  controller: {fileID: 508957861487470888}
-  walkBobSpeed: 14
-  walkBobAmount: 0.15
-  sprintBobMultiplier: 1.5
-  smoothTime: 0.1
 --- !u!1 &3377885465133513441
 GameObject:
   m_ObjectHideFlags: 0

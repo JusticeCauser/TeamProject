@@ -185,7 +185,7 @@ public class GameManager : MonoBehaviour
 
         if (objectivesMissionCompletedText != null && ObjectiveManager.instance != null)
         {
-            ObjectiveManager.instance.objectivesCompleted();
+            //ObjectiveManager.instance.objectivesCompleted();
             ObjectiveManager.instance.showObjectivesCompleted();
             objectivesMissionCompletedText.text = ObjectiveManager.instance.objectivesCompleteText;
         }
@@ -259,7 +259,7 @@ public class GameManager : MonoBehaviour
 
         if (objectivesMissionCompletedText != null && ObjectiveManager.instance != null)
         {
-            ObjectiveManager.instance.objectivesCompleted();
+            //ObjectiveManager.instance.objectivesCompleted();
             ObjectiveManager.instance.showObjectivesCompleted();
             objectivesMissionFailedText.text = ObjectiveManager.instance.objectivesCompleteText;
         }

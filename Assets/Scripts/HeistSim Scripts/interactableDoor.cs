@@ -104,9 +104,11 @@ public class interactableDoor : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
+        {
             playerInRange = true;
             if (promptText != null && isLocked)
                 promptText.gameObject.SetActive(true);
+        }
     }
 
     private void OnTriggerExit(Collider other)

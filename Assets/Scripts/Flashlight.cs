@@ -21,8 +21,8 @@ public class Flashlight : MonoBehaviour
 
     void Update()
     {
-        if (gameManager.instance != null && gameManager.instance.isPaused)
-            return;
+        //if (gameManager.instance != null && gameManager.instance.isPaused)
+        //    return;
 
         if (Input.GetKeyDown(toggleKey))
         {

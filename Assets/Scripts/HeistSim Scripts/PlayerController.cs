@@ -227,10 +227,10 @@ public class PlayerController : MonoBehaviour
             itemListPos--;
         }
     }
-    public void applyUpgrades(upgradeData upgrade)
-    {
-        //if we want to carry over player upgrades
-    }
+    //public void applyUpgrades(upgradeData upgrade)
+    //{
+    //    //if we want to carry over player upgrades
+    //}
 
     void draggingEnemy()
     {
