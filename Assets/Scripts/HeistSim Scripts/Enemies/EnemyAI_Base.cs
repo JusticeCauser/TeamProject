@@ -233,7 +233,7 @@ public class EnemyAI_Base : MonoBehaviour
         if (canSeePlayer())
         {
             lastAlertPosition = playerTransform.position;
-            if (!radioIn)
+            if (!radioIn && GameManager.instance != null)
             {
                 onRadioIn(lastAlertPosition);
                 radioIn = true;
@@ -252,21 +252,21 @@ public class EnemyAI_Base : MonoBehaviour
 
         if (agent.remainingDistance <= agent.stoppingDistance + 0.1f)
         {
-            Transform hide = findHidingSpot();
-            if (hide != null)
-            {
-                //currentHidePos = hide;
-                //targetHide = hide.GetComponent<IHide>();
-                //agent.SetDestination(hide.position);
-                //if (targetHide != null && targetHide.hasPlayer)
-                //{
-                //    hideCapture(targetHide.occupied.gameObject);
-                //}
-            }
-            else
-            {
+            //Transform hide = findHidingSpot();
+            //if (hide != null)
+            //{
+            //    currentHidePos = hide;
+            //    targetHide = hide.GetComponent<IHide>();
+            //    agent.SetDestination(hide.position);
+            //    if (targetHide != null && targetHide.hasPlayer)
+            //    {
+            //        hideCapture(targetHide.occupied.gameObject);
+            //    }
+            //}
+            //else
+            //{
                 roam(lastAlertPosition, roamDist);
-            }
+            //}
         }
     }
 
@@ -279,7 +279,7 @@ public class EnemyAI_Base : MonoBehaviour
         if (canSeePlayer())
         {
             lastAlertPosition = playerTransform.position;
-            if (!radioIn)
+            if (!radioIn && GameManager.instance != null)
             {
                 onRadioIn(lastAlertPosition);
                 radioIn = true;
@@ -301,35 +301,35 @@ public class EnemyAI_Base : MonoBehaviour
         huntTimer += Time.deltaTime;
         if (agent.remainingDistance <= agent.stoppingDistance + 0.1f)
         {
-            Transform hide = findHidingSpot();
-            if (hide != null)
-            {
-                agent.SetDestination(hide.position);
-            }
-            else
-            {
+            //Transform hide = findHidingSpot();
+            //if (hide != null)
+            //{
+            //    agent.SetDestination(hide.position);
+            //}
+            //else
+            //{
                 roam(lastAlertPosition, roamDist);
-            }
+            //}
         }
     }
-    Transform findHidingSpot()
-    {
-        Collider[] hits = Physics.OverlapSphere(transform.position, hideSearchRadius, hidingSpotMask);
+    //Transform findHidingSpot()
+    //{
+    //    Collider[] hits = Physics.OverlapSphere(transform.position, hideSearchRadius, hidingSpotMask);
 
-        float bDist = Mathf.Infinity;
-        Transform b = null;
+    //    float bDist = Mathf.Infinity;
+    //    Transform b = null;
 
-        foreach (var i in hits)
-        {
-            float dist = (i.transform.position - transform.position).sqrMagnitude;
-            if (dist < bDist)
-            {
-                bDist = dist;
-                b = i.transform;
-            }
-        }
-        return b;
-    }
+    //    foreach (var i in hits)
+    //    {
+    //        float dist = (i.transform.position - transform.position).sqrMagnitude;
+    //        if (dist < bDist)
+    //        {
+    //            bDist = dist;
+    //            b = i.transform;
+    //        }
+    //    }
+    //    return b;
+    //}
     void SuspiciousBehavior()
     {
         if (canSeePlayer())
@@ -341,7 +341,7 @@ public class EnemyAI_Base : MonoBehaviour
         }
 
         lastAlertPosition = playerTransform.position;
-        if (!radioIn)
+        if (!radioIn && GameManager.instance != null)
         {
             GameManager.instance.alertSys.radioIn(lastAlertPosition);
             radioIn = true;
@@ -412,7 +412,7 @@ public class EnemyAI_Base : MonoBehaviour
     void ChaseBehavior()
     {
         lastAlertPosition = playerTransform.transform.position;
-        if (!radioIn)
+        if (!radioIn && GameManager.instance != null)
         {
             GameManager.instance.alertSys.radioIn(lastAlertPosition);
             radioIn = true;
@@ -448,7 +448,7 @@ public class EnemyAI_Base : MonoBehaviour
         {
             if (angleToPlayer <= FOV && hit.collider.CompareTag("Player"))
             {
-                if (!radioIn)
+                if (!radioIn && GameManager.instance != null)
                 {
                     GameManager.instance.alertSys.radioIn(playerPos);
                     radioIn = true;
@@ -481,7 +481,7 @@ public class EnemyAI_Base : MonoBehaviour
         nextHearingTime = Time.time + hearingInterval;
 
         float noiseLevel = playerStateManager.noiseLevelChecker();
-        if (!radioIn)
+        if (!radioIn && GameManager.instance != null)
         {
             GameManager.instance.alertSys.radioIn(lastAlertPosition);
             radioIn = true;

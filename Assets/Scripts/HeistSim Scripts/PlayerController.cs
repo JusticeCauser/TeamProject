@@ -263,8 +263,15 @@ public class PlayerController : MonoBehaviour
         draggedEnemy = null;
     }
 
-    public void isBit()
+    public void isBit(float slowDur, int slowMult)
     {
-        
+        StartCoroutine(BeingBit(slowDur, slowMult));
+    }
+    IEnumerator BeingBit(float slowDur, int slowMult)
+    {
+        int orig = speed;
+        speed *= slowMult;
+        yield return new WaitForSeconds(slowDur);
+        speed = orig;
     }
 }

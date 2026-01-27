@@ -7,11 +7,12 @@ public class AlertSystem : MonoBehaviour
     public void raiseBarkAlert(Vector3 position, Vector3 forward, float radius)
     {
         Collider[] hits = Physics.OverlapSphere(position, radius, enemyMask);
-        Debug.Log("I Barked");
-        for(int i = 0; i < hits.Length; i++)
+
+
+        for (int i = 0; i < hits.Length; i++)
         {
             HandlerAI handler = hits[i].GetComponentInParent<HandlerAI>();
-            if(handler != null)
+            if (handler != null)
             {
                 handler.onBarkAlert(position, forward);
             }
@@ -20,19 +21,25 @@ public class AlertSystem : MonoBehaviour
 
     public void radioIn(Vector3 position)
     {
+
+        if (HeatManager.Instance != null)
+        {
+            HeatManager.Instance.AddHeat(10f);
+        }
+
         float radius = 20f;
 
         Collider[] hits = Physics.OverlapSphere(position, radius, enemyMask);
 
-        for(int i = 0; i < hits.Length; i++)
+        for (int i = 0; i < hits.Length; i++)
         {
             GuardAI guard = hits[i].GetComponentInParent<GuardAI>();
             HandlerAI handler = hits[i].GetComponentInParent<HandlerAI>();
-            if(guard != null)
+            if (guard != null)
             {
                 guard.onRadioIn(position);
             }
-            if(handler != null)
+            if (handler != null)
             {
                 handler.onRadioIn(position);
             }
@@ -49,7 +56,7 @@ public class AlertSystem : MonoBehaviour
         {
             DogAI dog = hits[i].GetComponent<DogAI>();
 
-            if(dog != null)
+            if (dog != null)
             {
                 dog.onRecall(position);
             }

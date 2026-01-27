@@ -4,6 +4,7 @@ public class CaptureTrigger : MonoBehaviour
 {
     EnemyAI_Base enemyParent;
     DogAI enemyDog;
+    PlayerController player;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -17,8 +18,12 @@ public class CaptureTrigger : MonoBehaviour
 
         if (enemyParent != null)
             enemyParent.Capture(other.gameObject);
-        if(enemyDog != null)
-            enemyDog.bite(other.gameObject);
+        if (enemyDog != null)
+            enemyDog.onback(other.gameObject);
+        //if (enemyParent != null && player.isHiding)
+        //{
+        //    enemyParent.hideCapture(other.gameObject);
+        //}
     }
 
     private void OnTriggerStay(Collider other)
@@ -27,7 +32,11 @@ public class CaptureTrigger : MonoBehaviour
 
         if (enemyParent != null)
             enemyParent.Capture(other.gameObject);
-        if(enemyDog != null)
-            enemyDog.bite(other.gameObject);
+        if (enemyDog != null)
+            enemyDog.onback(other.gameObject);
+        //if (enemyParent != null && player.isHiding)
+        //{
+        //    enemyParent.hideCapture(other.gameObject);
+        //}
     }
 }

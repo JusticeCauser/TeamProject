@@ -18,6 +18,8 @@ public class DogAI : MonoBehaviour
     [SerializeField] int roamPauseTime;
     [SerializeField] float alertDur;
 
+    [SerializeField] int biteDur;
+
     //Speeds for changing animation for Dog
     [SerializeField] float roamSpeed;
     [SerializeField] float chaseSpeed;
@@ -31,12 +33,14 @@ public class DogAI : MonoBehaviour
     float angleToPlayer;
     float barkTimer;
     float stoppingDistOrig;
+    float nextBite;
+    float biteTimer;
     public Transform forwardAnchor;
 
     //Dog Bite Controls
     [SerializeField] float biteDist;
     [SerializeField] float biteDuration;
-    
+
 
     //States of dog for use in transitioning the dog behavior
     public enum dogState
@@ -246,7 +250,7 @@ public class DogAI : MonoBehaviour
     }
     void RecallBehavior()
     {
-        if(doghandler == null)
+        if (doghandler == null)
         {
             state = dogState.Idle;
             return;
@@ -255,7 +259,7 @@ public class DogAI : MonoBehaviour
         Vector3 handlerpos = doghandler.transform.position;
         agent.SetDestination(handlerpos);
         float stopDist = 2f;
-        if((handlerpos - transform.position).sqrMagnitude <= stopDist * stopDist)
+        if ((handlerpos - transform.position).sqrMagnitude <= stopDist * stopDist)
         {
             state = dogState.Idle;
         }
@@ -267,7 +271,22 @@ public class DogAI : MonoBehaviour
 
         PlayerController player = playerObj.GetComponent<PlayerController>();
         if (player != null && player.isHiding) return;
-        Debug.Log("I bit you!");
+
+        nextBite = 2f;
+        biteTimer += Time.deltaTime;
+        if (player != null && biteTimer >= nextBite)
+        {
+            biteTimer = 0f;
+            player.isBit(0.35f, biteDur);
+        }
+    }
+    public void onback(GameObject playerObj)
+    {
+        if (Time.timeScale == 0f) return;
+
+        PlayerController player = playerObj.GetComponent<PlayerController>();
+        if (player != null && player.isHiding) return;
+
         GameManager.instance.missionFail(GameManager.fail.captured);
     }
     void AlertedBehavior()

@@ -3,6 +3,9 @@ using UnityEngine.UIElements;
 
 public class HandlerAI : EnemyAI_Base
 {
+
+    EnemyAI_Base enemyBase;
+
     [SerializeField] guardType type;
 
     [SerializeField] DogAI dog;
@@ -18,9 +21,14 @@ public class HandlerAI : EnemyAI_Base
 
     public void onBarkAlert(Vector3 position, Vector3 anchor)
     {
-        if (HeatManager.Instance != null)
+        if (state == guardState.Chase || state == guardState.Search || state == guardState.Hunt)
+            return;
+
+        lastAlertPosition = playerTransform.transform.position;
+        if (!radioIn && GameManager.instance != null)
         {
-            HeatManager.Instance.AddHeat(5f);
+            GameManager.instance.alertSys.radioIn(lastAlertPosition);
+            radioIn = true;
         }
         if (dog != null && dog.state == DogAI.dogState.Recall) return;
         if (dog2 != null && dog2.state == DogAI.dogState.Recall) return;

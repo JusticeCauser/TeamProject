@@ -16,24 +16,6 @@ public class GuardAI : EnemyAI_Base
         Standard,
         Elite
     }
-    public void onAllyAlert(Vector3 alertPosition)
-    {
-        agent.SetDestination(alertPosition);
-    }
-
-    public void onAlert()
-    {
-        HeatManager.Instance.AddHeat(8f);
-
-        if (guard1 != null)
-        {
-            guard1.onAllyAlert(playerTransform.position);
-        }
-        if (guard2 != null)
-        {
-            guard2.onAllyAlert(playerTransform.position);
-        }
-    }
 
     protected override void tryToTaze()
     {
@@ -56,7 +38,7 @@ public class GuardAI : EnemyAI_Base
         if (player.isStunned) return;
         if (Time.time < nextTazeTime) return;
         nextTazeTime = Time.time + tazeCooldown;
-        
+
         player.tazed(stunDuration);
     }
 }

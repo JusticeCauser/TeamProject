@@ -1,3 +1,4 @@
+using System.Xml;
 using TMPro;
 using UnityEngine;
 
@@ -9,6 +10,8 @@ public class IHide : MonoBehaviour
     PlayerController player;
 
     bool playerInRange;
+    public bool hasPlayer;
+    public Transform occupied { get; private set; }
 
     Vector3 hidePos;
     Vector3 outsideHidePos;
@@ -17,7 +20,7 @@ public class IHide : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
         if (hidePos != null)
         {
             hidePos = hideSpot.transform.position;
@@ -35,18 +38,24 @@ public class IHide : MonoBehaviour
     {
         if (!playerInRange || player == null) return;
 
-        if(InputManager.instance.interactKeyPressed())
+        if (InputManager.instance.interactKeyPressed())
         {
             if (!player.isHiding)
             {
                 outsideHidePos = outsideHide.transform.position;
                 player.transform.position = hidePos;
                 player.hide();
+
+                hasPlayer = true;
+                occupied = player.transform;
             }
             else if (player.isHiding)
             {
                 player.transform.position = outsideHidePos;
-                player.exitHide(); 
+                player.exitHide();
+
+                hasPlayer = false;
+                occupied = null;
             }
         }
     }
@@ -62,7 +71,7 @@ public class IHide : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.CompareTag("Player") && prompt != null)
+        if (other.CompareTag("Player") && prompt != null)
         {
             prompt.gameObject.SetActive(false);
             playerInRange = false;
