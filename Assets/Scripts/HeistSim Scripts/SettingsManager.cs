@@ -282,7 +282,10 @@ public class SettingsManager : MonoBehaviour
 
         if(settingsUI != null)
              settingsUI.SetActive(false);
-
+        if(SceneManager.GetActiveScene().name == title)
+        {
+            quitToTitle();
+        }
         isActive = false;
         SceneManager.LoadScene(lobby);
     }
