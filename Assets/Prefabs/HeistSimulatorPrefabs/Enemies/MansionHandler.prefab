@@ -1501,6 +1501,9 @@ MonoBehaviour:
   model: {fileID: 2976841030127155551}
   agent: {fileID: 6717869921785302652}
   anim: {fileID: 1685782868738269111}
+  hidingSpotMask:
+    serializedVersion: 2
+    m_Bits: 0
   patrolPoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -1515,10 +1518,12 @@ MonoBehaviour:
   chaseSpeed: 8
   baseHearing: 5
   suspiciousMax: 3
-  hidingspots: []
+  sweepSpeed: 0
+  hideSearchRadius: 0
   isBeingDragged: 0
   dragAttachPoint: {fileID: 0}
   alertedTimer: 0
+  radioIn: 0
   state: 0
   previousState: 0
   playerInHearingRange: 0
