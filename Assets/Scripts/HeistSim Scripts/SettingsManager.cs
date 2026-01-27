@@ -133,6 +133,13 @@ public class SettingsManager : MonoBehaviour
 
         if (Input.GetButtonDown("Cancel"))
         {
+            // check if in hub interaction first
+            hubManager hm = FindFirstObjectByType<hubManager>();
+            if(hm != null && hm.IsInInteraction())
+            {
+                // let hub manager handle ESC, don't open settings if in PC
+                return;
+            }
             if (isActive)
             {
                 closeSettings();

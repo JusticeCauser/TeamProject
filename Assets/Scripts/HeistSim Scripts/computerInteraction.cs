@@ -23,6 +23,16 @@ public class computerInteraction : MonoBehaviour
 
     private void Update()
     {
+        // bug fix? ESC to exit PC view 
+        if(pcPanel != null && pcPanel.activeSelf && Input.GetKeyDown(KeyCode.Escape))
+        {
+            //only exit if settings menu isn't open
+            if(SettingsManager.instance != null && !SettingsManager.instance.isActive)
+            {
+                hubManager.GoBack();
+            }
+        }
+
         // hide loadout panel if player exits 'back'
         if (!hubManager.IsInInteraction() && pcPanel != null && pcPanel.activeSelf)
         {

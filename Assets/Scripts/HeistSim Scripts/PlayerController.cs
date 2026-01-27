@@ -116,6 +116,10 @@ public class PlayerController : MonoBehaviour
 
     void jump()
     {
+        // if in hub, disable jump
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "theHub")
+            return;
+
         if (keypad != null && keypad.IsOpen)
             return;
 
@@ -128,6 +132,10 @@ public class PlayerController : MonoBehaviour
 
     void sprint()
     {
+        // if in hub, disable sprint
+        if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "theHub")
+            return;
+
         if (Input.GetButtonDown("Sprint")) // if pressing sprint
         {
             speed *= sprintMod;

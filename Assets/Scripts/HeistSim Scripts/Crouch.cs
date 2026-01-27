@@ -43,6 +43,13 @@ public class Crouch : MonoBehaviour
 
     void handleInput()
     {
+
+        // disable crouch if in hub (prevents bug with player falling through hub floor, 
+        // and player should have limited controls in hub as well, no crouch, sprint, jump
+        // starting here first to ensure no breakage
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "theHub")
+            return;
+
         bool crouchToggle = Input.GetButtonDown("Crouch");
         
         //bool crouchReleased = Input.GetButtonDown("Crouch");
