@@ -128,6 +128,10 @@ public class PlayerController : MonoBehaviour
 
     void sprint()
     {
+        // if in hub, disable sprint
+        if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "theHub")
+            return;
+
         if (Input.GetButtonDown("Sprint")) // if pressing sprint
         {
             speed *= sprintMod;
