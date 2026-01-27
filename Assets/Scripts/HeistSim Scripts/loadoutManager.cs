@@ -23,7 +23,7 @@ public class loadoutManager : MonoBehaviour
     private void Start()
     {
         // set up button listeners
-        for(int i = 0; i < toolButtons.Length; i++)
+        for (int i = 0; i < toolButtons.Length; i++)
         {
             int index = i; // capture index
             toolButtons[i].onClick.AddListener(() => ToggleTool(index));
@@ -40,7 +40,7 @@ public class loadoutManager : MonoBehaviour
         // get tool name from button text
         string toolName = toolButtons[toolIndex].GetComponentInChildren<TMP_Text>().text;
 
-        if(selectedToolIndices.Contains(toolIndex))
+        if (selectedToolIndices.Contains(toolIndex))
         {
             //deselect
             selectedToolIndices.Remove(toolIndex);
@@ -50,7 +50,7 @@ public class loadoutManager : MonoBehaviour
         else
         {
             // select if under max
-            if(selectedToolIndices.Count < maxTools)
+            if (selectedToolIndices.Count < maxTools)
             {
                 selectedToolIndices.Add(toolIndex);
                 selectedToolNames.Add(toolName);
@@ -67,7 +67,7 @@ public class loadoutManager : MonoBehaviour
         bool allToolsSelected = selectedToolIndices.Count == maxTools;
 
         // show confirmbutton only if max selected
-        if(loadoutConfirmPanel != null)
+        if (loadoutConfirmPanel != null)
         {
             loadoutConfirmPanel.SetActive(allToolsSelected);
         }
@@ -93,7 +93,7 @@ public class loadoutManager : MonoBehaviour
     public void ResetSelection()
     {
         // clear selections
-        foreach(int index in selectedToolIndices)
+        foreach (int index in selectedToolIndices)
         {
             toolButtons[index].GetComponent<Image>().color = unselectedColor;
         }
