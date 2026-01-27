@@ -2178,6 +2178,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb960f1647c73dc40ad24214f3904eb0, type: 3}
+--- !u!114 &139446185 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1013929047570166729, guid: bb960f1647c73dc40ad24214f3904eb0, type: 3}
+  m_PrefabInstance: {fileID: 139446184}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3cc9833ed4de544a4dd4ae2e796556, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HandlerAI
 --- !u!1 &144032090
 GameObject:
   m_ObjectHideFlags: 0
@@ -2616,6 +2627,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71fd39f17c6534345bd6ef47688381ce, type: 3}
+--- !u!114 &169104413 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8560217863885761600, guid: 71fd39f17c6534345bd6ef47688381ce, type: 3}
+  m_PrefabInstance: {fileID: 169104412}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3cc9833ed4de544a4dd4ae2e796556, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HandlerAI
 --- !u!1 &170308242
 GameObject:
   m_ObjectHideFlags: 0
@@ -16368,6 +16390,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb960f1647c73dc40ad24214f3904eb0, type: 3}
+--- !u!114 &1476930516 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1013929047570166729, guid: bb960f1647c73dc40ad24214f3904eb0, type: 3}
+  m_PrefabInstance: {fileID: 1476930515}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3cc9833ed4de544a4dd4ae2e796556, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HandlerAI
 --- !u!1001 &1493432184
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16675,7 +16708,9 @@ PrefabInstance:
       value: PatrolPoint1 (18)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2665511889877546290, guid: 9f2b6707a51f01a49b0c4d858af90fc5, type: 3}
+    - {fileID: 5202165801364644010, guid: 9f2b6707a51f01a49b0c4d858af90fc5, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f2b6707a51f01a49b0c4d858af90fc5, type: 3}
@@ -16694,7 +16729,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 384703839783981566, guid: 9f2b6707a51f01a49b0c4d858af90fc5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -57.21228
+      value: -60.54
       objectReference: {fileID: 0}
     - target: {fileID: 384703839783981566, guid: 9f2b6707a51f01a49b0c4d858af90fc5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -16737,7 +16772,9 @@ PrefabInstance:
       value: PatrolPoint1 (20)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2665511889877546290, guid: 9f2b6707a51f01a49b0c4d858af90fc5, type: 3}
+    - {fileID: 5202165801364644010, guid: 9f2b6707a51f01a49b0c4d858af90fc5, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f2b6707a51f01a49b0c4d858af90fc5, type: 3}
@@ -21301,6 +21338,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4300117873875358374, guid: 7bc424453043922408e620f44126a43b, type: 3}
+      propertyPath: doghandler
+      value: 
+      objectReference: {fileID: 169104413}
     - target: {fileID: 8452470355179082392, guid: 7bc424453043922408e620f44126a43b, type: 3}
       propertyPath: m_Name
       value: Dog (2)
@@ -21716,6 +21757,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4300117873875358374, guid: 7bc424453043922408e620f44126a43b, type: 3}
+      propertyPath: doghandler
+      value: 
+      objectReference: {fileID: 1476930516}
     - target: {fileID: 8452470355179082392, guid: 7bc424453043922408e620f44126a43b, type: 3}
       propertyPath: m_Name
       value: Dog
@@ -22638,7 +22683,9 @@ PrefabInstance:
       value: PatrolPoint1 (21)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2665511889877546290, guid: 9f2b6707a51f01a49b0c4d858af90fc5, type: 3}
+    - {fileID: 5202165801364644010, guid: 9f2b6707a51f01a49b0c4d858af90fc5, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f2b6707a51f01a49b0c4d858af90fc5, type: 3}
@@ -24028,7 +24075,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 384703839783981566, guid: 9f2b6707a51f01a49b0c4d858af90fc5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -57.355705
+      value: -61.65
       objectReference: {fileID: 0}
     - target: {fileID: 384703839783981566, guid: 9f2b6707a51f01a49b0c4d858af90fc5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -24071,7 +24118,9 @@ PrefabInstance:
       value: PatrolPoint1 (19)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2665511889877546290, guid: 9f2b6707a51f01a49b0c4d858af90fc5, type: 3}
+    - {fileID: 5202165801364644010, guid: 9f2b6707a51f01a49b0c4d858af90fc5, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f2b6707a51f01a49b0c4d858af90fc5, type: 3}
@@ -24437,6 +24486,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4300117873875358374, guid: 7bc424453043922408e620f44126a43b, type: 3}
+      propertyPath: doghandler
+      value: 
+      objectReference: {fileID: 139446185}
     - target: {fileID: 8452470355179082392, guid: 7bc424453043922408e620f44126a43b, type: 3}
       propertyPath: m_Name
       value: Dog (1)
