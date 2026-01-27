@@ -459,7 +459,7 @@ public class EnemyAI_Base : MonoBehaviour
                 {
                     facePlayer();
                 }
-                agent.stoppingDistance = stoppingDistOrig;
+                //agent.stoppingDistance = stoppingDistOrig;
                 return true;
             }
         }
