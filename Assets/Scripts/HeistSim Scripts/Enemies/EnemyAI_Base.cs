@@ -422,10 +422,8 @@ public class EnemyAI_Base : MonoBehaviour
         {
             state = guardState.Alerted;
         }
-        if (guard)
-        {
+        
             tryToTaze();
-        }
     }
 
     protected virtual void tryToTaze()
