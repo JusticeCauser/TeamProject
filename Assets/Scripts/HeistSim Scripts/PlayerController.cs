@@ -116,6 +116,10 @@ public class PlayerController : MonoBehaviour
 
     void jump()
     {
+        // if in hub, disable jump
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "theHub")
+            return;
+
         if (keypad != null && keypad.IsOpen)
             return;
 
