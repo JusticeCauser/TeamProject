@@ -1600,14 +1600,6 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1511237547630423929, guid: 71fd39f17c6534345bd6ef47688381ce, type: 3}
-      propertyPath: prompt
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3985574270749249643, guid: 71fd39f17c6534345bd6ef47688381ce, type: 3}
-      propertyPath: prompt
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5920859827935430515, guid: 71fd39f17c6534345bd6ef47688381ce, type: 3}
       propertyPath: m_LocalPosition.x
       value: -57.47289
@@ -1651,10 +1643,6 @@ PrefabInstance:
     - target: {fileID: 6066303640598105711, guid: 71fd39f17c6534345bd6ef47688381ce, type: 3}
       propertyPath: m_Name
       value: FaculityHandler
-      objectReference: {fileID: 0}
-    - target: {fileID: 6066303640598105711, guid: 71fd39f17c6534345bd6ef47688381ce, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8560217863885761600, guid: 71fd39f17c6534345bd6ef47688381ce, type: 3}
       propertyPath: dragAttachPoint
@@ -1791,11 +1779,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f4188761390b814ebdface4236d7f3f, type: 3}
---- !u!137 &1724850291291836408 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 5073719552976046676, guid: ddf1d2e906249a34da4980528e876a4c, type: 3}
-  m_PrefabInstance: {fileID: 2110018206409479806}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2110018206409479806
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1809,48 +1792,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 288657896101805849, guid: ddf1d2e906249a34da4980528e876a4c, type: 3}
-      propertyPath: FOV
-      value: 70
-      objectReference: {fileID: 0}
-    - target: {fileID: 288657896101805849, guid: ddf1d2e906249a34da4980528e876a4c, type: 3}
-      propertyPath: model
-      value: 
-      objectReference: {fileID: 1724850291291836408}
-    - target: {fileID: 288657896101805849, guid: ddf1d2e906249a34da4980528e876a4c, type: 3}
-      propertyPath: alertDur
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 288657896101805849, guid: ddf1d2e906249a34da4980528e876a4c, type: 3}
-      propertyPath: roamDist
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 288657896101805849, guid: ddf1d2e906249a34da4980528e876a4c, type: 3}
       propertyPath: tazeDist
       value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 288657896101805849, guid: ddf1d2e906249a34da4980528e876a4c, type: 3}
-      propertyPath: roamSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 288657896101805849, guid: ddf1d2e906249a34da4980528e876a4c, type: 3}
-      propertyPath: searchDur
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 288657896101805849, guid: ddf1d2e906249a34da4980528e876a4c, type: 3}
-      propertyPath: chaseSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 288657896101805849, guid: ddf1d2e906249a34da4980528e876a4c, type: 3}
-      propertyPath: baseHearing
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 288657896101805849, guid: ddf1d2e906249a34da4980528e876a4c, type: 3}
-      propertyPath: roamPauseTime
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 288657896101805849, guid: ddf1d2e906249a34da4980528e876a4c, type: 3}
-      propertyPath: suspiciousMax
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 288657896101805849, guid: ddf1d2e906249a34da4980528e876a4c, type: 3}
       propertyPath: dragAttachPoint
@@ -1896,10 +1839,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: FaculityGuard
       objectReference: {fileID: 0}
-    - target: {fileID: 2623580852539053723, guid: ddf1d2e906249a34da4980528e876a4c, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5503150100206073096, guid: ddf1d2e906249a34da4980528e876a4c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -57.47289
@@ -1943,14 +1882,6 @@ PrefabInstance:
     - target: {fileID: 6314739568080706232, guid: ddf1d2e906249a34da4980528e876a4c, type: 3}
       propertyPath: m_Radius
       value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 7004407898400090228, guid: ddf1d2e906249a34da4980528e876a4c, type: 3}
-      propertyPath: prompt
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 9102332185471755798, guid: ddf1d2e906249a34da4980528e876a4c, type: 3}
-      propertyPath: prompt
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2232,18 +2163,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MansionHandler
       objectReference: {fileID: 0}
-    - target: {fileID: 5390499715971866487, guid: bb960f1647c73dc40ad24214f3904eb0, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7787154114051697505, guid: bb960f1647c73dc40ad24214f3904eb0, type: 3}
-      propertyPath: prompt
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 9030921628770727422, guid: bb960f1647c73dc40ad24214f3904eb0, type: 3}
-      propertyPath: prompt
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 9097993596295907810, guid: bb960f1647c73dc40ad24214f3904eb0, type: 3}
       propertyPath: m_Radius
       value: 15
@@ -2305,14 +2224,6 @@ PrefabInstance:
       propertyPath: dragAttachPoint
       value: 
       objectReference: {fileID: 1237887726}
-    - target: {fileID: 5759699976505692447, guid: 4fa51ccf4043e8d47aa89e4b6f51f8cd, type: 3}
-      propertyPath: prompt
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7108240186646603177, guid: 4fa51ccf4043e8d47aa89e4b6f51f8cd, type: 3}
-      propertyPath: prompt
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 8187027384446995079, guid: 4fa51ccf4043e8d47aa89e4b6f51f8cd, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -2320,10 +2231,6 @@ PrefabInstance:
     - target: {fileID: 8946982105166556908, guid: 4fa51ccf4043e8d47aa89e4b6f51f8cd, type: 3}
       propertyPath: m_Name
       value: Guard
-      objectReference: {fileID: 0}
-    - target: {fileID: 8946982105166556908, guid: 4fa51ccf4043e8d47aa89e4b6f51f8cd, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
