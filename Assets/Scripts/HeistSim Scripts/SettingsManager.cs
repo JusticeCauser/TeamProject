@@ -291,6 +291,10 @@ public class SettingsManager : MonoBehaviour
             closeSettings();
             return;
         }
+
+        // addition from Levi, clears player prefab for selected loadout when quitting to lobby
+        PlayerPrefs.DeleteKey("SelectedGadgets");
+        PlayerPrefs.Save();
             
 
         Time.timeScale = timeScaleOrig;

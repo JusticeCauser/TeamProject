@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class gadgetInventory : MonoBehaviour
 {
@@ -19,6 +20,27 @@ public class gadgetInventory : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    //work in progress loadout reset on exit to hub
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // returning to hub, reset loadout selection
+        if (scene.name == "Asylum" || scene.name == "Mansion")
+        {
+            LoadGadgets();
+        }
+    }
+
     //editing to push
     void LoadGadgets()
     {
