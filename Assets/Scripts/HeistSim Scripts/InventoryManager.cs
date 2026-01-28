@@ -68,6 +68,12 @@ public class InventoryManager : MonoBehaviour
                 inventoryUI.SetActive(false);
             return;
         }
+        if(Time.timeScale == 0)
+        {
+            if (inventoryUI != null)
+                inventoryUI.SetActive(false);
+            return;
+        }
 
         if(inventoryUI != null)
             inventoryUI.SetActive(true);

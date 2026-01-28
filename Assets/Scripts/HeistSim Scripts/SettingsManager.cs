@@ -12,6 +12,10 @@ public class SettingsManager : MonoBehaviour
     
     [SerializeField] string lobby = "theHub";
     [SerializeField] string title = "IntroScene";
+    [SerializeField] string lMansion = "LoadingIntroMansion";
+    [SerializeField] string lAsylum = "LoadingIntroAsylum";
+
+    string currScene;
 
     [Header("Settings UI")]
     [SerializeField] GameObject settingsUI;
@@ -128,7 +132,11 @@ public class SettingsManager : MonoBehaviour
     }
     private void Update()
     {
-        if (SceneManager.GetActiveScene().name == title) //wont open menu in introscene
+        currScene = SceneManager.GetActiveScene().name;
+        if (currScene == title || currScene == lMansion || currScene == lAsylum)
+            return;
+
+        if (GameManager.instance != null && Time.timeScale == 0 && !isActive)
             return;
 
         if (Input.GetButtonDown("Cancel"))
