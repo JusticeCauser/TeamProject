@@ -67,12 +67,6 @@ public class ObjectiveManager : MonoBehaviour
         List<ObjectiveStats> rObjectivePool = new List<ObjectiveStats>();
         rObjectivePool.Add(new ObjectiveStats
         {
-            type = ObjectiveType.specificItem,
-            objectiveDescripton = "Steal the *insert item here*",
-            moneyBonus = 500
-        });
-        rObjectivePool.Add(new ObjectiveStats
-        {
             type = ObjectiveType.heatBelow,
             objectiveDescripton = "Keep HEAT below 60%",
             heatLimit = 60f,
@@ -85,12 +79,6 @@ public class ObjectiveManager : MonoBehaviour
             timeLimit = 300f,
             moneyBonus = 300
         });
-        //rObjectivePool.Add(new ObjectiveStats
-        //{
-        //    type = ObjectiveType.restrictedLoadout,
-        //    objectiveDescripton = "Complete the heist using only 2 gadgets",
-        //    moneyBonus = 75
-        //});
         rObjectivePool.Add(new ObjectiveStats
         {
             type = ObjectiveType.amount,
@@ -205,10 +193,6 @@ public class ObjectiveManager : MonoBehaviour
                 case ObjectiveType.undetected: //if player is not detected at all
                     objective.objectiveComplete = !detected;
                     break;
-
-                //case ObjectiveType.restrictedLoadout: //complete only using certain items
-                //    objective.objectiveComplete = !restrictedLoadoutFail;
-                //    break;
 
                 case ObjectiveType.amount:
                     objective.objectiveComplete = GameManager.instance.playerScript.totalValue >= 1500;

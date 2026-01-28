@@ -180,7 +180,7 @@ MonoBehaviour:
     goal is to collect $500 worth of valuables\nEnjoy your stay\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 88b2def75c558644a8c8d3b303fce472, type: 2}
-  m_sharedMaterial: {fileID: -113039300172971607, guid: 88b2def75c558644a8c8d3b303fce472, type: 2}
+  m_sharedMaterial: {fileID: 8216547676416235729, guid: 88b2def75c558644a8c8d3b303fce472, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -753,8 +753,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Press any key to Continue
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 67092aa8b330cdc4e85577c5983cc227, type: 2}
-  m_sharedMaterial: {fileID: 4771328003004906765, guid: 67092aa8b330cdc4e85577c5983cc227, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 67de65a0de4b1684c8f47b7fa562dad7, type: 2}
+  m_sharedMaterial: {fileID: -7137631194196379116, guid: 67de65a0de4b1684c8f47b7fa562dad7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -784,7 +784,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -969,7 +969,7 @@ MonoBehaviour:
   m_text: 'OBJECTIVES:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 88b2def75c558644a8c8d3b303fce472, type: 2}
-  m_sharedMaterial: {fileID: -113039300172971607, guid: 88b2def75c558644a8c8d3b303fce472, type: 2}
+  m_sharedMaterial: {fileID: 8216547676416235729, guid: 88b2def75c558644a8c8d3b303fce472, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

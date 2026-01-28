@@ -9,7 +9,7 @@ public class FadeManager : MonoBehaviour
 
     [Header("Fade Settings")]
     [SerializeField] float fadeDuration = 1f;
-    [SerializeField] Image fade;
+    public Image fade;
     private void Awake()
     {
         if(instance == null)
@@ -33,8 +33,10 @@ public class FadeManager : MonoBehaviour
 
     void onSceneLoad(Scene scene, LoadSceneMode mode)
     {
+        
         if(fade != null)
-            fade.color = new Color(0, 0, 0, 0);
+            fade.color = new Color(0, 0, 0, 1);
+        StartCoroutine(screenFadeFromBlack());
     }
     public IEnumerator screenFadeToBlack() 
     {
@@ -49,5 +51,23 @@ public class FadeManager : MonoBehaviour
         }
         fade.color = new Color(0, 0, 0, 1);
     }
-    
+    public IEnumerator screenFadeFromBlack()
+    {
+        float fadeTime = 0f;
+
+        while(fadeTime < fadeDuration)
+        {
+            fadeTime += Time.deltaTime;
+            float fadeColor = 1f - (fadeTime / fadeDuration); //fading from black
+            fade.color = new Color(0, 0, 0, fadeColor);
+            yield return null;
+        }
+        fade.color = new Color(0, 0, 0, 0);
+    }
+
+    public IEnumerator transition(string scene)
+    {
+        yield return StartCoroutine(screenFadeToBlack());
+        SceneManager.LoadScene(scene);
+    }
 }
