@@ -4833,10 +4833,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7375923787936052821, guid: 8388d34e82a499e478a88951c2ce53ff, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1324448693}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8388d34e82a499e478a88951c2ce53ff, type: 3}
 --- !u!114 &1324448686 stripped
 MonoBehaviour:
@@ -4893,68 +4890,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
---- !u!1 &1324448692 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7375923787936052821, guid: 8388d34e82a499e478a88951c2ce53ff, type: 3}
-  m_PrefabInstance: {fileID: 1324448685}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1324448693
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1324448692}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc543812945c99b43a1907d2fbda1bd2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GadgetDisplayUI
-  gadgetListText: {fileID: 0}
---- !u!1 &1331206955
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1331206957}
-  - component: {fileID: 1331206956}
-  m_Layer: 0
-  m_Name: gadgetInventory
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1331206956
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1331206955}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24b119aa2ec6271478d9b4a3fd85e205, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::gadgetInventory
---- !u!4 &1331206957
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1331206955}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.00002, y: 13.28767, z: 69.93705}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1354843894 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8635986957607881818, guid: 5334a0622e6f533478634147a1cb942c, type: 3}
@@ -45297,7 +45232,6 @@ SceneRoots:
   - {fileID: 431571715}
   - {fileID: 4520352933624977955}
   - {fileID: 1092730702}
-  - {fileID: 1331206957}
   - {fileID: 1404356464}
   - {fileID: 5281297316629460143}
   - {fileID: 469620605}

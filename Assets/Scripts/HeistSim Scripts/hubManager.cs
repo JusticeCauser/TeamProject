@@ -54,6 +54,24 @@ public class hubManager : MonoBehaviour
         originalLocalRotation = playerCamera.transform.localRotation;
     }
 
+    // work in progress loadout reset on exit to hub
+    //private void OnEnable()
+    //{
+    //    SceneManager.sceneLoaded += OnSceneLoaded;
+    //}
+
+    //private void OnDisable()
+    //{
+    //    SceneManager.sceneLoaded -= OnSceneLoaded;
+    //}
+
+    //private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    //{
+    //    // returning to hub, reset loadout selection
+    //    if(scene.name == "theHub")
+    //}
+
+
     // making exit a button
     //private void Update()
     //{
