@@ -7169,13 +7169,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 042a46239391a5b439aed9b8c73a6f85, type: 3}
     - target: {fileID: 7023172629523692256, guid: 29944858046d96c45b22b79a63e6d331, type: 3}
+      propertyPath: brokenGlass
+      value: 
+      objectReference: {fileID: 8300000, guid: 5e47582e8afe5cb4a8ad4269f142b66a, type: 3}
+    - target: {fileID: 7023172629523692256, guid: 29944858046d96c45b22b79a63e6d331, type: 3}
       propertyPath: ambientAudio
       value: 
       objectReference: {fileID: 1637254767}
     - target: {fileID: 7023172629523692256, guid: 29944858046d96c45b22b79a63e6d331, type: 3}
+      propertyPath: missionFailClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 3817f54a655d031498e51efb5de588ca, type: 3}
+    - target: {fileID: 7023172629523692256, guid: 29944858046d96c45b22b79a63e6d331, type: 3}
       propertyPath: menuButtonClicked
       value: 
       objectReference: {fileID: 8300000, guid: 41b94c437bb667e40993148887bdc48e, type: 3}
+    - target: {fileID: 7023172629523692256, guid: 29944858046d96c45b22b79a63e6d331, type: 3}
+      propertyPath: missionCompleteClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 3817f54a655d031498e51efb5de588ca, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10257,7 +10269,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 81b20ca1c1525a844bf90a66fe539480, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 04f6cd53e2853a14295b438be54fbb45, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

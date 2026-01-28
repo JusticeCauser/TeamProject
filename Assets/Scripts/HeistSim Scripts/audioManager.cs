@@ -34,6 +34,7 @@ public class audioManager : MonoBehaviour
     [SerializeField] AudioClip missionFailClip;
 
     [Header("---SFX Clips---")]
+    [SerializeField] AudioClip brokenGlass;
     [SerializeField] AudioClip bark;
     [SerializeField] AudioClip footsteps;
     [SerializeField] AudioClip menuButtonClicked;
