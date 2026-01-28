@@ -194,10 +194,6 @@ public class ObjectiveManager : MonoBehaviour
                     objective.objectiveComplete = !detected;
                     break;
 
-                //case ObjectiveType.restrictedLoadout: //complete only using certain items
-                //    objective.objectiveComplete = !restrictedLoadoutFail;
-                //    break;
-
                 case ObjectiveType.amount:
                     objective.objectiveComplete = GameManager.instance.playerScript.totalValue >= 1500;
                     break;
