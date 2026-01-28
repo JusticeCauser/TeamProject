@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,7 +15,9 @@ public class introButtons : MonoBehaviour
     }
     public void Play()
     {
-        SceneManager.LoadScene(theHub);
+        
+        StartCoroutine(FadeManager.instance.transition(theHub));
+        //SceneManager.LoadScene(theHub);
 
     }
     public void Quit()
