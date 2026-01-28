@@ -3823,8 +3823,8 @@ MonoBehaviour:
     \nKaitlynn Faltermeier - UI \xB7 Systems Design \xB7 Gameplay and Intergration
     Programming \xB7 Systems Programming\nLevi Miller - Environment Art \xB7 Hub
     & Gadget Systems \xB7 Systems Design \xB7 Gameplay and Integration Programming
-    \nJustice Causer - Environment and Level Design \xB7 Programming\nMelissa Bukovinnsky
-    - Enemy Implementations \xB7 Gameplay Programming \n\n\n***End Of Credits***"
+    \nJustice Causer - Level Design \xB7 Programming\nMelissa Bukovinnsky - Enemy
+    Implementations \xB7 Gameplay Programming \n\n\n***End Of Credits***"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -10177,6 +10177,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SettingsManager
   lobby: theHub
   title: IntroScene
+  lMansion: LoadingIntroMansion
+  lAsylum: LoadingIntroAsylum
   settingsUI: {fileID: 2599785406705130315}
   backButton: {fileID: 4264794411540568889}
   quitButton: {fileID: 995905513}
