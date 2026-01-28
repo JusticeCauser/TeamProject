@@ -202,6 +202,9 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0f;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+
+            if(FadeManager.instance != null && FadeManager.instance.fade != null)
+                FadeManager.instance.fade.color = new Color(0, 0, 0, 0);
         }
         if (InventoryManager.instance != null && InventoryManager.instance.inventoryUI != null)
             InventoryManager.instance.inventoryUI.SetActive(false);
@@ -254,12 +257,8 @@ public class GameManager : MonoBehaviour
         if (maxHeatTextFail != null && HeatManager.Instance != null) //shows only whole percentage, no decimals
             maxHeatTextFail.text = "Max Heat: " + HeatManager.Instance.maxHeatReached.ToString("F0") + "%";
 
-        //if (itemValueTextFail != null && playerScript != null)
-        //    itemValueTextFail.text = "Total value collected: $" + playerScript.totalValue;
-
         if (objectivesMissionCompletedText != null && ObjectiveManager.instance != null)
         {
-            //ObjectiveManager.instance.objectivesCompleted();
             ObjectiveManager.instance.showObjectivesCompleted();
             objectivesMissionFailedText.text = ObjectiveManager.instance.objectivesCompleteText;
         }
@@ -274,6 +273,9 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0f;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+
+            if (FadeManager.instance != null && FadeManager.instance.fade != null)
+                FadeManager.instance.fade.color = new Color(0, 0, 0, 0);
         }
 
         if (InventoryManager.instance != null && InventoryManager.instance.inventoryUI != null)

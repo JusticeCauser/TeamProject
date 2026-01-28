@@ -5,6 +5,7 @@ public class CreditsManager : MonoBehaviour
 
     [Header("---Credits---")]
     [SerializeField] GameObject creditsUI;
+    [SerializeField] ScrollManager scrollManager;
 
     public bool isActive = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -26,6 +27,8 @@ public class CreditsManager : MonoBehaviour
 
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+
+            
         }
     }
     public void closeCredits()
@@ -37,6 +40,9 @@ public class CreditsManager : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+
+        if(scrollManager  != null)
+            scrollManager.resetCredits();
 
     }
     // Update is called once per frame
