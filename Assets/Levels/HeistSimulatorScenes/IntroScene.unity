@@ -6698,7 +6698,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 999
   m_TargetDisplay: 0
 --- !u!1 &2069433308
 GameObject:
@@ -7151,7 +7151,7 @@ PrefabInstance:
     - target: {fileID: 7023172629523692256, guid: 29944858046d96c45b22b79a63e6d331, type: 3}
       propertyPath: slider
       value: 
-      objectReference: {fileID: 8300000, guid: 41b94c437bb667e40993148887bdc48e, type: 3}
+      objectReference: {fileID: 8300000, guid: 45d2b84802a51ca49b0ed1260d5fca63, type: 3}
     - target: {fileID: 7023172629523692256, guid: 29944858046d96c45b22b79a63e6d331, type: 3}
       propertyPath: sfxAudio
       value: 
@@ -7159,23 +7159,35 @@ PrefabInstance:
     - target: {fileID: 7023172629523692256, guid: 29944858046d96c45b22b79a63e6d331, type: 3}
       propertyPath: introClip
       value: 
-      objectReference: {fileID: 8300000, guid: 22ee3556073ea7b4ba98bf7566ecda14, type: 3}
+      objectReference: {fileID: 8300000, guid: 2e6a1d100f4098a459372d6cbb12cd8c, type: 3}
     - target: {fileID: 7023172629523692256, guid: 29944858046d96c45b22b79a63e6d331, type: 3}
       propertyPath: lobbyClip
       value: 
-      objectReference: {fileID: 8300000, guid: be27436d77677d545a9392241c4adbe8, type: 3}
+      objectReference: {fileID: 8300000, guid: d4d789912c18903479ac5b5e47bf36f7, type: 3}
     - target: {fileID: 7023172629523692256, guid: 29944858046d96c45b22b79a63e6d331, type: 3}
       propertyPath: asylumClip
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8300000, guid: 042a46239391a5b439aed9b8c73a6f85, type: 3}
+    - target: {fileID: 7023172629523692256, guid: 29944858046d96c45b22b79a63e6d331, type: 3}
+      propertyPath: brokenGlass
+      value: 
+      objectReference: {fileID: 8300000, guid: 5e47582e8afe5cb4a8ad4269f142b66a, type: 3}
     - target: {fileID: 7023172629523692256, guid: 29944858046d96c45b22b79a63e6d331, type: 3}
       propertyPath: ambientAudio
       value: 
       objectReference: {fileID: 1637254767}
     - target: {fileID: 7023172629523692256, guid: 29944858046d96c45b22b79a63e6d331, type: 3}
+      propertyPath: missionFailClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 3817f54a655d031498e51efb5de588ca, type: 3}
+    - target: {fileID: 7023172629523692256, guid: 29944858046d96c45b22b79a63e6d331, type: 3}
       propertyPath: menuButtonClicked
       value: 
       objectReference: {fileID: 8300000, guid: 41b94c437bb667e40993148887bdc48e, type: 3}
+    - target: {fileID: 7023172629523692256, guid: 29944858046d96c45b22b79a63e6d331, type: 3}
+      propertyPath: missionCompleteClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 3817f54a655d031498e51efb5de588ca, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10257,7 +10269,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 81b20ca1c1525a844bf90a66fe539480, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 04f6cd53e2853a14295b438be54fbb45, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10519,7 +10531,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a528b2ca8c65fc04bb845d53bb9c9bc6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 91ca4a469305e8c42a7bcb333ddf578e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

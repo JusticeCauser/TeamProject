@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System.Threading;
 
 public class audioManager : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class audioManager : MonoBehaviour
     private ambientType curr = ambientType.none;
     private string _sceneLoad = "";
 
+    [Header("Fade Settings")]
+    public float duration = .5f;
+    
 
     [Header("---Audio Settings---")]
     public float masterVolume = 1f;
@@ -30,6 +34,7 @@ public class audioManager : MonoBehaviour
     [SerializeField] AudioClip missionFailClip;
 
     [Header("---SFX Clips---")]
+    [SerializeField] AudioClip brokenGlass;
     [SerializeField] AudioClip bark;
     [SerializeField] AudioClip footsteps;
     [SerializeField] AudioClip menuButtonClicked;
@@ -137,9 +142,7 @@ public class audioManager : MonoBehaviour
         }
 
         ambientAudio.loop = true;
-        setVolume();
-        ambientAudio.Play();
-
+        StartCoroutine(fadeAudios());
     }
 
     private void OnLoad(Scene scene, LoadSceneMode mode)
@@ -175,6 +178,56 @@ public class audioManager : MonoBehaviour
         }
 
     }
+    public void audioFadeOnTransition()
+    {
+        if(ambientAudio == null) 
+            return;
 
+        StopCoroutine("fadeAudios");
+        StopCoroutine("fadeAudioIn");
+        StartCoroutine(fadeAudioOut());
+    }
+    IEnumerator fadeAudioOut()
+    {
+        float timer = 0f;
+        float startVol = ambientAudio.volume;
+
+        if(ambientAudio == null)
+            yield break;
+
+        while(timer < duration)
+        {
+            timer += Time.unscaledDeltaTime;
+            ambientAudio.volume = Mathf.Lerp(startVol, 0, timer /  duration);
+            yield return null;
+        }
+
+        ambientAudio.Stop();
+    }
+
+    IEnumerator fadeAudioIn()
+    {
+        float timer = 0f;
+        float setVolume = SettingsManager.instance.masterVolume * SettingsManager.instance.ambientVolume;
+
+        ambientAudio.volume = 0f;
+        ambientAudio.Play();
+
+        if(ambientAudio == null)
+            yield break;
+
+        while(timer < duration)
+        {
+            timer += Time.unscaledDeltaTime;
+            ambientAudio.volume = Mathf.Lerp(0f, setVolume, timer / duration);
+            yield return null;
+        }
+    }
+
+    IEnumerator fadeAudios()
+    {
+        yield return StartCoroutine(fadeAudioOut());
+        yield return StartCoroutine(fadeAudioIn());
+    }
 
 }
