@@ -39,6 +39,8 @@ public class audioManager : MonoBehaviour
     [SerializeField] AudioClip footsteps;
     [SerializeField] AudioClip menuButtonClicked;
     [SerializeField] AudioClip slider;
+
+    bool soundPlayed;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
@@ -57,10 +59,7 @@ public class audioManager : MonoBehaviour
             return;
         }
     }
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnLoad;
-    }
+    
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnLoad;
@@ -88,12 +87,22 @@ public class audioManager : MonoBehaviour
     }
     public void playMissionCompleteSound()
     {
+        if (soundPlayed)
+            return;
+
+        soundPlayed = true;
+
         if(sfxAudio  != null && missionCompleteClip != null)
             sfxAudio.PlayOneShot(missionCompleteClip);
     }
     public void playMissionFailSound()
     {
-        if(sfxAudio != null && missionFailClip != null)
+        if (soundPlayed)
+            return;
+
+        soundPlayed = true;
+
+        if (sfxAudio != null && missionFailClip != null)
             sfxAudio.PlayOneShot(missionFailClip);
     }
     public void setVolume()
@@ -147,6 +156,8 @@ public class audioManager : MonoBehaviour
 
     private void OnLoad(Scene scene, LoadSceneMode mode)
     {
+        soundPlayed = false;
+
         if (scene.name == _sceneLoad) return;
 
         _sceneLoad = scene.name;
