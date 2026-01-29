@@ -61,7 +61,8 @@ public class EnemyAI_Base : MonoBehaviour
     protected int destHidingSpots;
     bool heardAgain;
     public bool radioIn;
-
+    public float radioInTimer;
+    public float radioInDuration = 2f;
     public enum guardState
     {
         Idle,
@@ -235,8 +236,14 @@ public class EnemyAI_Base : MonoBehaviour
             lastAlertPosition = playerTransform.position;
             if (!radioIn && GameManager.instance != null)
             {
+                radioInTimer += Time.deltaTime;
                 onRadioIn(lastAlertPosition);
                 radioIn = true;
+                if(radioInTimer >= radioInDuration)
+                {
+                    radioIn = false;
+                }
+                
             }
             state = guardState.Chase;
             return;
@@ -281,8 +288,13 @@ public class EnemyAI_Base : MonoBehaviour
             lastAlertPosition = playerTransform.position;
             if (!radioIn && GameManager.instance != null)
             {
+                radioInTimer += Time.deltaTime;
                 onRadioIn(lastAlertPosition);
                 radioIn = true;
+                if (radioInTimer >= radioInDuration)
+                {
+                    radioIn = false;
+                }
             }
             state = guardState.Chase;
             return;
@@ -338,13 +350,22 @@ public class EnemyAI_Base : MonoBehaviour
             state = guardState.Chase;
             suspiciousTimer = 0f;
             return;
+            if (radioInTimer >= radioInDuration)
+            {
+                radioIn = false;
+            }
         }
 
         lastAlertPosition = playerTransform.position;
         if (!radioIn && GameManager.instance != null)
         {
+            radioInTimer += Time.deltaTime;
             GameManager.instance.alertSys.radioIn(lastAlertPosition);
             radioIn = true;
+            if (radioInTimer >= radioInDuration)
+            {
+                radioIn = false;
+            }
         }
 
         agent.isStopped = true;
@@ -411,11 +432,17 @@ public class EnemyAI_Base : MonoBehaviour
 
     void ChaseBehavior()
     {
+        agent.isStopped = false;
         lastAlertPosition = playerTransform.transform.position;
         if (!radioIn && GameManager.instance != null)
         {
+            radioInTimer += Time.deltaTime;
             GameManager.instance.alertSys.radioIn(lastAlertPosition);
             radioIn = true;
+            if (radioInTimer >= radioInDuration)
+            {
+                radioIn = false;
+            }
         }
 
         if (!canSeePlayer())
@@ -448,8 +475,13 @@ public class EnemyAI_Base : MonoBehaviour
             {
                 if (!radioIn && GameManager.instance != null)
                 {
+                    radioInTimer += Time.deltaTime;
                     GameManager.instance.alertSys.radioIn(playerPos);
                     radioIn = true;
+                    if (radioInTimer >= radioInDuration)
+                    {
+                        radioIn = false;
+                    }
                 }
                 agent.SetDestination(playerPos);
 
@@ -481,8 +513,13 @@ public class EnemyAI_Base : MonoBehaviour
         float noiseLevel = playerStateManager.noiseLevelChecker();
         if (!radioIn && GameManager.instance != null)
         {
+            radioInTimer += Time.deltaTime;
             GameManager.instance.alertSys.radioIn(lastAlertPosition);
             radioIn = true;
+            if (radioInTimer >= radioInDuration)
+            {
+                radioIn = false;
+            }
         }
 
         if (noiseLevel <= 0)
