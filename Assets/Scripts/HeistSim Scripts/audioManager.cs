@@ -183,9 +183,23 @@ public class audioManager : MonoBehaviour
         if(ambientAudio == null) 
             return;
 
-        StopCoroutine("fadeAudios");
-        StopCoroutine("fadeAudioIn");
+        StopAllCoroutines();
         StartCoroutine(fadeAudioOut());
+    }
+
+    public void stopAudio()
+    {
+        if(ambientAudio == null)
+            return;
+
+        StopAllCoroutines();
+        ambientAudio.Stop();
+    }
+    public void stopAll()
+    {
+        if(sfxAudio  == null)
+            return;
+        sfxAudio.Stop();
     }
     IEnumerator fadeAudioOut()
     {

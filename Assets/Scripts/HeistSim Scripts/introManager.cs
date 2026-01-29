@@ -15,7 +15,9 @@ public class introButtons : MonoBehaviour
     }
     public void Play()
     {
-        
+        if (audioManager.instance != null)
+            audioManager.instance.audioFadeOnTransition();
+
         StartCoroutine(FadeManager.instance.transition(theHub));
         //SceneManager.LoadScene(theHub);
 
