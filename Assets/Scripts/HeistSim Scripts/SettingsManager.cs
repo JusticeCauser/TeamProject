@@ -45,7 +45,7 @@ public class SettingsManager : MonoBehaviour
     float timeScaleOrig;
     
     public bool isActive = false;
-    
+    bool isSliding;
 
     private void Awake()
     {
@@ -91,7 +91,7 @@ public class SettingsManager : MonoBehaviour
         if (sensitivitySlide != null)
         {
             sensitivitySlide.SetValueWithoutNotify(sensitivity);
-            sensitivitySlide.onValueChanged.AddListener(sliderSound);
+            //sensitivitySlide.onValueChanged.AddListener(sliderSound);
             sensitivitySlide.onValueChanged.AddListener(setSensitivity);
         }
 
@@ -274,15 +274,24 @@ public class SettingsManager : MonoBehaviour
         if (audioManager.instance != null)
             audioManager.instance.playButtonSound();
     }
-    void sliderSound(float value)
+    public void sliderSound(float value)
     {
-        if(audioManager.instance != null)
-            audioManager.instance.playSliderSound(value);
+        isSliding = true;
     }
     void toggleSound(bool value)
     {
         if(audioManager.instance != null)
             audioManager.instance.playButtonSound();
+    }
+    public void sliderReleased()
+    {
+        if (!isSliding)
+            return;
+
+        if (audioManager.instance != null)
+            audioManager.instance.playSliderSound(1f);
+
+        isSliding = false;
     }
     public void quitToLobby()
     {
