@@ -677,6 +677,7 @@ Transform:
   - {fileID: 2740646275557024609}
   - {fileID: 4316969464265740190}
   - {fileID: 7794468237459913554}
+  - {fileID: 7555322560902138978}
   m_Father: {fileID: 1160619033441727841}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2247299361321192982
@@ -785,9 +786,7 @@ GameObject:
   - component: {fileID: 5503150100206073096}
   - component: {fileID: -2781702808416064231}
   - component: {fileID: 1611480114841453438}
-  - component: {fileID: 7004407898400090228}
   - component: {fileID: 288657896101805849}
-  - component: {fileID: 9102332185471755798}
   - component: {fileID: 296182221621720050}
   - component: {fileID: 5711260115620117243}
   - component: {fileID: 3251518350968443652}
@@ -824,7 +823,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2623580852539053723}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8851ea7d2de7944e8fd608ac5acb43a, type: 3}
   m_Name: 
@@ -851,19 +850,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7004407898400090228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2623580852539053723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddeb765ba73b7fd4db0ddee7c4b3e11c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Draggable
-  prompt: {fileID: 0}
 --- !u!114 &288657896101805849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -879,7 +865,13 @@ MonoBehaviour:
   model: {fileID: 5073719552976046676}
   agent: {fileID: 296182221621720050}
   anim: {fileID: 1611480114841453438}
-  patrolPoints: []
+  hidingSpotMask:
+    serializedVersion: 2
+    m_Bits: 0
+  patrolPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   animTranSpeed: 0
   faceTargetSpeed: 0
   FOV: 70
@@ -891,10 +883,12 @@ MonoBehaviour:
   chaseSpeed: 5
   baseHearing: 5
   suspiciousMax: 3
-  hidingspots: []
+  sweepSpeed: 0
+  hideSearchRadius: 0
   isBeingDragged: 0
   dragAttachPoint: {fileID: 0}
   alertedTimer: 0
+  radioIn: 0
   state: 0
   previousState: 0
   playerInHearingRange: 0
@@ -903,21 +897,7 @@ MonoBehaviour:
   type: 0
   stunDuration: 1
   tazeCooldown: 5
-  tazeDist: 0
---- !u!114 &9102332185471755798
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2623580852539053723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b402cb4a96827b4ca1bb328f0fc245c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::KnockedOut
-  prompt: {fileID: 0}
-  koDuration: 15
+  tazeDist: 8
 --- !u!195 &296182221621720050
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1617,13 +1597,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6044521760419545436}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: 0.32127193, z: -0, w: 0.94698703}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5503150100206073096}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 37.48, z: 0}
 --- !u!33 &5947613028815681125
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1651,7 +1631,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 12
+  m_Radius: 15
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2868901549248467011
 MonoBehaviour:
@@ -2301,6 +2281,90 @@ Transform:
   m_Children: []
   m_Father: {fileID: 516425027930932615}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7930465803247371555
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7555322560902138978}
+  - component: {fileID: 5035544064758535527}
+  - component: {fileID: 1806752952308112736}
+  - component: {fileID: 313370516928611410}
+  m_Layer: 0
+  m_Name: Knockout&Drag Trigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7555322560902138978
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7930465803247371555}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.35, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5465103828934948185}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &5035544064758535527
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7930465803247371555}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.35183457
+  m_Height: 2.0820785
+  m_Direction: 0
+  m_Center: {x: 0.27722263, y: 0.09079176, z: 0.2676766}
+--- !u!114 &1806752952308112736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7930465803247371555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b402cb4a96827b4ca1bb328f0fc245c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KnockedOut
+  prompt: {fileID: 0}
+  koDuration: 0
+--- !u!114 &313370516928611410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7930465803247371555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddeb765ba73b7fd4db0ddee7c4b3e11c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Draggable
+  prompt: {fileID: 0}
 --- !u!1 &8100658658883686975
 GameObject:
   m_ObjectHideFlags: 0

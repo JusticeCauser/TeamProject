@@ -34,7 +34,7 @@ public class Draggable : MonoBehaviour
 
         if (!canDrag) return;
 
-        if(Input.GetKeyDown(KeyCode.E))
+        if(InputManager.instance.interactKeyPressed())
         {
             if (!player.isDragging)
                 player.startDrag(enemy);
