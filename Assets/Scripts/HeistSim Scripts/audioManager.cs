@@ -93,7 +93,7 @@ public class audioManager : MonoBehaviour
         soundPlayed = true;
 
         if(sfxAudio  != null && missionCompleteClip != null)
-            sfxAudio.PlayOneShot(missionCompleteClip);
+            sfxAudio.PlayOneShot(missionCompleteClip, 0.7f);
     }
     public void playMissionFailSound()
     {
@@ -103,7 +103,7 @@ public class audioManager : MonoBehaviour
         soundPlayed = true;
 
         if (sfxAudio != null && missionFailClip != null)
-            sfxAudio.PlayOneShot(missionFailClip);
+            sfxAudio.PlayOneShot(missionFailClip, 0.7f);
     }
     public void setVolume()
     {
@@ -172,12 +172,12 @@ public class audioManager : MonoBehaviour
                 ambientAudioType(ambientType.lobby);
                 break;
 
-            case "LoadingIntroAsylum":
+            //case "LoadingIntroAsylum":
             case "Asylum":
                 ambientAudioType(ambientType.asylum);
                 break;
 
-            case "LoadingIntroMansion":
+            //case "LoadingIntroMansion":
             case "Mansion":
                 ambientAudioType(ambientType.mansion);
                 break;
