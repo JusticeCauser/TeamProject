@@ -289,8 +289,8 @@ MonoBehaviour:
   inventoryUI: {fileID: 83957438}
   inventorySlot: {fileID: 392708248271667975, guid: 7189b9f0b7f33e14988155b579b418ff, type: 3}
   inventoryBar: {fileID: 1090152853}
-  selectedSlotColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  regularColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedSlotColor: {r: 1, g: 0.95602494, b: 0.4481132, a: 1}
+  regularColor: {r: 0.7817411, g: 1, b: 0.3537736, a: 1}
 --- !u!4 &52221027
 Transform:
   m_ObjectHideFlags: 0
@@ -5604,17 +5604,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1527390716}
   m_CullTransparentMesh: 1
---- !u!114 &1637254765 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7023172629523692256, guid: 29944858046d96c45b22b79a63e6d331, type: 3}
-  m_PrefabInstance: {fileID: 82771186078093463}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 592b3963712e03340a4c46e54cedee26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::audioManager
 --- !u!82 &1637254766 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 3497859466123300397, guid: 29944858046d96c45b22b79a63e6d331, type: 3}
@@ -7163,7 +7152,7 @@ PrefabInstance:
     - target: {fileID: 7023172629523692256, guid: 29944858046d96c45b22b79a63e6d331, type: 3}
       propertyPath: lobbyClip
       value: 
-      objectReference: {fileID: 8300000, guid: d4d789912c18903479ac5b5e47bf36f7, type: 3}
+      objectReference: {fileID: 8300000, guid: be27436d77677d545a9392241c4adbe8, type: 3}
     - target: {fileID: 7023172629523692256, guid: 29944858046d96c45b22b79a63e6d331, type: 3}
       propertyPath: asylumClip
       value: 
@@ -8609,7 +8598,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 6840849659767276615}
         m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
         m_MethodName: setAmbientVolume
         m_Mode: 4
@@ -8618,6 +8607,18 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 1
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6840849659767276615}
+        m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
+        m_MethodName: sliderSound
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -9310,6 +9311,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2717094670999814520}
   - component: {fileID: 7405785409681237696}
+  - component: {fileID: 7405785409681237697}
   m_Layer: 5
   m_Name: SFX Volume
   m_TagString: Untagged
@@ -10604,7 +10606,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 6840849659767276615}
         m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
         m_MethodName: setSFXVolume
         m_Mode: 4
@@ -10616,6 +10618,47 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 6840849659767276615}
+        m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
+        m_MethodName: sliderSound
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7405785409681237697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4952378607057320245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventTrigger
+  m_Delegates:
+  - eventID: 14
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6840849659767276615}
+          m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
+          m_MethodName: sliderReleased
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &7415252347242551150
 GameObject:
   m_ObjectHideFlags: 0
@@ -10881,15 +10924,27 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1637254765}
-        m_TargetAssemblyTypeName: audioManager, Assembly-CSharp
-        m_MethodName: setAmbientVolume
+      - m_Target: {fileID: 6840849659767276615}
+        m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
+        m_MethodName: setMasterVolume
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6840849659767276615}
+        m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
+        m_MethodName: sliderSound
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -11089,6 +11144,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2567669625036813026}
   - component: {fileID: 7963738592587151913}
+  - component: {fileID: 8278163670498629797}
   m_Layer: 5
   m_Name: Master Volume
   m_TagString: Untagged
@@ -11096,6 +11152,35 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8278163670498629797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8278163670498629796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventTrigger
+  m_Delegates:
+  - eventID: 14
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6840849659767276615}
+          m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
+          m_MethodName: sliderReleased
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!224 &8339820621056629602
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11340,6 +11425,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4149157010573531760}
   - component: {fileID: 3568491633158001088}
+  - component: {fileID: 9216816619664865995}
   m_Layer: 5
   m_Name: Ambient Volume
   m_TagString: Untagged
@@ -11347,6 +11433,35 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &9216816619664865995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9216816619664865994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventTrigger
+  m_Delegates:
+  - eventID: 14
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6840849659767276615}
+          m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
+          m_MethodName: sliderReleased
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
