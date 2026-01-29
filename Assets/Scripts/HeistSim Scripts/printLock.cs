@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using UnityEngine.AI;
 public class printLock : MonoBehaviour
 {
     [SerializeField] TMP_Text promptText;
@@ -8,6 +9,15 @@ public class printLock : MonoBehaviour
 
     private bool playerInRange = false;
     private bool unlocked = false;
+
+    //addition to prevent enemies walking through door when locked
+    [SerializeField] private NavMeshObstacle doorBlocked;
+
+    private void Awake()
+    {
+        if (doorBlocked == null)
+            doorBlocked = GetComponentInChildren<NavMeshObstacle>();
+    }
     void Start()
     {
         if (promptText != null)
@@ -27,6 +37,9 @@ public class printLock : MonoBehaviour
         {
             // success
             unlocked = true;
+
+            if (doorBlocked != null)
+                doorBlocked.enabled = false;
 
             FeedbackUI.instance?.ShowFeedback("Fingerprint applied!");
 

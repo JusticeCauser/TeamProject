@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using UnityEngine.AI;
 
 public class interactableDoor : MonoBehaviour
 {
@@ -14,13 +15,20 @@ public class interactableDoor : MonoBehaviour
     [SerializeField] TMP_Text promptText;
     [SerializeField] float lookDotThreshold = 0.7f;
 
+    //additions to fix going through doors
+    [SerializeField] private NavMeshObstacle doorBlocked;
+
     private bool playerInRange = false;
 
+    private void Awake()
+    {
+        if (doorBlocked == null)
+            doorBlocked = GetComponentInChildren<NavMeshObstacle>();
+    }
     private void Start()
     {
         if (promptText != null)
             promptText.gameObject.SetActive(false);
-
     }
 
     private void Update()
@@ -71,6 +79,9 @@ public class interactableDoor : MonoBehaviour
     void UnlockDoor()
     {
         isLocked = false;
+
+        if(doorBlocked != null)
+            doorBlocked.enabled = false;
 
         FeedbackUI.instance?.ShowFeedback("Lock Picked!");
 

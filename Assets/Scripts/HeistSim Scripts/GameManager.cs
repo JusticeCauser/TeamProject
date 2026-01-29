@@ -236,6 +236,7 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator missionFailWithScreenFade(fail reason)
     {
+
         if (FadeManager.instance != null)
             yield return StartCoroutine(FadeManager.instance.screenFadeToBlack());
 
@@ -285,10 +286,19 @@ public class GameManager : MonoBehaviour
     }
     public void quitToLobby()
     {
-        SceneManager.LoadScene("theHub");
+        if(audioManager.instance != null)
+            audioManager.instance.stopAll();
+
+        if (audioManager.instance != null)
+            audioManager.instance.audioFadeOnTransition();
+
+        StartCoroutine(FadeManager.instance.transition("theHub"));
     }
     public void retry()
     {
+        if (audioManager.instance != null)
+            audioManager.instance.stopAll();
+
         if (ObjectiveManager.instance != null)
             ObjectiveManager.instance.resetObjectives();
 

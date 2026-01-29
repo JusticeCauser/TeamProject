@@ -30,7 +30,7 @@ public class KnockedOut : MonoBehaviour
     {
         if (!playerInRange || player == null || enemy == null) return;
 
-        if(Input.GetKeyDown(KeyCode.E))
+        if(InputManager.instance.interactKeyPressed())
         {
             enemy.takeKnockOut(koDuration);
 

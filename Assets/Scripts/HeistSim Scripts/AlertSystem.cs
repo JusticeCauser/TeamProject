@@ -1,9 +1,10 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class AlertSystem : MonoBehaviour
 {
     [SerializeField] LayerMask enemyMask;
-
+    [SerializeField] HeatManager heatManager;
     public void raiseBarkAlert(Vector3 position, Vector3 forward, float radius)
     {
         Collider[] hits = Physics.OverlapSphere(position, radius, enemyMask);
@@ -27,7 +28,7 @@ public class AlertSystem : MonoBehaviour
             HeatManager.Instance.AddHeat(10f);
         }
 
-        float radius = 20f;
+        float radius = 35f;
 
         Collider[] hits = Physics.OverlapSphere(position, radius, enemyMask);
 
@@ -48,7 +49,7 @@ public class AlertSystem : MonoBehaviour
 
     public void raiseRecall(Vector3 position)
     {
-        float radius = 20f;
+        float radius = 35f;
 
         Collider[] hits = Physics.OverlapSphere(position, radius, enemyMask);
 
@@ -62,4 +63,6 @@ public class AlertSystem : MonoBehaviour
             }
         }
     }
+    
+ 
 }

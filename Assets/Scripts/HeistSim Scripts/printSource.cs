@@ -47,6 +47,9 @@ public class printSource : MonoBehaviour
 
         printManager.instance.hasFingerprint = true;
 
+        if (printManager.instance != null)
+            printManager.instance.hasFingerprint = true;
+
         if (promptText != null)
             promptText.gameObject.SetActive(false);
     }
