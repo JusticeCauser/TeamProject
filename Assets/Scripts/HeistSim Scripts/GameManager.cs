@@ -179,7 +179,15 @@ public class GameManager : MonoBehaviour
             else
                 objectivesBonusText.text = "Objective Bonus: $0";
         }
+        if (LootManager.instance != null && playerScript != null)
+        {
+            int totalEarnings = playerScript.totalValue;
 
+            if (ObjectiveManager.instance != null)
+                totalEarnings += ObjectiveManager.instance.GetTotalMoneyBonus();
+
+            LootManager.instance.addCash(totalEarnings);
+        }
         if (maxHeatTextWin != null && HeatManager.Instance != null) //shows only whole percentage, no decimals
             maxHeatTextWin.text = "Max Heat: " + HeatManager.Instance.maxHeatReached.ToString("F0") + "%";
 
@@ -313,8 +321,8 @@ public class GameManager : MonoBehaviour
         else
             SceneManager.LoadScene(currScene);
 
-        //string map = SceneManager.GetActiveScene().name;
-        //SceneManager.LoadScene(map);
+        if (playerScript != null)
+            playerScript.resetInventory();
     }
 
     bool ShouldShowHeatUI(string sceneName)
