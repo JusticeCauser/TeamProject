@@ -51,6 +51,7 @@ MonoBehaviour:
   doorMesh: {fileID: 1036717481787866088}
   promptText: {fileID: 0}
   lookDotThreshold: 0.7
+  doorBlocked: {fileID: 0}
 --- !u!65 &3577445773429805873
 BoxCollider:
   m_ObjectHideFlags: 0

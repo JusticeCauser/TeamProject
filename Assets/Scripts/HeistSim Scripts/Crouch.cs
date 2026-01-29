@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem.Controls;
 
 public class Crouch : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class Crouch : MonoBehaviour
     
 
     float currentHeight;
+
+    Vector3 centerHeight;
 
     bool isCrouching;
     public bool IsCrouching => isCrouching;
@@ -32,6 +35,7 @@ public class Crouch : MonoBehaviour
             standHeight = controller.height;
 
         currentHeight = standHeight;
+        centerHeight = controller.center;
     }
 
     // Update is called once per frame
@@ -74,8 +78,14 @@ public class Crouch : MonoBehaviour
     {
         float targetHeight = isCrouching ? crouchHeight : standHeight;
         currentHeight = Mathf.Lerp(currentHeight, targetHeight, Time.deltaTime * crouchTransitionSpeed);
+        
+        controller.height = currentHeight; ;
 
-        controller.height = currentHeight;
+        float diff = currentHeight - standHeight;
+
+        Vector3 newCenter = centerHeight;
+        newCenter.y = centerHeight.y - (diff / 2f);
+        controller.center = newCenter;
     }
     bool canStand()
     {

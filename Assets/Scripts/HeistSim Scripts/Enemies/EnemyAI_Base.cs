@@ -201,7 +201,7 @@ public class EnemyAI_Base : MonoBehaviour
     public void takeKnockOut(float duration)
     {
         if (state == guardState.KnockedOut) return;
-
+        //crandom comment 1
         StopAllCoroutines();
         StartCoroutine(knockedOut(duration));
     }

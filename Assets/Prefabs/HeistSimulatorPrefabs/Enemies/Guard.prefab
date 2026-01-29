@@ -2654,8 +2654,6 @@ GameObject:
   - component: {fileID: 1593503650104245101}
   - component: {fileID: 8187027384446995079}
   - component: {fileID: 2900396943477232013}
-  - component: {fileID: 5759699976505692447}
-  - component: {fileID: 7108240186646603177}
   - component: {fileID: 1620051845612386489}
   - component: {fileID: 5652169591243270465}
   - component: {fileID: 9052995952282454100}
@@ -2722,33 +2720,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5759699976505692447
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8946982105166556908}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b402cb4a96827b4ca1bb328f0fc245c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::KnockedOut
-  prompt: {fileID: 0}
-  koDuration: 15
---- !u!114 &7108240186646603177
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8946982105166556908}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddeb765ba73b7fd4db0ddee7c4b3e11c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Draggable
-  prompt: {fileID: 0}
 --- !u!114 &1620051845612386489
 MonoBehaviour:
   m_ObjectHideFlags: 0

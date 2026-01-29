@@ -1799,9 +1799,7 @@ GameObject:
   - component: {fileID: 5920859827935430515}
   - component: {fileID: -1206613941237951913}
   - component: {fileID: 1352690218504519063}
-  - component: {fileID: 3985574270749249643}
   - component: {fileID: 8560217863885761600}
-  - component: {fileID: 1511237547630423929}
   - component: {fileID: 6087644554496635041}
   - component: {fileID: 2757131192642316832}
   - component: {fileID: 3542368442975973928}
@@ -1865,19 +1863,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &3985574270749249643
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6066303640598105711}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddeb765ba73b7fd4db0ddee7c4b3e11c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Draggable
-  prompt: {fileID: 0}
 --- !u!114 &8560217863885761600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1920,20 +1905,6 @@ MonoBehaviour:
   type: 0
   dog: {fileID: 0}
   dog2: {fileID: 0}
---- !u!114 &1511237547630423929
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6066303640598105711}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b402cb4a96827b4ca1bb328f0fc245c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::KnockedOut
-  prompt: {fileID: 0}
-  koDuration: 15
 --- !u!195 &6087644554496635041
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -1556,7 +1556,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3522898192431905872}
   - component: {fileID: 6921169198345182609}
-  - component: {fileID: 7438063852946917729}
   m_Layer: 0
   m_Name: CaptureTrigger
   m_TagString: Untagged
@@ -1600,18 +1599,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7438063852946917729
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5864632413092853648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81a2eeba0ecbf1f4795cd5c52e3706ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CaptureTrigger
 --- !u!1 &6054886499779004797
 GameObject:
   m_ObjectHideFlags: 0
@@ -2233,7 +2220,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8452470355179082392}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8851ea7d2de7944e8fd608ac5acb43a, type: 3}
   m_Name: 
@@ -2283,6 +2270,7 @@ MonoBehaviour:
   roamDist: 2
   roamPauseTime: 5
   alertDur: 5
+  biteDur: 0
   roamSpeed: 4
   chaseSpeed: 10
   animTranSpeed: 2
@@ -2338,10 +2326,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.46130043
+  m_Radius: 0.26562852
   m_Height: 1.5
   m_Direction: 2
-  m_Center: {x: 0, y: 0.3613004, z: 0}
+  m_Center: {x: 0.029491127, y: 0.4689868, z: 0}
 --- !u!135 &2714127091765916227
 SphereCollider:
   m_ObjectHideFlags: 0
