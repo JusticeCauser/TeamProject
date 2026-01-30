@@ -30,8 +30,6 @@ public class CaptureTrigger : MonoBehaviour
 
         if (enemyParent != null)
             enemyParent.Capture(other.gameObject);
-        if (enemyDog != null)
-            enemyDog.onback(other.gameObject);
         //if (enemyParent != null && player.isHiding)
         //{
         //    enemyParent.hideCapture(other.gameObject);

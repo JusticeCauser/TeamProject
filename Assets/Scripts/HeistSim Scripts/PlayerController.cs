@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
 
     int jumpCount;
     int HPOrig;
+    int speedOg;
     public int itemListPos;
 
     public bool hasPrimaryObjective = false;
@@ -66,6 +67,7 @@ public class PlayerController : MonoBehaviour
     {
         instance = this;
         crouch = GetComponent<Crouch>();
+        speedOg = speed;
     }
     // Update is called once per frame
     void Update()
@@ -138,7 +140,8 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Sprint")) // if pressing sprint
         {
-            speed *= sprintMod;
+            speedOg = speed;
+            speed = speedOg * sprintMod;
             isSprinting = true;
 
             if (ObjectiveManager.instance != null)
@@ -146,7 +149,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (Input.GetButtonUp("Sprint")) //if let go
         {
-            speed /= sprintMod;
+            speed = speedOg;
             isSprinting = false;
         }
     }
