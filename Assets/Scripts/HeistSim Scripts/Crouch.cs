@@ -77,15 +77,20 @@ public class Crouch : MonoBehaviour
     void updateHeight()
     {
         float targetHeight = isCrouching ? crouchHeight : standHeight;
-        currentHeight = Mathf.MoveTowards(currentHeight, targetHeight, Time.deltaTime * crouchTransitionSpeed);
         
+        currentHeight = Mathf.MoveTowards(currentHeight, targetHeight, crouchTransitionSpeed * Time.deltaTime);
+
+        float prevHeight = controller.height;
+
         controller.height = currentHeight; ;
 
-        float diff = currentHeight - standHeight;
+        if(!isCrouching && currentHeight > prevHeight)
+        {
+            float diff = currentHeight - prevHeight;
 
-        Vector3 newCenter = centerHeight;
-        newCenter.y = centerHeight.y - (diff / 2f);
-        controller.center = newCenter;
+            
+            transform.position += Vector3.up * (diff * 0.5f);
+        }
     }
     bool canStand()
     {
