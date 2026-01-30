@@ -32,74 +32,6 @@ Transform:
   - {fileID: 5345422378836872074}
   m_Father: {fileID: 8700934462598107661}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &70105572096490385
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3012520431578699887}
-  - component: {fileID: 5975889306356313302}
-  - component: {fileID: 5153574429524008348}
-  m_Layer: 0
-  m_Name: CaptureTrigger (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3012520431578699887
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 70105572096490385}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.7360248, y: 0.025588373, z: -0.005097565, w: 0.6764516}
-  m_LocalPosition: {x: 0.136, y: -0.308, z: 0.335}
-  m_LocalScale: {x: 1, y: 1, z: 0.999989}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3470042771666052335}
-  m_LocalEulerAnglesHint: {x: -95.432, y: -26.421997, z: 28.084}
---- !u!136 &5975889306356313302
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 70105572096490385}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.30374607
-  m_Height: 0.7778695
-  m_Direction: 2
-  m_Center: {x: -0.19549708, y: 0.0007619827, z: 0.11107674}
---- !u!114 &5153574429524008348
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 70105572096490385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81a2eeba0ecbf1f4795cd5c52e3706ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CaptureTrigger
 --- !u!1 &112328531786834787
 GameObject:
   m_ObjectHideFlags: 0
@@ -809,7 +741,6 @@ Transform:
   m_LocalScale: {x: 1.000001, y: 1, z: 1.0000117}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3012520431578699887}
   - {fileID: 3203283189428498451}
   - {fileID: 7994280600737006033}
   - {fileID: 7655067049577280536}
@@ -2184,6 +2115,7 @@ GameObject:
   - component: {fileID: 411081526519489866}
   - component: {fileID: 2714127091765916227}
   - component: {fileID: 2110225529062486310}
+  - component: {fileID: 6058832650873935804}
   m_Layer: 6
   m_Name: Dog
   m_TagString: Enemy
@@ -2326,10 +2258,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.26562852
+  m_Radius: 0.40204048
   m_Height: 1.5
   m_Direction: 2
-  m_Center: {x: 0.029491127, y: 0.4689868, z: 0}
+  m_Center: {x: 0.019571304, y: 0.5, z: 0}
 --- !u!135 &2714127091765916227
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2373,6 +2305,29 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!136 &6058832650873935804
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8452470355179082392}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 4
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &8478683858193784994
 GameObject:
   m_ObjectHideFlags: 0

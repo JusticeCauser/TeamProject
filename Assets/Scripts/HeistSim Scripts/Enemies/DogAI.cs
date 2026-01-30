@@ -280,15 +280,6 @@ public class DogAI : MonoBehaviour
             player.isBit(0.35f, biteDur);
         }
     }
-    public void onback(GameObject playerObj)
-    {
-        if (Time.timeScale == 0f) return;
-
-        PlayerController player = playerObj.GetComponent<PlayerController>();
-        if (player != null && player.isHiding) return;
-
-        GameManager.instance.missionFail(GameManager.fail.captured);
-    }
     void AlertedBehavior()
     {
         if (canSeePlayer())
