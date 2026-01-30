@@ -5,7 +5,7 @@ public class GuardAI : EnemyAI_Base
     [SerializeField] GuardAI guard1;
     [SerializeField] GuardAI guard2;
     [SerializeField] guardType type;
-    [SerializeField] float stunDuration = 1f;
+    [SerializeField] float stunDuration = 0.5f;
     [SerializeField] float tazeCooldown = 5f;
     [SerializeField] float tazeDist;
 

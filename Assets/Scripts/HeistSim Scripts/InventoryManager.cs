@@ -139,7 +139,7 @@ public class InventoryManager : MonoBehaviour
     {
         if(PlayerController.instance == null) //checking for player
             return;
-
+        
         //checking player inventory and position in hotbar
         List<itemStats> itemList = PlayerController.instance.itemList;
         int currPos = PlayerController.instance.itemListPos;
@@ -155,7 +155,13 @@ public class InventoryManager : MonoBehaviour
 
             if(dropped != null)
             {
-                GameObject droppedItem = Instantiate(curr.itemInGame, dropped.position, Quaternion.identity);
+                //edit to keep object on right side of glass
+                
+                Vector3 spawnPos = dropped.position;
+                if(Physics.Linecast(PlayerController.instance.transform.position, spawnPos, out RaycastHit hit,~0, QueryTriggerInteraction.Ignore))
+                    spawnPos = hit.point;
+
+                GameObject droppedItem = Instantiate(curr.itemInGame, spawnPos, Quaternion.identity);
 
                 pickupItems pickupItem = droppedItem.GetComponent<pickupItems>();
 

@@ -40,6 +40,9 @@ public class EnemyAI_Base : MonoBehaviour
     public bool isBeingDragged;
     [SerializeField] Transform dragAttachPoint;
 
+    float loseSightTimer;
+    [SerializeField] float loseSightGrace = 0.25f;
+
     float hearingRadius = 15;
     float hearingInterval = 0.2f;
     float nextHearingTime;
@@ -136,6 +139,15 @@ public class EnemyAI_Base : MonoBehaviour
 
         if (isKnockedOut || isBeingDragged) return;
 
+        if(radioIn == true)
+        {
+            radioInTimer += Time.deltaTime;
+            if(radioInTimer >= radioInDuration)
+            {
+                radioIn = false;
+                radioInTimer = 0;
+            }
+        }
         applyStateMovement();
 
         switch (state)
@@ -202,7 +214,7 @@ public class EnemyAI_Base : MonoBehaviour
     public void takeKnockOut(float duration)
     {
         if (state == guardState.KnockedOut) return;
-        //crandom comment 1
+
         StopAllCoroutines();
         StartCoroutine(knockedOut(duration));
     }
@@ -236,14 +248,10 @@ public class EnemyAI_Base : MonoBehaviour
             lastAlertPosition = playerTransform.position;
             if (!radioIn && GameManager.instance != null)
             {
-                radioInTimer += Time.deltaTime;
                 onRadioIn(lastAlertPosition);
                 radioIn = true;
-                if(radioInTimer >= radioInDuration)
-                {
-                    radioIn = false;
-                }
-                
+                radioInTimer = 0;
+
             }
             state = guardState.Chase;
             return;
@@ -288,13 +296,9 @@ public class EnemyAI_Base : MonoBehaviour
             lastAlertPosition = playerTransform.position;
             if (!radioIn && GameManager.instance != null)
             {
-                radioInTimer += Time.deltaTime;
                 onRadioIn(lastAlertPosition);
                 radioIn = true;
-                if (radioInTimer >= radioInDuration)
-                {
-                    radioIn = false;
-                }
+                radioInTimer = 0;
             }
             state = guardState.Chase;
             return;
@@ -350,22 +354,14 @@ public class EnemyAI_Base : MonoBehaviour
             state = guardState.Chase;
             suspiciousTimer = 0f;
             return;
-            if (radioInTimer >= radioInDuration)
-            {
-                radioIn = false;
-            }
         }
 
         lastAlertPosition = playerTransform.position;
         if (!radioIn && GameManager.instance != null)
         {
-            radioInTimer += Time.deltaTime;
             GameManager.instance.alertSys.radioIn(lastAlertPosition);
             radioIn = true;
-            if (radioInTimer >= radioInDuration)
-            {
-                radioIn = false;
-            }
+            radioInTimer = 0;
         }
 
         agent.isStopped = true;
@@ -433,21 +429,28 @@ public class EnemyAI_Base : MonoBehaviour
     void ChaseBehavior()
     {
         agent.isStopped = false;
+        
         lastAlertPosition = playerTransform.transform.position;
+
         if (!radioIn && GameManager.instance != null)
-        {
-            radioInTimer += Time.deltaTime;
+        {           
             GameManager.instance.alertSys.radioIn(lastAlertPosition);
             radioIn = true;
-            if (radioInTimer >= radioInDuration)
-            {
-                radioIn = false;
-            }
+            radioInTimer = 0;
         }
 
-        if (!canSeePlayer())
+        if (canSeePlayer())
         {
-            state = guardState.Alerted;
+            loseSightTimer = 0f;
+        }
+        else
+        {
+            loseSightTimer += Time.deltaTime;
+            if (loseSightTimer >= loseSightGrace)
+            {
+                loseSightTimer = 0;
+                state = guardState.Alerted;
+            }
         }
         
             tryToTaze();
@@ -475,13 +478,9 @@ public class EnemyAI_Base : MonoBehaviour
             {
                 if (!radioIn && GameManager.instance != null)
                 {
-                    radioInTimer += Time.deltaTime;
                     GameManager.instance.alertSys.radioIn(playerPos);
                     radioIn = true;
-                    if (radioInTimer >= radioInDuration)
-                    {
-                        radioIn = false;
-                    }
+                    radioInTimer = 0;
                 }
                 agent.SetDestination(playerPos);
 
@@ -513,13 +512,9 @@ public class EnemyAI_Base : MonoBehaviour
         float noiseLevel = playerStateManager.noiseLevelChecker();
         if (!radioIn && GameManager.instance != null)
         {
-            radioInTimer += Time.deltaTime;
             GameManager.instance.alertSys.radioIn(lastAlertPosition);
             radioIn = true;
-            if (radioInTimer >= radioInDuration)
-            {
-                radioIn = false;
-            }
+            radioInTimer = 0;
         }
 
         if (noiseLevel <= 0)
@@ -612,6 +607,7 @@ public class EnemyAI_Base : MonoBehaviour
 
         if (canSeePlayer())
         {
+            agent.isStopped = false;
             state = guardState.Chase;
             return;
         }
