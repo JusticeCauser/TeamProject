@@ -282,4 +282,13 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(slowDur);
         speed = orig;
     }
+
+    public void resetInventory()
+    {
+        itemList.Clear();
+        itemListPos = 0;
+
+        totalValue = 0;
+        hasPrimaryObjective = false;
+    }
 }
