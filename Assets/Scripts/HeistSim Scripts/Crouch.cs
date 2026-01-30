@@ -77,7 +77,7 @@ public class Crouch : MonoBehaviour
     void updateHeight()
     {
         float targetHeight = isCrouching ? crouchHeight : standHeight;
-        currentHeight = Mathf.Lerp(currentHeight, targetHeight, Time.deltaTime * crouchTransitionSpeed);
+        currentHeight = Mathf.MoveTowards(currentHeight, targetHeight, Time.deltaTime * crouchTransitionSpeed);
         
         controller.height = currentHeight; ;
 
