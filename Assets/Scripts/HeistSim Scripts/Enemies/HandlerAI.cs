@@ -25,15 +25,12 @@ public class HandlerAI : EnemyAI_Base
             return;
 
         lastAlertPosition = playerTransform.transform.position;
+        alertTargetPos = lastAlertPosition - anchor;
         if (!radioIn && GameManager.instance != null)
         {
-            radioInTimer += Time.deltaTime;
-            GameManager.instance.alertSys.radioIn(lastAlertPosition);
+            GameManager.instance.alertSys.radioIn(alertTargetPos);
             radioIn = true;
-            if (radioInTimer >= radioInDuration)
-            {
-                radioIn = false;
-            }
+            radioInTimer = 0;
         }
         if (dog != null && dog.state == DogAI.dogState.Recall) return;
         if (dog2 != null && dog2.state == DogAI.dogState.Recall) return;
