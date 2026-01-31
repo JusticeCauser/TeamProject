@@ -244,7 +244,7 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator missionFailWithScreenFade(fail reason)
     {
-
+        Time.timeScale = 0;
         if (FadeManager.instance != null)
             yield return StartCoroutine(FadeManager.instance.screenFadeToBlack());
 

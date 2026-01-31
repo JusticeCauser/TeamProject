@@ -54,6 +54,8 @@ public class SettingsManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+
+            loadSettings();
         }
         else
         {
@@ -218,7 +220,7 @@ public class SettingsManager : MonoBehaviour
         if (InventoryManager.instance != null && InventoryManager.instance.inventoryUI != null)
             InventoryManager.instance.inventoryUI.SetActive(true);
     }
-
+    
     public void setMasterVolume(float volume)
     {
         masterVolume = volume;
@@ -268,6 +270,14 @@ public class SettingsManager : MonoBehaviour
 
         if(cameraController.instance != null)
             cameraController.instance.invertY = invert;
+    }
+    void loadSettings() //load players previously stored settings OR default settings if not set
+    {
+        masterVolume = PlayerPrefs.GetFloat("Master Volume", 1f);
+        ambientVolume = PlayerPrefs.GetFloat("Ambient Volume", 1f);
+        sfxVolume = PlayerPrefs.GetFloat("SFX Volume", 1f);
+        sensitivity = PlayerPrefs.GetFloat("Sensitivity", 300f);
+        invertY = PlayerPrefs.GetFloat("Invert Y", 0) == 1;
     }
     void menuButtonSound()
     {
