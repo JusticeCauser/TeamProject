@@ -23699,6 +23699,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 799821319109776888, guid: 1d4527d18bd0569458ff4e989ebc97f4, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1bea614296789c44795e21b24b07d013, type: 2}
     - target: {fileID: 6714491503956491666, guid: 1d4527d18bd0569458ff4e989ebc97f4, type: 3}
       propertyPath: m_Name
       value: Oceon
